@@ -1,0 +1,83 @@
+ARM GAS  /tmp/ccS67wGR.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"lowLevelStuff.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Read_Pushbuttons,"ax",%progbits
+  20              		.align	1
+  21              		.global	Read_Pushbuttons
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	Read_Pushbuttons:
+  27              	.LFB288:
+  28              		.file 1 "Core/Src/lowLevelStuff.c"
+   1:Core/Src/lowLevelStuff.c **** 
+   2:Core/Src/lowLevelStuff.c **** // Francesco Osti 25/12/2022 //
+   3:Core/Src/lowLevelStuff.c **** 
+   4:Core/Src/lowLevelStuff.c **** #include "lowLevelStuff.h"
+   5:Core/Src/lowLevelStuff.c **** 
+   6:Core/Src/lowLevelStuff.c **** uint8_t Read_Pushbuttons(){
+  29              		.loc 1 6 27 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+   7:Core/Src/lowLevelStuff.c ****     return (PB0_GPIO_Port->IDR & (PB0_Pin | PB1_Pin | PB2_Pin))>>(13-5) | (PB7_GPIO_Port->IDR & (0x
+  34              		.loc 1 7 5 view .LVU1
+  35              		.loc 1 7 26 is_stmt 0 view .LVU2
+  36 0000 054B     		ldr	r3, .L2
+  37 0002 1B69     		ldr	r3, [r3, #16]
+  38              		.loc 1 7 64 view .LVU3
+  39 0004 1B0A     		lsrs	r3, r3, #8
+  40 0006 03F0E003 		and	r3, r3, #224
+  41              		.loc 1 7 89 view .LVU4
+  42 000a 044A     		ldr	r2, .L2+4
+  43 000c 1069     		ldr	r0, [r2, #16]
+  44              		.loc 1 7 104 view .LVU5
+  45 000e C0F38400 		ubfx	r0, r0, #2, #5
+   8:Core/Src/lowLevelStuff.c **** }
+  46              		.loc 1 8 1 view .LVU6
+  47 0012 1843     		orrs	r0, r0, r3
+  48 0014 7047     		bx	lr
+  49              	.L3:
+  50 0016 00BF     		.align	2
+ARM GAS  /tmp/ccS67wGR.s 			page 2
+
+
+  51              	.L2:
+  52 0018 00080048 		.word	1207961600
+  53 001c 00100048 		.word	1207963648
+  54              		.cfi_endproc
+  55              	.LFE288:
+  57              		.text
+  58              	.Letext0:
+  59              		.file 2 "/home/retfie/.config/VSCodium/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/ar
+  60              		.file 3 "/home/retfie/.config/VSCodium/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/ar
+  61              		.file 4 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l431xx.h"
+ARM GAS  /tmp/ccS67wGR.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 lowLevelStuff.c
+     /tmp/ccS67wGR.s:20     .text.Read_Pushbuttons:0000000000000000 $t
+     /tmp/ccS67wGR.s:26     .text.Read_Pushbuttons:0000000000000000 Read_Pushbuttons
+     /tmp/ccS67wGR.s:52     .text.Read_Pushbuttons:0000000000000018 $d
+
+NO UNDEFINED SYMBOLS

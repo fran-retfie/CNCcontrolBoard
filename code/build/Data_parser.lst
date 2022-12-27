@@ -1,0 +1,247 @@
+ARM GAS  /tmp/cc0MIGkE.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"Data_parser.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.CheckSum,"ax",%progbits
+  20              		.align	1
+  21              		.global	CheckSum
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	CheckSum:
+  27              	.LVL0:
+  28              	.LFB0:
+  29              		.file 1 "Core/Src/Data_parser.c"
+   1:Core/Src/Data_parser.c **** #include "Data_parser.h"
+   2:Core/Src/Data_parser.c **** #include <string.h>
+   3:Core/Src/Data_parser.c **** #include <stdlib.h>
+   4:Core/Src/Data_parser.c **** 
+   5:Core/Src/Data_parser.c **** bool CheckSum(int X_value, int Y_value, int sum_value, int xor_value){
+  30              		.loc 1 5 70 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+   6:Core/Src/Data_parser.c **** 
+   7:Core/Src/Data_parser.c ****     // check checksum values
+   8:Core/Src/Data_parser.c ****     int sum_check = X_value + Y_value;
+  35              		.loc 1 8 5 view .LVU1
+  36              		.loc 1 8 9 is_stmt 0 view .LVU2
+  37 0000 00EB010C 		add	ip, r0, r1
+  38              	.LVL1:
+   9:Core/Src/Data_parser.c ****     int xor_check = X_value ^ Y_value;
+  39              		.loc 1 9 5 is_stmt 1 view .LVU3
+  40              		.loc 1 9 9 is_stmt 0 view .LVU4
+  41 0004 4840     		eors	r0, r0, r1
+  42              	.LVL2:
+  10:Core/Src/Data_parser.c **** 
+  11:Core/Src/Data_parser.c ****     return ((sum_value == sum_check) && (xor_value == xor_check));
+  43              		.loc 1 11 5 is_stmt 1 view .LVU5
+  44              		.loc 1 11 38 is_stmt 0 view .LVU6
+  45 0006 9445     		cmp	ip, r2
+  46 0008 01D0     		beq	.L5
+  47 000a 0020     		movs	r0, #0
+ARM GAS  /tmp/cc0MIGkE.s 			page 2
+
+
+  48              	.LVL3:
+  49              		.loc 1 11 38 view .LVU7
+  50 000c 7047     		bx	lr
+  51              	.LVL4:
+  52              	.L5:
+  53              		.loc 1 11 38 discriminator 1 view .LVU8
+  54 000e 9842     		cmp	r0, r3
+  55 0010 01D0     		beq	.L4
+  56              		.loc 1 11 38 view .LVU9
+  57 0012 0020     		movs	r0, #0
+  58              	.LVL5:
+  59              		.loc 1 11 38 view .LVU10
+  60 0014 7047     		bx	lr
+  61              	.LVL6:
+  62              	.L4:
+  63              		.loc 1 11 38 view .LVU11
+  64 0016 0120     		movs	r0, #1
+  65              	.LVL7:
+  12:Core/Src/Data_parser.c **** }
+  66              		.loc 1 12 1 view .LVU12
+  67 0018 7047     		bx	lr
+  68              		.cfi_endproc
+  69              	.LFE0:
+  71              		.section	.rodata.GetData.str1.4,"aMS",%progbits,1
+  72              		.align	2
+  73              	.LC0:
+  74 0000 3B00     		.ascii	";\000"
+  75              		.section	.text.GetData,"ax",%progbits
+  76              		.align	1
+  77              		.global	GetData
+  78              		.syntax unified
+  79              		.thumb
+  80              		.thumb_func
+  82              	GetData:
+  83              	.LVL8:
+  84              	.LFB1:
+  13:Core/Src/Data_parser.c **** 
+  14:Core/Src/Data_parser.c **** void GetData(char input_str[], int* X_value, int* Y_value, int* g_cmd, int* sum_value, int* xor_val
+  85              		.loc 1 14 103 is_stmt 1 view -0
+  86              		.cfi_startproc
+  87              		@ args = 8, pretend = 0, frame = 24
+  88              		@ frame_needed = 0, uses_anonymous_args = 0
+  89              		.loc 1 14 103 is_stmt 0 view .LVU14
+  90 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  91              		.cfi_def_cfa_offset 20
+  92              		.cfi_offset 4, -20
+  93              		.cfi_offset 5, -16
+  94              		.cfi_offset 6, -12
+  95              		.cfi_offset 7, -8
+  96              		.cfi_offset 14, -4
+  97 0002 87B0     		sub	sp, sp, #28
+  98              		.cfi_def_cfa_offset 48
+  99 0004 0F46     		mov	r7, r1
+ 100 0006 1646     		mov	r6, r2
+ 101 0008 1D46     		mov	r5, r3
+  15:Core/Src/Data_parser.c ****     char* char_ptr;
+ 102              		.loc 1 15 5 is_stmt 1 view .LVU15
+ARM GAS  /tmp/cc0MIGkE.s 			page 3
+
+
+  16:Core/Src/Data_parser.c ****     int data_buffer[5];
+ 103              		.loc 1 16 5 view .LVU16
+  17:Core/Src/Data_parser.c ****     int index_buffer = 0;
+ 104              		.loc 1 17 5 view .LVU17
+ 105              	.LVL9:
+  18:Core/Src/Data_parser.c ****     
+  19:Core/Src/Data_parser.c ****     char_ptr = strtok (input_str, ";");
+ 106              		.loc 1 19 5 view .LVU18
+ 107              		.loc 1 19 16 is_stmt 0 view .LVU19
+ 108 000a 1049     		ldr	r1, .L10
+ 109              	.LVL10:
+ 110              		.loc 1 19 16 view .LVU20
+ 111 000c FFF7FEFF 		bl	strtok
+ 112              	.LVL11:
+  20:Core/Src/Data_parser.c ****     while (char_ptr != NULL)
+ 113              		.loc 1 20 5 is_stmt 1 view .LVU21
+  17:Core/Src/Data_parser.c ****     int index_buffer = 0;
+ 114              		.loc 1 17 9 is_stmt 0 view .LVU22
+ 115 0010 0024     		movs	r4, #0
+ 116              		.loc 1 20 11 view .LVU23
+ 117 0012 0BE0     		b	.L7
+ 118              	.LVL12:
+ 119              	.L8:
+  21:Core/Src/Data_parser.c ****     {
+  22:Core/Src/Data_parser.c ****         data_buffer[index_buffer] = atoi(char_ptr);
+ 120              		.loc 1 22 9 is_stmt 1 view .LVU24
+ 121              		.loc 1 22 37 is_stmt 0 view .LVU25
+ 122 0014 FFF7FEFF 		bl	atoi
+ 123              	.LVL13:
+ 124              		.loc 1 22 35 view .LVU26
+ 125 0018 06AB     		add	r3, sp, #24
+ 126 001a 03EB840C 		add	ip, r3, r4, lsl #2
+ 127 001e 4CF8140C 		str	r0, [ip, #-20]
+  23:Core/Src/Data_parser.c ****         char_ptr = strtok (NULL, ";");
+ 128              		.loc 1 23 9 is_stmt 1 view .LVU27
+ 129              		.loc 1 23 20 is_stmt 0 view .LVU28
+ 130 0022 0A49     		ldr	r1, .L10
+ 131 0024 0020     		movs	r0, #0
+ 132 0026 FFF7FEFF 		bl	strtok
+ 133              	.LVL14:
+  24:Core/Src/Data_parser.c **** 
+  25:Core/Src/Data_parser.c ****         index_buffer += 1;
+ 134              		.loc 1 25 9 is_stmt 1 view .LVU29
+ 135              		.loc 1 25 22 is_stmt 0 view .LVU30
+ 136 002a 0134     		adds	r4, r4, #1
+ 137              	.LVL15:
+ 138              	.L7:
+  20:Core/Src/Data_parser.c ****     {
+ 139              		.loc 1 20 21 is_stmt 1 view .LVU31
+ 140 002c 0028     		cmp	r0, #0
+ 141 002e F1D1     		bne	.L8
+  26:Core/Src/Data_parser.c ****     }
+  27:Core/Src/Data_parser.c **** 
+  28:Core/Src/Data_parser.c ****     *X_value = data_buffer[0];
+ 142              		.loc 1 28 5 view .LVU32
+ 143              		.loc 1 28 27 is_stmt 0 view .LVU33
+ 144 0030 019B     		ldr	r3, [sp, #4]
+ARM GAS  /tmp/cc0MIGkE.s 			page 4
+
+
+ 145              		.loc 1 28 14 view .LVU34
+ 146 0032 3B60     		str	r3, [r7]
+  29:Core/Src/Data_parser.c ****     *Y_value = data_buffer[1];
+ 147              		.loc 1 29 5 is_stmt 1 view .LVU35
+ 148              		.loc 1 29 27 is_stmt 0 view .LVU36
+ 149 0034 029B     		ldr	r3, [sp, #8]
+ 150              		.loc 1 29 14 view .LVU37
+ 151 0036 3360     		str	r3, [r6]
+  30:Core/Src/Data_parser.c ****     *g_cmd = data_buffer[2];
+ 152              		.loc 1 30 5 is_stmt 1 view .LVU38
+ 153              		.loc 1 30 25 is_stmt 0 view .LVU39
+ 154 0038 039B     		ldr	r3, [sp, #12]
+ 155              		.loc 1 30 12 view .LVU40
+ 156 003a 2B60     		str	r3, [r5]
+  31:Core/Src/Data_parser.c ****     *sum_value = data_buffer[3];
+ 157              		.loc 1 31 5 is_stmt 1 view .LVU41
+ 158              		.loc 1 31 29 is_stmt 0 view .LVU42
+ 159 003c 049A     		ldr	r2, [sp, #16]
+ 160              		.loc 1 31 16 view .LVU43
+ 161 003e 0C9B     		ldr	r3, [sp, #48]
+ 162 0040 1A60     		str	r2, [r3]
+  32:Core/Src/Data_parser.c ****     *xor_value = data_buffer[4];
+ 163              		.loc 1 32 5 is_stmt 1 view .LVU44
+ 164              		.loc 1 32 29 is_stmt 0 view .LVU45
+ 165 0042 059A     		ldr	r2, [sp, #20]
+ 166              		.loc 1 32 16 view .LVU46
+ 167 0044 0D9B     		ldr	r3, [sp, #52]
+ 168 0046 1A60     		str	r2, [r3]
+  33:Core/Src/Data_parser.c **** 
+  34:Core/Src/Data_parser.c ****     return;
+ 169              		.loc 1 34 5 is_stmt 1 view .LVU47
+  35:Core/Src/Data_parser.c **** }...
+ 170              		.loc 1 35 1 is_stmt 0 view .LVU48
+ 171 0048 07B0     		add	sp, sp, #28
+ 172              		.cfi_def_cfa_offset 20
+ 173              		@ sp needed
+ 174 004a F0BD     		pop	{r4, r5, r6, r7, pc}
+ 175              	.LVL16:
+ 176              	.L11:
+ 177              		.loc 1 35 1 view .LVU49
+ 178              		.align	2
+ 179              	.L10:
+ 180 004c 00000000 		.word	.LC0
+ 181              		.cfi_endproc
+ 182              	.LFE1:
+ 184              		.text
+ 185              	.Letext0:
+ 186              		.file 2 "/home/retfie/.config/VSCodium/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/ar
+ 187              		.file 3 "/home/retfie/.config/VSCodium/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/ar
+ARM GAS  /tmp/cc0MIGkE.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 Data_parser.c
+     /tmp/cc0MIGkE.s:20     .text.CheckSum:0000000000000000 $t
+     /tmp/cc0MIGkE.s:26     .text.CheckSum:0000000000000000 CheckSum
+     /tmp/cc0MIGkE.s:72     .rodata.GetData.str1.4:0000000000000000 $d
+     /tmp/cc0MIGkE.s:76     .text.GetData:0000000000000000 $t
+     /tmp/cc0MIGkE.s:82     .text.GetData:0000000000000000 GetData
+     /tmp/cc0MIGkE.s:180    .text.GetData:000000000000004c $d
+
+UNDEFINED SYMBOLS
+strtok
+atoi

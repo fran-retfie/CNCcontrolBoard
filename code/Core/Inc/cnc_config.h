@@ -15,6 +15,10 @@
 #define dirY_Port O11_GPIO_Port
 #define enX_tim   htim1
 #define enY_tim   htim15
+#define limitX_Pin SW0_Pin
+#define limitX_Port SW0_GPIO_Port
+#define limitY_Pin SW1_Pin
+#define limitY_Port SW1_GPIO_Port
 
 //step required to move 0.1mm
 #define stepX_01mm 4
@@ -28,13 +32,13 @@
 #define max_accX 40
 #define max_accY 40
 
-//
+//stepper speed divider
 #define freqX_1mm_min 65217
 #define freqY_1mm_min 65217
 
 //CNC limits in steps units
-#define max_limX 4*1300 //1300 mm
-#define max_limY 4*4000 //4000 mm
+#define max_limX stepX_01mm*13000 //1300.0 mm
+#define max_limY stepY_01mm*40000 //4000.0 mm
 #define min_limX 0
 #define min_limY 0
 

@@ -22,6 +22,11 @@ union comanded_t {
    svec16_t speed;
 };
 
+typedef struct {
+  bool x;
+  bool y;
+} bvec_t;
+
 typedef enum
 {
   HMI_Mode_Zero,
@@ -53,14 +58,13 @@ typedef struct
     uvec16_t pos;
     svec16_t pulseLenght;
     uvec16_t pulsesCnt;
-    bool dirX;
-    bool dirY;
+    bvec_t dir;
     union comanded_t commanded;
     uint16_t feed;
     uint8_t cnt1;
     uint8_t cnt2;
     bool update;
-    bool zeroed;
+    bvec_t zeroed;
     uint8_t pushbuttons;
 } HMI_info_t;
 

@@ -20,7 +20,7 @@ void __BP_Control(HMI_info_t* info, uint8_t mask, bool pause_mask)
   uint8_t newPushbuttons = __Read_Pushbuttons();
   uint8_t PBpressed = ~newPushbuttons & info->pushbuttons & mask;
 
-  if((PBpressed & PB_MODE) && info->zeroed && (info->state == HMI_State_Stop)){
+  if((PBpressed & PB_MODE) && info->zeroed.x && info->zeroed.y && (info->state == HMI_State_Stop)){
     info->mode = (info->mode >= 3) ? HMI_Mode_Zero : info->mode+1;
     info->state = HMI_State_Stop;
     info->move = HMI_Move_None;
@@ -46,7 +46,6 @@ void __BP_Control(HMI_info_t* info, uint8_t mask, bool pause_mask)
       info->state = HMI_State_Run;
       info->update = true;
       info->cnt2 = 30;
-      info->zeroed = true; //to be removed
       info->cnt1 = 0;
     }
   } 
@@ -57,7 +56,7 @@ void __BP_Control(HMI_info_t* info, uint8_t mask, bool pause_mask)
   info->pushbuttons = newPushbuttons;
 }
 
-void HMI_Update(HMI_info_t* info, volatile uint16_t* adc_data){
+void HMI_Update(HMI_info_t* info){
   switch (info->mode) {
   case  HMI_Mode_Zero:
     __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE), false);
@@ -76,7 +75,7 @@ void HMI_Update(HMI_info_t* info, volatile uint16_t* adc_data){
   case  HMI_Mode_Ser:
     __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE), true);
   break;
-}
+  }
 
   if(info->cnt2 != 0){
     info->cnt2--;
@@ -96,14 +95,22 @@ void HMI_Update(HMI_info_t* info, volatile uint16_t* adc_data){
     if(info->update){
       char textStr[17];
       clearLCD();
-      sprintf(textStr, "Y: %05umm", info->pos.y);
-      memmove(textStr+8, textStr+7, 4);
-      textStr[7] = '.';
+      if(info->zeroed.y) {
+        sprintf(textStr, "Y: %05umm", info->pos.y);
+        memmove(textStr+8, textStr+7, 4);
+        textStr[7] = '.';
+      }
+      else
+       sprintf(textStr, "Y: ???");
       setCursor(0, 0);
       writeLCD(textStr);
-      sprintf(textStr, "X: %05umm", info->pos.x);
-      memmove(textStr+8, textStr+7, 4);
-      textStr[7] = '.';
+      if(info->zeroed.x){
+        sprintf(textStr, "X: %05umm", info->pos.x);
+        memmove(textStr+8, textStr+7, 4);
+        textStr[7] = '.';
+      }
+      else
+        sprintf(textStr, "X: ???");
       setCursor(0, 1);
       writeLCD(textStr);
       info->update = false;

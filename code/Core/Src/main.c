@@ -91,7 +91,7 @@ HMI_info_t hmi_info = { .mode = HMI_Mode_Zero,
                         .cnt1 = 0,
                         .cnt2 = 0,
                         .update = true,
-                        .zeroed = false,
+                        .zeroed = {false, false},
                         .pushbuttons = 0xFFU};
 
 volatile uint16_t adc_data[8];
@@ -798,7 +798,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
-  HMI_Update(&hmi_info, adc_data);
+  HMI_Update(&hmi_info);
 }
 
 void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim){
@@ -814,6 +814,14 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
   //STOP pressed halt motors and go to STOP mode
   if(GPIO_Pin == SWSTOP_Pin) {
     CNC_Stop(&hmi_info, &enX_tim, &enY_tim);
+  }
+
+  if(GPIO_Pin == limitX_Pin) {
+    CNC_Limit_X(&hmi_info, &enX_tim, &enY_tim);
+  }
+
+  if(GPIO_Pin == limitY_Pin) {
+    CNC_Limit_Y(&hmi_info, &enX_tim, &enY_tim);
   }
 }
 /* USER CODE END 4 */

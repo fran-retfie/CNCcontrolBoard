@@ -28,6 +28,10 @@
 #define max_accX 40
 #define max_accY 40
 
+//
+#define freqX_1mm_min 65217
+#define freqY_1mm_min 65217
+
 //CNC limits in steps units
 #define max_limX 4*1300 //1300 mm
 #define max_limY 4*4000 //4000 mm

@@ -139,12 +139,12 @@ void Error_Handler(void);
 #define O15_GPIO_Port GPIOD
 #define SW0_Pin GPIO_PIN_14
 #define SW0_GPIO_Port GPIOD
+#define SW0_EXTI_IRQn EXTI15_10_IRQn
 #define SW1_Pin GPIO_PIN_15
 #define SW1_GPIO_Port GPIOD
+#define SW1_EXTI_IRQn EXTI15_10_IRQn
 #define SW2_Pin GPIO_PIN_6
 #define SW2_GPIO_Port GPIOC
-#define SW3_Pin GPIO_PIN_7
-#define SW3_GPIO_Port GPIOC
 #define I0_Pin GPIO_PIN_0
 #define I0_GPIO_Port GPIOD
 #define I1_Pin GPIO_PIN_1

@@ -41,7 +41,8 @@ typedef enum
 {
   HMI_Move_Absolute,
   HMI_Move_Jog,
-  HMI_Move_None
+  HMI_Move_None,
+  HMI_Move_Done
 } HMI_Move_t;
 
 typedef struct
@@ -50,7 +51,10 @@ typedef struct
     HMI_State_t state;
     HMI_Move_t move;
     uvec16_t pos;
-    svec16_t speed;
+    svec16_t pulseLenght;
+    uvec16_t pulsesCnt;
+    bool dirX;
+    bool dirY;
     union comanded_t commanded;
     uint16_t feed;
     uint8_t cnt1;

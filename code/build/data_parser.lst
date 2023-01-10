@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccn2QiHT.s 			page 1
+ARM GAS  /tmp/ccbue8de.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccn2QiHT.s 			page 1
   45              	.LVL2:
   12:Core/Src/data_parser.c ****     uint16_t xor_check = coord->x ^ coord->y;
   46              		.loc 1 12 5 is_stmt 1 view .LVU6
-ARM GAS  /tmp/ccn2QiHT.s 			page 2
+ARM GAS  /tmp/ccbue8de.s 			page 2
 
 
   47              		.loc 1 12 14 is_stmt 0 view .LVU7
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccn2QiHT.s 			page 1
   18:Core/Src/data_parser.c ****     char uartData = status ? 'A' : 'N';
   98              		.loc 1 18 5 is_stmt 1 view .LVU18
   99              		.loc 1 18 10 is_stmt 0 view .LVU19
-ARM GAS  /tmp/ccn2QiHT.s 			page 3
+ARM GAS  /tmp/ccbue8de.s 			page 3
 
 
  100 0004 59B1     		cbz	r1, .L8
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccn2QiHT.s 			page 1
  151 0006 0D46     		mov	r5, r1
  152              	.LVL14:
  153              	.L11:
-ARM GAS  /tmp/ccn2QiHT.s 			page 4
+ARM GAS  /tmp/ccbue8de.s 			page 4
 
 
   23:Core/Src/data_parser.c ****     char uartData[11];
@@ -211,17 +211,17 @@ ARM GAS  /tmp/ccn2QiHT.s 			page 1
   31:Core/Src/data_parser.c **** 
   32:Core/Src/data_parser.c ****     uint16_t *g_cmd, *sum_value, *xor_value;
  173              		.loc 1 32 5 is_stmt 1 view .LVU35
-  33:Core/Src/data_parser.c ****     info->pos.x  = *(uint16_t*) uartData;
+  33:Core/Src/data_parser.c ****     info->commanded.pos.x  = *(uint16_t*) uartData;
  174              		.loc 1 33 5 view .LVU36
- 175              		.loc 1 33 20 is_stmt 0 view .LVU37
+ 175              		.loc 1 33 30 is_stmt 0 view .LVU37
  176 0020 BDF80430 		ldrh	r3, [sp, #4]
- 177              		.loc 1 33 18 view .LVU38
- 178 0024 AB80     		strh	r3, [r5, #4]	@ movhi
-  34:Core/Src/data_parser.c ****     info->pos.y  = *((uint16_t*) uartData + 1);
+ 177              		.loc 1 33 28 view .LVU38
+ 178 0024 6B82     		strh	r3, [r5, #18]	@ movhi
+  34:Core/Src/data_parser.c ****     info->commanded.pos.y  = *((uint16_t*) uartData + 1);
  179              		.loc 1 34 5 is_stmt 1 view .LVU39
- 180              		.loc 1 34 18 is_stmt 0 view .LVU40
+ 180              		.loc 1 34 28 is_stmt 0 view .LVU40
  181 0026 BDF80630 		ldrh	r3, [sp, #6]
- 182 002a EB80     		strh	r3, [r5, #6]	@ movhi
+ 182 002a AB82     		strh	r3, [r5, #20]	@ movhi
   35:Core/Src/data_parser.c ****     g_cmd     = (uint16_t*) (uartData + 4);
  183              		.loc 1 35 5 is_stmt 1 view .LVU41
  184              	.LVL16:
@@ -230,23 +230,23 @@ ARM GAS  /tmp/ccn2QiHT.s 			page 1
   37:Core/Src/data_parser.c ****     xor_value = (uint16_t*) (uartData + 8);
  186              		.loc 1 37 5 view .LVU43
   38:Core/Src/data_parser.c **** 
-  39:Core/Src/data_parser.c ****     return CheckSum(&(info->pos), *sum_value, *xor_value);
+  39:Core/Src/data_parser.c ****     return CheckSum(&(info->commanded.pos), *sum_value, *xor_value);
  187              		.loc 1 39 5 view .LVU44
  188              		.loc 1 39 12 is_stmt 0 view .LVU45
  189 002c BDF80C20 		ldrh	r2, [sp, #12]
  190 0030 BDF80A10 		ldrh	r1, [sp, #10]
- 191 0034 281D     		adds	r0, r5, #4
- 192 0036 FFF7FEFF 		bl	CheckSum
+ 191 0034 05F11200 		add	r0, r5, #18
+ 192 0038 FFF7FEFF 		bl	CheckSum
  193              	.LVL17:
-ARM GAS  /tmp/ccn2QiHT.s 			page 5
+ARM GAS  /tmp/ccbue8de.s 			page 5
 
 
   40:Core/Src/data_parser.c **** }...
  194              		.loc 1 40 1 view .LVU46
- 195 003a 05B0     		add	sp, sp, #20
+ 195 003c 05B0     		add	sp, sp, #20
  196              		.cfi_def_cfa_offset 12
  197              		@ sp needed
- 198 003c 30BD     		pop	{r4, r5, pc}
+ 198 003e 30BD     		pop	{r4, r5, pc}
  199              		.loc 1 40 1 view .LVU47
  200              		.cfi_endproc
  201              	.LFE293:
@@ -259,17 +259,17 @@ ARM GAS  /tmp/ccn2QiHT.s 			page 1
  209              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
  210              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h"
  211              		.file 8 "Core/Inc/cnc_info.h"
-ARM GAS  /tmp/ccn2QiHT.s 			page 6
+ARM GAS  /tmp/ccbue8de.s 			page 6
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 data_parser.c
-     /tmp/ccn2QiHT.s:20     .text.CheckSum:0000000000000000 $t
-     /tmp/ccn2QiHT.s:26     .text.CheckSum:0000000000000000 CheckSum
-     /tmp/ccn2QiHT.s:79     .text.WriteACK:0000000000000000 $t
-     /tmp/ccn2QiHT.s:85     .text.WriteACK:0000000000000000 WriteACK
-     /tmp/ccn2QiHT.s:129    .text.ReadGcode:0000000000000000 $t
-     /tmp/ccn2QiHT.s:135    .text.ReadGcode:0000000000000000 ReadGcode
+     /tmp/ccbue8de.s:20     .text.CheckSum:0000000000000000 $t
+     /tmp/ccbue8de.s:26     .text.CheckSum:0000000000000000 CheckSum
+     /tmp/ccbue8de.s:79     .text.WriteACK:0000000000000000 $t
+     /tmp/ccbue8de.s:85     .text.WriteACK:0000000000000000 WriteACK
+     /tmp/ccbue8de.s:129    .text.ReadGcode:0000000000000000 $t
+     /tmp/ccbue8de.s:135    .text.ReadGcode:0000000000000000 ReadGcode
 
 UNDEFINED SYMBOLS
 HAL_UART_Transmit

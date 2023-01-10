@@ -84,9 +84,10 @@ HMI_info_t hmi_info = { .mode = HMI_Mode_Zero,
                         .state = HMI_State_Stop, 
                         .move = HMI_Move_None,
                         .pos = {3000, 3000},
-                        .speed = {0, 0},
+                        .pulseLenght = {1000, 1000},
+                        .pulsesCnt = {0, 0},
                         .commanded.pos = {0, 0},
-                        .feed = 100,
+                        .feed = 1000,
                         .cnt1 = 0,
                         .cnt2 = 0,
                         .update = true,
@@ -138,7 +139,16 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   initLCD();
+
   HAL_TIM_Base_Start_IT(&htim7);
+
+  HAL_TIMEx_PWMN_Start_IT(&enX_tim, TIM_CHANNEL_3);
+  HAL_TIM_PWM_Start_IT(&enY_tim, TIM_CHANNEL_1);
+  enX_tim.Instance->CR1 &= ~TIM_CR1_CEN;
+  enY_tim.Instance->CR1 &= ~TIM_CR1_CEN;
+  enX_tim.Instance->CR1 &= ~TIM_CR1_ARPE;
+  enY_tim.Instance->CR1 &= ~TIM_CR1_ARPE;
+
   HAL_ADC_Start_DMA(&hadc1, (uint32_t*) adc_data, 8);
 
   /* USER CODE END 2 */
@@ -151,7 +161,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-    CNC_HL_Control(&hmi_info, &enX_tim, &enY_tim, &huart1);
+    CNC_HL_Control(&hmi_info, &enX_tim, &enY_tim, &huart1, adc_data);
     //HAL_Delay(1);
   }
   /* USER CODE END 3 */
@@ -369,11 +379,11 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 600;
+  htim1.Init.Prescaler = 92;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 10;
+  htim1.Init.Period = 400;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim1.Init.RepetitionCounter = 20;
+  htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
   if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
   {
@@ -388,19 +398,15 @@ static void MX_TIM1_Init(void)
   {
     Error_Handler();
   }
-  if (HAL_TIM_OnePulse_Init(&htim1, TIM_OPMODE_SINGLE) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterOutputTrigger2 = TIM_TRGO2_RESET;
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
+  sMasterConfig.MasterOutputTrigger2 = TIM_TRGO2_UPDATE;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
   {
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 5;
+  sConfigOC.Pulse = 500;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_LOW;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
@@ -491,11 +497,11 @@ static void MX_TIM15_Init(void)
 
   /* USER CODE END TIM15_Init 1 */
   htim15.Instance = TIM15;
-  htim15.Init.Prescaler = 600;
+  htim15.Init.Prescaler = 92;
   htim15.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim15.Init.Period = 5;
+  htim15.Init.Period = 400;
   htim15.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim15.Init.RepetitionCounter = 5;
+  htim15.Init.RepetitionCounter = 0;
   htim15.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
   if (HAL_TIM_Base_Init(&htim15) != HAL_OK)
   {
@@ -510,18 +516,14 @@ static void MX_TIM15_Init(void)
   {
     Error_Handler();
   }
-  if (HAL_TIM_OnePulse_Init(&htim15, TIM_OPMODE_SINGLE) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim15, &sMasterConfig) != HAL_OK)
   {
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 2;
+  sConfigOC.Pulse = 500;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_LOW;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
@@ -686,7 +688,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(DIR2_GPIO_Port, DIR2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, PO0_Pin|SW2_Pin|SW3_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, PO0_Pin|SW2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, PO1_Pin|PO2_Pin|DIR3_Pin|D4_Pin
@@ -699,7 +701,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOD, O10_Pin|O11_Pin|O12_Pin|O13_Pin
-                          |O14_Pin|O15_Pin|SW0_Pin|SW1_Pin, GPIO_PIN_RESET);
+                          |O14_Pin|O15_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : PB7_Pin PB6_Pin PB5_Pin PB4_Pin
                            PB3_Pin */
@@ -722,8 +724,14 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(DIR2_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PO0_Pin SW2_Pin SW3_Pin */
-  GPIO_InitStruct.Pin = PO0_Pin|SW2_Pin|SW3_Pin;
+  /*Configure GPIO pin : SWSTOP_Pin */
+  GPIO_InitStruct.Pin = SWSTOP_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(SWSTOP_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : PO0_Pin SW2_Pin */
+  GPIO_InitStruct.Pin = PO0_Pin|SW2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -750,12 +758,18 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 
   /*Configure GPIO pins : O10_Pin O11_Pin O12_Pin O13_Pin
-                           O14_Pin O15_Pin SW0_Pin SW1_Pin */
+                           O14_Pin O15_Pin */
   GPIO_InitStruct.Pin = O10_Pin|O11_Pin|O12_Pin|O13_Pin
-                          |O14_Pin|O15_Pin|SW0_Pin|SW1_Pin;
+                          |O14_Pin|O15_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : SW0_Pin SW1_Pin */
+  GPIO_InitStruct.Pin = SW0_Pin|SW1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
   /*Configure GPIO pins : I0_Pin I1_Pin I2_Pin I3_Pin
@@ -772,12 +786,35 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(I7_GPIO_Port, &GPIO_InitStruct);
 
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 15, 0);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 14, 0);
+  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+
 }
 
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
   HMI_Update(&hmi_info, adc_data);
+}
+
+void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim){
+  if(htim == &enX_tim)
+    CNC_TIM_Callback_X(&hmi_info, &enX_tim);
+
+  if(htim == &enY_tim)
+    CNC_TIM_Callback_Y(&hmi_info, &enY_tim); 
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  //STOP pressed halt motors and go to STOP mode
+  if(GPIO_Pin == SWSTOP_Pin) {
+    CNC_Stop(&hmi_info, &enX_tim, &enY_tim);
+  }
 }
 /* USER CODE END 4 */
 

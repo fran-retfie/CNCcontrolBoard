@@ -35,18 +35,18 @@ void __BP_Control(HMI_info_t* info, uint8_t mask, bool pause_mask)
   }
 
   if((PBpressed & PB_RUN) && (info->state != HMI_State_Stop)){
-      info->state = (info->state != HMI_State_Run) ? HMI_State_Run : pause_mask ? HMI_State_Pause : HMI_State_Stop;
+      info->state = pause_mask ? HMI_State_Pause : HMI_State_Stop;
       info->update = true;
       info->cnt2 = 30;
   }
 
-  if(~newPushbuttons & PB_RUN){
+  if((~newPushbuttons & PB_RUN) && !HAL_GPIO_ReadPin(SWSTOP_GPIO_Port, SWSTOP_Pin)){
     info->cnt1++;
     if(info->cnt1 > 20) {
       info->state = HMI_State_Run;
       info->update = true;
       info->cnt2 = 30;
-      info->zeroed = true;
+      info->zeroed = true; //to be removed
       info->cnt1 = 0;
     }
   } 
@@ -65,10 +65,7 @@ void HMI_Update(HMI_info_t* info, volatile uint16_t* adc_data){
 
   case  HMI_Mode_Man:
     __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE), false);
-    int16_t jogX = ((int16_t) (adc_data[6]>>1)) - (1844/2); //subtract center value X
-    int16_t jogY = ((int16_t) (adc_data[7]>>1)) - (1814/2); //subtract center value Y
-    info->commanded.speed.x = (abs(jogX) > 130) ? jogX : 0;  // dead zone near center X
-    info->commanded.speed.y = (abs(jogY) > 130) ? jogY : 0;  // dead zone near center Y
+
   
   break;
 

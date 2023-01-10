@@ -30,11 +30,11 @@ bool ReadGcode(UART_HandleTypeDef *huart, HMI_info_t* info){
     }
 
     uint16_t *g_cmd, *sum_value, *xor_value;
-    info->pos.x  = *(uint16_t*) uartData;
-    info->pos.y  = *((uint16_t*) uartData + 1);
+    info->commanded.pos.x  = *(uint16_t*) uartData;
+    info->commanded.pos.y  = *((uint16_t*) uartData + 1);
     g_cmd     = (uint16_t*) (uartData + 4);
     sum_value = (uint16_t*) (uartData + 6);
     xor_value = (uint16_t*) (uartData + 8);
 
-    return CheckSum(&(info->pos), *sum_value, *xor_value);
+    return CheckSum(&(info->commanded.pos), *sum_value, *xor_value);
 }

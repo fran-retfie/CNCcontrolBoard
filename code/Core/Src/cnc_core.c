@@ -19,10 +19,14 @@ int32_t ihyp(uint16_t x, uint16_t y){
 }
 
 void CNC_Stepper(HMI_info_t* info, bool runX, bool runY, TIM_HandleTypeDef *htimX, TIM_HandleTypeDef *htimY){
-    runX &= !(HAL_GPIO_ReadPin(limitX_Port, limitX_Pin) || ((info->pos.x == 0) && !info->dir.x) || ((info->pos.x >= max_limX) && info->dir.x) );
-    runY &= !(HAL_GPIO_ReadPin(limitY_Port, limitY_Pin) || ((info->pos.y == 0) && !info->dir.y) || ((info->pos.y >= max_limX) && info->dir.y) );
+    //runX &= !(!HAL_GPIO_ReadPin(limitX_Port, limitX_Pin) || ((info->pos.x == 0) && !info->dir.x) || ((info->pos.x >= max_limX) && info->dir.x) );
+    //runY &= !(!HAL_GPIO_ReadPin(limitY_Port, limitY_Pin) || ((info->pos.y == 0) && !info->dir.y) || ((info->pos.y >= max_limX) && info->dir.y) );
     if(!HAL_GPIO_ReadPin(SWSTOP_GPIO_Port, SWSTOP_Pin)){
         if(runX){
+            if(!(htimX->Instance->CR1 && TIM_CR1_CEN)){
+                htimX->Instance->ARR = info->pulseLenght.x;
+                htimX->Instance->CCR3 = ((info->pulseLenght.x)>>1);
+            }
             htimX->Instance->CR1 &= ~TIM_CR1_OPM;
             htimX->Instance->CR1 |= TIM_CR1_CEN;
         }
@@ -30,6 +34,10 @@ void CNC_Stepper(HMI_info_t* info, bool runX, bool runY, TIM_HandleTypeDef *htim
             htimX->Instance->CR1 |= TIM_CR1_OPM;
 
         if(runY){
+            if(!(htimY->Instance->CR1 && TIM_CR1_CEN)){
+                htimY->Instance->ARR = info->pulseLenght.y;
+                htimY->Instance->CCR3 = ((info->pulseLenght.y)>>1);
+            }
             htimY->Instance->CR1 &= ~TIM_CR1_OPM; 
             htimY->Instance->CR1 |= TIM_CR1_CEN;
         }
@@ -77,7 +85,7 @@ void CNC_Absolute(HMI_info_t* info, TIM_HandleTypeDef *htimX, TIM_HandleTypeDef 
 void CNC_Jog(HMI_info_t* info, TIM_HandleTypeDef *htimX, TIM_HandleTypeDef *htimY){
 
     info->dir.x = (info->commanded.speed.x > 0);
-    info->dir.x = (info->commanded.speed.y > 0);
+    info->dir.y = (info->commanded.speed.y > 0);
 
     HAL_GPIO_WritePin(dirX_Port, dirX_Pin, info->dir.x);
     HAL_GPIO_WritePin(dirY_Port, dirY_Pin, info->dir.y);

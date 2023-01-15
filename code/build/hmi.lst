@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cclVJhLP.s 			page 1
+ARM GAS  /tmp/ccHTJMD9.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -34,34 +34,35 @@ ARM GAS  /tmp/cclVJhLP.s 			page 1
    4:Core/Src/hmi.c **** #include "hmi.h"
    5:Core/Src/hmi.c **** #include "main.h"
    6:Core/Src/hmi.c **** #include "lcd.h"
-   7:Core/Src/hmi.c **** #include <stdio.h>
-   8:Core/Src/hmi.c **** #include <string.h>
-   9:Core/Src/hmi.c **** #include <stdlib.h>
-  10:Core/Src/hmi.c **** 
-  11:Core/Src/hmi.c **** uint8_t __Read_Pushbuttons(){
-  29              		.loc 1 11 29 view -0
+   7:Core/Src/hmi.c **** #include "cnc_core.h"
+   8:Core/Src/hmi.c **** #include <stdio.h>
+   9:Core/Src/hmi.c **** #include <string.h>
+  10:Core/Src/hmi.c **** #include <stdlib.h>
+  11:Core/Src/hmi.c **** 
+  12:Core/Src/hmi.c **** uint8_t __Read_Pushbuttons(){
+  29              		.loc 1 12 29 view -0
   30              		.cfi_startproc
   31              		@ args = 0, pretend = 0, frame = 0
   32              		@ frame_needed = 0, uses_anonymous_args = 0
   33              		@ link register save eliminated.
-  12:Core/Src/hmi.c ****     return (PB0_GPIO_Port->IDR & (PB0_Pin | PB1_Pin | PB2_Pin))>>(13-5) | (PB7_GPIO_Port->IDR & (0x
-  34              		.loc 1 12 5 view .LVU1
-  35              		.loc 1 12 26 is_stmt 0 view .LVU2
+  13:Core/Src/hmi.c ****     return (PB0_GPIO_Port->IDR & (PB0_Pin | PB1_Pin | PB2_Pin))>>(13-5) | (PB7_GPIO_Port->IDR & (0x
+  34              		.loc 1 13 5 view .LVU1
+  35              		.loc 1 13 26 is_stmt 0 view .LVU2
   36 0000 054B     		ldr	r3, .L2
   37 0002 1B69     		ldr	r3, [r3, #16]
-  38              		.loc 1 12 64 view .LVU3
+  38              		.loc 1 13 64 view .LVU3
   39 0004 1B0A     		lsrs	r3, r3, #8
   40 0006 03F0E003 		and	r3, r3, #224
-  41              		.loc 1 12 89 view .LVU4
+  41              		.loc 1 13 89 view .LVU4
   42 000a 044A     		ldr	r2, .L2+4
   43 000c 1069     		ldr	r0, [r2, #16]
-  44              		.loc 1 12 104 view .LVU5
+  44              		.loc 1 13 104 view .LVU5
   45 000e C0F38400 		ubfx	r0, r0, #2, #5
-  13:Core/Src/hmi.c **** }
-ARM GAS  /tmp/cclVJhLP.s 			page 2
+ARM GAS  /tmp/ccHTJMD9.s 			page 2
 
 
-  46              		.loc 1 13 1 view .LVU6
+  14:Core/Src/hmi.c **** }
+  46              		.loc 1 14 1 view .LVU6
   47 0012 1843     		orrs	r0, r0, r3
   48 0014 7047     		bx	lr
   49              	.L3:
@@ -80,747 +81,918 @@ ARM GAS  /tmp/cclVJhLP.s 			page 1
   64              	__BP_Control:
   65              	.LVL0:
   66              	.LFB292:
-  14:Core/Src/hmi.c **** 
-  15:Core/Src/hmi.c **** char ModeNames[4][17] = {"AZZERAMENTO", "MANUALE", "SPIANATURA", "COMPUTER"};
-  16:Core/Src/hmi.c **** char StateNames[4][6] = {"STOP", "PAUSE", "RUN"};
-  17:Core/Src/hmi.c **** 
-  18:Core/Src/hmi.c **** void __BP_Control(HMI_info_t* info, uint8_t mask, bool pause_mask)
-  19:Core/Src/hmi.c **** {
-  67              		.loc 1 19 1 is_stmt 1 view -0
+  15:Core/Src/hmi.c **** 
+  16:Core/Src/hmi.c **** static char ModeNames[4][17]  = {"AZZERAMENTO     ", "MANUALE         ", "SPIANATURA      ", "COMPU
+  17:Core/Src/hmi.c **** static char StateNames[4][17] = {"STOP            ", "PAUSE           ", "RUN             "};
+  18:Core/Src/hmi.c **** 
+  19:Core/Src/hmi.c **** void __BP_Control(HMI_info_t* info, uint8_t mask, bool pause_mask){
+  67              		.loc 1 19 67 is_stmt 1 view -0
   68              		.cfi_startproc
   69              		@ args = 0, pretend = 0, frame = 0
   70              		@ frame_needed = 0, uses_anonymous_args = 0
-  71              		.loc 1 19 1 is_stmt 0 view .LVU8
-  72 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  71              		.loc 1 19 67 is_stmt 0 view .LVU8
+  72 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
   73              		.cfi_def_cfa_offset 24
-  74              		.cfi_offset 3, -24
-  75              		.cfi_offset 4, -20
-  76              		.cfi_offset 5, -16
-  77              		.cfi_offset 6, -12
-  78              		.cfi_offset 7, -8
+  74              		.cfi_offset 4, -24
+  75              		.cfi_offset 5, -20
+  76              		.cfi_offset 6, -16
+  77              		.cfi_offset 7, -12
+  78              		.cfi_offset 8, -8
   79              		.cfi_offset 14, -4
-  80 0002 0446     		mov	r4, r0
-  81 0004 0E46     		mov	r6, r1
-  82 0006 1746     		mov	r7, r2
+  80 0004 0446     		mov	r4, r0
+  81 0006 0F46     		mov	r7, r1
+  82 0008 9046     		mov	r8, r2
   20:Core/Src/hmi.c ****   uint8_t newPushbuttons = __Read_Pushbuttons();
   83              		.loc 1 20 3 is_stmt 1 view .LVU9
   84              		.loc 1 20 28 is_stmt 0 view .LVU10
-  85 0008 FFF7FEFF 		bl	__Read_Pushbuttons
+  85 000a FFF7FEFF 		bl	__Read_Pushbuttons
   86              	.LVL1:
   87              		.loc 1 20 28 view .LVU11
-  88 000c 0546     		mov	r5, r0
+  88 000e 0646     		mov	r6, r0
   89              	.LVL2:
   21:Core/Src/hmi.c ****   uint8_t PBpressed = ~newPushbuttons & info->pushbuttons & mask;
   90              		.loc 1 21 3 is_stmt 1 view .LVU12
   91              		.loc 1 21 39 is_stmt 0 view .LVU13
-  92 000e C143     		mvns	r1, r0
-  93 0010 49B2     		sxtb	r1, r1
+  92 0010 C343     		mvns	r3, r0
+  93 0012 5BB2     		sxtb	r3, r3
   94              		.loc 1 21 45 view .LVU14
-  95 0012 637F     		ldrb	r3, [r4, #29]	@ zero_extendqisi2
+  95 0014 94F83850 		ldrb	r5, [r4, #56]	@ zero_extendqisi2
   96              		.loc 1 21 11 view .LVU15
-ARM GAS  /tmp/cclVJhLP.s 			page 3
+ARM GAS  /tmp/ccHTJMD9.s 			page 3
 
 
-  97 0014 0B40     		ands	r3, r3, r1
-  98 0016 06EA0301 		and	r1, r6, r3
+  97 0018 1D40     		ands	r5, r5, r3
+  98 001a 3D40     		ands	r5, r5, r7
   99              	.LVL3:
   22:Core/Src/hmi.c **** 
   23:Core/Src/hmi.c ****   if((PBpressed & PB_MODE) && info->zeroed.x && info->zeroed.y && (info->state == HMI_State_Stop)){
  100              		.loc 1 23 3 is_stmt 1 view .LVU16
  101              		.loc 1 23 5 is_stmt 0 view .LVU17
- 102 001a 11F0100F 		tst	r1, #16
- 103 001e 13D0     		beq	.L5
+ 102 001c 15F0100F 		tst	r5, #16
+ 103 0020 17D0     		beq	.L5
  104              		.loc 1 23 43 discriminator 1 view .LVU18
- 105 0020 E37E     		ldrb	r3, [r4, #27]	@ zero_extendqisi2
+ 105 0022 94F83630 		ldrb	r3, [r4, #54]	@ zero_extendqisi2
  106              		.loc 1 23 28 discriminator 1 view .LVU19
- 107 0022 8BB1     		cbz	r3, .L5
+ 107 0026 A3B1     		cbz	r3, .L5
  108              		.loc 1 23 61 discriminator 2 view .LVU20
- 109 0024 237F     		ldrb	r3, [r4, #28]	@ zero_extendqisi2
+ 109 0028 94F83730 		ldrb	r3, [r4, #55]	@ zero_extendqisi2
  110              		.loc 1 23 46 discriminator 2 view .LVU21
- 111 0026 7BB1     		cbz	r3, .L5
+ 111 002c 8BB1     		cbz	r3, .L5
  112              		.loc 1 23 72 discriminator 3 view .LVU22
- 113 0028 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
+ 113 002e 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
  114              		.loc 1 23 64 discriminator 3 view .LVU23
- 115 002a 6BB9     		cbnz	r3, .L5
+ 115 0030 7BB9     		cbnz	r3, .L5
   24:Core/Src/hmi.c ****     info->mode = (info->mode >= 3) ? HMI_Mode_Zero : info->mode+1;
  116              		.loc 1 24 5 is_stmt 1 view .LVU24
  117              		.loc 1 24 23 is_stmt 0 view .LVU25
- 118 002c 2278     		ldrb	r2, [r4]	@ zero_extendqisi2
+ 118 0032 2278     		ldrb	r2, [r4]	@ zero_extendqisi2
  119              		.loc 1 24 52 view .LVU26
- 120 002e 022A     		cmp	r2, #2
- 121 0030 01D8     		bhi	.L6
+ 120 0034 022A     		cmp	r2, #2
+ 121 0036 01D8     		bhi	.L6
  122              		.loc 1 24 52 discriminator 1 view .LVU27
- 123 0032 0132     		adds	r2, r2, #1
- 124 0034 D3B2     		uxtb	r3, r2
+ 123 0038 0132     		adds	r2, r2, #1
+ 124 003a D3B2     		uxtb	r3, r2
  125              	.L6:
  126              		.loc 1 24 16 discriminator 4 view .LVU28
- 127 0036 2370     		strb	r3, [r4]
+ 127 003c 2370     		strb	r3, [r4]
   25:Core/Src/hmi.c ****     info->state = HMI_State_Stop;
  128              		.loc 1 25 5 is_stmt 1 discriminator 4 view .LVU29
  129              		.loc 1 25 17 is_stmt 0 discriminator 4 view .LVU30
- 130 0038 0023     		movs	r3, #0
- 131 003a 6370     		strb	r3, [r4, #1]
+ 130 003e 0023     		movs	r3, #0
+ 131 0040 6370     		strb	r3, [r4, #1]
   26:Core/Src/hmi.c ****     info->move = HMI_Move_None;
  132              		.loc 1 26 5 is_stmt 1 discriminator 4 view .LVU31
  133              		.loc 1 26 16 is_stmt 0 discriminator 4 view .LVU32
- 134 003c 0223     		movs	r3, #2
- 135 003e A370     		strb	r3, [r4, #2]
+ 134 0042 0223     		movs	r3, #2
+ 135 0044 A370     		strb	r3, [r4, #2]
   27:Core/Src/hmi.c ****     info->update = true;
  136              		.loc 1 27 5 is_stmt 1 discriminator 4 view .LVU33
  137              		.loc 1 27 18 is_stmt 0 discriminator 4 view .LVU34
- 138 0040 0123     		movs	r3, #1
- 139 0042 A376     		strb	r3, [r4, #26]
-  28:Core/Src/hmi.c ****     info->cnt2 = 30;
+ 138 0046 0123     		movs	r3, #1
+ 139 0048 84F83530 		strb	r3, [r4, #53]
+  28:Core/Src/hmi.c ****     info->cnt2 = 10;
  140              		.loc 1 28 5 is_stmt 1 discriminator 4 view .LVU35
  141              		.loc 1 28 16 is_stmt 0 discriminator 4 view .LVU36
- 142 0044 1E23     		movs	r3, #30
- 143 0046 6376     		strb	r3, [r4, #25]
+ 142 004c 0A23     		movs	r3, #10
+ 143 004e 84F83430 		strb	r3, [r4, #52]
  144              	.L5:
   29:Core/Src/hmi.c ****   }
   30:Core/Src/hmi.c **** 
-ARM GAS  /tmp/cclVJhLP.s 			page 4
+ARM GAS  /tmp/ccHTJMD9.s 			page 4
 
 
   31:Core/Src/hmi.c ****   if(PBpressed & PB_STOP){
  145              		.loc 1 31 3 is_stmt 1 view .LVU37
  146              		.loc 1 31 5 is_stmt 0 view .LVU38
- 147 0048 11F0020F 		tst	r1, #2
- 148 004c 05D0     		beq	.L7
-  32:Core/Src/hmi.c ****     info->state = HMI_State_Stop;
- 149              		.loc 1 32 5 is_stmt 1 view .LVU39
- 150              		.loc 1 32 17 is_stmt 0 view .LVU40
- 151 004e 0023     		movs	r3, #0
- 152 0050 6370     		strb	r3, [r4, #1]
-  33:Core/Src/hmi.c ****     info->update = true;
- 153              		.loc 1 33 5 is_stmt 1 view .LVU41
- 154              		.loc 1 33 18 is_stmt 0 view .LVU42
- 155 0052 0123     		movs	r3, #1
- 156 0054 A376     		strb	r3, [r4, #26]
-  34:Core/Src/hmi.c ****     info->cnt2 = 30;
- 157              		.loc 1 34 5 is_stmt 1 view .LVU43
- 158              		.loc 1 34 16 is_stmt 0 view .LVU44
- 159 0056 1E23     		movs	r3, #30
- 160 0058 6376     		strb	r3, [r4, #25]
- 161              	.L7:
-  35:Core/Src/hmi.c ****   }
-  36:Core/Src/hmi.c **** 
-  37:Core/Src/hmi.c ****   if((PBpressed & PB_RUN) && (info->state != HMI_State_Stop)){
- 162              		.loc 1 37 3 is_stmt 1 view .LVU45
- 163              		.loc 1 37 5 is_stmt 0 view .LVU46
- 164 005a 11F0400F 		tst	r1, #64
- 165 005e 06D0     		beq	.L8
- 166              		.loc 1 37 35 discriminator 1 view .LVU47
- 167 0060 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
- 168              		.loc 1 37 27 discriminator 1 view .LVU48
- 169 0062 23B1     		cbz	r3, .L8
-  38:Core/Src/hmi.c ****       info->state = pause_mask ? HMI_State_Pause : HMI_State_Stop;
- 170              		.loc 1 38 7 is_stmt 1 view .LVU49
- 171              		.loc 1 38 19 is_stmt 0 view .LVU50
- 172 0064 6770     		strb	r7, [r4, #1]
-  39:Core/Src/hmi.c ****       info->update = true;
- 173              		.loc 1 39 7 is_stmt 1 view .LVU51
- 174              		.loc 1 39 20 is_stmt 0 view .LVU52
- 175 0066 0123     		movs	r3, #1
- 176 0068 A376     		strb	r3, [r4, #26]
-  40:Core/Src/hmi.c ****       info->cnt2 = 30;
- 177              		.loc 1 40 7 is_stmt 1 view .LVU53
- 178              		.loc 1 40 18 is_stmt 0 view .LVU54
- 179 006a 1E23     		movs	r3, #30
- 180 006c 6376     		strb	r3, [r4, #25]
- 181              	.L8:
-  41:Core/Src/hmi.c ****   }
-  42:Core/Src/hmi.c **** 
-  43:Core/Src/hmi.c ****   if((~newPushbuttons & PB_RUN) && !HAL_GPIO_ReadPin(SWSTOP_GPIO_Port, SWSTOP_Pin)){
- 182              		.loc 1 43 3 is_stmt 1 view .LVU55
- 183              		.loc 1 43 5 is_stmt 0 view .LVU56
- 184 006e 15F0400F 		tst	r5, #64
- 185 0072 03D0     		beq	.L12
- 186              	.LVL4:
- 187              	.L9:
-  44:Core/Src/hmi.c ****     info->cnt1++;
-ARM GAS  /tmp/cclVJhLP.s 			page 5
+ 147 0052 15F0020F 		tst	r5, #2
+ 148 0056 2AD1     		bne	.L16
+ 149              	.LVL4:
+ 150              	.L7:
+  32:Core/Src/hmi.c ****     CNC_Stop(info);
+  33:Core/Src/hmi.c ****   }
+  34:Core/Src/hmi.c **** 
+  35:Core/Src/hmi.c ****   if(PBpressed & PB_SET){
+ 151              		.loc 1 35 3 is_stmt 1 view .LVU39
+ 152              		.loc 1 35 5 is_stmt 0 view .LVU40
+ 153 0058 15F0080F 		tst	r5, #8
+ 154 005c 08D0     		beq	.L8
+  36:Core/Src/hmi.c ****     info->Psel = !info->Psel;
+ 155              		.loc 1 36 5 is_stmt 1 view .LVU41
+ 156              		.loc 1 36 23 is_stmt 0 view .LVU42
+ 157 005e 94F83230 		ldrb	r3, [r4, #50]	@ zero_extendqisi2
+ 158              		.loc 1 36 5 view .LVU43
+ 159 0062 83F00103 		eor	r3, r3, #1
+ 160              		.loc 1 36 16 view .LVU44
+ 161 0066 84F83230 		strb	r3, [r4, #50]
+  37:Core/Src/hmi.c ****     info->update = true;
+ 162              		.loc 1 37 5 is_stmt 1 view .LVU45
+ 163              		.loc 1 37 18 is_stmt 0 view .LVU46
+ 164 006a 0123     		movs	r3, #1
+ 165 006c 84F83530 		strb	r3, [r4, #53]
+ 166              	.L8:
+  38:Core/Src/hmi.c ****   }
+  39:Core/Src/hmi.c **** 
+  40:Core/Src/hmi.c ****   if(PBpressed & PB_JOY){
+ 167              		.loc 1 40 3 is_stmt 1 view .LVU47
+ 168              		.loc 1 40 5 is_stmt 0 view .LVU48
+ 169 0070 15F0010F 		tst	r5, #1
+ 170 0074 0CD0     		beq	.L9
+  41:Core/Src/hmi.c ****     if(info->Psel){
+ 171              		.loc 1 41 5 is_stmt 1 view .LVU49
+ 172              		.loc 1 41 12 is_stmt 0 view .LVU50
+ 173 0076 94F83230 		ldrb	r3, [r4, #50]	@ zero_extendqisi2
+ 174              		.loc 1 41 7 view .LVU51
+ 175 007a E3B1     		cbz	r3, .L10
+  42:Core/Src/hmi.c ****       info->P1.x = info->pos.x;
+ 176              		.loc 1 42 7 is_stmt 1 view .LVU52
+ 177              		.loc 1 42 29 is_stmt 0 view .LVU53
+ 178 007c 6368     		ldr	r3, [r4, #4]
+ 179              		.loc 1 42 18 view .LVU54
+ 180 007e 2362     		str	r3, [r4, #32]
+  43:Core/Src/hmi.c ****       info->P1.y = info->pos.y;
+ 181              		.loc 1 43 7 is_stmt 1 view .LVU55
+ 182              		.loc 1 43 29 is_stmt 0 view .LVU56
+ 183 0080 A368     		ldr	r3, [r4, #8]
+ 184              		.loc 1 43 18 view .LVU57
+ 185 0082 6362     		str	r3, [r4, #36]
+  44:Core/Src/hmi.c ****       info->P1set = true;
+ 186              		.loc 1 44 7 is_stmt 1 view .LVU58
+ 187              		.loc 1 44 19 is_stmt 0 view .LVU59
+ARM GAS  /tmp/ccHTJMD9.s 			page 5
 
 
-  45:Core/Src/hmi.c ****     if(info->cnt1 > 20) {
-  46:Core/Src/hmi.c ****       info->state = HMI_State_Run;
-  47:Core/Src/hmi.c ****       info->update = true;
-  48:Core/Src/hmi.c ****       info->cnt2 = 30;
-  49:Core/Src/hmi.c ****       info->cnt1 = 0;
+ 188 0084 0123     		movs	r3, #1
+ 189 0086 84F83030 		strb	r3, [r4, #48]
+ 190              	.L11:
+  45:Core/Src/hmi.c ****     }
+  46:Core/Src/hmi.c ****     else {
+  47:Core/Src/hmi.c ****       info->P2.x = info->pos.x;
+  48:Core/Src/hmi.c ****       info->P2.y = info->pos.y;
+  49:Core/Src/hmi.c ****       info->P2set = true;
   50:Core/Src/hmi.c ****     }
-  51:Core/Src/hmi.c ****   } 
-  52:Core/Src/hmi.c ****   else {
-  53:Core/Src/hmi.c ****   info->cnt1 = 0;
- 188              		.loc 1 53 3 is_stmt 1 view .LVU57
- 189              		.loc 1 53 14 is_stmt 0 view .LVU58
- 190 0074 0023     		movs	r3, #0
- 191 0076 2376     		strb	r3, [r4, #24]
- 192              	.L10:
-  54:Core/Src/hmi.c ****   }
-  55:Core/Src/hmi.c **** 
-  56:Core/Src/hmi.c ****   info->pushbuttons = newPushbuttons;
- 193              		.loc 1 56 3 is_stmt 1 view .LVU59
- 194              		.loc 1 56 21 is_stmt 0 view .LVU60
- 195 0078 6577     		strb	r5, [r4, #29]
-  57:Core/Src/hmi.c **** }
- 196              		.loc 1 57 1 view .LVU61
- 197 007a F8BD     		pop	{r3, r4, r5, r6, r7, pc}
- 198              	.LVL5:
- 199              	.L12:
-  43:Core/Src/hmi.c ****     info->cnt1++;
- 200              		.loc 1 43 37 discriminator 1 view .LVU62
- 201 007c 4021     		movs	r1, #64
- 202              	.LVL6:
-  43:Core/Src/hmi.c ****     info->cnt1++;
- 203              		.loc 1 43 37 discriminator 1 view .LVU63
- 204 007e 4FF09040 		mov	r0, #1207959552
- 205              	.LVL7:
-  43:Core/Src/hmi.c ****     info->cnt1++;
- 206              		.loc 1 43 37 discriminator 1 view .LVU64
- 207 0082 FFF7FEFF 		bl	HAL_GPIO_ReadPin
- 208              	.LVL8:
-  43:Core/Src/hmi.c ****     info->cnt1++;
- 209              		.loc 1 43 33 discriminator 1 view .LVU65
- 210 0086 0028     		cmp	r0, #0
- 211 0088 F4D1     		bne	.L9
-  44:Core/Src/hmi.c ****     if(info->cnt1 > 20) {
- 212              		.loc 1 44 5 is_stmt 1 view .LVU66
-  44:Core/Src/hmi.c ****     if(info->cnt1 > 20) {
- 213              		.loc 1 44 9 is_stmt 0 view .LVU67
- 214 008a 237E     		ldrb	r3, [r4, #24]	@ zero_extendqisi2
-  44:Core/Src/hmi.c ****     if(info->cnt1 > 20) {
- 215              		.loc 1 44 15 view .LVU68
- 216 008c 0133     		adds	r3, r3, #1
- 217 008e DBB2     		uxtb	r3, r3
- 218 0090 2376     		strb	r3, [r4, #24]
-  45:Core/Src/hmi.c ****       info->state = HMI_State_Run;
- 219              		.loc 1 45 5 is_stmt 1 view .LVU69
-  45:Core/Src/hmi.c ****       info->state = HMI_State_Run;
- 220              		.loc 1 45 7 is_stmt 0 view .LVU70
- 221 0092 142B     		cmp	r3, #20
- 222 0094 F0D9     		bls	.L10
-ARM GAS  /tmp/cclVJhLP.s 			page 6
+  51:Core/Src/hmi.c **** 
+  52:Core/Src/hmi.c ****     info->update = true;
+ 191              		.loc 1 52 5 is_stmt 1 view .LVU60
+ 192              		.loc 1 52 18 is_stmt 0 view .LVU61
+ 193 008a 0123     		movs	r3, #1
+ 194 008c 84F83530 		strb	r3, [r4, #53]
+ 195              	.L9:
+  53:Core/Src/hmi.c ****   }
+  54:Core/Src/hmi.c **** 
+  55:Core/Src/hmi.c ****   if((PBpressed & PB_RUN) && (info->state != HMI_State_Stop)){
+ 196              		.loc 1 55 3 is_stmt 1 view .LVU62
+ 197              		.loc 1 55 5 is_stmt 0 view .LVU63
+ 198 0090 15F0400F 		tst	r5, #64
+ 199 0094 01D0     		beq	.L12
+ 200              		.loc 1 55 35 discriminator 1 view .LVU64
+ 201 0096 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
+ 202              		.loc 1 55 27 discriminator 1 view .LVU65
+ 203 0098 ABB9     		cbnz	r3, .L17
+ 204              	.L12:
+  56:Core/Src/hmi.c ****     CNC_Stop(info);
+  57:Core/Src/hmi.c ****     info->state = pause_mask ? HMI_State_Pause : HMI_State_Stop;
+  58:Core/Src/hmi.c ****   }
+  59:Core/Src/hmi.c **** 
+  60:Core/Src/hmi.c ****   if((~newPushbuttons & PB_RUN) && !HAL_GPIO_ReadPin(SWSTOP_GPIO_Port, SWSTOP_Pin)){
+ 205              		.loc 1 60 3 is_stmt 1 view .LVU66
+ 206              		.loc 1 60 5 is_stmt 0 view .LVU67
+ 207 009a 16F0400F 		tst	r6, #64
+ 208 009e 18D0     		beq	.L18
+ 209              	.L13:
+  61:Core/Src/hmi.c ****     info->cnt1++;
+  62:Core/Src/hmi.c ****     if(info->cnt1 > 20) {
+  63:Core/Src/hmi.c ****       info->state = HMI_State_Run;
+  64:Core/Src/hmi.c ****       info->update = true;
+  65:Core/Src/hmi.c ****       info->cnt2 = 10;
+  66:Core/Src/hmi.c ****       info->cnt1 = 0;
+  67:Core/Src/hmi.c ****     }
+  68:Core/Src/hmi.c ****   } 
+  69:Core/Src/hmi.c ****   else {
+  70:Core/Src/hmi.c ****   info->cnt1 = 0;
+ 210              		.loc 1 70 3 is_stmt 1 view .LVU68
+ 211              		.loc 1 70 14 is_stmt 0 view .LVU69
+ 212 00a0 0023     		movs	r3, #0
+ 213 00a2 84F83330 		strb	r3, [r4, #51]
+ 214              	.L14:
+  71:Core/Src/hmi.c ****   }
+  72:Core/Src/hmi.c **** 
+  73:Core/Src/hmi.c ****   info->pushbuttons = newPushbuttons;
+ 215              		.loc 1 73 3 is_stmt 1 view .LVU70
+ARM GAS  /tmp/ccHTJMD9.s 			page 6
 
 
-  46:Core/Src/hmi.c ****       info->update = true;
- 223              		.loc 1 46 7 is_stmt 1 view .LVU71
-  46:Core/Src/hmi.c ****       info->update = true;
- 224              		.loc 1 46 19 is_stmt 0 view .LVU72
- 225 0096 0223     		movs	r3, #2
- 226 0098 6370     		strb	r3, [r4, #1]
-  47:Core/Src/hmi.c ****       info->cnt2 = 30;
- 227              		.loc 1 47 7 is_stmt 1 view .LVU73
-  47:Core/Src/hmi.c ****       info->cnt2 = 30;
- 228              		.loc 1 47 20 is_stmt 0 view .LVU74
- 229 009a 0123     		movs	r3, #1
- 230 009c A376     		strb	r3, [r4, #26]
-  48:Core/Src/hmi.c ****       info->cnt1 = 0;
- 231              		.loc 1 48 7 is_stmt 1 view .LVU75
-  48:Core/Src/hmi.c ****       info->cnt1 = 0;
- 232              		.loc 1 48 18 is_stmt 0 view .LVU76
- 233 009e 1E23     		movs	r3, #30
- 234 00a0 6376     		strb	r3, [r4, #25]
+ 216              		.loc 1 73 21 is_stmt 0 view .LVU71
+ 217 00a6 84F83860 		strb	r6, [r4, #56]
+  74:Core/Src/hmi.c **** }
+ 218              		.loc 1 74 1 view .LVU72
+ 219 00aa BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 220              	.LVL5:
+ 221              	.L16:
+  32:Core/Src/hmi.c ****   }
+ 222              		.loc 1 32 5 is_stmt 1 view .LVU73
+ 223 00ae 2046     		mov	r0, r4
+ 224              	.LVL6:
+  32:Core/Src/hmi.c ****   }
+ 225              		.loc 1 32 5 is_stmt 0 view .LVU74
+ 226 00b0 FFF7FEFF 		bl	CNC_Stop
+ 227              	.LVL7:
+ 228 00b4 D0E7     		b	.L7
+ 229              	.L10:
+  47:Core/Src/hmi.c ****       info->P2.y = info->pos.y;
+ 230              		.loc 1 47 7 is_stmt 1 view .LVU75
+  47:Core/Src/hmi.c ****       info->P2.y = info->pos.y;
+ 231              		.loc 1 47 29 is_stmt 0 view .LVU76
+ 232 00b6 6368     		ldr	r3, [r4, #4]
+  47:Core/Src/hmi.c ****       info->P2.y = info->pos.y;
+ 233              		.loc 1 47 18 view .LVU77
+ 234 00b8 A362     		str	r3, [r4, #40]
+  48:Core/Src/hmi.c ****       info->P2set = true;
+ 235              		.loc 1 48 7 is_stmt 1 view .LVU78
+  48:Core/Src/hmi.c ****       info->P2set = true;
+ 236              		.loc 1 48 29 is_stmt 0 view .LVU79
+ 237 00ba A368     		ldr	r3, [r4, #8]
+  48:Core/Src/hmi.c ****       info->P2set = true;
+ 238              		.loc 1 48 18 view .LVU80
+ 239 00bc E362     		str	r3, [r4, #44]
   49:Core/Src/hmi.c ****     }
- 235              		.loc 1 49 7 is_stmt 1 view .LVU77
+ 240              		.loc 1 49 7 is_stmt 1 view .LVU81
   49:Core/Src/hmi.c ****     }
- 236              		.loc 1 49 18 is_stmt 0 view .LVU78
- 237 00a2 0023     		movs	r3, #0
- 238 00a4 2376     		strb	r3, [r4, #24]
- 239 00a6 E7E7     		b	.L10
- 240              		.cfi_endproc
- 241              	.LFE292:
- 243              		.section	.rodata.HMI_Update.str1.4,"aMS",%progbits,1
- 244              		.align	2
- 245              	.LC0:
- 246 0000 593A2025 		.ascii	"Y: %05umm\000"
- 246      3035756D 
- 246      6D00
- 247 000a 0000     		.align	2
- 248              	.LC1:
- 249 000c 593A203F 		.ascii	"Y: ???\000"
- 249      3F3F00
- 250 0013 00       		.align	2
- 251              	.LC2:
- 252 0014 583A2025 		.ascii	"X: %05umm\000"
- 252      3035756D 
- 252      6D00
- 253 001e 0000     		.align	2
- 254              	.LC3:
- 255 0020 583A203F 		.ascii	"X: ???\000"
- 255      3F3F00
- 256              		.section	.text.HMI_Update,"ax",%progbits
- 257              		.align	1
- 258              		.global	HMI_Update
- 259              		.syntax unified
- 260              		.thumb
- 261              		.thumb_func
- 263              	HMI_Update:
- 264              	.LVL9:
- 265              	.LFB293:
-  58:Core/Src/hmi.c **** 
-  59:Core/Src/hmi.c **** void HMI_Update(HMI_info_t* info){
-ARM GAS  /tmp/cclVJhLP.s 			page 7
+ 241              		.loc 1 49 19 is_stmt 0 view .LVU82
+ 242 00be 0123     		movs	r3, #1
+ 243 00c0 84F83130 		strb	r3, [r4, #49]
+ 244 00c4 E1E7     		b	.L11
+ 245              	.L17:
+  56:Core/Src/hmi.c ****     info->state = pause_mask ? HMI_State_Pause : HMI_State_Stop;
+ 246              		.loc 1 56 5 is_stmt 1 view .LVU83
+ 247 00c6 2046     		mov	r0, r4
+ 248 00c8 FFF7FEFF 		bl	CNC_Stop
+ 249              	.LVL8:
+  57:Core/Src/hmi.c ****   }
+ 250              		.loc 1 57 5 view .LVU84
+  57:Core/Src/hmi.c ****   }
+ 251              		.loc 1 57 17 is_stmt 0 view .LVU85
+ 252 00cc 84F80180 		strb	r8, [r4, #1]
+ 253 00d0 E3E7     		b	.L12
+ 254              	.L18:
+  60:Core/Src/hmi.c ****     info->cnt1++;
+ 255              		.loc 1 60 37 discriminator 1 view .LVU86
+ 256 00d2 4021     		movs	r1, #64
+ 257 00d4 4FF09040 		mov	r0, #1207959552
+ARM GAS  /tmp/ccHTJMD9.s 			page 7
 
 
- 266              		.loc 1 59 34 is_stmt 1 view -0
- 267              		.cfi_startproc
- 268              		@ args = 0, pretend = 0, frame = 24
- 269              		@ frame_needed = 0, uses_anonymous_args = 0
- 270              		.loc 1 59 34 is_stmt 0 view .LVU80
- 271 0000 10B5     		push	{r4, lr}
- 272              		.cfi_def_cfa_offset 8
- 273              		.cfi_offset 4, -8
- 274              		.cfi_offset 14, -4
- 275 0002 86B0     		sub	sp, sp, #24
- 276              		.cfi_def_cfa_offset 32
- 277 0004 0446     		mov	r4, r0
-  60:Core/Src/hmi.c ****   switch (info->mode) {
- 278              		.loc 1 60 3 is_stmt 1 view .LVU81
- 279              		.loc 1 60 15 is_stmt 0 view .LVU82
- 280 0006 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
- 281              		.loc 1 60 3 view .LVU83
- 282 0008 032B     		cmp	r3, #3
- 283 000a 07D8     		bhi	.L14
- 284 000c DFE803F0 		tbb	[pc, r3]
- 285              	.L16:
- 286 0010 02       		.byte	(.L19-.L16)/2
- 287 0011 13       		.byte	(.L18-.L16)/2
- 288 0012 18       		.byte	(.L17-.L16)/2
- 289 0013 1D       		.byte	(.L15-.L16)/2
- 290              		.p2align 1
- 291              	.L19:
-  61:Core/Src/hmi.c ****   case  HMI_Mode_Zero:
-  62:Core/Src/hmi.c ****     __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE), false);
- 292              		.loc 1 62 5 is_stmt 1 view .LVU84
- 293 0014 0022     		movs	r2, #0
- 294 0016 5221     		movs	r1, #82
- 295 0018 FFF7FEFF 		bl	__BP_Control
- 296              	.LVL10:
-  63:Core/Src/hmi.c ****   break;
- 297              		.loc 1 63 3 view .LVU85
- 298              	.L14:
-  64:Core/Src/hmi.c **** 
-  65:Core/Src/hmi.c ****   case  HMI_Mode_Man:
-  66:Core/Src/hmi.c ****     __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE), false);
-  67:Core/Src/hmi.c **** 
-  68:Core/Src/hmi.c ****   
-  69:Core/Src/hmi.c ****   break;
-  70:Core/Src/hmi.c **** 
-  71:Core/Src/hmi.c ****   case  HMI_Mode_Face:
-  72:Core/Src/hmi.c ****     __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE | PB_SET), true);
-  73:Core/Src/hmi.c ****   break; 
-  74:Core/Src/hmi.c **** 
-  75:Core/Src/hmi.c ****   case  HMI_Mode_Ser:
-  76:Core/Src/hmi.c ****     __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE), true);
-  77:Core/Src/hmi.c ****   break;
-  78:Core/Src/hmi.c ****   }
-  79:Core/Src/hmi.c **** 
-  80:Core/Src/hmi.c ****   if(info->cnt2 != 0){
- 299              		.loc 1 80 3 view .LVU86
- 300              		.loc 1 80 10 is_stmt 0 view .LVU87
- 301 001c 637E     		ldrb	r3, [r4, #25]	@ zero_extendqisi2
-ARM GAS  /tmp/cclVJhLP.s 			page 8
+ 258 00d8 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 259              	.LVL9:
+  60:Core/Src/hmi.c ****     info->cnt1++;
+ 260              		.loc 1 60 33 discriminator 1 view .LVU87
+ 261 00dc 0028     		cmp	r0, #0
+ 262 00de DFD1     		bne	.L13
+  61:Core/Src/hmi.c ****     if(info->cnt1 > 20) {
+ 263              		.loc 1 61 5 is_stmt 1 view .LVU88
+  61:Core/Src/hmi.c ****     if(info->cnt1 > 20) {
+ 264              		.loc 1 61 9 is_stmt 0 view .LVU89
+ 265 00e0 94F83330 		ldrb	r3, [r4, #51]	@ zero_extendqisi2
+  61:Core/Src/hmi.c ****     if(info->cnt1 > 20) {
+ 266              		.loc 1 61 15 view .LVU90
+ 267 00e4 0133     		adds	r3, r3, #1
+ 268 00e6 DBB2     		uxtb	r3, r3
+ 269 00e8 84F83330 		strb	r3, [r4, #51]
+  62:Core/Src/hmi.c ****       info->state = HMI_State_Run;
+ 270              		.loc 1 62 5 is_stmt 1 view .LVU91
+  62:Core/Src/hmi.c ****       info->state = HMI_State_Run;
+ 271              		.loc 1 62 7 is_stmt 0 view .LVU92
+ 272 00ec 142B     		cmp	r3, #20
+ 273 00ee DAD9     		bls	.L14
+  63:Core/Src/hmi.c ****       info->update = true;
+ 274              		.loc 1 63 7 is_stmt 1 view .LVU93
+  63:Core/Src/hmi.c ****       info->update = true;
+ 275              		.loc 1 63 19 is_stmt 0 view .LVU94
+ 276 00f0 0223     		movs	r3, #2
+ 277 00f2 6370     		strb	r3, [r4, #1]
+  64:Core/Src/hmi.c ****       info->cnt2 = 10;
+ 278              		.loc 1 64 7 is_stmt 1 view .LVU95
+  64:Core/Src/hmi.c ****       info->cnt2 = 10;
+ 279              		.loc 1 64 20 is_stmt 0 view .LVU96
+ 280 00f4 0123     		movs	r3, #1
+ 281 00f6 84F83530 		strb	r3, [r4, #53]
+  65:Core/Src/hmi.c ****       info->cnt1 = 0;
+ 282              		.loc 1 65 7 is_stmt 1 view .LVU97
+  65:Core/Src/hmi.c ****       info->cnt1 = 0;
+ 283              		.loc 1 65 18 is_stmt 0 view .LVU98
+ 284 00fa 0A23     		movs	r3, #10
+ 285 00fc 84F83430 		strb	r3, [r4, #52]
+  66:Core/Src/hmi.c ****     }
+ 286              		.loc 1 66 7 is_stmt 1 view .LVU99
+  66:Core/Src/hmi.c ****     }
+ 287              		.loc 1 66 18 is_stmt 0 view .LVU100
+ 288 0100 0023     		movs	r3, #0
+ 289 0102 84F83330 		strb	r3, [r4, #51]
+ 290 0106 CEE7     		b	.L14
+ 291              		.cfi_endproc
+ 292              	.LFE292:
+ 294              		.section	.rodata.HMI_Update.str1.4,"aMS",%progbits,1
+ 295              		.align	2
+ 296              	.LC0:
+ 297 0000 593A2025 		.ascii	"Y: %05lumm   P1\333\000"
+ 297      30356C75 
+ 297      6D6D2020 
+ 297      205031DB 
+ 297      00
+ARM GAS  /tmp/ccHTJMD9.s 			page 8
 
 
- 302              		.loc 1 80 5 view .LVU88
- 303 001e 002B     		cmp	r3, #0
- 304 0020 3CD0     		beq	.L20
-  81:Core/Src/hmi.c ****     info->cnt2--;
- 305              		.loc 1 81 5 is_stmt 1 view .LVU89
- 306              		.loc 1 81 15 is_stmt 0 view .LVU90
- 307 0022 013B     		subs	r3, r3, #1
- 308 0024 6376     		strb	r3, [r4, #25]
-  82:Core/Src/hmi.c ****     if(info->update){
- 309              		.loc 1 82 5 is_stmt 1 view .LVU91
- 310              		.loc 1 82 12 is_stmt 0 view .LVU92
- 311 0026 A37E     		ldrb	r3, [r4, #26]	@ zero_extendqisi2
- 312              		.loc 1 82 7 view .LVU93
- 313 0028 A3B9     		cbnz	r3, .L29
- 314              	.L21:
-  83:Core/Src/hmi.c ****       char textStr[17];
-  84:Core/Src/hmi.c ****       clearLCD();
-  85:Core/Src/hmi.c ****       sprintf(textStr, ModeNames[info->mode]);
-  86:Core/Src/hmi.c ****       setCursor(0, 0);
-  87:Core/Src/hmi.c ****       writeLCD(textStr);
-  88:Core/Src/hmi.c ****       sprintf(textStr, StateNames[info->state]);
-  89:Core/Src/hmi.c ****       setCursor(0, 1);
-  90:Core/Src/hmi.c ****       writeLCD(textStr);
-  91:Core/Src/hmi.c ****       info->update = false;
-  92:Core/Src/hmi.c ****     }
-  93:Core/Src/hmi.c ****     if(info->cnt2 == 0) info->update = true;
- 315              		.loc 1 93 5 is_stmt 1 view .LVU94
- 316              		.loc 1 93 12 is_stmt 0 view .LVU95
- 317 002a 637E     		ldrb	r3, [r4, #25]	@ zero_extendqisi2
- 318              		.loc 1 93 7 view .LVU96
- 319 002c 002B     		cmp	r3, #0
- 320 002e 37D1     		bne	.L13
- 321              		.loc 1 93 25 is_stmt 1 discriminator 1 view .LVU97
- 322              		.loc 1 93 38 is_stmt 0 discriminator 1 view .LVU98
- 323 0030 0123     		movs	r3, #1
- 324 0032 A376     		strb	r3, [r4, #26]
- 325 0034 34E0     		b	.L13
- 326              	.LVL11:
- 327              	.L18:
-  66:Core/Src/hmi.c **** 
- 328              		.loc 1 66 5 is_stmt 1 view .LVU99
- 329 0036 0022     		movs	r2, #0
- 330 0038 5221     		movs	r1, #82
- 331 003a FFF7FEFF 		bl	__BP_Control
- 332              	.LVL12:
-  69:Core/Src/hmi.c **** 
- 333              		.loc 1 69 3 view .LVU100
- 334 003e EDE7     		b	.L14
- 335              	.LVL13:
- 336              	.L17:
-  72:Core/Src/hmi.c ****   break; 
- 337              		.loc 1 72 5 view .LVU101
- 338 0040 0122     		movs	r2, #1
- 339 0042 5A21     		movs	r1, #90
- 340 0044 FFF7FEFF 		bl	__BP_Control
- 341              	.LVL14:
-  73:Core/Src/hmi.c **** 
-ARM GAS  /tmp/cclVJhLP.s 			page 9
+ 298 0011 000000   		.align	2
+ 299              	.LC1:
+ 300 0014 593A203F 		.ascii	"Y: ???\000"
+ 300      3F3F00
+ 301 001b 00       		.align	2
+ 302              	.LC2:
+ 303 001c 583A2025 		.ascii	"X: %05lumm   P2\333\000"
+ 303      30356C75 
+ 303      6D6D2020 
+ 303      205032DB 
+ 303      00
+ 304 002d 000000   		.align	2
+ 305              	.LC3:
+ 306 0030 583A203F 		.ascii	"X: ???\000"
+ 306      3F3F00
+ 307              		.section	.text.HMI_Update,"ax",%progbits
+ 308              		.align	1
+ 309              		.global	HMI_Update
+ 310              		.syntax unified
+ 311              		.thumb
+ 312              		.thumb_func
+ 314              	HMI_Update:
+ 315              	.LVL10:
+ 316              	.LFB293:
+  75:Core/Src/hmi.c **** 
+  76:Core/Src/hmi.c **** void HMI_Update(HMI_info_t* info){
+ 317              		.loc 1 76 34 is_stmt 1 view -0
+ 318              		.cfi_startproc
+ 319              		@ args = 0, pretend = 0, frame = 24
+ 320              		@ frame_needed = 0, uses_anonymous_args = 0
+ 321              		.loc 1 76 34 is_stmt 0 view .LVU102
+ 322 0000 10B5     		push	{r4, lr}
+ 323              		.cfi_def_cfa_offset 8
+ 324              		.cfi_offset 4, -8
+ 325              		.cfi_offset 14, -4
+ 326 0002 86B0     		sub	sp, sp, #24
+ 327              		.cfi_def_cfa_offset 32
+ 328 0004 0446     		mov	r4, r0
+  77:Core/Src/hmi.c ****   switch (info->mode) {
+ 329              		.loc 1 77 3 is_stmt 1 view .LVU103
+ 330              		.loc 1 77 15 is_stmt 0 view .LVU104
+ 331 0006 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 332              		.loc 1 77 3 view .LVU105
+ 333 0008 032B     		cmp	r3, #3
+ 334 000a 07D8     		bhi	.L20
+ 335 000c DFE803F0 		tbb	[pc, r3]
+ 336              	.L22:
+ 337 0010 02       		.byte	(.L25-.L22)/2
+ 338 0011 18       		.byte	(.L24-.L22)/2
+ 339 0012 1D       		.byte	(.L23-.L22)/2
+ 340 0013 22       		.byte	(.L21-.L22)/2
+ 341              		.p2align 1
+ 342              	.L25:
+  78:Core/Src/hmi.c ****   case  HMI_Mode_Zero:
+  79:Core/Src/hmi.c ****     __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE | PB_SET | PB_JOY), false);
+ 343              		.loc 1 79 5 is_stmt 1 view .LVU106
+ 344 0014 0022     		movs	r2, #0
+ARM GAS  /tmp/ccHTJMD9.s 			page 9
 
 
- 342              		.loc 1 73 3 view .LVU102
- 343 0048 E8E7     		b	.L14
- 344              	.LVL15:
- 345              	.L15:
-  76:Core/Src/hmi.c ****   break;
- 346              		.loc 1 76 5 view .LVU103
- 347 004a 0122     		movs	r2, #1
- 348 004c 5221     		movs	r1, #82
- 349 004e FFF7FEFF 		bl	__BP_Control
- 350              	.LVL16:
-  77:Core/Src/hmi.c ****   }
- 351              		.loc 1 77 3 view .LVU104
- 352 0052 E3E7     		b	.L14
- 353              	.L29:
- 354              	.LBB2:
-  83:Core/Src/hmi.c ****       clearLCD();
- 355              		.loc 1 83 7 view .LVU105
-  84:Core/Src/hmi.c ****       sprintf(textStr, ModeNames[info->mode]);
- 356              		.loc 1 84 7 view .LVU106
- 357 0054 FFF7FEFF 		bl	clearLCD
- 358              	.LVL17:
-  85:Core/Src/hmi.c ****       setCursor(0, 0);
- 359              		.loc 1 85 7 view .LVU107
-  85:Core/Src/hmi.c ****       setCursor(0, 0);
- 360              		.loc 1 85 38 is_stmt 0 view .LVU108
- 361 0058 2178     		ldrb	r1, [r4]	@ zero_extendqisi2
-  85:Core/Src/hmi.c ****       setCursor(0, 0);
- 362              		.loc 1 85 33 view .LVU109
- 363 005a 01EB0111 		add	r1, r1, r1, lsl #4
-  85:Core/Src/hmi.c ****       setCursor(0, 0);
- 364              		.loc 1 85 7 view .LVU110
- 365 005e 324B     		ldr	r3, .L31
- 366 0060 1944     		add	r1, r1, r3
- 367 0062 01A8     		add	r0, sp, #4
- 368 0064 FFF7FEFF 		bl	sprintf
- 369              	.LVL18:
-  86:Core/Src/hmi.c ****       writeLCD(textStr);
- 370              		.loc 1 86 7 is_stmt 1 view .LVU111
- 371 0068 0021     		movs	r1, #0
- 372 006a 0846     		mov	r0, r1
- 373 006c FFF7FEFF 		bl	setCursor
- 374              	.LVL19:
-  87:Core/Src/hmi.c ****       sprintf(textStr, StateNames[info->state]);
- 375              		.loc 1 87 7 view .LVU112
- 376 0070 01A8     		add	r0, sp, #4
- 377 0072 FFF7FEFF 		bl	writeLCD
- 378              	.LVL20:
-  88:Core/Src/hmi.c ****       setCursor(0, 1);
- 379              		.loc 1 88 7 view .LVU113
-  88:Core/Src/hmi.c ****       setCursor(0, 1);
- 380              		.loc 1 88 39 is_stmt 0 view .LVU114
- 381 0076 6178     		ldrb	r1, [r4, #1]	@ zero_extendqisi2
-  88:Core/Src/hmi.c ****       setCursor(0, 1);
- 382              		.loc 1 88 34 view .LVU115
- 383 0078 01EB4101 		add	r1, r1, r1, lsl #1
-  88:Core/Src/hmi.c ****       setCursor(0, 1);
- 384              		.loc 1 88 7 view .LVU116
-ARM GAS  /tmp/cclVJhLP.s 			page 10
-
-
- 385 007c 2B4B     		ldr	r3, .L31+4
- 386 007e 03EB4101 		add	r1, r3, r1, lsl #1
- 387 0082 01A8     		add	r0, sp, #4
- 388 0084 FFF7FEFF 		bl	sprintf
- 389              	.LVL21:
-  89:Core/Src/hmi.c ****       writeLCD(textStr);
- 390              		.loc 1 89 7 is_stmt 1 view .LVU117
- 391 0088 0121     		movs	r1, #1
- 392 008a 0020     		movs	r0, #0
- 393 008c FFF7FEFF 		bl	setCursor
- 394              	.LVL22:
-  90:Core/Src/hmi.c ****       info->update = false;
- 395              		.loc 1 90 7 view .LVU118
- 396 0090 01A8     		add	r0, sp, #4
- 397 0092 FFF7FEFF 		bl	writeLCD
- 398              	.LVL23:
-  91:Core/Src/hmi.c ****     }
- 399              		.loc 1 91 7 view .LVU119
-  91:Core/Src/hmi.c ****     }
- 400              		.loc 1 91 20 is_stmt 0 view .LVU120
- 401 0096 0023     		movs	r3, #0
- 402 0098 A376     		strb	r3, [r4, #26]
- 403 009a C6E7     		b	.L21
- 404              	.L20:
-  91:Core/Src/hmi.c ****     }
- 405              		.loc 1 91 20 view .LVU121
- 406              	.LBE2:
-  94:Core/Src/hmi.c ****   } else {
-  95:Core/Src/hmi.c ****     if(info->update){
- 407              		.loc 1 95 5 is_stmt 1 view .LVU122
- 408              		.loc 1 95 12 is_stmt 0 view .LVU123
- 409 009c A37E     		ldrb	r3, [r4, #26]	@ zero_extendqisi2
- 410              		.loc 1 95 7 view .LVU124
- 411 009e 0BB9     		cbnz	r3, .L30
- 412              	.L13:
-  96:Core/Src/hmi.c ****       char textStr[17];
-  97:Core/Src/hmi.c ****       clearLCD();
-  98:Core/Src/hmi.c ****       if(info->zeroed.y) {
-  99:Core/Src/hmi.c ****         sprintf(textStr, "Y: %05umm", info->pos.y);
- 100:Core/Src/hmi.c ****         memmove(textStr+8, textStr+7, 4);
- 101:Core/Src/hmi.c ****         textStr[7] = '.';
- 102:Core/Src/hmi.c ****       }
- 103:Core/Src/hmi.c ****       else
- 104:Core/Src/hmi.c ****        sprintf(textStr, "Y: ???");
- 105:Core/Src/hmi.c ****       setCursor(0, 0);
+ 345 0016 5B21     		movs	r1, #91
+ 346 0018 FFF7FEFF 		bl	__BP_Control
+ 347              	.LVL11:
+  80:Core/Src/hmi.c ****   break;
+ 348              		.loc 1 80 3 view .LVU107
+ 349              	.L20:
+  81:Core/Src/hmi.c **** 
+  82:Core/Src/hmi.c ****   case  HMI_Mode_Man:
+  83:Core/Src/hmi.c ****     __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE | PB_SET | PB_JOY), false);
+  84:Core/Src/hmi.c **** 
+  85:Core/Src/hmi.c ****   
+  86:Core/Src/hmi.c ****   break;
+  87:Core/Src/hmi.c **** 
+  88:Core/Src/hmi.c ****   case  HMI_Mode_Face:
+  89:Core/Src/hmi.c ****     __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE | PB_SET | PB_JOY), true);
+  90:Core/Src/hmi.c ****   break; 
+  91:Core/Src/hmi.c **** 
+  92:Core/Src/hmi.c ****   case  HMI_Mode_Ser:
+  93:Core/Src/hmi.c ****     __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE | PB_SET | PB_JOY), true);
+  94:Core/Src/hmi.c ****   break;
+  95:Core/Src/hmi.c ****   }
+  96:Core/Src/hmi.c **** 
+  97:Core/Src/hmi.c ****   if(info->cnt2 != 0){
+ 350              		.loc 1 97 3 view .LVU108
+ 351              		.loc 1 97 10 is_stmt 0 view .LVU109
+ 352 001c 94F83430 		ldrb	r3, [r4, #52]	@ zero_extendqisi2
+ 353              		.loc 1 97 5 view .LVU110
+ 354 0020 002B     		cmp	r3, #0
+ 355 0022 3ED0     		beq	.L26
+  98:Core/Src/hmi.c ****     info->cnt2--;
+ 356              		.loc 1 98 5 is_stmt 1 view .LVU111
+ 357              		.loc 1 98 15 is_stmt 0 view .LVU112
+ 358 0024 013B     		subs	r3, r3, #1
+ 359 0026 84F83430 		strb	r3, [r4, #52]
+  99:Core/Src/hmi.c ****     if(info->update){
+ 360              		.loc 1 99 5 is_stmt 1 view .LVU113
+ 361              		.loc 1 99 12 is_stmt 0 view .LVU114
+ 362 002a 94F83530 		ldrb	r3, [r4, #53]	@ zero_extendqisi2
+ 363              		.loc 1 99 7 view .LVU115
+ 364 002e B3B9     		cbnz	r3, .L39
+ 365              	.L27:
+ 100:Core/Src/hmi.c ****       char textStr[17];
+ 101:Core/Src/hmi.c ****       sprintf(textStr, ModeNames[info->mode]);
+ 102:Core/Src/hmi.c ****       setCursor(0, 0);
+ 103:Core/Src/hmi.c ****       writeLCD(textStr);
+ 104:Core/Src/hmi.c ****       sprintf(textStr, StateNames[info->state]);
+ 105:Core/Src/hmi.c ****       setCursor(0, 1);
  106:Core/Src/hmi.c ****       writeLCD(textStr);
- 107:Core/Src/hmi.c ****       if(info->zeroed.x){
- 108:Core/Src/hmi.c ****         sprintf(textStr, "X: %05umm", info->pos.x);
- 109:Core/Src/hmi.c ****         memmove(textStr+8, textStr+7, 4);
- 110:Core/Src/hmi.c ****         textStr[7] = '.';
- 111:Core/Src/hmi.c ****       }
- 112:Core/Src/hmi.c ****       else
- 113:Core/Src/hmi.c ****         sprintf(textStr, "X: ???");
- 114:Core/Src/hmi.c ****       setCursor(0, 1);
- 115:Core/Src/hmi.c ****       writeLCD(textStr);
- 116:Core/Src/hmi.c ****       info->update = false;
- 117:Core/Src/hmi.c ****     }
-ARM GAS  /tmp/cclVJhLP.s 			page 11
+ 107:Core/Src/hmi.c ****       info->update = false;
+ 108:Core/Src/hmi.c ****     }
+ 109:Core/Src/hmi.c ****     if(info->cnt2 == 0) info->update = true;
+ 366              		.loc 1 109 5 is_stmt 1 view .LVU116
+ 367              		.loc 1 109 12 is_stmt 0 view .LVU117
+ 368 0030 94F83430 		ldrb	r3, [r4, #52]	@ zero_extendqisi2
+ 369              		.loc 1 109 7 view .LVU118
+ 370 0034 13B9     		cbnz	r3, .L19
+ 371              		.loc 1 109 25 is_stmt 1 discriminator 1 view .LVU119
+ARM GAS  /tmp/ccHTJMD9.s 			page 10
 
 
- 118:Core/Src/hmi.c ****   }
- 119:Core/Src/hmi.c ****   
- 120:Core/Src/hmi.c **** 
- 121:Core/Src/hmi.c **** 
- 122:Core/Src/hmi.c **** 
- 123:Core/Src/hmi.c **** 
- 124:Core/Src/hmi.c **** }
- 413              		.loc 1 124 1 view .LVU125
- 414 00a0 06B0     		add	sp, sp, #24
- 415              		.cfi_remember_state
- 416              		.cfi_def_cfa_offset 8
- 417              		@ sp needed
- 418 00a2 10BD     		pop	{r4, pc}
- 419              	.LVL24:
- 420              	.L30:
- 421              		.cfi_restore_state
- 422              	.LBB3:
-  96:Core/Src/hmi.c ****       char textStr[17];
- 423              		.loc 1 96 7 is_stmt 1 view .LVU126
-  97:Core/Src/hmi.c ****       if(info->zeroed.y) {
- 424              		.loc 1 97 7 view .LVU127
- 425 00a4 FFF7FEFF 		bl	clearLCD
- 426              	.LVL25:
-  98:Core/Src/hmi.c ****         sprintf(textStr, "Y: %05umm", info->pos.y);
- 427              		.loc 1 98 7 view .LVU128
-  98:Core/Src/hmi.c ****         sprintf(textStr, "Y: %05umm", info->pos.y);
- 428              		.loc 1 98 22 is_stmt 0 view .LVU129
- 429 00a8 237F     		ldrb	r3, [r4, #28]	@ zero_extendqisi2
-  98:Core/Src/hmi.c ****         sprintf(textStr, "Y: %05umm", info->pos.y);
- 430              		.loc 1 98 9 view .LVU130
- 431 00aa 43B3     		cbz	r3, .L23
-  99:Core/Src/hmi.c ****         memmove(textStr+8, textStr+7, 4);
- 432              		.loc 1 99 9 is_stmt 1 view .LVU131
- 433 00ac E288     		ldrh	r2, [r4, #6]
- 434 00ae 2049     		ldr	r1, .L31+8
- 435 00b0 01A8     		add	r0, sp, #4
- 436 00b2 FFF7FEFF 		bl	sprintf
- 437              	.LVL26:
- 100:Core/Src/hmi.c ****         textStr[7] = '.';
- 438              		.loc 1 100 9 view .LVU132
- 439 00b6 DDF80B30 		ldr	r3, [sp, #11]	@ unaligned
- 440 00ba 0393     		str	r3, [sp, #12]
- 101:Core/Src/hmi.c ****       }
- 441              		.loc 1 101 9 view .LVU133
- 101:Core/Src/hmi.c ****       }
- 442              		.loc 1 101 20 is_stmt 0 view .LVU134
- 443 00bc 2E23     		movs	r3, #46
- 444 00be 8DF80B30 		strb	r3, [sp, #11]
- 445              	.L24:
+ 372              		.loc 1 109 38 is_stmt 0 discriminator 1 view .LVU120
+ 373 0036 0123     		movs	r3, #1
+ 374 0038 84F83530 		strb	r3, [r4, #53]
+ 375              	.L19:
+ 110:Core/Src/hmi.c ****   } 
+ 111:Core/Src/hmi.c ****   else {
+ 112:Core/Src/hmi.c ****     if(info->update){
+ 113:Core/Src/hmi.c ****       char textStr[17];
+ 114:Core/Src/hmi.c **** 
+ 115:Core/Src/hmi.c ****       if(info->zeroed.y) {
+ 116:Core/Src/hmi.c ****         sprintf(textStr, "Y: %05lumm   P1\xdb", info->pos.y/stepY_01mm);
+ 117:Core/Src/hmi.c ****         memmove(textStr+8, textStr+7, 4);
+ 118:Core/Src/hmi.c ****         if(info->P1set)
+ 119:Core/Src/hmi.c ****           textStr[15] = 0xffU;
+ 120:Core/Src/hmi.c ****         if(info->Psel)
+ 121:Core/Src/hmi.c ****           textStr[12] = 0x7eU;
+ 122:Core/Src/hmi.c ****         textStr[7] = '.';
+ 123:Core/Src/hmi.c ****       }
+ 124:Core/Src/hmi.c ****       else
+ 125:Core/Src/hmi.c ****         sprintf(textStr, "Y: ???");
+ 126:Core/Src/hmi.c ****       setCursor(0, 0);
+ 127:Core/Src/hmi.c ****       writeLCD(textStr);
+ 128:Core/Src/hmi.c **** 
+ 129:Core/Src/hmi.c ****       if(info->zeroed.x){
+ 130:Core/Src/hmi.c ****         sprintf(textStr, "X: %05lumm   P2\xdb", info->pos.x/stepY_01mm);
+ 131:Core/Src/hmi.c ****         memmove(textStr+8, textStr+7, 4);
+ 132:Core/Src/hmi.c ****         if(info->P2set)
+ 133:Core/Src/hmi.c ****           textStr[15] = 0xffU;
+ 134:Core/Src/hmi.c ****         if(!info->Psel)
+ 135:Core/Src/hmi.c ****           textStr[12] = 0x7eU;
+ 136:Core/Src/hmi.c ****         textStr[7] = '.';
+ 137:Core/Src/hmi.c ****       }
+ 138:Core/Src/hmi.c ****       else
+ 139:Core/Src/hmi.c ****         sprintf(textStr, "X: ???");
+ 140:Core/Src/hmi.c ****       setCursor(0, 1);
+ 141:Core/Src/hmi.c ****       writeLCD(textStr);
+ 142:Core/Src/hmi.c ****       info->update = false;
+ 143:Core/Src/hmi.c ****     }
+ 144:Core/Src/hmi.c ****   }
+ 145:Core/Src/hmi.c **** }
+ 376              		.loc 1 145 1 view .LVU121
+ 377 003c 06B0     		add	sp, sp, #24
+ 378              		.cfi_remember_state
+ 379              		.cfi_def_cfa_offset 8
+ 380              		@ sp needed
+ 381 003e 10BD     		pop	{r4, pc}
+ 382              	.LVL12:
+ 383              	.L24:
+ 384              		.cfi_restore_state
+  83:Core/Src/hmi.c **** 
+ 385              		.loc 1 83 5 is_stmt 1 view .LVU122
+ 386 0040 0022     		movs	r2, #0
+ 387 0042 5B21     		movs	r1, #91
+ 388 0044 FFF7FEFF 		bl	__BP_Control
+ 389              	.LVL13:
+  86:Core/Src/hmi.c **** 
+ 390              		.loc 1 86 3 view .LVU123
+ARM GAS  /tmp/ccHTJMD9.s 			page 11
+
+
+ 391 0048 E8E7     		b	.L20
+ 392              	.LVL14:
+ 393              	.L23:
+  89:Core/Src/hmi.c ****   break; 
+ 394              		.loc 1 89 5 view .LVU124
+ 395 004a 0122     		movs	r2, #1
+ 396 004c 5B21     		movs	r1, #91
+ 397 004e FFF7FEFF 		bl	__BP_Control
+ 398              	.LVL15:
+  90:Core/Src/hmi.c **** 
+ 399              		.loc 1 90 3 view .LVU125
+ 400 0052 E3E7     		b	.L20
+ 401              	.LVL16:
+ 402              	.L21:
+  93:Core/Src/hmi.c ****   break;
+ 403              		.loc 1 93 5 view .LVU126
+ 404 0054 0122     		movs	r2, #1
+ 405 0056 5B21     		movs	r1, #91
+ 406 0058 FFF7FEFF 		bl	__BP_Control
+ 407              	.LVL17:
+  94:Core/Src/hmi.c ****   }
+ 408              		.loc 1 94 3 view .LVU127
+ 409 005c DEE7     		b	.L20
+ 410              	.L39:
+ 411              	.LBB2:
+ 100:Core/Src/hmi.c ****       sprintf(textStr, ModeNames[info->mode]);
+ 412              		.loc 1 100 7 view .LVU128
+ 101:Core/Src/hmi.c ****       setCursor(0, 0);
+ 413              		.loc 1 101 7 view .LVU129
+ 101:Core/Src/hmi.c ****       setCursor(0, 0);
+ 414              		.loc 1 101 38 is_stmt 0 view .LVU130
+ 415 005e 2178     		ldrb	r1, [r4]	@ zero_extendqisi2
+ 101:Core/Src/hmi.c ****       setCursor(0, 0);
+ 416              		.loc 1 101 33 view .LVU131
+ 417 0060 01EB0111 		add	r1, r1, r1, lsl #4
+ 101:Core/Src/hmi.c ****       setCursor(0, 0);
+ 418              		.loc 1 101 7 view .LVU132
+ 419 0064 3F4B     		ldr	r3, .L40
+ 420 0066 1944     		add	r1, r1, r3
+ 421 0068 01A8     		add	r0, sp, #4
+ 422 006a FFF7FEFF 		bl	sprintf
+ 423              	.LVL18:
+ 102:Core/Src/hmi.c ****       writeLCD(textStr);
+ 424              		.loc 1 102 7 is_stmt 1 view .LVU133
+ 425 006e 0021     		movs	r1, #0
+ 426 0070 0846     		mov	r0, r1
+ 427 0072 FFF7FEFF 		bl	setCursor
+ 428              	.LVL19:
+ 103:Core/Src/hmi.c ****       sprintf(textStr, StateNames[info->state]);
+ 429              		.loc 1 103 7 view .LVU134
+ 430 0076 01A8     		add	r0, sp, #4
+ 431 0078 FFF7FEFF 		bl	writeLCD
+ 432              	.LVL20:
+ 104:Core/Src/hmi.c ****       setCursor(0, 1);
+ 433              		.loc 1 104 7 view .LVU135
+ 104:Core/Src/hmi.c ****       setCursor(0, 1);
+ 434              		.loc 1 104 39 is_stmt 0 view .LVU136
+ARM GAS  /tmp/ccHTJMD9.s 			page 12
+
+
+ 435 007c 6178     		ldrb	r1, [r4, #1]	@ zero_extendqisi2
+ 104:Core/Src/hmi.c ****       setCursor(0, 1);
+ 436              		.loc 1 104 34 view .LVU137
+ 437 007e 01EB0111 		add	r1, r1, r1, lsl #4
+ 104:Core/Src/hmi.c ****       setCursor(0, 1);
+ 438              		.loc 1 104 7 view .LVU138
+ 439 0082 394B     		ldr	r3, .L40+4
+ 440 0084 1944     		add	r1, r1, r3
+ 441 0086 01A8     		add	r0, sp, #4
+ 442 0088 FFF7FEFF 		bl	sprintf
+ 443              	.LVL21:
  105:Core/Src/hmi.c ****       writeLCD(textStr);
- 446              		.loc 1 105 7 is_stmt 1 view .LVU135
- 447 00c2 0021     		movs	r1, #0
- 448 00c4 0846     		mov	r0, r1
- 449 00c6 FFF7FEFF 		bl	setCursor
- 450              	.LVL27:
- 106:Core/Src/hmi.c ****       if(info->zeroed.x){
- 451              		.loc 1 106 7 view .LVU136
-ARM GAS  /tmp/cclVJhLP.s 			page 12
+ 444              		.loc 1 105 7 is_stmt 1 view .LVU139
+ 445 008c 0121     		movs	r1, #1
+ 446 008e 0020     		movs	r0, #0
+ 447 0090 FFF7FEFF 		bl	setCursor
+ 448              	.LVL22:
+ 106:Core/Src/hmi.c ****       info->update = false;
+ 449              		.loc 1 106 7 view .LVU140
+ 450 0094 01A8     		add	r0, sp, #4
+ 451 0096 FFF7FEFF 		bl	writeLCD
+ 452              	.LVL23:
+ 107:Core/Src/hmi.c ****     }
+ 453              		.loc 1 107 7 view .LVU141
+ 107:Core/Src/hmi.c ****     }
+ 454              		.loc 1 107 20 is_stmt 0 view .LVU142
+ 455 009a 0023     		movs	r3, #0
+ 456 009c 84F83530 		strb	r3, [r4, #53]
+ 457 00a0 C6E7     		b	.L27
+ 458              	.L26:
+ 107:Core/Src/hmi.c ****     }
+ 459              		.loc 1 107 20 view .LVU143
+ 460              	.LBE2:
+ 112:Core/Src/hmi.c ****       char textStr[17];
+ 461              		.loc 1 112 5 is_stmt 1 view .LVU144
+ 112:Core/Src/hmi.c ****       char textStr[17];
+ 462              		.loc 1 112 12 is_stmt 0 view .LVU145
+ 463 00a2 94F83530 		ldrb	r3, [r4, #53]	@ zero_extendqisi2
+ 112:Core/Src/hmi.c ****       char textStr[17];
+ 464              		.loc 1 112 7 view .LVU146
+ 465 00a6 002B     		cmp	r3, #0
+ 466 00a8 C8D0     		beq	.L19
+ 467              	.LBB3:
+ 113:Core/Src/hmi.c **** 
+ 468              		.loc 1 113 7 is_stmt 1 view .LVU147
+ 115:Core/Src/hmi.c ****         sprintf(textStr, "Y: %05lumm   P1\xdb", info->pos.y/stepY_01mm);
+ 469              		.loc 1 115 7 view .LVU148
+ 115:Core/Src/hmi.c ****         sprintf(textStr, "Y: %05lumm   P1\xdb", info->pos.y/stepY_01mm);
+ 470              		.loc 1 115 22 is_stmt 0 view .LVU149
+ 471 00aa 94F83730 		ldrb	r3, [r4, #55]	@ zero_extendqisi2
+ 115:Core/Src/hmi.c ****         sprintf(textStr, "Y: %05lumm   P1\xdb", info->pos.y/stepY_01mm);
+ 472              		.loc 1 115 9 view .LVU150
+ 473 00ae 002B     		cmp	r3, #0
+ 474 00b0 44D0     		beq	.L29
+ 116:Core/Src/hmi.c ****         memmove(textStr+8, textStr+7, 4);
+ 475              		.loc 1 116 9 is_stmt 1 view .LVU151
+ 116:Core/Src/hmi.c ****         memmove(textStr+8, textStr+7, 4);
+ARM GAS  /tmp/ccHTJMD9.s 			page 13
 
 
- 452 00ca 01A8     		add	r0, sp, #4
- 453 00cc FFF7FEFF 		bl	writeLCD
- 454              	.LVL28:
- 107:Core/Src/hmi.c ****         sprintf(textStr, "X: %05umm", info->pos.x);
- 455              		.loc 1 107 7 view .LVU137
- 107:Core/Src/hmi.c ****         sprintf(textStr, "X: %05umm", info->pos.x);
- 456              		.loc 1 107 22 is_stmt 0 view .LVU138
- 457 00d0 E37E     		ldrb	r3, [r4, #27]	@ zero_extendqisi2
- 107:Core/Src/hmi.c ****         sprintf(textStr, "X: %05umm", info->pos.x);
- 458              		.loc 1 107 9 view .LVU139
- 459 00d2 F3B1     		cbz	r3, .L25
- 108:Core/Src/hmi.c ****         memmove(textStr+8, textStr+7, 4);
- 460              		.loc 1 108 9 is_stmt 1 view .LVU140
- 461 00d4 A288     		ldrh	r2, [r4, #4]
- 462 00d6 1749     		ldr	r1, .L31+12
- 463 00d8 01A8     		add	r0, sp, #4
- 464 00da FFF7FEFF 		bl	sprintf
- 465              	.LVL29:
- 109:Core/Src/hmi.c ****         textStr[7] = '.';
- 466              		.loc 1 109 9 view .LVU141
- 467 00de DDF80B30 		ldr	r3, [sp, #11]	@ unaligned
- 468 00e2 0393     		str	r3, [sp, #12]
- 110:Core/Src/hmi.c ****       }
- 469              		.loc 1 110 9 view .LVU142
- 110:Core/Src/hmi.c ****       }
- 470              		.loc 1 110 20 is_stmt 0 view .LVU143
- 471 00e4 2E23     		movs	r3, #46
- 472 00e6 8DF80B30 		strb	r3, [sp, #11]
- 473              	.L26:
- 114:Core/Src/hmi.c ****       writeLCD(textStr);
- 474              		.loc 1 114 7 is_stmt 1 view .LVU144
- 475 00ea 0121     		movs	r1, #1
- 476 00ec 0020     		movs	r0, #0
- 477 00ee FFF7FEFF 		bl	setCursor
- 478              	.LVL30:
- 115:Core/Src/hmi.c ****       info->update = false;
- 479              		.loc 1 115 7 view .LVU145
- 480 00f2 01A8     		add	r0, sp, #4
- 481 00f4 FFF7FEFF 		bl	writeLCD
- 482              	.LVL31:
- 116:Core/Src/hmi.c ****     }
- 483              		.loc 1 116 7 view .LVU146
- 116:Core/Src/hmi.c ****     }
- 484              		.loc 1 116 20 is_stmt 0 view .LVU147
- 485 00f8 0023     		movs	r3, #0
- 486 00fa A376     		strb	r3, [r4, #26]
- 487              	.LBE3:
- 488              		.loc 1 124 1 view .LVU148
- 489 00fc D0E7     		b	.L13
- 490              	.L23:
- 491              	.LBB4:
- 104:Core/Src/hmi.c ****       setCursor(0, 0);
- 492              		.loc 1 104 8 is_stmt 1 view .LVU149
- 493 00fe 0E4B     		ldr	r3, .L31+16
- 494 0100 93E80300 		ldm	r3, {r0, r1}
- 495 0104 0190     		str	r0, [sp, #4]
- 496 0106 ADF80810 		strh	r1, [sp, #8]	@ movhi
-ARM GAS  /tmp/cclVJhLP.s 			page 13
+ 476              		.loc 1 116 58 is_stmt 0 view .LVU152
+ 477 00b2 A268     		ldr	r2, [r4, #8]
+ 116:Core/Src/hmi.c ****         memmove(textStr+8, textStr+7, 4);
+ 478              		.loc 1 116 9 view .LVU153
+ 479 00b4 9208     		lsrs	r2, r2, #2
+ 480 00b6 2D49     		ldr	r1, .L40+8
+ 481 00b8 01A8     		add	r0, sp, #4
+ 482 00ba FFF7FEFF 		bl	sprintf
+ 483              	.LVL24:
+ 117:Core/Src/hmi.c ****         if(info->P1set)
+ 484              		.loc 1 117 9 is_stmt 1 view .LVU154
+ 485 00be DDF80B30 		ldr	r3, [sp, #11]	@ unaligned
+ 486 00c2 0393     		str	r3, [sp, #12]
+ 118:Core/Src/hmi.c ****           textStr[15] = 0xffU;
+ 487              		.loc 1 118 9 view .LVU155
+ 118:Core/Src/hmi.c ****           textStr[15] = 0xffU;
+ 488              		.loc 1 118 16 is_stmt 0 view .LVU156
+ 489 00c4 94F83030 		ldrb	r3, [r4, #48]	@ zero_extendqisi2
+ 118:Core/Src/hmi.c ****           textStr[15] = 0xffU;
+ 490              		.loc 1 118 11 view .LVU157
+ 491 00c8 13B1     		cbz	r3, .L30
+ 119:Core/Src/hmi.c ****         if(info->Psel)
+ 492              		.loc 1 119 11 is_stmt 1 view .LVU158
+ 119:Core/Src/hmi.c ****         if(info->Psel)
+ 493              		.loc 1 119 23 is_stmt 0 view .LVU159
+ 494 00ca FF23     		movs	r3, #255
+ 495 00cc 8DF81330 		strb	r3, [sp, #19]
+ 496              	.L30:
+ 120:Core/Src/hmi.c ****           textStr[12] = 0x7eU;
+ 497              		.loc 1 120 9 is_stmt 1 view .LVU160
+ 120:Core/Src/hmi.c ****           textStr[12] = 0x7eU;
+ 498              		.loc 1 120 16 is_stmt 0 view .LVU161
+ 499 00d0 94F83230 		ldrb	r3, [r4, #50]	@ zero_extendqisi2
+ 120:Core/Src/hmi.c ****           textStr[12] = 0x7eU;
+ 500              		.loc 1 120 11 view .LVU162
+ 501 00d4 13B1     		cbz	r3, .L31
+ 121:Core/Src/hmi.c ****         textStr[7] = '.';
+ 502              		.loc 1 121 11 is_stmt 1 view .LVU163
+ 121:Core/Src/hmi.c ****         textStr[7] = '.';
+ 503              		.loc 1 121 23 is_stmt 0 view .LVU164
+ 504 00d6 7E23     		movs	r3, #126
+ 505 00d8 8DF81030 		strb	r3, [sp, #16]
+ 506              	.L31:
+ 122:Core/Src/hmi.c ****       }
+ 507              		.loc 1 122 9 is_stmt 1 view .LVU165
+ 122:Core/Src/hmi.c ****       }
+ 508              		.loc 1 122 20 is_stmt 0 view .LVU166
+ 509 00dc 2E23     		movs	r3, #46
+ 510 00de 8DF80B30 		strb	r3, [sp, #11]
+ 511              	.L32:
+ 126:Core/Src/hmi.c ****       writeLCD(textStr);
+ 512              		.loc 1 126 7 is_stmt 1 view .LVU167
+ 513 00e2 0021     		movs	r1, #0
+ 514 00e4 0846     		mov	r0, r1
+ 515 00e6 FFF7FEFF 		bl	setCursor
+ 516              	.LVL25:
+ 127:Core/Src/hmi.c **** 
+ARM GAS  /tmp/ccHTJMD9.s 			page 14
 
 
- 497 010a 090C     		lsrs	r1, r1, #16
- 498 010c 8DF80A10 		strb	r1, [sp, #10]
- 499 0110 D7E7     		b	.L24
- 500              	.L25:
- 113:Core/Src/hmi.c ****       setCursor(0, 1);
- 501              		.loc 1 113 9 view .LVU150
- 502 0112 0A4B     		ldr	r3, .L31+20
- 503 0114 93E80300 		ldm	r3, {r0, r1}
- 504 0118 0190     		str	r0, [sp, #4]
- 505 011a ADF80810 		strh	r1, [sp, #8]	@ movhi
- 506 011e 090C     		lsrs	r1, r1, #16
- 507 0120 8DF80A10 		strb	r1, [sp, #10]
- 508 0124 E1E7     		b	.L26
- 509              	.L32:
- 510 0126 00BF     		.align	2
- 511              	.L31:
- 512 0128 00000000 		.word	.LANCHOR0
- 513 012c 00000000 		.word	.LANCHOR1
- 514 0130 00000000 		.word	.LC0
- 515 0134 14000000 		.word	.LC2
- 516 0138 0C000000 		.word	.LC1
- 517 013c 20000000 		.word	.LC3
- 518              	.LBE4:
- 519              		.cfi_endproc
- 520              	.LFE293:
- 522              		.global	StateNames
- 523              		.global	ModeNames
- 524              		.section	.data.ModeNames,"aw"
- 525              		.align	2
- 526              		.set	.LANCHOR0,. + 0
- 529              	ModeNames:
- 530 0000 415A5A45 		.ascii	"AZZERAMENTO\000"
- 530      52414D45 
- 530      4E544F00 
- 531 000c 00000000 		.space	5
- 531      00
- 532 0011 4D414E55 		.ascii	"MANUALE\000"
- 532      414C4500 
- 533 0019 00000000 		.space	9
- 533      00000000 
- 533      00
- 534 0022 53504941 		.ascii	"SPIANATURA\000"
- 534      4E415455 
- 534      524100
- 535 002d 00000000 		.space	6
- 535      0000
- 536 0033 434F4D50 		.ascii	"COMPUTER\000"
- 536      55544552 
- 536      00
- 537 003c 00000000 		.space	8
- 537      00000000 
- 538              		.section	.data.StateNames,"aw"
- 539              		.align	2
- 540              		.set	.LANCHOR1,. + 0
- 543              	StateNames:
- 544 0000 53544F50 		.ascii	"STOP\000"
- 544      00
-ARM GAS  /tmp/cclVJhLP.s 			page 14
+ 517              		.loc 1 127 7 view .LVU168
+ 518 00ea 01A8     		add	r0, sp, #4
+ 519 00ec FFF7FEFF 		bl	writeLCD
+ 520              	.LVL26:
+ 129:Core/Src/hmi.c ****         sprintf(textStr, "X: %05lumm   P2\xdb", info->pos.x/stepY_01mm);
+ 521              		.loc 1 129 7 view .LVU169
+ 129:Core/Src/hmi.c ****         sprintf(textStr, "X: %05lumm   P2\xdb", info->pos.x/stepY_01mm);
+ 522              		.loc 1 129 22 is_stmt 0 view .LVU170
+ 523 00f0 94F83630 		ldrb	r3, [r4, #54]	@ zero_extendqisi2
+ 129:Core/Src/hmi.c ****         sprintf(textStr, "X: %05lumm   P2\xdb", info->pos.x/stepY_01mm);
+ 524              		.loc 1 129 9 view .LVU171
+ 525 00f4 63B3     		cbz	r3, .L33
+ 130:Core/Src/hmi.c ****         memmove(textStr+8, textStr+7, 4);
+ 526              		.loc 1 130 9 is_stmt 1 view .LVU172
+ 130:Core/Src/hmi.c ****         memmove(textStr+8, textStr+7, 4);
+ 527              		.loc 1 130 58 is_stmt 0 view .LVU173
+ 528 00f6 6268     		ldr	r2, [r4, #4]
+ 130:Core/Src/hmi.c ****         memmove(textStr+8, textStr+7, 4);
+ 529              		.loc 1 130 9 view .LVU174
+ 530 00f8 9208     		lsrs	r2, r2, #2
+ 531 00fa 1D49     		ldr	r1, .L40+12
+ 532 00fc 01A8     		add	r0, sp, #4
+ 533 00fe FFF7FEFF 		bl	sprintf
+ 534              	.LVL27:
+ 131:Core/Src/hmi.c ****         if(info->P2set)
+ 535              		.loc 1 131 9 is_stmt 1 view .LVU175
+ 536 0102 DDF80B30 		ldr	r3, [sp, #11]	@ unaligned
+ 537 0106 0393     		str	r3, [sp, #12]
+ 132:Core/Src/hmi.c ****           textStr[15] = 0xffU;
+ 538              		.loc 1 132 9 view .LVU176
+ 132:Core/Src/hmi.c ****           textStr[15] = 0xffU;
+ 539              		.loc 1 132 16 is_stmt 0 view .LVU177
+ 540 0108 94F83130 		ldrb	r3, [r4, #49]	@ zero_extendqisi2
+ 132:Core/Src/hmi.c ****           textStr[15] = 0xffU;
+ 541              		.loc 1 132 11 view .LVU178
+ 542 010c 13B1     		cbz	r3, .L34
+ 133:Core/Src/hmi.c ****         if(!info->Psel)
+ 543              		.loc 1 133 11 is_stmt 1 view .LVU179
+ 133:Core/Src/hmi.c ****         if(!info->Psel)
+ 544              		.loc 1 133 23 is_stmt 0 view .LVU180
+ 545 010e FF23     		movs	r3, #255
+ 546 0110 8DF81330 		strb	r3, [sp, #19]
+ 547              	.L34:
+ 134:Core/Src/hmi.c ****           textStr[12] = 0x7eU;
+ 548              		.loc 1 134 9 is_stmt 1 view .LVU181
+ 134:Core/Src/hmi.c ****           textStr[12] = 0x7eU;
+ 549              		.loc 1 134 17 is_stmt 0 view .LVU182
+ 550 0114 94F83230 		ldrb	r3, [r4, #50]	@ zero_extendqisi2
+ 134:Core/Src/hmi.c ****           textStr[12] = 0x7eU;
+ 551              		.loc 1 134 11 view .LVU183
+ 552 0118 13B9     		cbnz	r3, .L35
+ 135:Core/Src/hmi.c ****         textStr[7] = '.';
+ 553              		.loc 1 135 11 is_stmt 1 view .LVU184
+ 135:Core/Src/hmi.c ****         textStr[7] = '.';
+ 554              		.loc 1 135 23 is_stmt 0 view .LVU185
+ 555 011a 7E23     		movs	r3, #126
+ 556 011c 8DF81030 		strb	r3, [sp, #16]
+ARM GAS  /tmp/ccHTJMD9.s 			page 15
 
 
- 545 0005 00       		.space	1
- 546 0006 50415553 		.ascii	"PAUSE\000"
- 546      4500
- 547 000c 52554E00 		.ascii	"RUN\000"
- 548 0010 0000     		.space	2
- 549 0012 00000000 		.space	6
- 549      0000
- 550              		.text
- 551              	.Letext0:
- 552              		.file 2 "/home/retfie/.config/VSCodium/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/ar
- 553              		.file 3 "/home/retfie/.config/VSCodium/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/ar
- 554              		.file 4 "Core/Inc/cnc_info.h"
- 555              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l431xx.h"
- 556              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
- 557              		.file 7 "Core/Inc/lcd.h"
- 558              		.file 8 "/home/retfie/.config/VSCodium/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/ar
-ARM GAS  /tmp/cclVJhLP.s 			page 15
+ 557              	.L35:
+ 136:Core/Src/hmi.c ****       }
+ 558              		.loc 1 136 9 is_stmt 1 view .LVU186
+ 136:Core/Src/hmi.c ****       }
+ 559              		.loc 1 136 20 is_stmt 0 view .LVU187
+ 560 0120 2E23     		movs	r3, #46
+ 561 0122 8DF80B30 		strb	r3, [sp, #11]
+ 562              	.L36:
+ 140:Core/Src/hmi.c ****       writeLCD(textStr);
+ 563              		.loc 1 140 7 is_stmt 1 view .LVU188
+ 564 0126 0121     		movs	r1, #1
+ 565 0128 0020     		movs	r0, #0
+ 566 012a FFF7FEFF 		bl	setCursor
+ 567              	.LVL28:
+ 141:Core/Src/hmi.c ****       info->update = false;
+ 568              		.loc 1 141 7 view .LVU189
+ 569 012e 01A8     		add	r0, sp, #4
+ 570 0130 FFF7FEFF 		bl	writeLCD
+ 571              	.LVL29:
+ 142:Core/Src/hmi.c ****     }
+ 572              		.loc 1 142 7 view .LVU190
+ 142:Core/Src/hmi.c ****     }
+ 573              		.loc 1 142 20 is_stmt 0 view .LVU191
+ 574 0134 0023     		movs	r3, #0
+ 575 0136 84F83530 		strb	r3, [r4, #53]
+ 576              	.LBE3:
+ 577              		.loc 1 145 1 view .LVU192
+ 578 013a 7FE7     		b	.L19
+ 579              	.L29:
+ 580              	.LBB4:
+ 125:Core/Src/hmi.c ****       setCursor(0, 0);
+ 581              		.loc 1 125 9 is_stmt 1 view .LVU193
+ 582 013c 0D4B     		ldr	r3, .L40+16
+ 583 013e 93E80300 		ldm	r3, {r0, r1}
+ 584 0142 0190     		str	r0, [sp, #4]
+ 585 0144 ADF80810 		strh	r1, [sp, #8]	@ movhi
+ 586 0148 090C     		lsrs	r1, r1, #16
+ 587 014a 8DF80A10 		strb	r1, [sp, #10]
+ 588 014e C8E7     		b	.L32
+ 589              	.L33:
+ 139:Core/Src/hmi.c ****       setCursor(0, 1);
+ 590              		.loc 1 139 9 view .LVU194
+ 591 0150 094B     		ldr	r3, .L40+20
+ 592 0152 93E80300 		ldm	r3, {r0, r1}
+ 593 0156 0190     		str	r0, [sp, #4]
+ 594 0158 ADF80810 		strh	r1, [sp, #8]	@ movhi
+ 595 015c 090C     		lsrs	r1, r1, #16
+ 596 015e 8DF80A10 		strb	r1, [sp, #10]
+ 597 0162 E0E7     		b	.L36
+ 598              	.L41:
+ 599              		.align	2
+ 600              	.L40:
+ 601 0164 00000000 		.word	.LANCHOR0
+ 602 0168 00000000 		.word	.LANCHOR1
+ 603 016c 00000000 		.word	.LC0
+ 604 0170 1C000000 		.word	.LC2
+ 605 0174 14000000 		.word	.LC1
+ARM GAS  /tmp/ccHTJMD9.s 			page 16
+
+
+ 606 0178 30000000 		.word	.LC3
+ 607              	.LBE4:
+ 608              		.cfi_endproc
+ 609              	.LFE293:
+ 611              		.section	.data.ModeNames,"aw"
+ 612              		.align	2
+ 613              		.set	.LANCHOR0,. + 0
+ 616              	ModeNames:
+ 617 0000 415A5A45 		.ascii	"AZZERAMENTO     \000"
+ 617      52414D45 
+ 617      4E544F20 
+ 617      20202020 
+ 617      00
+ 618 0011 4D414E55 		.ascii	"MANUALE         \000"
+ 618      414C4520 
+ 618      20202020 
+ 618      20202020 
+ 618      00
+ 619 0022 53504941 		.ascii	"SPIANATURA      \000"
+ 619      4E415455 
+ 619      52412020 
+ 619      20202020 
+ 619      00
+ 620 0033 434F4D50 		.ascii	"COMPUTER        \000"
+ 620      55544552 
+ 620      20202020 
+ 620      20202020 
+ 620      00
+ 621              		.section	.data.StateNames,"aw"
+ 622              		.align	2
+ 623              		.set	.LANCHOR1,. + 0
+ 626              	StateNames:
+ 627 0000 53544F50 		.ascii	"STOP            \000"
+ 627      20202020 
+ 627      20202020 
+ 627      20202020 
+ 627      00
+ 628 0011 50415553 		.ascii	"PAUSE           \000"
+ 628      45202020 
+ 628      20202020 
+ 628      20202020 
+ 628      00
+ 629 0022 52554E20 		.ascii	"RUN             \000"
+ 629      20202020 
+ 629      20202020 
+ 629      20202020 
+ 629      00
+ 630 0033 00000000 		.space	17
+ 630      00000000 
+ 630      00000000 
+ 630      00000000 
+ 630      00
+ 631              		.text
+ 632              	.Letext0:
+ 633              		.file 2 "/home/retfie/.config/VSCodium/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/ar
+ 634              		.file 3 "/home/retfie/.config/VSCodium/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/ar
+ 635              		.file 4 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l431xx.h"
+ARM GAS  /tmp/ccHTJMD9.s 			page 17
+
+
+ 636              		.file 5 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
+ 637              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
+ 638              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
+ 639              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h"
+ 640              		.file 9 "Core/Inc/cnc_info.h"
+ 641              		.file 10 "Core/Inc/lcd.h"
+ 642              		.file 11 "/home/retfie/.config/VSCodium/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/a
+ 643              		.file 12 "Core/Inc/cnc_core.h"
+ARM GAS  /tmp/ccHTJMD9.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 hmi.c
-     /tmp/cclVJhLP.s:20     .text.__Read_Pushbuttons:0000000000000000 $t
-     /tmp/cclVJhLP.s:26     .text.__Read_Pushbuttons:0000000000000000 __Read_Pushbuttons
-     /tmp/cclVJhLP.s:52     .text.__Read_Pushbuttons:0000000000000018 $d
-     /tmp/cclVJhLP.s:58     .text.__BP_Control:0000000000000000 $t
-     /tmp/cclVJhLP.s:64     .text.__BP_Control:0000000000000000 __BP_Control
-     /tmp/cclVJhLP.s:244    .rodata.HMI_Update.str1.4:0000000000000000 $d
-     /tmp/cclVJhLP.s:257    .text.HMI_Update:0000000000000000 $t
-     /tmp/cclVJhLP.s:263    .text.HMI_Update:0000000000000000 HMI_Update
-     /tmp/cclVJhLP.s:286    .text.HMI_Update:0000000000000010 $d
-     /tmp/cclVJhLP.s:290    .text.HMI_Update:0000000000000014 $t
-     /tmp/cclVJhLP.s:512    .text.HMI_Update:0000000000000128 $d
-     /tmp/cclVJhLP.s:543    .data.StateNames:0000000000000000 StateNames
-     /tmp/cclVJhLP.s:529    .data.ModeNames:0000000000000000 ModeNames
-     /tmp/cclVJhLP.s:525    .data.ModeNames:0000000000000000 $d
-     /tmp/cclVJhLP.s:539    .data.StateNames:0000000000000000 $d
+     /tmp/ccHTJMD9.s:20     .text.__Read_Pushbuttons:0000000000000000 $t
+     /tmp/ccHTJMD9.s:26     .text.__Read_Pushbuttons:0000000000000000 __Read_Pushbuttons
+     /tmp/ccHTJMD9.s:52     .text.__Read_Pushbuttons:0000000000000018 $d
+     /tmp/ccHTJMD9.s:58     .text.__BP_Control:0000000000000000 $t
+     /tmp/ccHTJMD9.s:64     .text.__BP_Control:0000000000000000 __BP_Control
+     /tmp/ccHTJMD9.s:295    .rodata.HMI_Update.str1.4:0000000000000000 $d
+     /tmp/ccHTJMD9.s:308    .text.HMI_Update:0000000000000000 $t
+     /tmp/ccHTJMD9.s:314    .text.HMI_Update:0000000000000000 HMI_Update
+     /tmp/ccHTJMD9.s:337    .text.HMI_Update:0000000000000010 $d
+     /tmp/ccHTJMD9.s:341    .text.HMI_Update:0000000000000014 $t
+     /tmp/ccHTJMD9.s:601    .text.HMI_Update:0000000000000164 $d
+     /tmp/ccHTJMD9.s:612    .data.ModeNames:0000000000000000 $d
+     /tmp/ccHTJMD9.s:616    .data.ModeNames:0000000000000000 ModeNames
+     /tmp/ccHTJMD9.s:622    .data.StateNames:0000000000000000 $d
+     /tmp/ccHTJMD9.s:626    .data.StateNames:0000000000000000 StateNames
 
 UNDEFINED SYMBOLS
+CNC_Stop
 HAL_GPIO_ReadPin
-clearLCD
 sprintf
 setCursor
 writeLCD

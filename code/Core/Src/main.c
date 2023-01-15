@@ -30,6 +30,7 @@
 #include "cnc_core.h"
 #include "lcd.h"
 #include "cnc_config.h"
+#include "data_parser.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -53,10 +54,12 @@ DMA_HandleTypeDef hdma_adc1;
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim7;
 TIM_HandleTypeDef htim15;
+TIM_HandleTypeDef htim16;
 
 UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 UART_HandleTypeDef huart3;
+DMA_HandleTypeDef hdma_usart1_rx;
 
 /* USER CODE BEGIN PV */
 
@@ -73,6 +76,7 @@ static void MX_TIM1_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_TIM15_Init(void);
+static void MX_TIM16_Init(void);
 static void MX_TIM7_Init(void);
 /* USER CODE BEGIN PFP */
 
@@ -85,16 +89,22 @@ HMI_info_t hmi_info = { .mode = HMI_Mode_Zero,
                         .move = HMI_Move_None,
                         .pos = {3000, 3000},
                         .pulseLenght = {1000, 1000},
-                        .pulsesCnt = {0, 0},
                         .commanded.pos = {0, 0},
                         .feed = 1000,
+                        .P1 = {10,10},
+                        .P2 = {300,300},
+                        .P1set = false,
+                        .P2set = false,
                         .cnt1 = 0,
                         .cnt2 = 0,
                         .update = true,
                         .zeroed = {false, false},
-                        .pushbuttons = 0xFFU};
+                        .pushbuttons = 0xFFU,
+                        .htimX = &enX_tim, 
+                        .htimY = &enY_tim};
 
 volatile uint16_t adc_data[8];
+uint8_t UART1_rxBuffer[11];
 /* USER CODE END 0 */
 
 /**
@@ -135,6 +145,7 @@ int main(void)
   MX_USART2_UART_Init();
   MX_USART3_UART_Init();
   MX_TIM15_Init();
+  MX_TIM16_Init();
   MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
 
@@ -150,6 +161,7 @@ int main(void)
   enY_tim.Instance->CR1 &= ~TIM_CR1_ARPE;
 
   HAL_ADC_Start_DMA(&hadc1, (uint32_t*) adc_data, 8);
+  HAL_UART_Receive_DMA(&huart1, UART1_rxBuffer, 11);
 
   /* USER CODE END 2 */
 
@@ -161,7 +173,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-    CNC_HL_Control(&hmi_info, &enX_tim, &enY_tim, &huart1, adc_data);
+    CNC_HL_Control(&hmi_info, &huart1, adc_data);
     //HAL_Delay(1);
   }
   /* USER CODE END 3 */
@@ -379,7 +391,7 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 92;
+  htim1.Init.Prescaler = 9;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim1.Init.Period = 400;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -458,13 +470,13 @@ static void MX_TIM7_Init(void)
   htim7.Instance = TIM7;
   htim7.Init.Prescaler = 666;
   htim7.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim7.Init.Period = 600;
-  htim7.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+  htim7.Init.Period = 1200;
+  htim7.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim7) != HAL_OK)
   {
     Error_Handler();
   }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim7, &sMasterConfig) != HAL_OK)
   {
@@ -497,7 +509,7 @@ static void MX_TIM15_Init(void)
 
   /* USER CODE END TIM15_Init 1 */
   htim15.Instance = TIM15;
-  htim15.Init.Prescaler = 92;
+  htim15.Init.Prescaler = 9;
   htim15.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim15.Init.Period = 400;
   htim15.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -548,6 +560,38 @@ static void MX_TIM15_Init(void)
 
   /* USER CODE END TIM15_Init 2 */
   HAL_TIM_MspPostInit(&htim15);
+
+}
+
+/**
+  * @brief TIM16 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM16_Init(void)
+{
+
+  /* USER CODE BEGIN TIM16_Init 0 */
+
+  /* USER CODE END TIM16_Init 0 */
+
+  /* USER CODE BEGIN TIM16_Init 1 */
+
+  /* USER CODE END TIM16_Init 1 */
+  htim16.Instance = TIM16;
+  htim16.Init.Prescaler = 0;
+  htim16.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim16.Init.Period = 65535;
+  htim16.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim16.Init.RepetitionCounter = 0;
+  htim16.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim16) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM16_Init 2 */
+
+  /* USER CODE END TIM16_Init 2 */
 
 }
 
@@ -665,6 +709,11 @@ static void MX_DMA_Init(void)
   /* DMA controller clock enable */
   __HAL_RCC_DMA1_CLK_ENABLE();
 
+  /* DMA interrupt init */
+  /* DMA1_Channel5_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel5_IRQn, 3, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel5_IRQn);
+
 }
 
 /**
@@ -768,7 +817,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pins : SW0_Pin SW1_Pin */
   GPIO_InitStruct.Pin = SW0_Pin|SW1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
@@ -796,32 +845,43 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+  ReadGcodeDMA(huart, UART1_rxBuffer, &hmi_info);
+  HAL_UART_Receive_DMA(&huart1, UART1_rxBuffer, 11);
+}
+
+void TIM1_CC_IRQHandler(void)
 {
+  htim1.Instance->SR = 0x00000000U;
+  CNC_TIM_Callback_X(&hmi_info);
+}
+
+void TIM1_BRK_TIM15_IRQHandler(void)
+{
+  htim15.Instance->SR = 0x00000000U;
+  CNC_TIM_Callback_Y(&hmi_info);
+}
+
+void TIM7_IRQHandler(void)
+{
+  htim7.Instance->SR = 0x00000000U;
   HMI_Update(&hmi_info);
 }
 
-void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim){
-  if(htim == &enX_tim)
-    CNC_TIM_Callback_X(&hmi_info, &enX_tim);
-
-  if(htim == &enY_tim)
-    CNC_TIM_Callback_Y(&hmi_info, &enY_tim); 
-}
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
   //STOP pressed halt motors and go to STOP mode
   if(GPIO_Pin == SWSTOP_Pin) {
-    CNC_Stop(&hmi_info, &enX_tim, &enY_tim);
+    CNC_Stop(&hmi_info);
   }
 
   if(GPIO_Pin == limitX_Pin) {
-    CNC_Limit_X(&hmi_info, &enX_tim, &enY_tim);
+    CNC_Limit_X(&hmi_info);
   }
 
   if(GPIO_Pin == limitY_Pin) {
-    CNC_Limit_Y(&hmi_info, &enX_tim, &enY_tim);
+    CNC_Limit_Y(&hmi_info);
   }
 }
 /* USER CODE END 4 */

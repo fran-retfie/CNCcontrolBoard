@@ -6,20 +6,26 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "stm32l4xx_hal.h"
+
+typedef struct {
+    uint32_t x;
+    uint32_t y;
+} uvec32_t;
+
+typedef struct {
+    int32_t x;
+    int32_t y;
+} svec32_t;
 
 typedef struct {
     uint16_t x;
     uint16_t y;
 } uvec16_t;
 
-typedef struct {
-    int16_t x;
-    int16_t y;
-} svec16_t;
-
 union comanded_t {
-   uvec16_t pos;
-   svec16_t speed;
+   uvec32_t pos;
+   svec32_t speed;
 };
 
 typedef struct {
@@ -47,7 +53,11 @@ typedef enum
   HMI_Move_Absolute,
   HMI_Move_Jog,
   HMI_Move_None,
-  HMI_Move_Done
+  HMI_Move_Done,
+  HMI_Move_Face1,
+  HMI_Move_Face2,
+  HMI_Move_Face3,
+  HMI_Move_Face4
 } HMI_Move_t;
 
 typedef struct
@@ -55,17 +65,23 @@ typedef struct
     HMI_Mode_t mode;
     HMI_State_t state;
     HMI_Move_t move;
-    uvec16_t pos;
-    svec16_t pulseLenght;
-    uvec16_t pulsesCnt;
+    uvec32_t pos;
+    uvec16_t pulseLenght;
     bvec_t dir;
     union comanded_t commanded;
-    uint16_t feed;
+    uint32_t feed;
+    uvec32_t P1;
+    uvec32_t P2;
+    bool P1set;
+    bool P2set;
+    bool Psel;
     uint8_t cnt1;
     uint8_t cnt2;
     bool update;
     bvec_t zeroed;
     uint8_t pushbuttons;
+    TIM_HandleTypeDef* htimX;
+    TIM_HandleTypeDef* htimY;
 } HMI_info_t;
 
 #endif

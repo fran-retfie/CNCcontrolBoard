@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccIqMJAF.s 			page 1
+ARM GAS  /tmp/ccHltdJ4.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
   28:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   * @{
   29:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   */
   30:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
-ARM GAS  /tmp/ccIqMJAF.s 			page 2
+ARM GAS  /tmp/ccHltdJ4.s 			page 2
 
 
   31:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** /** @defgroup PWREx PWREx
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
   85:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
   86:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** /* Private macro -------------------------------------------------------------*/
   87:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** /* Private variables ---------------------------------------------------------*/
-ARM GAS  /tmp/ccIqMJAF.s 			page 3
+ARM GAS  /tmp/ccHltdJ4.s 			page 3
 
 
   88:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** /* Private function prototypes -----------------------------------------------*/
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  133:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** }
   38              		.loc 1 133 1 view .LVU3
   39 0004 00F4C060 		and	r0, r0, #1536
-ARM GAS  /tmp/ccIqMJAF.s 			page 4
+ARM GAS  /tmp/ccHltdJ4.s 			page 4
 
 
   40 0008 7047     		bx	lr
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  166:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
  167:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   assert_param(IS_PWR_VOLTAGE_SCALING_RANGE(VoltageScaling));
   64              		.loc 1 167 3 view .LVU6
-ARM GAS  /tmp/ccIqMJAF.s 			page 5
+ARM GAS  /tmp/ccHltdJ4.s 			page 5
 
 
  168:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  222:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****     else
  223:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****     {
  224:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****       /* Disable Range 1 Boost (no issue if bit already set) */
-ARM GAS  /tmp/ccIqMJAF.s 			page 6
+ARM GAS  /tmp/ccHltdJ4.s 			page 6
 
 
  225:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****       SET_BIT(PWR->CR5, PWR_CR5_R1MODE);
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
   80 0018 23F4C063 		bic	r3, r3, #1536
   81 001c 43F48063 		orr	r3, r3, #1024
   82 0020 1360     		str	r3, [r2]
-ARM GAS  /tmp/ccIqMJAF.s 			page 7
+ARM GAS  /tmp/ccHltdJ4.s 			page 7
 
 
  264:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****       /* No need to wait for VOSF to be cleared for this transition */
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  250:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****       }
  121              		.loc 1 250 9 is_stmt 1 view .LVU25
  250:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****       }
-ARM GAS  /tmp/ccIqMJAF.s 			page 8
+ARM GAS  /tmp/ccHltdJ4.s 			page 8
 
 
  122              		.loc 1 250 24 is_stmt 0 view .LVU26
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  166              	.L12:
  167              		.loc 1 269 10 view .LVU41
  168 007e 0020     		movs	r0, #0
-ARM GAS  /tmp/ccIqMJAF.s 			page 9
+ARM GAS  /tmp/ccHltdJ4.s 			page 9
 
 
  169              	.LVL12:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  204 000c D368     		ldr	r3, [r2, #12]
  205 000e 43F48073 		orr	r3, r3, #256
  206 0012 D360     		str	r3, [r2, #12]
-ARM GAS  /tmp/ccIqMJAF.s 			page 10
+ARM GAS  /tmp/ccHltdJ4.s 			page 10
 
 
  291:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** }
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  303:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
  304:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** #if defined(PWR_CR2_USV)
  305:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** /**
-ARM GAS  /tmp/ccIqMJAF.s 			page 11
+ARM GAS  /tmp/ccHltdJ4.s 			page 11
 
 
  306:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   * @brief Enable VDDUSB supply.
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  355:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   SET_BIT(PWR->CR3, PWR_CR3_EIWF);
  258              		.loc 1 355 3 view .LVU52
  259 0000 024A     		ldr	r2, .L23
-ARM GAS  /tmp/ccIqMJAF.s 			page 12
+ARM GAS  /tmp/ccHltdJ4.s 			page 12
 
 
  260 0002 9368     		ldr	r3, [r2, #8]
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  307              	HAL_PWREx_EnableGPIOPullUp:
  308              	.LVL14:
  309              	.LFB294:
-ARM GAS  /tmp/ccIqMJAF.s 			page 13
+ARM GAS  /tmp/ccHltdJ4.s 			page 13
 
 
  367:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  332              	.L36:
  399:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   {
  400:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****     case PWR_GPIO_A:
-ARM GAS  /tmp/ccIqMJAF.s 			page 14
+ARM GAS  /tmp/ccHltdJ4.s 			page 14
 
 
  401:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****        SET_BIT(PWR->PUCRA, (GPIONumber & (~(PWR_GPIO_BIT_14))));
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  376 0044 154B     		ldr	r3, .L38
  377 0046 1A6B     		ldr	r2, [r3, #48]
  378 0048 0A43     		orrs	r2, r2, r1
-ARM GAS  /tmp/ccIqMJAF.s 			page 15
+ARM GAS  /tmp/ccHltdJ4.s 			page 15
 
 
  379 004a 1A63     		str	r2, [r3, #48]
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  418              		.loc 1 422 8 view .LVU87
  393:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
  419              		.loc 1 393 21 is_stmt 0 view .LVU88
-ARM GAS  /tmp/ccIqMJAF.s 			page 16
+ARM GAS  /tmp/ccHltdJ4.s 			page 16
 
 
  420 007c 0020     		movs	r0, #0
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  446:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****        SET_BIT(PWR->PUCRI, (GPIONumber & PWR_PORTI_AVAILABLE_PINS));
  447:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****        CLEAR_BIT(PWR->PDCRI, (GPIONumber & PWR_PORTI_AVAILABLE_PINS));
  448:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****        break;
-ARM GAS  /tmp/ccIqMJAF.s 			page 17
+ARM GAS  /tmp/ccHltdJ4.s 			page 17
 
 
  449:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** #endif
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  475              		.loc 1 478 3 view .LVU101
  479:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   assert_param(IS_PWR_GPIO_BIT_NUMBER(GPIONumber));
  476              		.loc 1 479 3 view .LVU102
-ARM GAS  /tmp/ccIqMJAF.s 			page 18
+ARM GAS  /tmp/ccHltdJ4.s 			page 18
 
 
  480:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  520              	.L46:
  489:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****     case PWR_GPIO_C:
  490:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****        CLEAR_BIT(PWR->PUCRC, GPIONumber);
-ARM GAS  /tmp/ccIqMJAF.s 			page 19
+ARM GAS  /tmp/ccHltdJ4.s 			page 19
 
 
  521              		.loc 1 490 8 is_stmt 1 view .LVU113
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  503:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****     case PWR_GPIO_F:
  504:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****        CLEAR_BIT(PWR->PUCRF, GPIONumber);
  505:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****        break;
-ARM GAS  /tmp/ccIqMJAF.s 			page 20
+ARM GAS  /tmp/ccHltdJ4.s 			page 20
 
 
  506:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** #endif
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  592              		.syntax unified
  593              		.thumb
  594              		.thumb_func
-ARM GAS  /tmp/ccIqMJAF.s 			page 21
+ARM GAS  /tmp/ccHltdJ4.s 			page 21
 
 
  596              	HAL_PWREx_EnableGPIOPullDown:
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  618 000e 48       		.byte	(.L61-.L55)/2
  619 000f 3C       		.byte	(.L54-.L55)/2
  620              		.p2align 1
-ARM GAS  /tmp/ccIqMJAF.s 			page 22
+ARM GAS  /tmp/ccHltdJ4.s 			page 22
 
 
  621              	.L60:
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  569:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****        SET_BIT(PWR->PDCRC, GPIONumber);
  663              		.loc 1 569 8 is_stmt 1 view .LVU151
  664 0044 154B     		ldr	r3, .L62
-ARM GAS  /tmp/ccIqMJAF.s 			page 23
+ARM GAS  /tmp/ccHltdJ4.s 			page 23
 
 
  665 0046 5A6B     		ldr	r2, [r3, #52]
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  705 007a 1A64     		str	r2, [r3, #64]
  582:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****        break;
  706              		.loc 1 582 8 view .LVU163
-ARM GAS  /tmp/ccIqMJAF.s 			page 24
+ARM GAS  /tmp/ccHltdJ4.s 			page 24
 
 
  553:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  604:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** #if defined(GPIOI)
  605:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****     case PWR_GPIO_I:
  606:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****        SET_BIT(PWR->PDCRI, (GPIONumber & PWR_PORTI_AVAILABLE_PINS));
-ARM GAS  /tmp/ccIqMJAF.s 			page 25
+ARM GAS  /tmp/ccHltdJ4.s 			page 25
 
 
  607:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****        CLEAR_BIT(PWR->PUCRI, (GPIONumber & PWR_PORTI_AVAILABLE_PINS));
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  637:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
  638:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   assert_param(IS_PWR_GPIO(GPIO));
  763              		.loc 1 638 3 view .LVU177
-ARM GAS  /tmp/ccIqMJAF.s 			page 26
+ARM GAS  /tmp/ccHltdJ4.s 			page 26
 
 
  639:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   assert_param(IS_PWR_GPIO_BIT_NUMBER(GPIONumber));
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  806 0030 0020     		movs	r0, #0
  807              	.LVL68:
  808              		.loc 1 648 8 view .LVU189
-ARM GAS  /tmp/ccIqMJAF.s 			page 27
+ARM GAS  /tmp/ccHltdJ4.s 			page 27
 
 
  809 0032 7047     		bx	lr
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  848 005c 7047     		bx	lr
  849              	.LVL75:
  850              	.L66:
-ARM GAS  /tmp/ccIqMJAF.s 			page 28
+ARM GAS  /tmp/ccHltdJ4.s 			page 28
 
 
  661:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** #endif
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  873              	.L75:
  874              		.align	2
  875              	.L74:
-ARM GAS  /tmp/ccIqMJAF.s 			page 29
+ARM GAS  /tmp/ccHltdJ4.s 			page 29
 
 
  876 0074 00700040 		.word	1073770496
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  708:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
  709:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
  710:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** /**
-ARM GAS  /tmp/ccIqMJAF.s 			page 30
+ARM GAS  /tmp/ccHltdJ4.s 			page 30
 
 
  711:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   * @brief Disable pull-up and pull-down configuration.
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  738:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   (void) HAL_PWREx_SetSRAM2ContentRetention(PWR_NO_SRAM2_RETENTION);
  739:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** }
  740:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
-ARM GAS  /tmp/ccIqMJAF.s 			page 31
+ARM GAS  /tmp/ccHltdJ4.s 			page 31
 
 
  741:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** /**
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  770:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****     return HAL_ERROR;
  771:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   }
  772:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
-ARM GAS  /tmp/ccIqMJAF.s 			page 32
+ARM GAS  /tmp/ccHltdJ4.s 			page 32
 
 
  773:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   return HAL_OK;
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  1021              		.thumb
  1022              		.thumb_func
  1024              	HAL_PWREx_DisableSRAM2ContentRetention:
-ARM GAS  /tmp/ccIqMJAF.s 			page 33
+ARM GAS  /tmp/ccHltdJ4.s 			page 33
 
 
  1025              	.LFB301:
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  799:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
  800:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
  801:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** #if defined(PWR_CR4_EXT_SMPS_ON)
-ARM GAS  /tmp/ccIqMJAF.s 			page 34
+ARM GAS  /tmp/ccHltdJ4.s 			page 34
 
 
  802:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** /**
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  856:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   */
  857:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** void HAL_PWREx_EnableDSIPinsPDActivation(void)
  858:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** {
-ARM GAS  /tmp/ccIqMJAF.s 			page 35
+ARM GAS  /tmp/ccHltdJ4.s 			page 35
 
 
  859:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   SET_BIT(PWR->CR3, PWR_CR3_DSIPDEN);
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  913:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
  914:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
  915:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** /**
-ARM GAS  /tmp/ccIqMJAF.s 			page 36
+ARM GAS  /tmp/ccHltdJ4.s 			page 36
 
 
  916:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   * @brief Enable the Power Voltage Monitoring 3: VDDA versus 1.62V.
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  1093              	.L97:
  1094              		.align	2
  1095              	.L96:
-ARM GAS  /tmp/ccIqMJAF.s 			page 37
+ARM GAS  /tmp/ccHltdJ4.s 			page 37
 
 
  1096 000c 00700040 		.word	1073770496
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  1137              		.loc 1 948 1 is_stmt 1 view -0
  1138              		.cfi_startproc
  1139              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccIqMJAF.s 			page 38
+ARM GAS  /tmp/ccHltdJ4.s 			page 38
 
 
  1140              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  1172              		.loc 1 972 3 view .LVU250
  973:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   assert_param(IS_PWR_PVM_MODE(sConfigPVM->Mode));
  1173              		.loc 1 973 3 view .LVU251
-ARM GAS  /tmp/ccIqMJAF.s 			page 39
+ARM GAS  /tmp/ccHltdJ4.s 			page 39
 
 
  974:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
 1014:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** #if defined(PWR_CR2_PVME2)
 1015:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****     case PWR_PVM_2:
 1016:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****       /* Clear any previous config. Keep it clear if no event or IT mode is selected */
-ARM GAS  /tmp/ccIqMJAF.s 			page 40
+ARM GAS  /tmp/ccHltdJ4.s 			page 40
 
 
 1017:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****       __HAL_PWR_PVM2_EXTI_DISABLE_EVENT();
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
 1054:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****       /* Configure interrupt mode */
 1055:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****       if((sConfigPVM->Mode & PVM_MODE_IT) == PVM_MODE_IT)
  1205              		.loc 1 1055 7 view .LVU260
-ARM GAS  /tmp/ccIqMJAF.s 			page 41
+ARM GAS  /tmp/ccHltdJ4.s 			page 41
 
 
  1206              		.loc 1 1055 21 is_stmt 0 view .LVU261
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  1243 0066 4368     		ldr	r3, [r0, #4]
  1244              		.loc 1 1072 9 view .LVU274
  1245 0068 13F0020F 		tst	r3, #2
-ARM GAS  /tmp/ccIqMJAF.s 			page 42
+ARM GAS  /tmp/ccHltdJ4.s 			page 42
 
 
  1246 006c 3DD0     		beq	.L114
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  1282              		.loc 1 1088 9 is_stmt 1 view .LVU285
  1283 00a6 134A     		ldr	r2, .L116
  1284 00a8 136A     		ldr	r3, [r2, #32]
-ARM GAS  /tmp/ccIqMJAF.s 			page 43
+ARM GAS  /tmp/ccHltdJ4.s 			page 43
 
 
  1285 00aa 43F04003 		orr	r3, r3, #64
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  1322 00e4 D362     		str	r3, [r2, #44]
  969:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
  1323              		.loc 1 969 21 is_stmt 0 view .LVU298
-ARM GAS  /tmp/ccIqMJAF.s 			page 44
+ARM GAS  /tmp/ccHltdJ4.s 			page 44
 
 
  1324 00e6 0020     		movs	r0, #0
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
 1123:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   *        Flash in power-down monde in setting the RUN_PD bit in FLASH_ACR register.
 1124:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   *        Additionally, the clock frequency must be reduced below 2 MHz.
 1125:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   *        Setting RUN_PD in FLASH_ACR then appropriately reducing the clock frequency must
-ARM GAS  /tmp/ccIqMJAF.s 			page 45
+ARM GAS  /tmp/ccHltdJ4.s 			page 45
 
 
 1126:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   *        be done before calling HAL_PWREx_EnableLowPowerRunMode() API.
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
 1148:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   /* Clear LPR bit */
 1149:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   CLEAR_BIT(PWR->CR1, PWR_CR1_LPR);
  1393              		.loc 1 1149 3 view .LVU310
-ARM GAS  /tmp/ccIqMJAF.s 			page 46
+ARM GAS  /tmp/ccHltdJ4.s 			page 46
 
 
  1394 0000 104A     		ldr	r2, .L127
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  1436 0032 5B69     		ldr	r3, [r3, #20]
  1437              		.loc 1 1157 6 view .LVU326
  1438 0034 13F4007F 		tst	r3, #512
-ARM GAS  /tmp/ccIqMJAF.s 			page 47
+ARM GAS  /tmp/ccHltdJ4.s 			page 47
 
 
  1439 0038 01D1     		bne	.L126
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
 1185:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   *            @arg @ref PWR_STOPENTRY_WFE  Enter Stop mode with WFE instruction
 1186:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   * @retval None
 1187:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   */
-ARM GAS  /tmp/ccIqMJAF.s 			page 48
+ARM GAS  /tmp/ccHltdJ4.s 			page 48
 
 
 1188:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** void HAL_PWREx_EnterSTOP0Mode(uint8_t STOPEntry)
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  1498 001c 20BF     		wfe
  1499              	@ 0 "" 2
  1500              		.thumb
-ARM GAS  /tmp/ccIqMJAF.s 			page 49
+ARM GAS  /tmp/ccHltdJ4.s 			page 49
 
 
  1501              		.syntax unified
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
 1230:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   *         the HSI RC oscillator is selected as system clock if STOPWUCK bit in RCC_CFGR register
 1231:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   *         is set; the MSI oscillator is selected if STOPWUCK is cleared.
 1232:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   * @note  Due to low power mode, an additional startup delay is incurred when waking up from Stop 
-ARM GAS  /tmp/ccIqMJAF.s 			page 50
+ARM GAS  /tmp/ccHltdJ4.s 			page 50
 
 
 1233:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   * @param STOPEntry  specifies if Stop mode in entered with WFI or WFE instruction.
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  1563              		.loc 1 1260 5 view .LVU349
  1564              	@ 1260 "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c" 1
  1565 001e 20BF     		wfe
-ARM GAS  /tmp/ccIqMJAF.s 			page 51
+ARM GAS  /tmp/ccHltdJ4.s 			page 51
 
 
  1566              	@ 0 "" 2
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
 1274:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   *        the HSI and the HSE oscillators are disabled. Some peripherals with wakeup capability
 1275:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   *        (LCD, LPTIM1, I2C3 and LPUART) can switch on the HSI to receive a frame, and switch off 
 1276:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   *        receiving the frame if it is not a wakeup frame. In this case the HSI clock is propagate
-ARM GAS  /tmp/ccIqMJAF.s 			page 52
+ARM GAS  /tmp/ccHltdJ4.s 			page 52
 
 
 1277:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   *        to the peripheral requesting it.
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
 1310:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****   {
 1311:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****     /* Request Wait For Event */
 1312:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****     __SEV();
-ARM GAS  /tmp/ccIqMJAF.s 			page 53
+ARM GAS  /tmp/ccHltdJ4.s 			page 53
 
 
  1629              		.loc 1 1312 5 is_stmt 1 view .LVU360
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  1677              	.LFB313:
 1320:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
 1321:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
-ARM GAS  /tmp/ccIqMJAF.s 			page 54
+ARM GAS  /tmp/ccHltdJ4.s 			page 54
 
 
 1322:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  1704              		.align	2
  1705              	.L148:
  1706 001c 00700040 		.word	1073770496
-ARM GAS  /tmp/ccIqMJAF.s 			page 55
+ARM GAS  /tmp/ccHltdJ4.s 			page 55
 
 
  1707 0020 00ED00E0 		.word	-536810240
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
 1393:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****     /* PWR PVM3 interrupt user callback */
 1394:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****     HAL_PWREx_PVM3Callback();
 1395:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** 
-ARM GAS  /tmp/ccIqMJAF.s 			page 56
+ARM GAS  /tmp/ccHltdJ4.s 			page 56
 
 
 1396:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c ****     /* Clear PVM3 exti pending bit */
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
 1445:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c **** }
  1725              		.loc 1 1445 1 view .LVU372
  1726 0000 7047     		bx	lr
-ARM GAS  /tmp/ccIqMJAF.s 			page 57
+ARM GAS  /tmp/ccHltdJ4.s 			page 57
 
 
  1727              		.cfi_endproc
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  1770              		.loc 1 1362 5 view .LVU378
  1771 0006 13F4803F 		tst	r3, #65536
  1772 000a 0AD1     		bne	.L157
-ARM GAS  /tmp/ccIqMJAF.s 			page 58
+ARM GAS  /tmp/ccHltdJ4.s 			page 58
 
 
  1773              	.L153:
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  1814              		.loc 1 1405 5 view .LVU391
  1815 0040 014B     		ldr	r3, .L160
  1816 0042 4022     		movs	r2, #64
-ARM GAS  /tmp/ccIqMJAF.s 			page 59
+ARM GAS  /tmp/ccHltdJ4.s 			page 59
 
 
  1817 0044 5A63     		str	r2, [r3, #52]
@@ -3501,105 +3501,105 @@ ARM GAS  /tmp/ccIqMJAF.s 			page 1
  1834              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h"
  1835              		.file 8 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
  1836              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr.h"
-ARM GAS  /tmp/ccIqMJAF.s 			page 60
+ARM GAS  /tmp/ccHltdJ4.s 			page 60
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32l4xx_hal_pwr_ex.c
-     /tmp/ccIqMJAF.s:20     .text.HAL_PWREx_GetVoltageRange:0000000000000000 $t
-     /tmp/ccIqMJAF.s:26     .text.HAL_PWREx_GetVoltageRange:0000000000000000 HAL_PWREx_GetVoltageRange
-     /tmp/ccIqMJAF.s:44     .text.HAL_PWREx_GetVoltageRange:000000000000000c $d
-     /tmp/ccIqMJAF.s:49     .text.HAL_PWREx_ControlVoltageScaling:0000000000000000 $t
-     /tmp/ccIqMJAF.s:55     .text.HAL_PWREx_ControlVoltageScaling:0000000000000000 HAL_PWREx_ControlVoltageScaling
-     /tmp/ccIqMJAF.s:175    .text.HAL_PWREx_ControlVoltageScaling:0000000000000084 $d
-     /tmp/ccIqMJAF.s:182    .text.HAL_PWREx_EnableBatteryCharging:0000000000000000 $t
-     /tmp/ccIqMJAF.s:188    .text.HAL_PWREx_EnableBatteryCharging:0000000000000000 HAL_PWREx_EnableBatteryCharging
-     /tmp/ccIqMJAF.s:212    .text.HAL_PWREx_EnableBatteryCharging:0000000000000018 $d
-     /tmp/ccIqMJAF.s:217    .text.HAL_PWREx_DisableBatteryCharging:0000000000000000 $t
-     /tmp/ccIqMJAF.s:223    .text.HAL_PWREx_DisableBatteryCharging:0000000000000000 HAL_PWREx_DisableBatteryCharging
-     /tmp/ccIqMJAF.s:240    .text.HAL_PWREx_DisableBatteryCharging:000000000000000c $d
-     /tmp/ccIqMJAF.s:245    .text.HAL_PWREx_EnableInternalWakeUpLine:0000000000000000 $t
-     /tmp/ccIqMJAF.s:251    .text.HAL_PWREx_EnableInternalWakeUpLine:0000000000000000 HAL_PWREx_EnableInternalWakeUpLine
-     /tmp/ccIqMJAF.s:268    .text.HAL_PWREx_EnableInternalWakeUpLine:000000000000000c $d
-     /tmp/ccIqMJAF.s:273    .text.HAL_PWREx_DisableInternalWakeUpLine:0000000000000000 $t
-     /tmp/ccIqMJAF.s:279    .text.HAL_PWREx_DisableInternalWakeUpLine:0000000000000000 HAL_PWREx_DisableInternalWakeUpLine
-     /tmp/ccIqMJAF.s:296    .text.HAL_PWREx_DisableInternalWakeUpLine:000000000000000c $d
-     /tmp/ccIqMJAF.s:301    .text.HAL_PWREx_EnableGPIOPullUp:0000000000000000 $t
-     /tmp/ccIqMJAF.s:307    .text.HAL_PWREx_EnableGPIOPullUp:0000000000000000 HAL_PWREx_EnableGPIOPullUp
-     /tmp/ccIqMJAF.s:323    .text.HAL_PWREx_EnableGPIOPullUp:0000000000000008 $d
-     /tmp/ccIqMJAF.s:331    .text.HAL_PWREx_EnableGPIOPullUp:0000000000000010 $t
-     /tmp/ccIqMJAF.s:455    .text.HAL_PWREx_EnableGPIOPullUp:000000000000009c $d
-     /tmp/ccIqMJAF.s:460    .text.HAL_PWREx_DisableGPIOPullUp:0000000000000000 $t
-     /tmp/ccIqMJAF.s:466    .text.HAL_PWREx_DisableGPIOPullUp:0000000000000000 HAL_PWREx_DisableGPIOPullUp
-     /tmp/ccIqMJAF.s:482    .text.HAL_PWREx_DisableGPIOPullUp:0000000000000008 $d
-     /tmp/ccIqMJAF.s:490    .text.HAL_PWREx_DisableGPIOPullUp:0000000000000010 $t
-     /tmp/ccIqMJAF.s:585    .text.HAL_PWREx_DisableGPIOPullUp:0000000000000070 $d
-     /tmp/ccIqMJAF.s:590    .text.HAL_PWREx_EnableGPIOPullDown:0000000000000000 $t
-     /tmp/ccIqMJAF.s:596    .text.HAL_PWREx_EnableGPIOPullDown:0000000000000000 HAL_PWREx_EnableGPIOPullDown
-     /tmp/ccIqMJAF.s:612    .text.HAL_PWREx_EnableGPIOPullDown:0000000000000008 $d
-     /tmp/ccIqMJAF.s:620    .text.HAL_PWREx_EnableGPIOPullDown:0000000000000010 $t
-     /tmp/ccIqMJAF.s:743    .text.HAL_PWREx_EnableGPIOPullDown:000000000000009c $d
-     /tmp/ccIqMJAF.s:748    .text.HAL_PWREx_DisableGPIOPullDown:0000000000000000 $t
-     /tmp/ccIqMJAF.s:754    .text.HAL_PWREx_DisableGPIOPullDown:0000000000000000 HAL_PWREx_DisableGPIOPullDown
-     /tmp/ccIqMJAF.s:770    .text.HAL_PWREx_DisableGPIOPullDown:0000000000000008 $d
-     /tmp/ccIqMJAF.s:778    .text.HAL_PWREx_DisableGPIOPullDown:0000000000000010 $t
-     /tmp/ccIqMJAF.s:876    .text.HAL_PWREx_DisableGPIOPullDown:0000000000000074 $d
-     /tmp/ccIqMJAF.s:881    .text.HAL_PWREx_EnablePullUpPullDownConfig:0000000000000000 $t
-     /tmp/ccIqMJAF.s:887    .text.HAL_PWREx_EnablePullUpPullDownConfig:0000000000000000 HAL_PWREx_EnablePullUpPullDownConfig
-     /tmp/ccIqMJAF.s:904    .text.HAL_PWREx_EnablePullUpPullDownConfig:000000000000000c $d
-     /tmp/ccIqMJAF.s:909    .text.HAL_PWREx_DisablePullUpPullDownConfig:0000000000000000 $t
-     /tmp/ccIqMJAF.s:915    .text.HAL_PWREx_DisablePullUpPullDownConfig:0000000000000000 HAL_PWREx_DisablePullUpPullDownConfig
-     /tmp/ccIqMJAF.s:932    .text.HAL_PWREx_DisablePullUpPullDownConfig:000000000000000c $d
-     /tmp/ccIqMJAF.s:937    .text.HAL_PWREx_SetSRAM2ContentRetention:0000000000000000 $t
-     /tmp/ccIqMJAF.s:943    .text.HAL_PWREx_SetSRAM2ContentRetention:0000000000000000 HAL_PWREx_SetSRAM2ContentRetention
-     /tmp/ccIqMJAF.s:986    .text.HAL_PWREx_SetSRAM2ContentRetention:0000000000000028 $d
-     /tmp/ccIqMJAF.s:991    .text.HAL_PWREx_EnableSRAM2ContentRetention:0000000000000000 $t
-     /tmp/ccIqMJAF.s:997    .text.HAL_PWREx_EnableSRAM2ContentRetention:0000000000000000 HAL_PWREx_EnableSRAM2ContentRetention
-     /tmp/ccIqMJAF.s:1018   .text.HAL_PWREx_DisableSRAM2ContentRetention:0000000000000000 $t
-     /tmp/ccIqMJAF.s:1024   .text.HAL_PWREx_DisableSRAM2ContentRetention:0000000000000000 HAL_PWREx_DisableSRAM2ContentRetention
-     /tmp/ccIqMJAF.s:1045   .text.HAL_PWREx_EnablePVM3:0000000000000000 $t
-     /tmp/ccIqMJAF.s:1051   .text.HAL_PWREx_EnablePVM3:0000000000000000 HAL_PWREx_EnablePVM3
-     /tmp/ccIqMJAF.s:1068   .text.HAL_PWREx_EnablePVM3:000000000000000c $d
-     /tmp/ccIqMJAF.s:1073   .text.HAL_PWREx_DisablePVM3:0000000000000000 $t
-ARM GAS  /tmp/ccIqMJAF.s 			page 61
+     /tmp/ccHltdJ4.s:20     .text.HAL_PWREx_GetVoltageRange:0000000000000000 $t
+     /tmp/ccHltdJ4.s:26     .text.HAL_PWREx_GetVoltageRange:0000000000000000 HAL_PWREx_GetVoltageRange
+     /tmp/ccHltdJ4.s:44     .text.HAL_PWREx_GetVoltageRange:000000000000000c $d
+     /tmp/ccHltdJ4.s:49     .text.HAL_PWREx_ControlVoltageScaling:0000000000000000 $t
+     /tmp/ccHltdJ4.s:55     .text.HAL_PWREx_ControlVoltageScaling:0000000000000000 HAL_PWREx_ControlVoltageScaling
+     /tmp/ccHltdJ4.s:175    .text.HAL_PWREx_ControlVoltageScaling:0000000000000084 $d
+     /tmp/ccHltdJ4.s:182    .text.HAL_PWREx_EnableBatteryCharging:0000000000000000 $t
+     /tmp/ccHltdJ4.s:188    .text.HAL_PWREx_EnableBatteryCharging:0000000000000000 HAL_PWREx_EnableBatteryCharging
+     /tmp/ccHltdJ4.s:212    .text.HAL_PWREx_EnableBatteryCharging:0000000000000018 $d
+     /tmp/ccHltdJ4.s:217    .text.HAL_PWREx_DisableBatteryCharging:0000000000000000 $t
+     /tmp/ccHltdJ4.s:223    .text.HAL_PWREx_DisableBatteryCharging:0000000000000000 HAL_PWREx_DisableBatteryCharging
+     /tmp/ccHltdJ4.s:240    .text.HAL_PWREx_DisableBatteryCharging:000000000000000c $d
+     /tmp/ccHltdJ4.s:245    .text.HAL_PWREx_EnableInternalWakeUpLine:0000000000000000 $t
+     /tmp/ccHltdJ4.s:251    .text.HAL_PWREx_EnableInternalWakeUpLine:0000000000000000 HAL_PWREx_EnableInternalWakeUpLine
+     /tmp/ccHltdJ4.s:268    .text.HAL_PWREx_EnableInternalWakeUpLine:000000000000000c $d
+     /tmp/ccHltdJ4.s:273    .text.HAL_PWREx_DisableInternalWakeUpLine:0000000000000000 $t
+     /tmp/ccHltdJ4.s:279    .text.HAL_PWREx_DisableInternalWakeUpLine:0000000000000000 HAL_PWREx_DisableInternalWakeUpLine
+     /tmp/ccHltdJ4.s:296    .text.HAL_PWREx_DisableInternalWakeUpLine:000000000000000c $d
+     /tmp/ccHltdJ4.s:301    .text.HAL_PWREx_EnableGPIOPullUp:0000000000000000 $t
+     /tmp/ccHltdJ4.s:307    .text.HAL_PWREx_EnableGPIOPullUp:0000000000000000 HAL_PWREx_EnableGPIOPullUp
+     /tmp/ccHltdJ4.s:323    .text.HAL_PWREx_EnableGPIOPullUp:0000000000000008 $d
+     /tmp/ccHltdJ4.s:331    .text.HAL_PWREx_EnableGPIOPullUp:0000000000000010 $t
+     /tmp/ccHltdJ4.s:455    .text.HAL_PWREx_EnableGPIOPullUp:000000000000009c $d
+     /tmp/ccHltdJ4.s:460    .text.HAL_PWREx_DisableGPIOPullUp:0000000000000000 $t
+     /tmp/ccHltdJ4.s:466    .text.HAL_PWREx_DisableGPIOPullUp:0000000000000000 HAL_PWREx_DisableGPIOPullUp
+     /tmp/ccHltdJ4.s:482    .text.HAL_PWREx_DisableGPIOPullUp:0000000000000008 $d
+     /tmp/ccHltdJ4.s:490    .text.HAL_PWREx_DisableGPIOPullUp:0000000000000010 $t
+     /tmp/ccHltdJ4.s:585    .text.HAL_PWREx_DisableGPIOPullUp:0000000000000070 $d
+     /tmp/ccHltdJ4.s:590    .text.HAL_PWREx_EnableGPIOPullDown:0000000000000000 $t
+     /tmp/ccHltdJ4.s:596    .text.HAL_PWREx_EnableGPIOPullDown:0000000000000000 HAL_PWREx_EnableGPIOPullDown
+     /tmp/ccHltdJ4.s:612    .text.HAL_PWREx_EnableGPIOPullDown:0000000000000008 $d
+     /tmp/ccHltdJ4.s:620    .text.HAL_PWREx_EnableGPIOPullDown:0000000000000010 $t
+     /tmp/ccHltdJ4.s:743    .text.HAL_PWREx_EnableGPIOPullDown:000000000000009c $d
+     /tmp/ccHltdJ4.s:748    .text.HAL_PWREx_DisableGPIOPullDown:0000000000000000 $t
+     /tmp/ccHltdJ4.s:754    .text.HAL_PWREx_DisableGPIOPullDown:0000000000000000 HAL_PWREx_DisableGPIOPullDown
+     /tmp/ccHltdJ4.s:770    .text.HAL_PWREx_DisableGPIOPullDown:0000000000000008 $d
+     /tmp/ccHltdJ4.s:778    .text.HAL_PWREx_DisableGPIOPullDown:0000000000000010 $t
+     /tmp/ccHltdJ4.s:876    .text.HAL_PWREx_DisableGPIOPullDown:0000000000000074 $d
+     /tmp/ccHltdJ4.s:881    .text.HAL_PWREx_EnablePullUpPullDownConfig:0000000000000000 $t
+     /tmp/ccHltdJ4.s:887    .text.HAL_PWREx_EnablePullUpPullDownConfig:0000000000000000 HAL_PWREx_EnablePullUpPullDownConfig
+     /tmp/ccHltdJ4.s:904    .text.HAL_PWREx_EnablePullUpPullDownConfig:000000000000000c $d
+     /tmp/ccHltdJ4.s:909    .text.HAL_PWREx_DisablePullUpPullDownConfig:0000000000000000 $t
+     /tmp/ccHltdJ4.s:915    .text.HAL_PWREx_DisablePullUpPullDownConfig:0000000000000000 HAL_PWREx_DisablePullUpPullDownConfig
+     /tmp/ccHltdJ4.s:932    .text.HAL_PWREx_DisablePullUpPullDownConfig:000000000000000c $d
+     /tmp/ccHltdJ4.s:937    .text.HAL_PWREx_SetSRAM2ContentRetention:0000000000000000 $t
+     /tmp/ccHltdJ4.s:943    .text.HAL_PWREx_SetSRAM2ContentRetention:0000000000000000 HAL_PWREx_SetSRAM2ContentRetention
+     /tmp/ccHltdJ4.s:986    .text.HAL_PWREx_SetSRAM2ContentRetention:0000000000000028 $d
+     /tmp/ccHltdJ4.s:991    .text.HAL_PWREx_EnableSRAM2ContentRetention:0000000000000000 $t
+     /tmp/ccHltdJ4.s:997    .text.HAL_PWREx_EnableSRAM2ContentRetention:0000000000000000 HAL_PWREx_EnableSRAM2ContentRetention
+     /tmp/ccHltdJ4.s:1018   .text.HAL_PWREx_DisableSRAM2ContentRetention:0000000000000000 $t
+     /tmp/ccHltdJ4.s:1024   .text.HAL_PWREx_DisableSRAM2ContentRetention:0000000000000000 HAL_PWREx_DisableSRAM2ContentRetention
+     /tmp/ccHltdJ4.s:1045   .text.HAL_PWREx_EnablePVM3:0000000000000000 $t
+     /tmp/ccHltdJ4.s:1051   .text.HAL_PWREx_EnablePVM3:0000000000000000 HAL_PWREx_EnablePVM3
+     /tmp/ccHltdJ4.s:1068   .text.HAL_PWREx_EnablePVM3:000000000000000c $d
+     /tmp/ccHltdJ4.s:1073   .text.HAL_PWREx_DisablePVM3:0000000000000000 $t
+ARM GAS  /tmp/ccHltdJ4.s 			page 61
 
 
-     /tmp/ccIqMJAF.s:1079   .text.HAL_PWREx_DisablePVM3:0000000000000000 HAL_PWREx_DisablePVM3
-     /tmp/ccIqMJAF.s:1096   .text.HAL_PWREx_DisablePVM3:000000000000000c $d
-     /tmp/ccIqMJAF.s:1101   .text.HAL_PWREx_EnablePVM4:0000000000000000 $t
-     /tmp/ccIqMJAF.s:1107   .text.HAL_PWREx_EnablePVM4:0000000000000000 HAL_PWREx_EnablePVM4
-     /tmp/ccIqMJAF.s:1124   .text.HAL_PWREx_EnablePVM4:000000000000000c $d
-     /tmp/ccIqMJAF.s:1129   .text.HAL_PWREx_DisablePVM4:0000000000000000 $t
-     /tmp/ccIqMJAF.s:1135   .text.HAL_PWREx_DisablePVM4:0000000000000000 HAL_PWREx_DisablePVM4
-     /tmp/ccIqMJAF.s:1152   .text.HAL_PWREx_DisablePVM4:000000000000000c $d
-     /tmp/ccIqMJAF.s:1157   .text.HAL_PWREx_ConfigPVM:0000000000000000 $t
-     /tmp/ccIqMJAF.s:1163   .text.HAL_PWREx_ConfigPVM:0000000000000000 HAL_PWREx_ConfigPVM
-     /tmp/ccIqMJAF.s:1346   .text.HAL_PWREx_ConfigPVM:00000000000000f4 $d
-     /tmp/ccIqMJAF.s:1351   .text.HAL_PWREx_EnableLowPowerRunMode:0000000000000000 $t
-     /tmp/ccIqMJAF.s:1357   .text.HAL_PWREx_EnableLowPowerRunMode:0000000000000000 HAL_PWREx_EnableLowPowerRunMode
-     /tmp/ccIqMJAF.s:1374   .text.HAL_PWREx_EnableLowPowerRunMode:000000000000000c $d
-     /tmp/ccIqMJAF.s:1379   .text.HAL_PWREx_DisableLowPowerRunMode:0000000000000000 $t
-     /tmp/ccIqMJAF.s:1385   .text.HAL_PWREx_DisableLowPowerRunMode:0000000000000000 HAL_PWREx_DisableLowPowerRunMode
-     /tmp/ccIqMJAF.s:1451   .text.HAL_PWREx_DisableLowPowerRunMode:0000000000000044 $d
-     /tmp/ccIqMJAF.s:1458   .text.HAL_PWREx_EnterSTOP0Mode:0000000000000000 $t
-     /tmp/ccIqMJAF.s:1464   .text.HAL_PWREx_EnterSTOP0Mode:0000000000000000 HAL_PWREx_EnterSTOP0Mode
-     /tmp/ccIqMJAF.s:1522   .text.HAL_PWREx_EnterSTOP0Mode:0000000000000030 $d
-     /tmp/ccIqMJAF.s:1528   .text.HAL_PWREx_EnterSTOP1Mode:0000000000000000 $t
-     /tmp/ccIqMJAF.s:1534   .text.HAL_PWREx_EnterSTOP1Mode:0000000000000000 HAL_PWREx_EnterSTOP1Mode
-     /tmp/ccIqMJAF.s:1593   .text.HAL_PWREx_EnterSTOP1Mode:0000000000000034 $d
-     /tmp/ccIqMJAF.s:1599   .text.HAL_PWREx_EnterSTOP2Mode:0000000000000000 $t
-     /tmp/ccIqMJAF.s:1605   .text.HAL_PWREx_EnterSTOP2Mode:0000000000000000 HAL_PWREx_EnterSTOP2Mode
-     /tmp/ccIqMJAF.s:1664   .text.HAL_PWREx_EnterSTOP2Mode:0000000000000034 $d
-     /tmp/ccIqMJAF.s:1670   .text.HAL_PWREx_EnterSHUTDOWNMode:0000000000000000 $t
-     /tmp/ccIqMJAF.s:1676   .text.HAL_PWREx_EnterSHUTDOWNMode:0000000000000000 HAL_PWREx_EnterSHUTDOWNMode
-     /tmp/ccIqMJAF.s:1706   .text.HAL_PWREx_EnterSHUTDOWNMode:000000000000001c $d
-     /tmp/ccIqMJAF.s:1712   .text.HAL_PWREx_PVM3Callback:0000000000000000 $t
-     /tmp/ccIqMJAF.s:1718   .text.HAL_PWREx_PVM3Callback:0000000000000000 HAL_PWREx_PVM3Callback
-     /tmp/ccIqMJAF.s:1731   .text.HAL_PWREx_PVM4Callback:0000000000000000 $t
-     /tmp/ccIqMJAF.s:1737   .text.HAL_PWREx_PVM4Callback:0000000000000000 HAL_PWREx_PVM4Callback
-     /tmp/ccIqMJAF.s:1750   .text.HAL_PWREx_PVD_PVM_IRQHandler:0000000000000000 $t
-     /tmp/ccIqMJAF.s:1756   .text.HAL_PWREx_PVD_PVM_IRQHandler:0000000000000000 HAL_PWREx_PVD_PVM_IRQHandler
-     /tmp/ccIqMJAF.s:1823   .text.HAL_PWREx_PVD_PVM_IRQHandler:0000000000000048 $d
+     /tmp/ccHltdJ4.s:1079   .text.HAL_PWREx_DisablePVM3:0000000000000000 HAL_PWREx_DisablePVM3
+     /tmp/ccHltdJ4.s:1096   .text.HAL_PWREx_DisablePVM3:000000000000000c $d
+     /tmp/ccHltdJ4.s:1101   .text.HAL_PWREx_EnablePVM4:0000000000000000 $t
+     /tmp/ccHltdJ4.s:1107   .text.HAL_PWREx_EnablePVM4:0000000000000000 HAL_PWREx_EnablePVM4
+     /tmp/ccHltdJ4.s:1124   .text.HAL_PWREx_EnablePVM4:000000000000000c $d
+     /tmp/ccHltdJ4.s:1129   .text.HAL_PWREx_DisablePVM4:0000000000000000 $t
+     /tmp/ccHltdJ4.s:1135   .text.HAL_PWREx_DisablePVM4:0000000000000000 HAL_PWREx_DisablePVM4
+     /tmp/ccHltdJ4.s:1152   .text.HAL_PWREx_DisablePVM4:000000000000000c $d
+     /tmp/ccHltdJ4.s:1157   .text.HAL_PWREx_ConfigPVM:0000000000000000 $t
+     /tmp/ccHltdJ4.s:1163   .text.HAL_PWREx_ConfigPVM:0000000000000000 HAL_PWREx_ConfigPVM
+     /tmp/ccHltdJ4.s:1346   .text.HAL_PWREx_ConfigPVM:00000000000000f4 $d
+     /tmp/ccHltdJ4.s:1351   .text.HAL_PWREx_EnableLowPowerRunMode:0000000000000000 $t
+     /tmp/ccHltdJ4.s:1357   .text.HAL_PWREx_EnableLowPowerRunMode:0000000000000000 HAL_PWREx_EnableLowPowerRunMode
+     /tmp/ccHltdJ4.s:1374   .text.HAL_PWREx_EnableLowPowerRunMode:000000000000000c $d
+     /tmp/ccHltdJ4.s:1379   .text.HAL_PWREx_DisableLowPowerRunMode:0000000000000000 $t
+     /tmp/ccHltdJ4.s:1385   .text.HAL_PWREx_DisableLowPowerRunMode:0000000000000000 HAL_PWREx_DisableLowPowerRunMode
+     /tmp/ccHltdJ4.s:1451   .text.HAL_PWREx_DisableLowPowerRunMode:0000000000000044 $d
+     /tmp/ccHltdJ4.s:1458   .text.HAL_PWREx_EnterSTOP0Mode:0000000000000000 $t
+     /tmp/ccHltdJ4.s:1464   .text.HAL_PWREx_EnterSTOP0Mode:0000000000000000 HAL_PWREx_EnterSTOP0Mode
+     /tmp/ccHltdJ4.s:1522   .text.HAL_PWREx_EnterSTOP0Mode:0000000000000030 $d
+     /tmp/ccHltdJ4.s:1528   .text.HAL_PWREx_EnterSTOP1Mode:0000000000000000 $t
+     /tmp/ccHltdJ4.s:1534   .text.HAL_PWREx_EnterSTOP1Mode:0000000000000000 HAL_PWREx_EnterSTOP1Mode
+     /tmp/ccHltdJ4.s:1593   .text.HAL_PWREx_EnterSTOP1Mode:0000000000000034 $d
+     /tmp/ccHltdJ4.s:1599   .text.HAL_PWREx_EnterSTOP2Mode:0000000000000000 $t
+     /tmp/ccHltdJ4.s:1605   .text.HAL_PWREx_EnterSTOP2Mode:0000000000000000 HAL_PWREx_EnterSTOP2Mode
+     /tmp/ccHltdJ4.s:1664   .text.HAL_PWREx_EnterSTOP2Mode:0000000000000034 $d
+     /tmp/ccHltdJ4.s:1670   .text.HAL_PWREx_EnterSHUTDOWNMode:0000000000000000 $t
+     /tmp/ccHltdJ4.s:1676   .text.HAL_PWREx_EnterSHUTDOWNMode:0000000000000000 HAL_PWREx_EnterSHUTDOWNMode
+     /tmp/ccHltdJ4.s:1706   .text.HAL_PWREx_EnterSHUTDOWNMode:000000000000001c $d
+     /tmp/ccHltdJ4.s:1712   .text.HAL_PWREx_PVM3Callback:0000000000000000 $t
+     /tmp/ccHltdJ4.s:1718   .text.HAL_PWREx_PVM3Callback:0000000000000000 HAL_PWREx_PVM3Callback
+     /tmp/ccHltdJ4.s:1731   .text.HAL_PWREx_PVM4Callback:0000000000000000 $t
+     /tmp/ccHltdJ4.s:1737   .text.HAL_PWREx_PVM4Callback:0000000000000000 HAL_PWREx_PVM4Callback
+     /tmp/ccHltdJ4.s:1750   .text.HAL_PWREx_PVD_PVM_IRQHandler:0000000000000000 $t
+     /tmp/ccHltdJ4.s:1756   .text.HAL_PWREx_PVD_PVM_IRQHandler:0000000000000000 HAL_PWREx_PVD_PVM_IRQHandler
+     /tmp/ccHltdJ4.s:1823   .text.HAL_PWREx_PVD_PVM_IRQHandler:0000000000000048 $d
 
 UNDEFINED SYMBOLS
 SystemCoreClock

@@ -7,6 +7,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include "cnc_info.h"
+#include "cnc_config.h"
 
 #define PB_MODE 0x10U
 #define PB_RUN  0x40U

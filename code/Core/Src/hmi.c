@@ -4,6 +4,7 @@
 #include "hmi.h"
 #include "main.h"
 #include "lcd.h"
+#include "cnc_core.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -12,11 +13,10 @@ uint8_t __Read_Pushbuttons(){
     return (PB0_GPIO_Port->IDR & (PB0_Pin | PB1_Pin | PB2_Pin))>>(13-5) | (PB7_GPIO_Port->IDR & (0x7C))>>2;
 }
 
-char ModeNames[4][17] = {"AZZERAMENTO", "MANUALE", "SPIANATURA", "COMPUTER"};
-char StateNames[4][6] = {"STOP", "PAUSE", "RUN"};
+static char ModeNames[4][17]  = {"AZZERAMENTO     ", "MANUALE         ", "SPIANATURA      ", "COMPUTER        "};
+static char StateNames[4][17] = {"STOP            ", "PAUSE           ", "RUN             "};
 
-void __BP_Control(HMI_info_t* info, uint8_t mask, bool pause_mask)
-{
+void __BP_Control(HMI_info_t* info, uint8_t mask, bool pause_mask){
   uint8_t newPushbuttons = __Read_Pushbuttons();
   uint8_t PBpressed = ~newPushbuttons & info->pushbuttons & mask;
 
@@ -25,19 +25,36 @@ void __BP_Control(HMI_info_t* info, uint8_t mask, bool pause_mask)
     info->state = HMI_State_Stop;
     info->move = HMI_Move_None;
     info->update = true;
-    info->cnt2 = 30;
+    info->cnt2 = 10;
   }
 
   if(PBpressed & PB_STOP){
-    info->state = HMI_State_Stop;
+    CNC_Stop(info);
+  }
+
+  if(PBpressed & PB_SET){
+    info->Psel = !info->Psel;
     info->update = true;
-    info->cnt2 = 30;
+  }
+
+  if(PBpressed & PB_JOY){
+    if(info->Psel){
+      info->P1.x = info->pos.x;
+      info->P1.y = info->pos.y;
+      info->P1set = true;
+    }
+    else {
+      info->P2.x = info->pos.x;
+      info->P2.y = info->pos.y;
+      info->P2set = true;
+    }
+
+    info->update = true;
   }
 
   if((PBpressed & PB_RUN) && (info->state != HMI_State_Stop)){
-      info->state = pause_mask ? HMI_State_Pause : HMI_State_Stop;
-      info->update = true;
-      info->cnt2 = 30;
+    CNC_Stop(info);
+    info->state = pause_mask ? HMI_State_Pause : HMI_State_Stop;
   }
 
   if((~newPushbuttons & PB_RUN) && !HAL_GPIO_ReadPin(SWSTOP_GPIO_Port, SWSTOP_Pin)){
@@ -45,7 +62,7 @@ void __BP_Control(HMI_info_t* info, uint8_t mask, bool pause_mask)
     if(info->cnt1 > 20) {
       info->state = HMI_State_Run;
       info->update = true;
-      info->cnt2 = 30;
+      info->cnt2 = 10;
       info->cnt1 = 0;
     }
   } 
@@ -59,21 +76,21 @@ void __BP_Control(HMI_info_t* info, uint8_t mask, bool pause_mask)
 void HMI_Update(HMI_info_t* info){
   switch (info->mode) {
   case  HMI_Mode_Zero:
-    __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE), false);
+    __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE | PB_SET | PB_JOY), false);
   break;
 
   case  HMI_Mode_Man:
-    __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE), false);
+    __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE | PB_SET | PB_JOY), false);
 
   
   break;
 
   case  HMI_Mode_Face:
-    __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE | PB_SET), true);
+    __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE | PB_SET | PB_JOY), true);
   break; 
 
   case  HMI_Mode_Ser:
-    __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE), true);
+    __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE | PB_SET | PB_JOY), true);
   break;
   }
 
@@ -81,7 +98,6 @@ void HMI_Update(HMI_info_t* info){
     info->cnt2--;
     if(info->update){
       char textStr[17];
-      clearLCD();
       sprintf(textStr, ModeNames[info->mode]);
       setCursor(0, 0);
       writeLCD(textStr);
@@ -91,22 +107,32 @@ void HMI_Update(HMI_info_t* info){
       info->update = false;
     }
     if(info->cnt2 == 0) info->update = true;
-  } else {
+  } 
+  else {
     if(info->update){
       char textStr[17];
-      clearLCD();
+
       if(info->zeroed.y) {
-        sprintf(textStr, "Y: %05umm", info->pos.y);
+        sprintf(textStr, "Y: %05lumm   P1\xdb", info->pos.y/stepY_01mm);
         memmove(textStr+8, textStr+7, 4);
+        if(info->P1set)
+          textStr[15] = 0xffU;
+        if(info->Psel)
+          textStr[12] = 0x7eU;
         textStr[7] = '.';
       }
       else
-       sprintf(textStr, "Y: ???");
+        sprintf(textStr, "Y: ???");
       setCursor(0, 0);
       writeLCD(textStr);
+
       if(info->zeroed.x){
-        sprintf(textStr, "X: %05umm", info->pos.x);
+        sprintf(textStr, "X: %05lumm   P2\xdb", info->pos.x/stepY_01mm);
         memmove(textStr+8, textStr+7, 4);
+        if(info->P2set)
+          textStr[15] = 0xffU;
+        if(!info->Psel)
+          textStr[12] = 0x7eU;
         textStr[7] = '.';
       }
       else
@@ -116,11 +142,6 @@ void HMI_Update(HMI_info_t* info){
       info->update = false;
     }
   }
-  
-
-
-
-
 }
 
 /*

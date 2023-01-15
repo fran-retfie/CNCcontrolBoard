@@ -58,6 +58,7 @@
 extern TIM_HandleTypeDef htim1;
 extern TIM_HandleTypeDef htim7;
 extern TIM_HandleTypeDef htim15;
+extern DMA_HandleTypeDef hdma_usart1_rx;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -201,6 +202,20 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
+  * @brief This function handles DMA1 channel5 global interrupt.
+  */
+void DMA1_Channel5_IRQHandler(void)
+{
+  /* USER CODE BEGIN DMA1_Channel5_IRQn 0 */
+
+  /* USER CODE END DMA1_Channel5_IRQn 0 */
+  HAL_DMA_IRQHandler(&hdma_usart1_rx);
+  /* USER CODE BEGIN DMA1_Channel5_IRQn 1 */
+
+  /* USER CODE END DMA1_Channel5_IRQn 1 */
+}
+
+/**
   * @brief This function handles EXTI line[9:5] interrupts.
   */
 void EXTI9_5_IRQHandler(void)
@@ -217,7 +232,7 @@ void EXTI9_5_IRQHandler(void)
 /**
   * @brief This function handles TIM1 break interrupt and TIM15 global interrupt.
   */
-void TIM1_BRK_TIM15_IRQHandler(void)
+__weak void TIM1_BRK_TIM15_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM1_BRK_TIM15_IRQn 0 */
 
@@ -232,7 +247,7 @@ void TIM1_BRK_TIM15_IRQHandler(void)
 /**
   * @brief This function handles TIM1 capture compare interrupt.
   */
-void TIM1_CC_IRQHandler(void)
+__weak void TIM1_CC_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM1_CC_IRQn 0 */
 
@@ -261,7 +276,7 @@ void EXTI15_10_IRQHandler(void)
 /**
   * @brief This function handles TIM7 global interrupt.
   */
-void TIM7_IRQHandler(void)
+__weak void TIM7_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM7_IRQn 0 */
 

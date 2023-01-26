@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccir953h.s 			page 1
+ARM GAS  /tmp/ccC6Dxsd.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccir953h.s 			page 1
   42              	.LVL1:
   43              		.loc 1 14 27 view .LVU5
   44 0008 B0FBF1F0 		udiv	r0, r0, r1
-ARM GAS  /tmp/ccir953h.s 			page 2
+ARM GAS  /tmp/ccC6Dxsd.s 			page 2
 
 
   45              		.loc 1 14 18 view .LVU6
@@ -92,12 +92,12 @@ ARM GAS  /tmp/ccir953h.s 			page 1
   72              	.LVL5:
   73              	.LFB289:
   18:Core/Src/cnc_core.c **** 
-  19:Core/Src/cnc_core.c **** void CNC_Stepper(HMI_info_t* info, bool runX, bool runY){
-  74              		.loc 1 19 57 is_stmt 1 view -0
+  19:Core/Src/cnc_core.c **** void CNC_Stepper(HMI_info_t* const info, bool runX, bool runY){
+  74              		.loc 1 19 63 is_stmt 1 view -0
   75              		.cfi_startproc
   76              		@ args = 0, pretend = 0, frame = 0
   77              		@ frame_needed = 0, uses_anonymous_args = 0
-  78              		.loc 1 19 57 is_stmt 0 view .LVU13
+  78              		.loc 1 19 63 is_stmt 0 view .LVU13
   79 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
   80              		.cfi_def_cfa_offset 24
   81              		.cfi_offset 3, -24
@@ -109,260 +109,261 @@ ARM GAS  /tmp/ccir953h.s 			page 1
   87 0002 0446     		mov	r4, r0
   88 0004 0E46     		mov	r6, r1
   89 0006 1746     		mov	r7, r2
-  20:Core/Src/cnc_core.c ****     runX &= !(HAL_GPIO_ReadPin(limitX_Port, limitX_Pin) || ((info->pos.x == 0) && !info->dir.x) || 
-  90              		.loc 1 20 5 is_stmt 1 view .LVU14
-  91              		.loc 1 20 15 is_stmt 0 view .LVU15
+  20:Core/Src/cnc_core.c **** 
+  21:Core/Src/cnc_core.c ****     runX &= !(HAL_GPIO_ReadPin(limitX_Port, limitX_Pin) || ((info->pos.x == 0) && !info->dir.x) || 
+  90              		.loc 1 21 5 is_stmt 1 view .LVU14
+  91              		.loc 1 21 15 is_stmt 0 view .LVU15
   92 0008 4FF48041 		mov	r1, #16384
   93              	.LVL6:
-  94              		.loc 1 20 15 view .LVU16
+  94              		.loc 1 21 15 view .LVU16
   95 000c 4C48     		ldr	r0, .L27
   96              	.LVL7:
-  97              		.loc 1 20 15 view .LVU17
-ARM GAS  /tmp/ccir953h.s 			page 3
+ARM GAS  /tmp/ccC6Dxsd.s 			page 3
 
 
+  97              		.loc 1 21 15 view .LVU17
   98 000e FFF7FEFF 		bl	HAL_GPIO_ReadPin
   99              	.LVL8:
- 100              		.loc 1 20 13 view .LVU18
+ 100              		.loc 1 21 13 view .LVU18
  101 0012 58B9     		cbnz	r0, .L15
- 102              		.loc 1 20 71 discriminator 1 view .LVU19
+ 102              		.loc 1 21 71 discriminator 1 view .LVU19
  103 0014 6368     		ldr	r3, [r4, #4]
- 104              		.loc 1 20 57 discriminator 1 view .LVU20
+ 104              		.loc 1 21 57 discriminator 1 view .LVU20
  105 0016 0BB9     		cbnz	r3, .L6
- 106              		.loc 1 20 93 discriminator 4 view .LVU21
+ 106              		.loc 1 21 93 discriminator 4 view .LVU21
  107 0018 227C     		ldrb	r2, [r4, #16]	@ zero_extendqisi2
- 108              		.loc 1 20 80 discriminator 4 view .LVU22
+ 108              		.loc 1 21 80 discriminator 4 view .LVU22
  109 001a D2B1     		cbz	r2, .L16
  110              	.L6:
- 111              		.loc 1 20 13 discriminator 5 view .LVU23
+ 111              		.loc 1 21 13 discriminator 5 view .LVU23
  112 001c 4CF61F32 		movw	r2, #51999
  113 0020 9342     		cmp	r3, r2
  114 0022 18D9     		bls	.L17
- 115              		.loc 1 20 150 discriminator 8 view .LVU24
+ 115              		.loc 1 21 150 discriminator 8 view .LVU24
  116 0024 237C     		ldrb	r3, [r4, #16]	@ zero_extendqisi2
- 117              		.loc 1 20 138 discriminator 8 view .LVU25
+ 117              		.loc 1 21 138 discriminator 8 view .LVU25
  118 0026 C3B1     		cbz	r3, .L18
- 119              		.loc 1 20 13 view .LVU26
+ 119              		.loc 1 21 13 view .LVU26
  120 0028 0023     		movs	r3, #0
  121 002a 00E0     		b	.L5
  122              	.L15:
- 123              		.loc 1 20 13 view .LVU27
+ 123              		.loc 1 21 13 view .LVU27
  124 002c 0023     		movs	r3, #0
  125              	.L5:
- 126              		.loc 1 20 10 discriminator 12 view .LVU28
+ 126              		.loc 1 21 10 discriminator 12 view .LVU28
  127 002e 1E40     		ands	r6, r6, r3
  128              	.LVL9:
-  21:Core/Src/cnc_core.c ****     runY &= !(HAL_GPIO_ReadPin(limitY_Port, limitY_Pin) || ((info->pos.y == 0) && !info->dir.y) || 
- 129              		.loc 1 21 5 is_stmt 1 discriminator 12 view .LVU29
- 130              		.loc 1 21 15 is_stmt 0 discriminator 12 view .LVU30
+  22:Core/Src/cnc_core.c ****     runY &= !(HAL_GPIO_ReadPin(limitY_Port, limitY_Pin) || ((info->pos.y == 0) && !info->dir.y) || 
+ 129              		.loc 1 22 5 is_stmt 1 discriminator 12 view .LVU29
+ 130              		.loc 1 22 15 is_stmt 0 discriminator 12 view .LVU30
  131 0030 4FF40041 		mov	r1, #32768
  132 0034 4248     		ldr	r0, .L27
  133 0036 FFF7FEFF 		bl	HAL_GPIO_ReadPin
  134              	.LVL10:
- 135              		.loc 1 21 13 discriminator 12 view .LVU31
+ 135              		.loc 1 22 13 discriminator 12 view .LVU31
  136 003a 80B9     		cbnz	r0, .L19
- 137              		.loc 1 21 71 discriminator 1 view .LVU32
+ 137              		.loc 1 22 71 discriminator 1 view .LVU32
  138 003c A368     		ldr	r3, [r4, #8]
- 139              		.loc 1 21 57 discriminator 1 view .LVU33
+ 139              		.loc 1 22 57 discriminator 1 view .LVU33
  140 003e 0BB9     		cbnz	r3, .L8
- 141              		.loc 1 21 93 discriminator 4 view .LVU34
+ 141              		.loc 1 22 93 discriminator 4 view .LVU34
  142 0040 627C     		ldrb	r2, [r4, #17]	@ zero_extendqisi2
- 143              		.loc 1 21 80 discriminator 4 view .LVU35
+ 143              		.loc 1 22 80 discriminator 4 view .LVU35
  144 0042 4AB3     		cbz	r2, .L20
  145              	.L8:
- 146              		.loc 1 21 13 discriminator 5 view .LVU36
+ 146              		.loc 1 22 13 discriminator 5 view .LVU36
  147 0044 3F4A     		ldr	r2, .L27+4
  148 0046 9342     		cmp	r3, r2
  149 0048 28D9     		bls	.L21
- 150              		.loc 1 21 150 discriminator 8 view .LVU37
+ 150              		.loc 1 22 150 discriminator 8 view .LVU37
  151 004a 637C     		ldrb	r3, [r4, #17]	@ zero_extendqisi2
- 152              		.loc 1 21 138 discriminator 8 view .LVU38
+ 152              		.loc 1 22 138 discriminator 8 view .LVU38
+ARM GAS  /tmp/ccC6Dxsd.s 			page 4
+
+
  153 004c 43B3     		cbz	r3, .L22
-ARM GAS  /tmp/ccir953h.s 			page 4
-
-
- 154              		.loc 1 21 13 view .LVU39
+ 154              		.loc 1 22 13 view .LVU39
  155 004e 0023     		movs	r3, #0
  156 0050 06E0     		b	.L7
  157              	.LVL11:
  158              	.L16:
-  20:Core/Src/cnc_core.c ****     runX &= !(HAL_GPIO_ReadPin(limitX_Port, limitX_Pin) || ((info->pos.x == 0) && !info->dir.x) || 
- 159              		.loc 1 20 13 view .LVU40
+  21:Core/Src/cnc_core.c ****     runY &= !(HAL_GPIO_ReadPin(limitY_Port, limitY_Pin) || ((info->pos.y == 0) && !info->dir.y) || 
+ 159              		.loc 1 21 13 view .LVU40
  160 0052 0023     		movs	r3, #0
  161 0054 EBE7     		b	.L5
  162              	.L17:
  163 0056 0123     		movs	r3, #1
  164 0058 E9E7     		b	.L5
  165              	.L18:
-  20:Core/Src/cnc_core.c ****     runX &= !(HAL_GPIO_ReadPin(limitX_Port, limitX_Pin) || ((info->pos.x == 0) && !info->dir.x) || 
- 166              		.loc 1 20 13 view .LVU41
+  21:Core/Src/cnc_core.c ****     runY &= !(HAL_GPIO_ReadPin(limitY_Port, limitY_Pin) || ((info->pos.y == 0) && !info->dir.y) || 
+ 166              		.loc 1 21 13 view .LVU41
  167 005a 0123     		movs	r3, #1
  168 005c E7E7     		b	.L5
  169              	.LVL12:
  170              	.L19:
- 171              		.loc 1 21 13 view .LVU42
+ 171              		.loc 1 22 13 view .LVU42
  172 005e 0023     		movs	r3, #0
  173              	.L7:
- 174              		.loc 1 21 10 discriminator 12 view .LVU43
+ 174              		.loc 1 22 10 discriminator 12 view .LVU43
  175 0060 1F40     		ands	r7, r7, r3
  176              	.LVL13:
-  22:Core/Src/cnc_core.c ****     
-  23:Core/Src/cnc_core.c ****     HAL_GPIO_WritePin(dirX_Port, dirX_Pin, info->dir.x);
- 177              		.loc 1 23 5 is_stmt 1 discriminator 12 view .LVU44
+  23:Core/Src/cnc_core.c ****     
+  24:Core/Src/cnc_core.c ****     HAL_GPIO_WritePin(dirX_Port, dirX_Pin, info->dir.x);
+ 177              		.loc 1 24 5 is_stmt 1 discriminator 12 view .LVU44
  178 0062 374D     		ldr	r5, .L27
  179 0064 227C     		ldrb	r2, [r4, #16]	@ zero_extendqisi2
  180 0066 4FF48071 		mov	r1, #256
  181 006a 2846     		mov	r0, r5
  182 006c FFF7FEFF 		bl	HAL_GPIO_WritePin
  183              	.LVL14:
-  24:Core/Src/cnc_core.c ****     HAL_GPIO_WritePin(dirY_Port, dirY_Pin, info->dir.y);
- 184              		.loc 1 24 5 discriminator 12 view .LVU45
+  25:Core/Src/cnc_core.c ****     HAL_GPIO_WritePin(dirY_Port, dirY_Pin, info->dir.y);
+ 184              		.loc 1 25 5 discriminator 12 view .LVU45
  185 0070 627C     		ldrb	r2, [r4, #17]	@ zero_extendqisi2
  186 0072 4FF40071 		mov	r1, #512
  187 0076 2846     		mov	r0, r5
  188 0078 FFF7FEFF 		bl	HAL_GPIO_WritePin
  189              	.LVL15:
-  25:Core/Src/cnc_core.c ****     
-  26:Core/Src/cnc_core.c ****     bool run = (!(SWSTOP_GPIO_Port->IDR & SWSTOP_Pin) && (info->state == HMI_State_Run || info->mov
- 190              		.loc 1 26 5 discriminator 12 view .LVU46
- 191              		.loc 1 26 35 is_stmt 0 discriminator 12 view .LVU47
+  26:Core/Src/cnc_core.c ****     
+  27:Core/Src/cnc_core.c ****     bool run = (!(SWSTOP_GPIO_Port->IDR & SWSTOP_Pin) && (info->state == HMI_State_Run || info->mov
+ 190              		.loc 1 27 5 discriminator 12 view .LVU46
+ 191              		.loc 1 27 35 is_stmt 0 discriminator 12 view .LVU47
  192 007c 4FF09043 		mov	r3, #1207959552
  193 0080 1B69     		ldr	r3, [r3, #16]
- 194              		.loc 1 26 55 discriminator 12 view .LVU48
+ 194              		.loc 1 27 55 discriminator 12 view .LVU48
  195 0082 13F0400F 		tst	r3, #64
  196 0086 0DD1     		bne	.L23
- 197              		.loc 1 26 63 discriminator 1 view .LVU49
+ 197              		.loc 1 27 63 discriminator 1 view .LVU49
  198 0088 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
- 199              		.loc 1 26 55 discriminator 1 view .LVU50
+ 199              		.loc 1 27 55 discriminator 1 view .LVU50
  200 008a 022B     		cmp	r3, #2
  201 008c 2ED0     		beq	.L24
- 202              		.loc 1 26 95 discriminator 4 view .LVU51
+ 202              		.loc 1 27 95 discriminator 4 view .LVU51
+ARM GAS  /tmp/ccC6Dxsd.s 			page 5
+
+
  203 008e A378     		ldrb	r3, [r4, #2]	@ zero_extendqisi2
-ARM GAS  /tmp/ccir953h.s 			page 5
-
-
- 204              		.loc 1 26 88 discriminator 4 view .LVU52
+ 204              		.loc 1 27 88 discriminator 4 view .LVU52
  205 0090 012B     		cmp	r3, #1
  206 0092 2DD0     		beq	.L25
- 207              		.loc 1 26 55 view .LVU53
+ 207              		.loc 1 27 55 view .LVU53
  208 0094 0023     		movs	r3, #0
  209 0096 06E0     		b	.L9
  210              	.LVL16:
  211              	.L20:
-  21:Core/Src/cnc_core.c ****     
- 212              		.loc 1 21 13 view .LVU54
+  22:Core/Src/cnc_core.c ****     
+ 212              		.loc 1 22 13 view .LVU54
  213 0098 0023     		movs	r3, #0
  214 009a E1E7     		b	.L7
  215              	.L21:
  216 009c 0123     		movs	r3, #1
  217 009e DFE7     		b	.L7
  218              	.L22:
-  21:Core/Src/cnc_core.c ****     
- 219              		.loc 1 21 13 view .LVU55
+  22:Core/Src/cnc_core.c ****     
+ 219              		.loc 1 22 13 view .LVU55
  220 00a0 0123     		movs	r3, #1
  221 00a2 DDE7     		b	.L7
  222              	.LVL17:
  223              	.L23:
- 224              		.loc 1 26 55 view .LVU56
+ 224              		.loc 1 27 55 view .LVU56
  225 00a4 0023     		movs	r3, #0
  226              	.L9:
  227              	.LVL18:
-  27:Core/Src/cnc_core.c **** 
-  28:Core/Src/cnc_core.c ****     if(run){
- 228              		.loc 1 28 5 is_stmt 1 discriminator 8 view .LVU57
- 229              		.loc 1 28 7 is_stmt 0 discriminator 8 view .LVU58
+  28:Core/Src/cnc_core.c **** 
+  29:Core/Src/cnc_core.c ****     if(run){
+ 228              		.loc 1 29 5 is_stmt 1 discriminator 8 view .LVU57
+ 229              		.loc 1 29 7 is_stmt 0 discriminator 8 view .LVU58
  230 00a6 002B     		cmp	r3, #0
  231 00a8 3AD0     		beq	.L10
-  29:Core/Src/cnc_core.c ****         if(runX){
- 232              		.loc 1 29 9 is_stmt 1 view .LVU59
- 233              		.loc 1 29 11 is_stmt 0 view .LVU60
+  30:Core/Src/cnc_core.c ****         if(runX){
+ 232              		.loc 1 30 9 is_stmt 1 view .LVU59
+ 233              		.loc 1 30 11 is_stmt 0 view .LVU60
  234 00aa 1EB3     		cbz	r6, .L11
-  30:Core/Src/cnc_core.c ****             info->htimX->Instance->ARR = info->pulseLenght.x;
- 235              		.loc 1 30 13 is_stmt 1 view .LVU61
- 236              		.loc 1 30 17 is_stmt 0 view .LVU62
+  31:Core/Src/cnc_core.c ****             info->htimX->Instance->ARR = info->pulseLenght.x;
+ 235              		.loc 1 31 13 is_stmt 1 view .LVU61
+ 236              		.loc 1 31 17 is_stmt 0 view .LVU62
  237 00ac E36B     		ldr	r3, [r4, #60]
  238              	.LVL19:
- 239              		.loc 1 30 24 view .LVU63
+ 239              		.loc 1 31 24 view .LVU63
  240 00ae 1B68     		ldr	r3, [r3]
- 241              		.loc 1 30 59 view .LVU64
+ 241              		.loc 1 31 59 view .LVU64
  242 00b0 A289     		ldrh	r2, [r4, #12]
- 243              		.loc 1 30 40 view .LVU65
+ 243              		.loc 1 31 40 view .LVU65
  244 00b2 DA62     		str	r2, [r3, #44]
-  31:Core/Src/cnc_core.c ****             info->htimX->Instance->CCR3 = ((info->pulseLenght.x)>>1);
- 245              		.loc 1 31 13 is_stmt 1 view .LVU66
- 246              		.loc 1 31 62 is_stmt 0 view .LVU67
+  32:Core/Src/cnc_core.c ****             info->htimX->Instance->CCR3 = ((info->pulseLenght.x)>>1);
+ 245              		.loc 1 32 13 is_stmt 1 view .LVU66
+ 246              		.loc 1 32 62 is_stmt 0 view .LVU67
  247 00b4 A389     		ldrh	r3, [r4, #12]
- 248              		.loc 1 31 17 view .LVU68
+ 248              		.loc 1 32 17 view .LVU68
  249 00b6 E26B     		ldr	r2, [r4, #60]
- 250              		.loc 1 31 24 view .LVU69
+ 250              		.loc 1 32 24 view .LVU69
  251 00b8 1268     		ldr	r2, [r2]
- 252              		.loc 1 31 65 view .LVU70
+ 252              		.loc 1 32 65 view .LVU70
+ARM GAS  /tmp/ccC6Dxsd.s 			page 6
+
+
  253 00ba 5B08     		lsrs	r3, r3, #1
-ARM GAS  /tmp/ccir953h.s 			page 6
-
-
- 254              		.loc 1 31 41 view .LVU71
+ 254              		.loc 1 32 41 view .LVU71
  255 00bc D363     		str	r3, [r2, #60]
-  32:Core/Src/cnc_core.c ****             info->htimX->Instance->CR1 |= TIM_CR1_ARPE | TIM_CR1_CEN;
- 256              		.loc 1 32 13 is_stmt 1 view .LVU72
- 257              		.loc 1 32 17 is_stmt 0 view .LVU73
+  33:Core/Src/cnc_core.c ****             info->htimX->Instance->CR1 |= TIM_CR1_ARPE | TIM_CR1_CEN;
+ 256              		.loc 1 33 13 is_stmt 1 view .LVU72
+ 257              		.loc 1 33 17 is_stmt 0 view .LVU73
  258 00be E36B     		ldr	r3, [r4, #60]
- 259              		.loc 1 32 24 view .LVU74
+ 259              		.loc 1 33 24 view .LVU74
  260 00c0 1A68     		ldr	r2, [r3]
- 261              		.loc 1 32 40 view .LVU75
+ 261              		.loc 1 33 40 view .LVU75
  262 00c2 1368     		ldr	r3, [r2]
  263 00c4 43F08103 		orr	r3, r3, #129
  264 00c8 1360     		str	r3, [r2]
  265              	.L12:
-  33:Core/Src/cnc_core.c ****         }
-  34:Core/Src/cnc_core.c ****         else{
-  35:Core/Src/cnc_core.c ****             info->htimX->Instance->CR1 |= TIM_CR1_OPM;
-  36:Core/Src/cnc_core.c ****             info->htimX->Instance->SR = 0x00000000U;
-  37:Core/Src/cnc_core.c ****         }
-  38:Core/Src/cnc_core.c **** 
-  39:Core/Src/cnc_core.c ****         if(runY){
- 266              		.loc 1 39 9 is_stmt 1 view .LVU76
- 267              		.loc 1 39 11 is_stmt 0 view .LVU77
+  34:Core/Src/cnc_core.c ****         }
+  35:Core/Src/cnc_core.c ****         else{
+  36:Core/Src/cnc_core.c ****             info->htimX->Instance->CR1 |= TIM_CR1_OPM;
+  37:Core/Src/cnc_core.c ****             info->htimX->Instance->SR = 0x00000000U;
+  38:Core/Src/cnc_core.c ****         }
+  39:Core/Src/cnc_core.c **** 
+  40:Core/Src/cnc_core.c ****         if(runY){
+ 266              		.loc 1 40 9 is_stmt 1 view .LVU76
+ 267              		.loc 1 40 11 is_stmt 0 view .LVU77
  268 00ca F7B1     		cbz	r7, .L13
-  40:Core/Src/cnc_core.c ****             info->htimY->Instance->ARR = info->pulseLenght.y;
- 269              		.loc 1 40 13 is_stmt 1 view .LVU78
- 270              		.loc 1 40 17 is_stmt 0 view .LVU79
+  41:Core/Src/cnc_core.c ****             info->htimY->Instance->ARR = info->pulseLenght.y;
+ 269              		.loc 1 41 13 is_stmt 1 view .LVU78
+ 270              		.loc 1 41 17 is_stmt 0 view .LVU79
  271 00cc 236C     		ldr	r3, [r4, #64]
- 272              		.loc 1 40 24 view .LVU80
+ 272              		.loc 1 41 24 view .LVU80
  273 00ce 1B68     		ldr	r3, [r3]
- 274              		.loc 1 40 59 view .LVU81
+ 274              		.loc 1 41 59 view .LVU81
  275 00d0 E289     		ldrh	r2, [r4, #14]
- 276              		.loc 1 40 40 view .LVU82
+ 276              		.loc 1 41 40 view .LVU82
  277 00d2 DA62     		str	r2, [r3, #44]
-  41:Core/Src/cnc_core.c ****             info->htimY->Instance->CCR1 = ((info->pulseLenght.y)>>1);
- 278              		.loc 1 41 13 is_stmt 1 view .LVU83
- 279              		.loc 1 41 62 is_stmt 0 view .LVU84
+  42:Core/Src/cnc_core.c ****             info->htimY->Instance->CCR1 = ((info->pulseLenght.y)>>1);
+ 278              		.loc 1 42 13 is_stmt 1 view .LVU83
+ 279              		.loc 1 42 62 is_stmt 0 view .LVU84
  280 00d4 E389     		ldrh	r3, [r4, #14]
- 281              		.loc 1 41 17 view .LVU85
+ 281              		.loc 1 42 17 view .LVU85
  282 00d6 226C     		ldr	r2, [r4, #64]
- 283              		.loc 1 41 24 view .LVU86
+ 283              		.loc 1 42 24 view .LVU86
  284 00d8 1268     		ldr	r2, [r2]
- 285              		.loc 1 41 65 view .LVU87
+ 285              		.loc 1 42 65 view .LVU87
  286 00da 5B08     		lsrs	r3, r3, #1
- 287              		.loc 1 41 41 view .LVU88
+ 287              		.loc 1 42 41 view .LVU88
  288 00dc 5363     		str	r3, [r2, #52]
-  42:Core/Src/cnc_core.c ****             info->htimY->Instance->CR1 |= TIM_CR1_ARPE | TIM_CR1_CEN; 
- 289              		.loc 1 42 13 is_stmt 1 view .LVU89
- 290              		.loc 1 42 17 is_stmt 0 view .LVU90
+  43:Core/Src/cnc_core.c ****             info->htimY->Instance->CR1 |= TIM_CR1_ARPE | TIM_CR1_CEN; 
+ 289              		.loc 1 43 13 is_stmt 1 view .LVU89
+ 290              		.loc 1 43 17 is_stmt 0 view .LVU90
  291 00de 236C     		ldr	r3, [r4, #64]
- 292              		.loc 1 42 24 view .LVU91
+ 292              		.loc 1 43 24 view .LVU91
  293 00e0 1A68     		ldr	r2, [r3]
- 294              		.loc 1 42 40 view .LVU92
+ 294              		.loc 1 43 40 view .LVU92
  295 00e2 1368     		ldr	r3, [r2]
  296 00e4 43F08103 		orr	r3, r3, #129
  297 00e8 1360     		str	r3, [r2]
  298 00ea 27E0     		b	.L4
+ARM GAS  /tmp/ccC6Dxsd.s 			page 7
+
+
  299              	.L24:
-ARM GAS  /tmp/ccir953h.s 			page 7
-
-
-  26:Core/Src/cnc_core.c **** 
- 300              		.loc 1 26 55 view .LVU93
+  27:Core/Src/cnc_core.c **** 
+ 300              		.loc 1 27 55 view .LVU93
  301 00ec 0123     		movs	r3, #1
  302 00ee DAE7     		b	.L9
  303              	.L25:
@@ -370,65 +371,64 @@ ARM GAS  /tmp/ccir953h.s 			page 1
  305 00f2 D8E7     		b	.L9
  306              	.LVL20:
  307              	.L11:
-  35:Core/Src/cnc_core.c ****             info->htimX->Instance->SR = 0x00000000U;
- 308              		.loc 1 35 13 is_stmt 1 view .LVU94
-  35:Core/Src/cnc_core.c ****             info->htimX->Instance->SR = 0x00000000U;
- 309              		.loc 1 35 17 is_stmt 0 view .LVU95
+  36:Core/Src/cnc_core.c ****             info->htimX->Instance->SR = 0x00000000U;
+ 308              		.loc 1 36 13 is_stmt 1 view .LVU94
+  36:Core/Src/cnc_core.c ****             info->htimX->Instance->SR = 0x00000000U;
+ 309              		.loc 1 36 17 is_stmt 0 view .LVU95
  310 00f4 E36B     		ldr	r3, [r4, #60]
  311              	.LVL21:
-  35:Core/Src/cnc_core.c ****             info->htimX->Instance->SR = 0x00000000U;
- 312              		.loc 1 35 24 view .LVU96
+  36:Core/Src/cnc_core.c ****             info->htimX->Instance->SR = 0x00000000U;
+ 312              		.loc 1 36 24 view .LVU96
  313 00f6 1A68     		ldr	r2, [r3]
-  35:Core/Src/cnc_core.c ****             info->htimX->Instance->SR = 0x00000000U;
- 314              		.loc 1 35 40 view .LVU97
+  36:Core/Src/cnc_core.c ****             info->htimX->Instance->SR = 0x00000000U;
+ 314              		.loc 1 36 40 view .LVU97
  315 00f8 1368     		ldr	r3, [r2]
  316 00fa 43F00803 		orr	r3, r3, #8
  317 00fe 1360     		str	r3, [r2]
-  36:Core/Src/cnc_core.c ****         }
- 318              		.loc 1 36 13 is_stmt 1 view .LVU98
-  36:Core/Src/cnc_core.c ****         }
- 319              		.loc 1 36 17 is_stmt 0 view .LVU99
+  37:Core/Src/cnc_core.c ****         }
+ 318              		.loc 1 37 13 is_stmt 1 view .LVU98
+  37:Core/Src/cnc_core.c ****         }
+ 319              		.loc 1 37 17 is_stmt 0 view .LVU99
  320 0100 E36B     		ldr	r3, [r4, #60]
-  36:Core/Src/cnc_core.c ****         }
- 321              		.loc 1 36 24 view .LVU100
+  37:Core/Src/cnc_core.c ****         }
+ 321              		.loc 1 37 24 view .LVU100
  322 0102 1B68     		ldr	r3, [r3]
-  36:Core/Src/cnc_core.c ****         }
- 323              		.loc 1 36 39 view .LVU101
+  37:Core/Src/cnc_core.c ****         }
+ 323              		.loc 1 37 39 view .LVU101
  324 0104 0022     		movs	r2, #0
  325 0106 1A61     		str	r2, [r3, #16]
  326 0108 DFE7     		b	.L12
  327              	.L13:
-  43:Core/Src/cnc_core.c ****         }
-  44:Core/Src/cnc_core.c ****         else{
-  45:Core/Src/cnc_core.c ****             info->htimY->Instance->CR1 |= TIM_CR1_OPM;
- 328              		.loc 1 45 13 is_stmt 1 view .LVU102
- 329              		.loc 1 45 17 is_stmt 0 view .LVU103
+  44:Core/Src/cnc_core.c ****         }
+  45:Core/Src/cnc_core.c ****         else{
+  46:Core/Src/cnc_core.c ****             info->htimY->Instance->CR1 |= TIM_CR1_OPM;
+ 328              		.loc 1 46 13 is_stmt 1 view .LVU102
+ 329              		.loc 1 46 17 is_stmt 0 view .LVU103
  330 010a 236C     		ldr	r3, [r4, #64]
- 331              		.loc 1 45 24 view .LVU104
+ 331              		.loc 1 46 24 view .LVU104
  332 010c 1A68     		ldr	r2, [r3]
- 333              		.loc 1 45 40 view .LVU105
+ 333              		.loc 1 46 40 view .LVU105
  334 010e 1368     		ldr	r3, [r2]
  335 0110 43F00803 		orr	r3, r3, #8
  336 0114 1360     		str	r3, [r2]
-  46:Core/Src/cnc_core.c ****             info->htimY->Instance->SR = 0x00000000U;          
- 337              		.loc 1 46 13 is_stmt 1 view .LVU106
- 338              		.loc 1 46 17 is_stmt 0 view .LVU107
+  47:Core/Src/cnc_core.c ****             info->htimY->Instance->SR = 0x00000000U;          
+ 337              		.loc 1 47 13 is_stmt 1 view .LVU106
+ 338              		.loc 1 47 17 is_stmt 0 view .LVU107
  339 0116 236C     		ldr	r3, [r4, #64]
- 340              		.loc 1 46 24 view .LVU108
+ 340              		.loc 1 47 24 view .LVU108
  341 0118 1B68     		ldr	r3, [r3]
- 342              		.loc 1 46 39 view .LVU109
+ 342              		.loc 1 47 39 view .LVU109
+ARM GAS  /tmp/ccC6Dxsd.s 			page 8
+
+
  343 011a 0022     		movs	r2, #0
-ARM GAS  /tmp/ccir953h.s 			page 8
-
-
  344 011c 1A61     		str	r2, [r3, #16]
  345 011e 0DE0     		b	.L4
  346              	.LVL22:
  347              	.L10:
-  47:Core/Src/cnc_core.c ****         }
-  48:Core/Src/cnc_core.c ****     }
-  49:Core/Src/cnc_core.c ****     else
-  50:Core/Src/cnc_core.c ****     {
+  48:Core/Src/cnc_core.c ****         }
+  49:Core/Src/cnc_core.c ****     }
+  50:Core/Src/cnc_core.c ****     else{
   51:Core/Src/cnc_core.c ****         info->state = HMI_State_Stop;
  348              		.loc 1 51 9 is_stmt 1 view .LVU110
  349              		.loc 1 51 21 is_stmt 0 view .LVU111
@@ -478,1562 +478,1603 @@ ARM GAS  /tmp/ccir953h.s 			page 1
  390              		.thumb_func
  392              	CNC_Absolute:
  393              	.LVL25:
-ARM GAS  /tmp/ccir953h.s 			page 9
+ARM GAS  /tmp/ccC6Dxsd.s 			page 9
 
 
  394              	.LFB290:
   56:Core/Src/cnc_core.c **** 
-  57:Core/Src/cnc_core.c **** void CNC_Absolute(HMI_info_t* info){
- 395              		.loc 1 57 36 is_stmt 1 view -0
+  57:Core/Src/cnc_core.c **** void CNC_Absolute(HMI_info_t* const info){
+ 395              		.loc 1 57 42 is_stmt 1 view -0
  396              		.cfi_startproc
  397              		@ args = 0, pretend = 0, frame = 0
  398              		@ frame_needed = 0, uses_anonymous_args = 0
- 399              		.loc 1 57 36 is_stmt 0 view .LVU124
- 400 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
- 401              		.cfi_def_cfa_offset 24
- 402              		.cfi_offset 4, -24
- 403              		.cfi_offset 5, -20
- 404              		.cfi_offset 6, -16
- 405              		.cfi_offset 7, -12
- 406              		.cfi_offset 8, -8
- 407              		.cfi_offset 14, -4
- 408 0004 0446     		mov	r4, r0
+ 399              		.loc 1 57 42 is_stmt 0 view .LVU124
+ 400 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 401              		.cfi_def_cfa_offset 32
+ 402              		.cfi_offset 4, -32
+ 403              		.cfi_offset 5, -28
+ 404              		.cfi_offset 6, -24
+ 405              		.cfi_offset 7, -20
+ 406              		.cfi_offset 8, -16
+ 407              		.cfi_offset 9, -12
+ 408              		.cfi_offset 10, -8
+ 409              		.cfi_offset 14, -4
+ 410 0004 0446     		mov	r4, r0
   58:Core/Src/cnc_core.c **** 
   59:Core/Src/cnc_core.c ****     info->dir.x = (info->pos.x < info->commanded.pos.x);
- 409              		.loc 1 59 5 is_stmt 1 view .LVU125
- 410              		.loc 1 59 29 is_stmt 0 view .LVU126
- 411 0006 4568     		ldr	r5, [r0, #4]
- 412              		.loc 1 59 53 view .LVU127
- 413 0008 4269     		ldr	r2, [r0, #20]
- 414              		.loc 1 59 32 view .LVU128
- 415 000a 9542     		cmp	r5, r2
- 416 000c 2CBF     		ite	cs
- 417 000e 0020     		movcs	r0, #0
- 418              	.LVL26:
- 419              		.loc 1 59 32 view .LVU129
- 420 0010 0120     		movcc	r0, #1
- 421              		.loc 1 59 17 view .LVU130
- 422 0012 2074     		strb	r0, [r4, #16]
+ 411              		.loc 1 59 5 is_stmt 1 view .LVU125
+ 412              		.loc 1 59 29 is_stmt 0 view .LVU126
+ 413 0006 4568     		ldr	r5, [r0, #4]
+ 414              		.loc 1 59 53 view .LVU127
+ 415 0008 4269     		ldr	r2, [r0, #20]
+ 416              		.loc 1 59 32 view .LVU128
+ 417 000a 9542     		cmp	r5, r2
+ 418 000c 2CBF     		ite	cs
+ 419 000e 0020     		movcs	r0, #0
+ 420              	.LVL26:
+ 421              		.loc 1 59 32 view .LVU129
+ 422 0010 0120     		movcc	r0, #1
+ 423              		.loc 1 59 17 view .LVU130
+ 424 0012 2074     		strb	r0, [r4, #16]
   60:Core/Src/cnc_core.c ****     info->dir.y = (info->pos.y < info->commanded.pos.y);
- 423              		.loc 1 60 5 is_stmt 1 view .LVU131
- 424              		.loc 1 60 29 is_stmt 0 view .LVU132
- 425 0014 A668     		ldr	r6, [r4, #8]
- 426              		.loc 1 60 53 view .LVU133
- 427 0016 A369     		ldr	r3, [r4, #24]
- 428              		.loc 1 60 32 view .LVU134
- 429 0018 9E42     		cmp	r6, r3
- 430 001a 2CBF     		ite	cs
- 431 001c 0021     		movcs	r1, #0
- 432 001e 0121     		movcc	r1, #1
- 433              		.loc 1 60 17 view .LVU135
- 434 0020 6174     		strb	r1, [r4, #17]
+ 425              		.loc 1 60 5 is_stmt 1 view .LVU131
+ 426              		.loc 1 60 29 is_stmt 0 view .LVU132
+ 427 0014 A668     		ldr	r6, [r4, #8]
+ 428              		.loc 1 60 53 view .LVU133
+ 429 0016 A369     		ldr	r3, [r4, #24]
+ 430              		.loc 1 60 32 view .LVU134
+ 431 0018 9E42     		cmp	r6, r3
+ 432 001a 2CBF     		ite	cs
+ 433 001c 0021     		movcs	r1, #0
+ 434 001e 0121     		movcc	r1, #1
+ 435              		.loc 1 60 17 view .LVU135
+ 436 0020 6174     		strb	r1, [r4, #17]
   61:Core/Src/cnc_core.c **** 
   62:Core/Src/cnc_core.c ****     uint32_t dX = info->dir.x ? (info->commanded.pos.x - info->pos.x)>>2 : (info->pos.x - info->com
- 435              		.loc 1 62 5 is_stmt 1 view .LVU136
- 436              		.loc 1 62 74 is_stmt 0 view .LVU137
- 437 0022 78B3     		cbz	r0, .L30
- 438              		.loc 1 62 56 discriminator 1 view .LVU138
- 439 0024 521B     		subs	r2, r2, r5
- 440              		.loc 1 62 74 discriminator 1 view .LVU139
- 441 0026 9508     		lsrs	r5, r2, #2
- 442              	.L31:
- 443              	.LVL27:
-ARM GAS  /tmp/ccir953h.s 			page 10
+ 437              		.loc 1 62 5 is_stmt 1 view .LVU136
+ 438              		.loc 1 62 74 is_stmt 0 view .LVU137
+ 439 0022 B8B3     		cbz	r0, .L30
+ 440              		.loc 1 62 56 discriminator 1 view .LVU138
+ 441 0024 521B     		subs	r2, r2, r5
+ 442              		.loc 1 62 74 discriminator 1 view .LVU139
+ 443 0026 9508     		lsrs	r5, r2, #2
+ARM GAS  /tmp/ccC6Dxsd.s 			page 10
 
 
+ 444              	.L31:
+ 445              	.LVL27:
   63:Core/Src/cnc_core.c ****     uint32_t dY = info->dir.y ? (info->commanded.pos.y - info->pos.y)>>2 : (info->pos.y - info->com
- 444              		.loc 1 63 5 is_stmt 1 discriminator 4 view .LVU140
- 445              		.loc 1 63 74 is_stmt 0 discriminator 4 view .LVU141
- 446 0028 79B3     		cbz	r1, .L32
- 447              		.loc 1 63 56 discriminator 1 view .LVU142
- 448 002a 9B1B     		subs	r3, r3, r6
- 449              		.loc 1 63 74 discriminator 1 view .LVU143
- 450 002c 9E08     		lsrs	r6, r3, #2
- 451              	.L33:
- 452              	.LVL28:
+ 446              		.loc 1 63 5 is_stmt 1 discriminator 4 view .LVU140
+ 447              		.loc 1 63 74 is_stmt 0 discriminator 4 view .LVU141
+ 448 0028 B9B3     		cbz	r1, .L32
+ 449              		.loc 1 63 56 discriminator 1 view .LVU142
+ 450 002a 9B1B     		subs	r3, r3, r6
+ 451              		.loc 1 63 74 discriminator 1 view .LVU143
+ 452 002c 9E08     		lsrs	r6, r3, #2
+ 453              	.L33:
+ 454              	.LVL28:
   64:Core/Src/cnc_core.c **** 
   65:Core/Src/cnc_core.c ****     bool runX = dX > 0;
- 453              		.loc 1 65 5 is_stmt 1 discriminator 4 view .LVU144
- 454              		.loc 1 65 10 is_stmt 0 discriminator 4 view .LVU145
- 455 002e 2F1E     		subs	r7, r5, #0
- 456 0030 18BF     		it	ne
- 457 0032 0127     		movne	r7, #1
- 458              	.LVL29:
+ 455              		.loc 1 65 5 is_stmt 1 discriminator 4 view .LVU144
+ 456              		.loc 1 65 10 is_stmt 0 discriminator 4 view .LVU145
+ 457 002e B5F10008 		subs	r8, r5, #0
+ 458 0032 18BF     		it	ne
+ 459 0034 4FF00108 		movne	r8, #1
+ 460              	.LVL29:
   66:Core/Src/cnc_core.c ****     bool runY = dY > 0;
- 459              		.loc 1 66 5 is_stmt 1 discriminator 4 view .LVU146
- 460              		.loc 1 66 10 is_stmt 0 discriminator 4 view .LVU147
- 461 0034 B6F10008 		subs	r8, r6, #0
- 462 0038 18BF     		it	ne
- 463 003a 4FF00108 		movne	r8, #1
- 464              	.LVL30:
+ 461              		.loc 1 66 5 is_stmt 1 discriminator 4 view .LVU146
+ 462              		.loc 1 66 10 is_stmt 0 discriminator 4 view .LVU147
+ 463 0038 B6F10009 		subs	r9, r6, #0
+ 464 003c 18BF     		it	ne
+ 465 003e 4FF00109 		movne	r9, #1
+ 466              	.LVL30:
   67:Core/Src/cnc_core.c **** 
-  68:Core/Src/cnc_core.c ****     //sistema questa parte dai...
-  69:Core/Src/cnc_core.c ****     uint32_t den;
- 465              		.loc 1 69 5 is_stmt 1 discriminator 4 view .LVU148
-  70:Core/Src/cnc_core.c ****     if(((dX > dY) ? dX : dY) >= (1<<8))
- 466              		.loc 1 70 5 discriminator 4 view .LVU149
- 467              		.loc 1 70 24 is_stmt 0 discriminator 4 view .LVU150
- 468 003e 2B46     		mov	r3, r5
- 469 0040 B542     		cmp	r5, r6
- 470 0042 38BF     		it	cc
- 471 0044 3346     		movcc	r3, r6
- 472              		.loc 1 70 7 discriminator 4 view .LVU151
- 473 0046 FF2B     		cmp	r3, #255
- 474 0048 22D9     		bls	.L34
-  71:Core/Src/cnc_core.c ****         den = ihyp(dX, dY) * freqX_1mm_min;
- 475              		.loc 1 71 9 is_stmt 1 view .LVU152
- 476              		.loc 1 71 15 is_stmt 0 view .LVU153
- 477 004a 3146     		mov	r1, r6
- 478 004c 2846     		mov	r0, r5
- 479 004e FFF7FEFF 		bl	ihyp
- 480              	.LVL31:
- 481              		.loc 1 71 13 view .LVU154
- 482 0052 144B     		ldr	r3, .L38
- 483 0054 03FB00F0 		mul	r0, r3, r0
- 484              	.LVL32:
- 485              	.L35:
-  72:Core/Src/cnc_core.c ****     else
-  73:Core/Src/cnc_core.c ****         den = ihyp(dX<<7, dY<<7) * (freqX_1mm_min>>7);
-  74:Core/Src/cnc_core.c **** 
-  75:Core/Src/cnc_core.c ****     info->pulseLenght.x = (uint16_t) (den / (info->feed * dX));
- 486              		.loc 1 75 5 is_stmt 1 view .LVU155
- 487              		.loc 1 75 50 is_stmt 0 view .LVU156
-ARM GAS  /tmp/ccir953h.s 			page 11
+  68:Core/Src/cnc_core.c **** 
+  69:Core/Src/cnc_core.c ****     //sistema questa parte dai...
+  70:Core/Src/cnc_core.c ****     uint32_t den;
+ 467              		.loc 1 70 5 is_stmt 1 discriminator 4 view .LVU148
+  71:Core/Src/cnc_core.c ****     uint32_t range = (dX > dY) ? dX : dY;
+ 468              		.loc 1 71 5 discriminator 4 view .LVU149
+ 469              		.loc 1 71 14 is_stmt 0 discriminator 4 view .LVU150
+ 470 0042 2B46     		mov	r3, r5
+ 471 0044 B542     		cmp	r5, r6
+ 472 0046 38BF     		it	cc
+ 473 0048 3346     		movcc	r3, r6
+ 474              	.LVL31:
+  72:Core/Src/cnc_core.c **** 
+  73:Core/Src/cnc_core.c ****     if(range > (1<<16)-1){
+ 475              		.loc 1 73 5 is_stmt 1 discriminator 4 view .LVU151
+ 476              		.loc 1 73 7 is_stmt 0 discriminator 4 view .LVU152
+ 477 004a B3F5803F 		cmp	r3, #65536
+ 478 004e 27D3     		bcc	.L38
+  74:Core/Src/cnc_core.c ****        dX <<= 2;
+ 479              		.loc 1 74 8 is_stmt 1 view .LVU153
+ 480              		.loc 1 74 11 is_stmt 0 view .LVU154
+ 481 0050 AF00     		lsls	r7, r5, #2
+ 482              	.LVL32:
+  75:Core/Src/cnc_core.c ****        dY <<= 2; 
+ 483              		.loc 1 75 8 is_stmt 1 view .LVU155
+ 484              		.loc 1 75 11 is_stmt 0 view .LVU156
+ 485 0052 4FEA860A 		lsl	r10, r6, #2
+ 486              	.LVL33:
+ 487              	.L34:
+ARM GAS  /tmp/ccC6Dxsd.s 			page 11
 
 
- 488 0058 E369     		ldr	r3, [r4, #28]
- 489              		.loc 1 75 57 view .LVU157
- 490 005a 05FB03F2 		mul	r2, r5, r3
- 491              		.loc 1 75 43 view .LVU158
- 492 005e B0FBF2F2 		udiv	r2, r0, r2
- 493              		.loc 1 75 25 view .LVU159
- 494 0062 A281     		strh	r2, [r4, #12]	@ movhi
-  76:Core/Src/cnc_core.c ****     info->pulseLenght.y = (uint16_t) (den / (info->feed * dY));
- 495              		.loc 1 76 5 is_stmt 1 view .LVU160
- 496              		.loc 1 76 57 is_stmt 0 view .LVU161
- 497 0064 06FB03F3 		mul	r3, r6, r3
- 498              		.loc 1 76 43 view .LVU162
- 499 0068 B0FBF3F0 		udiv	r0, r0, r3
- 500              	.LVL33:
- 501              		.loc 1 76 25 view .LVU163
- 502 006c E081     		strh	r0, [r4, #14]	@ movhi
+  76:Core/Src/cnc_core.c ****     }
   77:Core/Src/cnc_core.c **** 
-  78:Core/Src/cnc_core.c ****     CNC_Stepper(info, runX, runY);    
- 503              		.loc 1 78 5 is_stmt 1 view .LVU164
- 504 006e 4246     		mov	r2, r8
- 505 0070 3946     		mov	r1, r7
- 506 0072 2046     		mov	r0, r4
- 507 0074 FFF7FEFF 		bl	CNC_Stepper
- 508              	.LVL34:
-  79:Core/Src/cnc_core.c **** 
-  80:Core/Src/cnc_core.c ****     if(!runX && !runY)
- 509              		.loc 1 80 5 view .LVU165
- 510              		.loc 1 80 7 is_stmt 0 view .LVU166
- 511 0078 15B9     		cbnz	r5, .L29
- 512              		.loc 1 80 14 discriminator 1 view .LVU167
- 513 007a 0EB9     		cbnz	r6, .L29
-  81:Core/Src/cnc_core.c ****         info->move = HMI_Move_Done; 
- 514              		.loc 1 81 9 is_stmt 1 view .LVU168
- 515              		.loc 1 81 20 is_stmt 0 view .LVU169
- 516 007c 0323     		movs	r3, #3
- 517 007e A370     		strb	r3, [r4, #2]
- 518              	.L29:
-  82:Core/Src/cnc_core.c **** }
- 519              		.loc 1 82 1 view .LVU170
- 520 0080 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
- 521              	.LVL35:
- 522              	.L30:
+  78:Core/Src/cnc_core.c ****     if(range < (1<<8))
+ 488              		.loc 1 78 5 is_stmt 1 view .LVU157
+ 489              		.loc 1 78 7 is_stmt 0 view .LVU158
+ 490 0056 FF2B     		cmp	r3, #255
+ 491 0058 25D8     		bhi	.L35
+  79:Core/Src/cnc_core.c ****         den = ihyp(dX<<7, dY<<7) * ((freqX_1mm_min>>7)/info->feed);
+ 492              		.loc 1 79 9 is_stmt 1 view .LVU159
+ 493              		.loc 1 79 15 is_stmt 0 view .LVU160
+ 494 005a 4FEACA11 		lsl	r1, r10, #7
+ 495 005e F801     		lsls	r0, r7, #7
+ 496 0060 FFF7FEFF 		bl	ihyp
+ 497              	.LVL34:
+ 498              		.loc 1 79 60 view .LVU161
+ 499 0064 E269     		ldr	r2, [r4, #28]
+ 500              		.loc 1 79 55 view .LVU162
+ 501 0066 40F2FF13 		movw	r3, #511
+ 502 006a B3FBF2F3 		udiv	r3, r3, r2
+ 503              		.loc 1 79 13 view .LVU163
+ 504 006e 03FB00F0 		mul	r0, r3, r0
+ 505              	.LVL35:
+ 506              	.L36:
+  80:Core/Src/cnc_core.c ****     else
+  81:Core/Src/cnc_core.c ****         den = ihyp(dX, dY) * (freqX_1mm_min/info->feed);
+  82:Core/Src/cnc_core.c **** 
+  83:Core/Src/cnc_core.c ****     info->pulseLenght.x = (uint16_t) (den/dX);
+ 507              		.loc 1 83 5 is_stmt 1 view .LVU164
+ 508              		.loc 1 83 42 is_stmt 0 view .LVU165
+ 509 0072 B0FBF7F7 		udiv	r7, r0, r7
+ 510              	.LVL36:
+ 511              		.loc 1 83 25 view .LVU166
+ 512 0076 A781     		strh	r7, [r4, #12]	@ movhi
+  84:Core/Src/cnc_core.c ****     info->pulseLenght.y = (uint16_t) (den/dY);
+ 513              		.loc 1 84 5 is_stmt 1 view .LVU167
+ 514              		.loc 1 84 42 is_stmt 0 view .LVU168
+ 515 0078 B0FBFAF0 		udiv	r0, r0, r10
+ 516              	.LVL37:
+ 517              		.loc 1 84 25 view .LVU169
+ 518 007c E081     		strh	r0, [r4, #14]	@ movhi
+  85:Core/Src/cnc_core.c **** 
+  86:Core/Src/cnc_core.c ****     CNC_Stepper(info, runX, runY);    
+ 519              		.loc 1 86 5 is_stmt 1 view .LVU170
+ 520 007e 4A46     		mov	r2, r9
+ 521 0080 4146     		mov	r1, r8
+ 522 0082 2046     		mov	r0, r4
+ 523 0084 FFF7FEFF 		bl	CNC_Stepper
+ 524              	.LVL38:
+  87:Core/Src/cnc_core.c **** 
+  88:Core/Src/cnc_core.c ****     if(!runX && !runY)
+ 525              		.loc 1 88 5 view .LVU171
+ 526              		.loc 1 88 7 is_stmt 0 view .LVU172
+ 527 0088 15B9     		cbnz	r5, .L29
+ 528              		.loc 1 88 14 discriminator 1 view .LVU173
+ 529 008a 0EB9     		cbnz	r6, .L29
+  89:Core/Src/cnc_core.c ****         info->move = HMI_Move_Done; 
+ 530              		.loc 1 89 9 is_stmt 1 view .LVU174
+ARM GAS  /tmp/ccC6Dxsd.s 			page 12
+
+
+ 531              		.loc 1 89 20 is_stmt 0 view .LVU175
+ 532 008c 0323     		movs	r3, #3
+ 533 008e A370     		strb	r3, [r4, #2]
+ 534              	.L29:
+  90:Core/Src/cnc_core.c **** }
+ 535              		.loc 1 90 1 view .LVU176
+ 536 0090 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 537              	.LVL39:
+ 538              	.L30:
   62:Core/Src/cnc_core.c ****     uint32_t dY = info->dir.y ? (info->commanded.pos.y - info->pos.y)>>2 : (info->pos.y - info->com
- 523              		.loc 1 62 89 discriminator 2 view .LVU171
- 524 0084 AD1A     		subs	r5, r5, r2
+ 539              		.loc 1 62 89 discriminator 2 view .LVU177
+ 540 0094 AD1A     		subs	r5, r5, r2
   62:Core/Src/cnc_core.c ****     uint32_t dY = info->dir.y ? (info->commanded.pos.y - info->pos.y)>>2 : (info->pos.y - info->com
- 525              		.loc 1 62 74 discriminator 2 view .LVU172
- 526 0086 AD08     		lsrs	r5, r5, #2
- 527 0088 CEE7     		b	.L31
- 528              	.LVL36:
- 529              	.L32:
+ 541              		.loc 1 62 74 discriminator 2 view .LVU178
+ 542 0096 AD08     		lsrs	r5, r5, #2
+ 543 0098 C6E7     		b	.L31
+ 544              	.LVL40:
+ 545              	.L32:
   63:Core/Src/cnc_core.c **** 
- 530              		.loc 1 63 89 discriminator 2 view .LVU173
- 531 008a F61A     		subs	r6, r6, r3
+ 546              		.loc 1 63 89 discriminator 2 view .LVU179
+ 547 009a F61A     		subs	r6, r6, r3
   63:Core/Src/cnc_core.c **** 
- 532              		.loc 1 63 74 discriminator 2 view .LVU174
- 533 008c B608     		lsrs	r6, r6, #2
-ARM GAS  /tmp/ccir953h.s 			page 12
+ 548              		.loc 1 63 74 discriminator 2 view .LVU180
+ 549 009c B608     		lsrs	r6, r6, #2
+ 550 009e C6E7     		b	.L33
+ 551              	.LVL41:
+ 552              	.L38:
+  63:Core/Src/cnc_core.c **** 
+ 553              		.loc 1 63 14 view .LVU181
+ 554 00a0 B246     		mov	r10, r6
+  62:Core/Src/cnc_core.c ****     uint32_t dY = info->dir.y ? (info->commanded.pos.y - info->pos.y)>>2 : (info->pos.y - info->com
+ 555              		.loc 1 62 14 view .LVU182
+ 556 00a2 2F46     		mov	r7, r5
+ 557 00a4 D7E7     		b	.L34
+ 558              	.LVL42:
+ 559              	.L35:
+  81:Core/Src/cnc_core.c **** 
+ 560              		.loc 1 81 9 is_stmt 1 view .LVU183
+  81:Core/Src/cnc_core.c **** 
+ 561              		.loc 1 81 15 is_stmt 0 view .LVU184
+ 562 00a6 5146     		mov	r1, r10
+ 563 00a8 3846     		mov	r0, r7
+ 564 00aa FFF7FEFF 		bl	ihyp
+ 565              	.LVL43:
+  81:Core/Src/cnc_core.c **** 
+ 566              		.loc 1 81 49 view .LVU185
+ 567 00ae E269     		ldr	r2, [r4, #28]
+  81:Core/Src/cnc_core.c **** 
+ 568              		.loc 1 81 44 view .LVU186
+ 569 00b0 4FF6EA73 		movw	r3, #65514
+ 570 00b4 B3FBF2F3 		udiv	r3, r3, r2
+  81:Core/Src/cnc_core.c **** 
+ 571              		.loc 1 81 13 view .LVU187
+ 572 00b8 03FB00F0 		mul	r0, r3, r0
+ 573              	.LVL44:
+  81:Core/Src/cnc_core.c **** 
+ 574              		.loc 1 81 13 view .LVU188
+ARM GAS  /tmp/ccC6Dxsd.s 			page 13
 
 
- 534 008e CEE7     		b	.L33
- 535              	.LVL37:
- 536              	.L34:
-  73:Core/Src/cnc_core.c **** 
- 537              		.loc 1 73 9 is_stmt 1 view .LVU175
-  73:Core/Src/cnc_core.c **** 
- 538              		.loc 1 73 15 is_stmt 0 view .LVU176
- 539 0090 F101     		lsls	r1, r6, #7
- 540 0092 E801     		lsls	r0, r5, #7
- 541 0094 FFF7FEFF 		bl	ihyp
- 542              	.LVL38:
-  73:Core/Src/cnc_core.c **** 
- 543              		.loc 1 73 13 view .LVU177
- 544 0098 41F2E733 		movw	r3, #5095
- 545 009c 03FB00F0 		mul	r0, r3, r0
- 546              	.LVL39:
-  73:Core/Src/cnc_core.c **** 
- 547              		.loc 1 73 13 view .LVU178
- 548 00a0 DAE7     		b	.L35
- 549              	.L39:
- 550 00a2 00BF     		.align	2
- 551              	.L38:
- 552 00a4 8EF30900 		.word	652174
- 553              		.cfi_endproc
- 554              	.LFE290:
- 556              		.section	.text.CNC_AbsoluteX,"ax",%progbits
- 557              		.align	1
- 558              		.global	CNC_AbsoluteX
- 559              		.syntax unified
- 560              		.thumb
- 561              		.thumb_func
- 563              	CNC_AbsoluteX:
- 564              	.LVL40:
- 565              	.LFB291:
-  83:Core/Src/cnc_core.c **** 
-  84:Core/Src/cnc_core.c **** bool CNC_AbsoluteX(HMI_info_t* info){
- 566              		.loc 1 84 37 is_stmt 1 view -0
- 567              		.cfi_startproc
- 568              		@ args = 0, pretend = 0, frame = 0
- 569              		@ frame_needed = 0, uses_anonymous_args = 0
- 570              		.loc 1 84 37 is_stmt 0 view .LVU180
- 571 0000 10B5     		push	{r4, lr}
- 572              		.cfi_def_cfa_offset 8
- 573              		.cfi_offset 4, -8
- 574              		.cfi_offset 14, -4
-  85:Core/Src/cnc_core.c ****     info->dir.x = (info->pos.x < info->commanded.pos.x);
- 575              		.loc 1 85 5 is_stmt 1 view .LVU181
- 576              		.loc 1 85 29 is_stmt 0 view .LVU182
- 577 0002 4468     		ldr	r4, [r0, #4]
- 578              		.loc 1 85 53 view .LVU183
- 579 0004 4369     		ldr	r3, [r0, #20]
- 580              		.loc 1 85 32 view .LVU184
- 581 0006 9C42     		cmp	r4, r3
- 582 0008 2CBF     		ite	cs
- 583 000a 0022     		movcs	r2, #0
- 584 000c 0122     		movcc	r2, #1
- 585              		.loc 1 85 17 view .LVU185
-ARM GAS  /tmp/ccir953h.s 			page 13
-
-
- 586 000e 0274     		strb	r2, [r0, #16]
-  86:Core/Src/cnc_core.c ****     uint32_t dX = info->dir.x ? (info->commanded.pos.x - info->pos.x)>>2 : (info->pos.x - info->com
- 587              		.loc 1 86 5 is_stmt 1 view .LVU186
- 588              		.loc 1 86 74 is_stmt 0 view .LVU187
- 589 0010 82B1     		cbz	r2, .L41
- 590              		.loc 1 86 56 discriminator 1 view .LVU188
- 591 0012 1B1B     		subs	r3, r3, r4
- 592              		.loc 1 86 74 discriminator 1 view .LVU189
- 593 0014 9C08     		lsrs	r4, r3, #2
- 594              	.L42:
- 595              	.LVL41:
-  87:Core/Src/cnc_core.c ****     bool runX = dX > 0;
- 596              		.loc 1 87 5 is_stmt 1 discriminator 4 view .LVU190
-  88:Core/Src/cnc_core.c ****     info->pulseLenght.x = (uint16_t) (freqX_1mm_min / info->feed);
- 597              		.loc 1 88 5 discriminator 4 view .LVU191
- 598              		.loc 1 88 59 is_stmt 0 discriminator 4 view .LVU192
- 599 0016 C269     		ldr	r2, [r0, #28]
- 600              		.loc 1 88 53 discriminator 4 view .LVU193
- 601 0018 084B     		ldr	r3, .L44
- 602 001a B3FBF2F3 		udiv	r3, r3, r2
- 603              		.loc 1 88 25 discriminator 4 view .LVU194
- 604 001e 8381     		strh	r3, [r0, #12]	@ movhi
-  89:Core/Src/cnc_core.c **** 
-  90:Core/Src/cnc_core.c ****     CNC_Stepper(info, runX, false);    
- 605              		.loc 1 90 5 is_stmt 1 discriminator 4 view .LVU195
- 606 0020 0022     		movs	r2, #0
- 607 0022 A11A     		subs	r1, r4, r2
- 608 0024 18BF     		it	ne
- 609 0026 0121     		movne	r1, #1
- 610 0028 FFF7FEFF 		bl	CNC_Stepper
- 611              	.LVL42:
+ 575 00bc D9E7     		b	.L36
+ 576              		.cfi_endproc
+ 577              	.LFE290:
+ 579              		.section	.text.CNC_AbsoluteX,"ax",%progbits
+ 580              		.align	1
+ 581              		.global	CNC_AbsoluteX
+ 582              		.syntax unified
+ 583              		.thumb
+ 584              		.thumb_func
+ 586              	CNC_AbsoluteX:
+ 587              	.LVL45:
+ 588              	.LFB291:
   91:Core/Src/cnc_core.c **** 
-  92:Core/Src/cnc_core.c ****     return !runX;
- 612              		.loc 1 92 5 discriminator 4 view .LVU196
-  93:Core/Src/cnc_core.c **** }
- 613              		.loc 1 93 1 is_stmt 0 discriminator 4 view .LVU197
- 614 002c B4FA84F0 		clz	r0, r4
- 615 0030 4009     		lsrs	r0, r0, #5
- 616 0032 10BD     		pop	{r4, pc}
- 617              	.LVL43:
- 618              	.L41:
-  86:Core/Src/cnc_core.c ****     bool runX = dX > 0;
- 619              		.loc 1 86 89 discriminator 2 view .LVU198
- 620 0034 E41A     		subs	r4, r4, r3
-  86:Core/Src/cnc_core.c ****     bool runX = dX > 0;
- 621              		.loc 1 86 74 discriminator 2 view .LVU199
- 622 0036 A408     		lsrs	r4, r4, #2
- 623 0038 EDE7     		b	.L42
- 624              	.L45:
- 625 003a 00BF     		.align	2
- 626              	.L44:
- 627 003c 8EF30900 		.word	652174
- 628              		.cfi_endproc
- 629              	.LFE291:
- 631              		.section	.text.CNC_AbsoluteY,"ax",%progbits
- 632              		.align	1
- 633              		.global	CNC_AbsoluteY
-ARM GAS  /tmp/ccir953h.s 			page 14
+  92:Core/Src/cnc_core.c **** bool CNC_AbsoluteX(HMI_info_t* const info){
+ 589              		.loc 1 92 43 is_stmt 1 view -0
+ 590              		.cfi_startproc
+ 591              		@ args = 0, pretend = 0, frame = 0
+ 592              		@ frame_needed = 0, uses_anonymous_args = 0
+ 593              		.loc 1 92 43 is_stmt 0 view .LVU190
+ 594 0000 10B5     		push	{r4, lr}
+ 595              		.cfi_def_cfa_offset 8
+ 596              		.cfi_offset 4, -8
+ 597              		.cfi_offset 14, -4
+  93:Core/Src/cnc_core.c ****     info->dir.x = (info->pos.x < info->commanded.pos.x);
+ 598              		.loc 1 93 5 is_stmt 1 view .LVU191
+ 599              		.loc 1 93 29 is_stmt 0 view .LVU192
+ 600 0002 4468     		ldr	r4, [r0, #4]
+ 601              		.loc 1 93 53 view .LVU193
+ 602 0004 4369     		ldr	r3, [r0, #20]
+ 603              		.loc 1 93 32 view .LVU194
+ 604 0006 9C42     		cmp	r4, r3
+ 605 0008 2CBF     		ite	cs
+ 606 000a 0022     		movcs	r2, #0
+ 607 000c 0122     		movcc	r2, #1
+ 608              		.loc 1 93 17 view .LVU195
+ 609 000e 0274     		strb	r2, [r0, #16]
+  94:Core/Src/cnc_core.c ****     uint32_t dX = info->dir.x ? (info->commanded.pos.x - info->pos.x)>>2 : (info->pos.x - info->com
+ 610              		.loc 1 94 5 is_stmt 1 view .LVU196
+ 611              		.loc 1 94 74 is_stmt 0 view .LVU197
+ 612 0010 8AB1     		cbz	r2, .L41
+ 613              		.loc 1 94 56 discriminator 1 view .LVU198
+ 614 0012 1B1B     		subs	r3, r3, r4
+ 615              		.loc 1 94 74 discriminator 1 view .LVU199
+ 616 0014 9C08     		lsrs	r4, r3, #2
+ 617              	.L42:
+ 618              	.LVL46:
+  95:Core/Src/cnc_core.c ****     bool runX = dX > 0;
+ 619              		.loc 1 95 5 is_stmt 1 discriminator 4 view .LVU200
+  96:Core/Src/cnc_core.c ****     info->pulseLenght.x = (uint16_t) (freqX_1mm_min / info->feed);
+ 620              		.loc 1 96 5 discriminator 4 view .LVU201
+ 621              		.loc 1 96 59 is_stmt 0 discriminator 4 view .LVU202
+ 622 0016 C269     		ldr	r2, [r0, #28]
+ 623              		.loc 1 96 27 discriminator 4 view .LVU203
+ 624 0018 4FF6EA73 		movw	r3, #65514
+ 625 001c B3FBF2F3 		udiv	r3, r3, r2
+ 626              		.loc 1 96 25 discriminator 4 view .LVU204
+ 627 0020 8381     		strh	r3, [r0, #12]	@ movhi
+ARM GAS  /tmp/ccC6Dxsd.s 			page 14
 
 
- 634              		.syntax unified
- 635              		.thumb
- 636              		.thumb_func
- 638              	CNC_AbsoluteY:
- 639              	.LVL44:
- 640              	.LFB292:
-  94:Core/Src/cnc_core.c **** 
-  95:Core/Src/cnc_core.c **** bool CNC_AbsoluteY(HMI_info_t* info){
- 641              		.loc 1 95 37 is_stmt 1 view -0
- 642              		.cfi_startproc
- 643              		@ args = 0, pretend = 0, frame = 0
- 644              		@ frame_needed = 0, uses_anonymous_args = 0
- 645              		.loc 1 95 37 is_stmt 0 view .LVU201
- 646 0000 10B5     		push	{r4, lr}
- 647              		.cfi_def_cfa_offset 8
- 648              		.cfi_offset 4, -8
- 649              		.cfi_offset 14, -4
-  96:Core/Src/cnc_core.c ****     info->dir.y = (info->pos.y < info->commanded.pos.y);
- 650              		.loc 1 96 5 is_stmt 1 view .LVU202
- 651              		.loc 1 96 29 is_stmt 0 view .LVU203
- 652 0002 8468     		ldr	r4, [r0, #8]
- 653              		.loc 1 96 53 view .LVU204
- 654 0004 8369     		ldr	r3, [r0, #24]
- 655              		.loc 1 96 32 view .LVU205
- 656 0006 9C42     		cmp	r4, r3
- 657 0008 2CBF     		ite	cs
- 658 000a 0022     		movcs	r2, #0
- 659 000c 0122     		movcc	r2, #1
- 660              		.loc 1 96 17 view .LVU206
- 661 000e 4274     		strb	r2, [r0, #17]
-  97:Core/Src/cnc_core.c ****     uint32_t dY = info->dir.y ? (info->commanded.pos.y - info->pos.y)>>2 : (info->pos.y - info->com
- 662              		.loc 1 97 5 is_stmt 1 view .LVU207
- 663              		.loc 1 97 74 is_stmt 0 view .LVU208
- 664 0010 82B1     		cbz	r2, .L47
- 665              		.loc 1 97 56 discriminator 1 view .LVU209
- 666 0012 1B1B     		subs	r3, r3, r4
- 667              		.loc 1 97 74 discriminator 1 view .LVU210
- 668 0014 9C08     		lsrs	r4, r3, #2
- 669              	.L48:
- 670              	.LVL45:
-  98:Core/Src/cnc_core.c ****     bool runY = dY > 0;
- 671              		.loc 1 98 5 is_stmt 1 discriminator 4 view .LVU211
-  99:Core/Src/cnc_core.c ****     info->pulseLenght.y = (uint16_t) (freqY_1mm_min / info->feed);
- 672              		.loc 1 99 5 discriminator 4 view .LVU212
- 673              		.loc 1 99 59 is_stmt 0 discriminator 4 view .LVU213
- 674 0016 C269     		ldr	r2, [r0, #28]
- 675              		.loc 1 99 53 discriminator 4 view .LVU214
- 676 0018 084B     		ldr	r3, .L50
- 677 001a B3FBF2F3 		udiv	r3, r3, r2
- 678              		.loc 1 99 25 discriminator 4 view .LVU215
- 679 001e C381     		strh	r3, [r0, #14]	@ movhi
- 100:Core/Src/cnc_core.c **** 
- 101:Core/Src/cnc_core.c ****     CNC_Stepper(info, false, runY);    
- 680              		.loc 1 101 5 is_stmt 1 discriminator 4 view .LVU216
- 681 0020 221E     		subs	r2, r4, #0
- 682 0022 18BF     		it	ne
- 683 0024 0122     		movne	r2, #1
-ARM GAS  /tmp/ccir953h.s 			page 15
-
-
- 684 0026 0021     		movs	r1, #0
- 685 0028 FFF7FEFF 		bl	CNC_Stepper
- 686              	.LVL46:
+  97:Core/Src/cnc_core.c **** 
+  98:Core/Src/cnc_core.c ****     CNC_Stepper(info, runX, false);    
+ 628              		.loc 1 98 5 is_stmt 1 discriminator 4 view .LVU205
+ 629 0022 0022     		movs	r2, #0
+ 630 0024 A11A     		subs	r1, r4, r2
+ 631 0026 18BF     		it	ne
+ 632 0028 0121     		movne	r1, #1
+ 633 002a FFF7FEFF 		bl	CNC_Stepper
+ 634              	.LVL47:
+  99:Core/Src/cnc_core.c **** 
+ 100:Core/Src/cnc_core.c ****     return !runX;
+ 635              		.loc 1 100 5 discriminator 4 view .LVU206
+ 101:Core/Src/cnc_core.c **** }
+ 636              		.loc 1 101 1 is_stmt 0 discriminator 4 view .LVU207
+ 637 002e B4FA84F0 		clz	r0, r4
+ 638 0032 4009     		lsrs	r0, r0, #5
+ 639 0034 10BD     		pop	{r4, pc}
+ 640              	.LVL48:
+ 641              	.L41:
+  94:Core/Src/cnc_core.c ****     bool runX = dX > 0;
+ 642              		.loc 1 94 89 discriminator 2 view .LVU208
+ 643 0036 E41A     		subs	r4, r4, r3
+  94:Core/Src/cnc_core.c ****     bool runX = dX > 0;
+ 644              		.loc 1 94 74 discriminator 2 view .LVU209
+ 645 0038 A408     		lsrs	r4, r4, #2
+ 646 003a ECE7     		b	.L42
+ 647              		.cfi_endproc
+ 648              	.LFE291:
+ 650              		.section	.text.CNC_AbsoluteY,"ax",%progbits
+ 651              		.align	1
+ 652              		.global	CNC_AbsoluteY
+ 653              		.syntax unified
+ 654              		.thumb
+ 655              		.thumb_func
+ 657              	CNC_AbsoluteY:
+ 658              	.LVL49:
+ 659              	.LFB292:
  102:Core/Src/cnc_core.c **** 
- 103:Core/Src/cnc_core.c ****     return !runY;
- 687              		.loc 1 103 5 discriminator 4 view .LVU217
- 104:Core/Src/cnc_core.c **** }
- 688              		.loc 1 104 1 is_stmt 0 discriminator 4 view .LVU218
- 689 002c B4FA84F0 		clz	r0, r4
- 690 0030 4009     		lsrs	r0, r0, #5
- 691 0032 10BD     		pop	{r4, pc}
- 692              	.LVL47:
- 693              	.L47:
-  97:Core/Src/cnc_core.c ****     bool runY = dY > 0;
- 694              		.loc 1 97 89 discriminator 2 view .LVU219
- 695 0034 E41A     		subs	r4, r4, r3
-  97:Core/Src/cnc_core.c ****     bool runY = dY > 0;
- 696              		.loc 1 97 74 discriminator 2 view .LVU220
- 697 0036 A408     		lsrs	r4, r4, #2
- 698 0038 EDE7     		b	.L48
- 699              	.L51:
- 700 003a 00BF     		.align	2
- 701              	.L50:
- 702 003c 8EF30900 		.word	652174
- 703              		.cfi_endproc
- 704              	.LFE292:
- 706              		.section	.text.CNC_Jog,"ax",%progbits
- 707              		.align	1
- 708              		.global	CNC_Jog
- 709              		.syntax unified
- 710              		.thumb
- 711              		.thumb_func
- 713              	CNC_Jog:
- 714              	.LVL48:
- 715              	.LFB293:
- 105:Core/Src/cnc_core.c **** 
- 106:Core/Src/cnc_core.c **** void CNC_Jog(HMI_info_t* info){
- 716              		.loc 1 106 31 is_stmt 1 view -0
- 717              		.cfi_startproc
- 718              		@ args = 0, pretend = 0, frame = 0
- 719              		@ frame_needed = 0, uses_anonymous_args = 0
- 720              		.loc 1 106 31 is_stmt 0 view .LVU222
- 721 0000 08B5     		push	{r3, lr}
- 722              		.cfi_def_cfa_offset 8
- 723              		.cfi_offset 3, -8
- 724              		.cfi_offset 14, -4
- 107:Core/Src/cnc_core.c **** 
- 108:Core/Src/cnc_core.c ****     info->dir.x = (info->commanded.speed.x > 0);
- 725              		.loc 1 108 5 is_stmt 1 view .LVU223
- 726              		.loc 1 108 41 is_stmt 0 view .LVU224
- 727 0002 4169     		ldr	r1, [r0, #20]
- 728              		.loc 1 108 44 view .LVU225
- 729 0004 0029     		cmp	r1, #0
- 730 0006 D4BF     		ite	le
- 731 0008 0023     		movle	r3, #0
- 732 000a 0123     		movgt	r3, #1
- 733              		.loc 1 108 17 view .LVU226
-ARM GAS  /tmp/ccir953h.s 			page 16
+ 103:Core/Src/cnc_core.c **** bool CNC_AbsoluteY(HMI_info_t* const info){
+ 660              		.loc 1 103 43 is_stmt 1 view -0
+ 661              		.cfi_startproc
+ 662              		@ args = 0, pretend = 0, frame = 0
+ 663              		@ frame_needed = 0, uses_anonymous_args = 0
+ 664              		.loc 1 103 43 is_stmt 0 view .LVU211
+ 665 0000 10B5     		push	{r4, lr}
+ 666              		.cfi_def_cfa_offset 8
+ 667              		.cfi_offset 4, -8
+ 668              		.cfi_offset 14, -4
+ 104:Core/Src/cnc_core.c ****     info->dir.y = (info->pos.y < info->commanded.pos.y);
+ 669              		.loc 1 104 5 is_stmt 1 view .LVU212
+ 670              		.loc 1 104 29 is_stmt 0 view .LVU213
+ 671 0002 8468     		ldr	r4, [r0, #8]
+ 672              		.loc 1 104 53 view .LVU214
+ 673 0004 8369     		ldr	r3, [r0, #24]
+ 674              		.loc 1 104 32 view .LVU215
+ 675 0006 9C42     		cmp	r4, r3
+ 676 0008 2CBF     		ite	cs
+ARM GAS  /tmp/ccC6Dxsd.s 			page 15
 
 
- 734 000c 0374     		strb	r3, [r0, #16]
- 109:Core/Src/cnc_core.c ****     info->dir.y = (info->commanded.speed.y > 0);
- 735              		.loc 1 109 5 is_stmt 1 view .LVU227
- 736              		.loc 1 109 41 is_stmt 0 view .LVU228
- 737 000e 8269     		ldr	r2, [r0, #24]
- 738              		.loc 1 109 44 view .LVU229
- 739 0010 002A     		cmp	r2, #0
- 740 0012 D4BF     		ite	le
- 741 0014 0023     		movle	r3, #0
- 742 0016 0123     		movgt	r3, #1
- 743              		.loc 1 109 17 view .LVU230
- 744 0018 4374     		strb	r3, [r0, #17]
+ 677 000a 0022     		movcs	r2, #0
+ 678 000c 0122     		movcc	r2, #1
+ 679              		.loc 1 104 17 view .LVU216
+ 680 000e 4274     		strb	r2, [r0, #17]
+ 105:Core/Src/cnc_core.c ****     uint32_t dY = info->dir.y ? (info->commanded.pos.y - info->pos.y)>>2 : (info->pos.y - info->com
+ 681              		.loc 1 105 5 is_stmt 1 view .LVU217
+ 682              		.loc 1 105 74 is_stmt 0 view .LVU218
+ 683 0010 8AB1     		cbz	r2, .L45
+ 684              		.loc 1 105 56 discriminator 1 view .LVU219
+ 685 0012 1B1B     		subs	r3, r3, r4
+ 686              		.loc 1 105 74 discriminator 1 view .LVU220
+ 687 0014 9C08     		lsrs	r4, r3, #2
+ 688              	.L46:
+ 689              	.LVL50:
+ 106:Core/Src/cnc_core.c ****     bool runY = dY > 0;
+ 690              		.loc 1 106 5 is_stmt 1 discriminator 4 view .LVU221
+ 107:Core/Src/cnc_core.c ****     info->pulseLenght.y = (uint16_t) (freqY_1mm_min / info->feed);
+ 691              		.loc 1 107 5 discriminator 4 view .LVU222
+ 692              		.loc 1 107 59 is_stmt 0 discriminator 4 view .LVU223
+ 693 0016 C269     		ldr	r2, [r0, #28]
+ 694              		.loc 1 107 27 discriminator 4 view .LVU224
+ 695 0018 4FF6EA73 		movw	r3, #65514
+ 696 001c B3FBF2F3 		udiv	r3, r3, r2
+ 697              		.loc 1 107 25 discriminator 4 view .LVU225
+ 698 0020 C381     		strh	r3, [r0, #14]	@ movhi
+ 108:Core/Src/cnc_core.c **** 
+ 109:Core/Src/cnc_core.c ****     CNC_Stepper(info, false, runY);    
+ 699              		.loc 1 109 5 is_stmt 1 discriminator 4 view .LVU226
+ 700 0022 221E     		subs	r2, r4, #0
+ 701 0024 18BF     		it	ne
+ 702 0026 0122     		movne	r2, #1
+ 703 0028 0021     		movs	r1, #0
+ 704 002a FFF7FEFF 		bl	CNC_Stepper
+ 705              	.LVL51:
  110:Core/Src/cnc_core.c **** 
- 111:Core/Src/cnc_core.c ****     if(info->commanded.speed.x != 0)
- 745              		.loc 1 111 5 is_stmt 1 view .LVU231
- 746              		.loc 1 111 7 is_stmt 0 view .LVU232
- 747 001a D9B1     		cbz	r1, .L53
- 112:Core/Src/cnc_core.c ****         info->pulseLenght.x = (uint16_t) freqX_1mm_min / abs(info->commanded.speed.x);
- 748              		.loc 1 112 9 is_stmt 1 view .LVU233
- 749              		.loc 1 112 58 is_stmt 0 view .LVU234
- 750 001c 81EAE17C 		eor	ip, r1, r1, asr #31
- 751 0020 ACEBE17C 		sub	ip, ip, r1, asr #31
- 752              		.loc 1 112 56 view .LVU235
- 753 0024 4FF28E33 		movw	r3, #62350
- 754 0028 93FBFCF3 		sdiv	r3, r3, ip
- 755              		.loc 1 112 29 view .LVU236
- 756 002c 8381     		strh	r3, [r0, #12]	@ movhi
- 757              	.L54:
- 113:Core/Src/cnc_core.c ****     else
- 114:Core/Src/cnc_core.c ****         info->pulseLenght.x = 200;
+ 111:Core/Src/cnc_core.c ****     return !runY;
+ 706              		.loc 1 111 5 discriminator 4 view .LVU227
+ 112:Core/Src/cnc_core.c **** }
+ 707              		.loc 1 112 1 is_stmt 0 discriminator 4 view .LVU228
+ 708 002e B4FA84F0 		clz	r0, r4
+ 709 0032 4009     		lsrs	r0, r0, #5
+ 710 0034 10BD     		pop	{r4, pc}
+ 711              	.LVL52:
+ 712              	.L45:
+ 105:Core/Src/cnc_core.c ****     bool runY = dY > 0;
+ 713              		.loc 1 105 89 discriminator 2 view .LVU229
+ 714 0036 E41A     		subs	r4, r4, r3
+ 105:Core/Src/cnc_core.c ****     bool runY = dY > 0;
+ 715              		.loc 1 105 74 discriminator 2 view .LVU230
+ 716 0038 A408     		lsrs	r4, r4, #2
+ 717 003a ECE7     		b	.L46
+ 718              		.cfi_endproc
+ 719              	.LFE292:
+ 721              		.section	.text.CNC_Jog,"ax",%progbits
+ 722              		.align	1
+ 723              		.global	CNC_Jog
+ 724              		.syntax unified
+ARM GAS  /tmp/ccC6Dxsd.s 			page 16
+
+
+ 725              		.thumb
+ 726              		.thumb_func
+ 728              	CNC_Jog:
+ 729              	.LVL53:
+ 730              	.LFB293:
+ 113:Core/Src/cnc_core.c **** 
+ 114:Core/Src/cnc_core.c **** void CNC_Jog(HMI_info_t* const info){
+ 731              		.loc 1 114 37 is_stmt 1 view -0
+ 732              		.cfi_startproc
+ 733              		@ args = 0, pretend = 0, frame = 0
+ 734              		@ frame_needed = 0, uses_anonymous_args = 0
+ 735              		.loc 1 114 37 is_stmt 0 view .LVU232
+ 736 0000 08B5     		push	{r3, lr}
+ 737              		.cfi_def_cfa_offset 8
+ 738              		.cfi_offset 3, -8
+ 739              		.cfi_offset 14, -4
  115:Core/Src/cnc_core.c **** 
- 116:Core/Src/cnc_core.c ****     if(info->commanded.speed.y != 0)
- 758              		.loc 1 116 5 is_stmt 1 view .LVU237
- 759              		.loc 1 116 7 is_stmt 0 view .LVU238
- 760 002e A2B1     		cbz	r2, .L55
- 117:Core/Src/cnc_core.c ****         info->pulseLenght.y = (uint16_t) freqY_1mm_min / abs(info->commanded.speed.y);
- 761              		.loc 1 117 9 is_stmt 1 view .LVU239
- 762              		.loc 1 117 58 is_stmt 0 view .LVU240
- 763 0030 82EAE27C 		eor	ip, r2, r2, asr #31
- 764 0034 ACEBE27C 		sub	ip, ip, r2, asr #31
- 765              		.loc 1 117 56 view .LVU241
- 766 0038 4FF28E33 		movw	r3, #62350
- 767 003c 93FBFCF3 		sdiv	r3, r3, ip
- 768              		.loc 1 117 29 view .LVU242
- 769 0040 C381     		strh	r3, [r0, #14]	@ movhi
- 770              	.L56:
- 118:Core/Src/cnc_core.c ****     else
- 119:Core/Src/cnc_core.c ****         info->pulseLenght.x = 200;
- 120:Core/Src/cnc_core.c **** 
- 121:Core/Src/cnc_core.c ****     CNC_Stepper(info, info->commanded.speed.x != 0, info->commanded.speed.y != 0); 
- 771              		.loc 1 121 5 is_stmt 1 view .LVU243
- 772 0042 003A     		subs	r2, r2, #0
- 773 0044 18BF     		it	ne
- 774 0046 0122     		movne	r2, #1
- 775 0048 0039     		subs	r1, r1, #0
- 776 004a 18BF     		it	ne
- 777 004c 0121     		movne	r1, #1
-ARM GAS  /tmp/ccir953h.s 			page 17
+ 116:Core/Src/cnc_core.c ****     info->dir.x = (info->commanded.speed.x > 0);
+ 740              		.loc 1 116 5 is_stmt 1 view .LVU233
+ 741              		.loc 1 116 41 is_stmt 0 view .LVU234
+ 742 0002 4169     		ldr	r1, [r0, #20]
+ 743              		.loc 1 116 44 view .LVU235
+ 744 0004 0029     		cmp	r1, #0
+ 745 0006 D4BF     		ite	le
+ 746 0008 0023     		movle	r3, #0
+ 747 000a 0123     		movgt	r3, #1
+ 748              		.loc 1 116 17 view .LVU236
+ 749 000c 0374     		strb	r3, [r0, #16]
+ 117:Core/Src/cnc_core.c ****     info->dir.y = (info->commanded.speed.y > 0);
+ 750              		.loc 1 117 5 is_stmt 1 view .LVU237
+ 751              		.loc 1 117 41 is_stmt 0 view .LVU238
+ 752 000e 8269     		ldr	r2, [r0, #24]
+ 753              		.loc 1 117 44 view .LVU239
+ 754 0010 002A     		cmp	r2, #0
+ 755 0012 D4BF     		ite	le
+ 756 0014 0023     		movle	r3, #0
+ 757 0016 0123     		movgt	r3, #1
+ 758              		.loc 1 117 17 view .LVU240
+ 759 0018 4374     		strb	r3, [r0, #17]
+ 118:Core/Src/cnc_core.c **** 
+ 119:Core/Src/cnc_core.c ****     if(info->commanded.speed.x != 0)
+ 760              		.loc 1 119 5 is_stmt 1 view .LVU241
+ 761              		.loc 1 119 7 is_stmt 0 view .LVU242
+ 762 001a D9B1     		cbz	r1, .L49
+ 120:Core/Src/cnc_core.c ****         info->pulseLenght.x = (uint16_t) freqX_1mm_min / abs(info->commanded.speed.x);
+ 763              		.loc 1 120 9 is_stmt 1 view .LVU243
+ 764              		.loc 1 120 58 is_stmt 0 view .LVU244
+ 765 001c 81EAE17C 		eor	ip, r1, r1, asr #31
+ 766 0020 ACEBE17C 		sub	ip, ip, r1, asr #31
+ 767              		.loc 1 120 56 view .LVU245
+ 768 0024 4FF6EA73 		movw	r3, #65514
+ 769 0028 93FBFCF3 		sdiv	r3, r3, ip
+ 770              		.loc 1 120 29 view .LVU246
+ 771 002c 8381     		strh	r3, [r0, #12]	@ movhi
+ 772              	.L50:
+ 121:Core/Src/cnc_core.c ****     else
+ 122:Core/Src/cnc_core.c ****         info->pulseLenght.x = 200;
+ARM GAS  /tmp/ccC6Dxsd.s 			page 17
 
 
- 778 004e FFF7FEFF 		bl	CNC_Stepper
- 779              	.LVL49:
- 122:Core/Src/cnc_core.c **** }
- 780              		.loc 1 122 1 is_stmt 0 view .LVU244
- 781 0052 08BD     		pop	{r3, pc}
- 782              	.LVL50:
- 783              	.L53:
- 114:Core/Src/cnc_core.c **** 
- 784              		.loc 1 114 9 is_stmt 1 view .LVU245
- 114:Core/Src/cnc_core.c **** 
- 785              		.loc 1 114 29 is_stmt 0 view .LVU246
- 786 0054 C823     		movs	r3, #200
- 787 0056 8381     		strh	r3, [r0, #12]	@ movhi
- 788 0058 E9E7     		b	.L54
- 789              	.L55:
- 119:Core/Src/cnc_core.c **** 
- 790              		.loc 1 119 9 is_stmt 1 view .LVU247
- 119:Core/Src/cnc_core.c **** 
- 791              		.loc 1 119 29 is_stmt 0 view .LVU248
- 792 005a C823     		movs	r3, #200
- 793 005c 8381     		strh	r3, [r0, #12]	@ movhi
- 794 005e F0E7     		b	.L56
- 795              		.cfi_endproc
- 796              	.LFE293:
- 798              		.section	.text.CNC_TIM_Callback_X,"ax",%progbits
- 799              		.align	1
- 800              		.global	CNC_TIM_Callback_X
- 801              		.syntax unified
- 802              		.thumb
- 803              		.thumb_func
- 805              	CNC_TIM_Callback_X:
- 806              	.LVL51:
- 807              	.LFB294:
  123:Core/Src/cnc_core.c **** 
- 124:Core/Src/cnc_core.c **** void CNC_TIM_Callback_X(HMI_info_t* info){
- 808              		.loc 1 124 42 is_stmt 1 view -0
- 809              		.cfi_startproc
- 810              		@ args = 0, pretend = 0, frame = 0
- 811              		@ frame_needed = 0, uses_anonymous_args = 0
- 812              		@ link register save eliminated.
- 125:Core/Src/cnc_core.c ****     if(info->dir.x)
- 813              		.loc 1 125 5 view .LVU250
- 814              		.loc 1 125 17 is_stmt 0 view .LVU251
- 815 0000 037C     		ldrb	r3, [r0, #16]	@ zero_extendqisi2
- 816              		.loc 1 125 7 view .LVU252
- 817 0002 33B1     		cbz	r3, .L59
- 126:Core/Src/cnc_core.c ****         info->pos.x++;
- 818              		.loc 1 126 9 is_stmt 1 view .LVU253
- 819              		.loc 1 126 18 is_stmt 0 view .LVU254
- 820 0004 4368     		ldr	r3, [r0, #4]
- 821              		.loc 1 126 20 view .LVU255
- 822 0006 0133     		adds	r3, r3, #1
- 823 0008 4360     		str	r3, [r0, #4]
- 824              	.L60:
- 127:Core/Src/cnc_core.c ****     else
- 128:Core/Src/cnc_core.c ****         info->pos.x--;
- 129:Core/Src/cnc_core.c ****     info->update = true;         
-ARM GAS  /tmp/ccir953h.s 			page 18
-
-
- 825              		.loc 1 129 5 is_stmt 1 view .LVU256
- 826              		.loc 1 129 18 is_stmt 0 view .LVU257
- 827 000a 0123     		movs	r3, #1
- 828 000c 80F83530 		strb	r3, [r0, #53]
+ 124:Core/Src/cnc_core.c ****     if(info->commanded.speed.y != 0)
+ 773              		.loc 1 124 5 is_stmt 1 view .LVU247
+ 774              		.loc 1 124 7 is_stmt 0 view .LVU248
+ 775 002e A2B1     		cbz	r2, .L51
+ 125:Core/Src/cnc_core.c ****         info->pulseLenght.y = (uint16_t) freqY_1mm_min / abs(info->commanded.speed.y);
+ 776              		.loc 1 125 9 is_stmt 1 view .LVU249
+ 777              		.loc 1 125 58 is_stmt 0 view .LVU250
+ 778 0030 82EAE27C 		eor	ip, r2, r2, asr #31
+ 779 0034 ACEBE27C 		sub	ip, ip, r2, asr #31
+ 780              		.loc 1 125 56 view .LVU251
+ 781 0038 4FF6EA73 		movw	r3, #65514
+ 782 003c 93FBFCF3 		sdiv	r3, r3, ip
+ 783              		.loc 1 125 29 view .LVU252
+ 784 0040 C381     		strh	r3, [r0, #14]	@ movhi
+ 785              	.L52:
+ 126:Core/Src/cnc_core.c ****     else
+ 127:Core/Src/cnc_core.c ****         info->pulseLenght.x = 200;
+ 128:Core/Src/cnc_core.c **** 
+ 129:Core/Src/cnc_core.c ****     CNC_Stepper(info, info->commanded.speed.x != 0, info->commanded.speed.y != 0); 
+ 786              		.loc 1 129 5 is_stmt 1 view .LVU253
+ 787 0042 003A     		subs	r2, r2, #0
+ 788 0044 18BF     		it	ne
+ 789 0046 0122     		movne	r2, #1
+ 790 0048 0039     		subs	r1, r1, #0
+ 791 004a 18BF     		it	ne
+ 792 004c 0121     		movne	r1, #1
+ 793 004e FFF7FEFF 		bl	CNC_Stepper
+ 794              	.LVL54:
  130:Core/Src/cnc_core.c **** }
- 829              		.loc 1 130 1 view .LVU258
- 830 0010 7047     		bx	lr
- 831              	.L59:
- 128:Core/Src/cnc_core.c ****     info->update = true;         
- 832              		.loc 1 128 9 is_stmt 1 view .LVU259
- 128:Core/Src/cnc_core.c ****     info->update = true;         
- 833              		.loc 1 128 18 is_stmt 0 view .LVU260
- 834 0012 4368     		ldr	r3, [r0, #4]
- 128:Core/Src/cnc_core.c ****     info->update = true;         
- 835              		.loc 1 128 20 view .LVU261
- 836 0014 013B     		subs	r3, r3, #1
- 837 0016 4360     		str	r3, [r0, #4]
- 838 0018 F7E7     		b	.L60
- 839              		.cfi_endproc
- 840              	.LFE294:
- 842              		.section	.text.CNC_TIM_Callback_Y,"ax",%progbits
- 843              		.align	1
- 844              		.global	CNC_TIM_Callback_Y
- 845              		.syntax unified
- 846              		.thumb
- 847              		.thumb_func
- 849              	CNC_TIM_Callback_Y:
- 850              	.LVL52:
- 851              	.LFB295:
+ 795              		.loc 1 130 1 is_stmt 0 view .LVU254
+ 796 0052 08BD     		pop	{r3, pc}
+ 797              	.LVL55:
+ 798              	.L49:
+ 122:Core/Src/cnc_core.c **** 
+ 799              		.loc 1 122 9 is_stmt 1 view .LVU255
+ 122:Core/Src/cnc_core.c **** 
+ 800              		.loc 1 122 29 is_stmt 0 view .LVU256
+ 801 0054 C823     		movs	r3, #200
+ 802 0056 8381     		strh	r3, [r0, #12]	@ movhi
+ 803 0058 E9E7     		b	.L50
+ 804              	.L51:
+ 127:Core/Src/cnc_core.c **** 
+ 805              		.loc 1 127 9 is_stmt 1 view .LVU257
+ 127:Core/Src/cnc_core.c **** 
+ 806              		.loc 1 127 29 is_stmt 0 view .LVU258
+ 807 005a C823     		movs	r3, #200
+ 808 005c 8381     		strh	r3, [r0, #12]	@ movhi
+ 809 005e F0E7     		b	.L52
+ 810              		.cfi_endproc
+ 811              	.LFE293:
+ 813              		.section	.text.CNC_TIM_Callback_X,"ax",%progbits
+ 814              		.align	1
+ 815              		.global	CNC_TIM_Callback_X
+ 816              		.syntax unified
+ 817              		.thumb
+ 818              		.thumb_func
+ARM GAS  /tmp/ccC6Dxsd.s 			page 18
+
+
+ 820              	CNC_TIM_Callback_X:
+ 821              	.LVL56:
+ 822              	.LFB294:
  131:Core/Src/cnc_core.c **** 
- 132:Core/Src/cnc_core.c **** void CNC_TIM_Callback_Y(HMI_info_t* info){
- 852              		.loc 1 132 42 is_stmt 1 view -0
- 853              		.cfi_startproc
- 854              		@ args = 0, pretend = 0, frame = 0
- 855              		@ frame_needed = 0, uses_anonymous_args = 0
- 856              		@ link register save eliminated.
- 133:Core/Src/cnc_core.c ****     if(info->dir.y)
- 857              		.loc 1 133 5 view .LVU263
- 858              		.loc 1 133 17 is_stmt 0 view .LVU264
- 859 0000 437C     		ldrb	r3, [r0, #17]	@ zero_extendqisi2
- 860              		.loc 1 133 7 view .LVU265
- 861 0002 33B1     		cbz	r3, .L62
- 134:Core/Src/cnc_core.c ****         info->pos.y++;
- 862              		.loc 1 134 9 is_stmt 1 view .LVU266
- 863              		.loc 1 134 18 is_stmt 0 view .LVU267
- 864 0004 8368     		ldr	r3, [r0, #8]
- 865              		.loc 1 134 20 view .LVU268
- 866 0006 0133     		adds	r3, r3, #1
- 867 0008 8360     		str	r3, [r0, #8]
- 868              	.L63:
+ 132:Core/Src/cnc_core.c **** void CNC_TIM_Callback_X(HMI_info_t* const info){
+ 823              		.loc 1 132 48 is_stmt 1 view -0
+ 824              		.cfi_startproc
+ 825              		@ args = 0, pretend = 0, frame = 0
+ 826              		@ frame_needed = 0, uses_anonymous_args = 0
+ 827              		@ link register save eliminated.
+ 133:Core/Src/cnc_core.c ****     if(info->dir.x)
+ 828              		.loc 1 133 5 view .LVU260
+ 829              		.loc 1 133 17 is_stmt 0 view .LVU261
+ 830 0000 037C     		ldrb	r3, [r0, #16]	@ zero_extendqisi2
+ 831              		.loc 1 133 7 view .LVU262
+ 832 0002 33B1     		cbz	r3, .L55
+ 134:Core/Src/cnc_core.c ****         info->pos.x++;
+ 833              		.loc 1 134 9 is_stmt 1 view .LVU263
+ 834              		.loc 1 134 18 is_stmt 0 view .LVU264
+ 835 0004 4368     		ldr	r3, [r0, #4]
+ 836              		.loc 1 134 20 view .LVU265
+ 837 0006 0133     		adds	r3, r3, #1
+ 838 0008 4360     		str	r3, [r0, #4]
+ 839              	.L56:
  135:Core/Src/cnc_core.c ****     else
- 136:Core/Src/cnc_core.c ****         info->pos.y--;
- 137:Core/Src/cnc_core.c ****     info->update = true;  
- 869              		.loc 1 137 5 is_stmt 1 view .LVU269
- 870              		.loc 1 137 18 is_stmt 0 view .LVU270
- 871 000a 0123     		movs	r3, #1
- 872 000c 80F83530 		strb	r3, [r0, #53]
-ARM GAS  /tmp/ccir953h.s 			page 19
+ 136:Core/Src/cnc_core.c ****         if(info->pos.x != 0)
+ 137:Core/Src/cnc_core.c ****             info->pos.x--;
+ 138:Core/Src/cnc_core.c ****     info->update = true;         
+ 840              		.loc 1 138 5 is_stmt 1 view .LVU266
+ 841              		.loc 1 138 18 is_stmt 0 view .LVU267
+ 842 000a 0123     		movs	r3, #1
+ 843 000c 80F83530 		strb	r3, [r0, #53]
+ 139:Core/Src/cnc_core.c **** }
+ 844              		.loc 1 139 1 view .LVU268
+ 845 0010 7047     		bx	lr
+ 846              	.L55:
+ 136:Core/Src/cnc_core.c ****             info->pos.x--;
+ 847              		.loc 1 136 9 is_stmt 1 view .LVU269
+ 136:Core/Src/cnc_core.c ****             info->pos.x--;
+ 848              		.loc 1 136 21 is_stmt 0 view .LVU270
+ 849 0012 4368     		ldr	r3, [r0, #4]
+ 136:Core/Src/cnc_core.c ****             info->pos.x--;
+ 850              		.loc 1 136 11 view .LVU271
+ 851 0014 002B     		cmp	r3, #0
+ 852 0016 F8D0     		beq	.L56
+ 137:Core/Src/cnc_core.c ****     info->update = true;         
+ 853              		.loc 1 137 13 is_stmt 1 view .LVU272
+ 137:Core/Src/cnc_core.c ****     info->update = true;         
+ 854              		.loc 1 137 24 is_stmt 0 view .LVU273
+ 855 0018 013B     		subs	r3, r3, #1
+ 856 001a 4360     		str	r3, [r0, #4]
+ 857 001c F5E7     		b	.L56
+ 858              		.cfi_endproc
+ 859              	.LFE294:
+ 861              		.section	.text.CNC_TIM_Callback_Y,"ax",%progbits
+ 862              		.align	1
+ 863              		.global	CNC_TIM_Callback_Y
+ARM GAS  /tmp/ccC6Dxsd.s 			page 19
 
 
- 138:Core/Src/cnc_core.c **** }
- 873              		.loc 1 138 1 view .LVU271
- 874 0010 7047     		bx	lr
- 875              	.L62:
- 136:Core/Src/cnc_core.c ****     info->update = true;  
- 876              		.loc 1 136 9 is_stmt 1 view .LVU272
- 136:Core/Src/cnc_core.c ****     info->update = true;  
- 877              		.loc 1 136 18 is_stmt 0 view .LVU273
- 878 0012 8368     		ldr	r3, [r0, #8]
- 136:Core/Src/cnc_core.c ****     info->update = true;  
- 879              		.loc 1 136 20 view .LVU274
- 880 0014 013B     		subs	r3, r3, #1
- 881 0016 8360     		str	r3, [r0, #8]
- 882 0018 F7E7     		b	.L63
- 883              		.cfi_endproc
- 884              	.LFE295:
- 886              		.section	.text.CNC_HL_Control,"ax",%progbits
- 887              		.align	1
- 888              		.global	CNC_HL_Control
- 889              		.syntax unified
- 890              		.thumb
- 891              		.thumb_func
- 893              	CNC_HL_Control:
- 894              	.LVL53:
- 895              	.LFB296:
- 139:Core/Src/cnc_core.c **** 
- 140:Core/Src/cnc_core.c **** void CNC_HL_Control(HMI_info_t* info, UART_HandleTypeDef *huart, volatile uint16_t *adc_data){
- 896              		.loc 1 140 94 is_stmt 1 view -0
- 897              		.cfi_startproc
- 898              		@ args = 0, pretend = 0, frame = 0
- 899              		@ frame_needed = 0, uses_anonymous_args = 0
- 900              		.loc 1 140 94 is_stmt 0 view .LVU276
- 901 0000 10B5     		push	{r4, lr}
- 902              		.cfi_def_cfa_offset 8
- 903              		.cfi_offset 4, -8
- 904              		.cfi_offset 14, -4
- 905 0002 0446     		mov	r4, r0
- 906 0004 0846     		mov	r0, r1
- 907              	.LVL54:
- 141:Core/Src/cnc_core.c ****     switch (info->mode) {
- 908              		.loc 1 141 5 is_stmt 1 view .LVU277
- 909              		.loc 1 141 17 is_stmt 0 view .LVU278
- 910 0006 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
- 911              		.loc 1 141 5 view .LVU279
- 912 0008 032B     		cmp	r3, #3
- 913 000a 33D8     		bhi	.L64
- 914 000c DFE803F0 		tbb	[pc, r3]
- 915              	.LVL55:
- 916              	.L67:
- 917 0010 02       		.byte	(.L70-.L67)/2
- 918 0011 0F       		.byte	(.L69-.L67)/2
- 919 0012 33       		.byte	(.L68-.L67)/2
- 920 0013 95       		.byte	(.L66-.L67)/2
- 921              		.p2align 1
- 922              	.L70:
- 923              	.LBB2:
- 142:Core/Src/cnc_core.c ****         case  HMI_Mode_Zero:
-ARM GAS  /tmp/ccir953h.s 			page 20
+ 864              		.syntax unified
+ 865              		.thumb
+ 866              		.thumb_func
+ 868              	CNC_TIM_Callback_Y:
+ 869              	.LVL57:
+ 870              	.LFB295:
+ 140:Core/Src/cnc_core.c **** 
+ 141:Core/Src/cnc_core.c **** void CNC_TIM_Callback_Y(HMI_info_t* const info){
+ 871              		.loc 1 141 48 is_stmt 1 view -0
+ 872              		.cfi_startproc
+ 873              		@ args = 0, pretend = 0, frame = 0
+ 874              		@ frame_needed = 0, uses_anonymous_args = 0
+ 875              		@ link register save eliminated.
+ 142:Core/Src/cnc_core.c ****     if(info->dir.y)
+ 876              		.loc 1 142 5 view .LVU275
+ 877              		.loc 1 142 17 is_stmt 0 view .LVU276
+ 878 0000 437C     		ldrb	r3, [r0, #17]	@ zero_extendqisi2
+ 879              		.loc 1 142 7 view .LVU277
+ 880 0002 33B1     		cbz	r3, .L58
+ 143:Core/Src/cnc_core.c ****         info->pos.y++;
+ 881              		.loc 1 143 9 is_stmt 1 view .LVU278
+ 882              		.loc 1 143 18 is_stmt 0 view .LVU279
+ 883 0004 8368     		ldr	r3, [r0, #8]
+ 884              		.loc 1 143 20 view .LVU280
+ 885 0006 0133     		adds	r3, r3, #1
+ 886 0008 8360     		str	r3, [r0, #8]
+ 887              	.L59:
+ 144:Core/Src/cnc_core.c ****     else
+ 145:Core/Src/cnc_core.c ****         if(info->pos.y != 0)
+ 146:Core/Src/cnc_core.c ****             info->pos.y--;
+ 147:Core/Src/cnc_core.c ****     info->update = true;  
+ 888              		.loc 1 147 5 is_stmt 1 view .LVU281
+ 889              		.loc 1 147 18 is_stmt 0 view .LVU282
+ 890 000a 0123     		movs	r3, #1
+ 891 000c 80F83530 		strb	r3, [r0, #53]
+ 148:Core/Src/cnc_core.c **** }
+ 892              		.loc 1 148 1 view .LVU283
+ 893 0010 7047     		bx	lr
+ 894              	.L58:
+ 145:Core/Src/cnc_core.c ****             info->pos.y--;
+ 895              		.loc 1 145 9 is_stmt 1 view .LVU284
+ 145:Core/Src/cnc_core.c ****             info->pos.y--;
+ 896              		.loc 1 145 21 is_stmt 0 view .LVU285
+ 897 0012 8368     		ldr	r3, [r0, #8]
+ 145:Core/Src/cnc_core.c ****             info->pos.y--;
+ 898              		.loc 1 145 11 view .LVU286
+ 899 0014 002B     		cmp	r3, #0
+ 900 0016 F8D0     		beq	.L59
+ 146:Core/Src/cnc_core.c ****     info->update = true;  
+ 901              		.loc 1 146 13 is_stmt 1 view .LVU287
+ 146:Core/Src/cnc_core.c ****     info->update = true;  
+ 902              		.loc 1 146 24 is_stmt 0 view .LVU288
+ 903 0018 013B     		subs	r3, r3, #1
+ 904 001a 8360     		str	r3, [r0, #8]
+ 905 001c F5E7     		b	.L59
+ 906              		.cfi_endproc
+ 907              	.LFE295:
+ARM GAS  /tmp/ccC6Dxsd.s 			page 20
 
 
- 143:Core/Src/cnc_core.c ****             if(info->state == HMI_State_Run){
- 924              		.loc 1 143 13 is_stmt 1 view .LVU280
- 925              		.loc 1 143 20 is_stmt 0 view .LVU281
- 926 0014 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
- 927              		.loc 1 143 15 view .LVU282
- 928 0016 022B     		cmp	r3, #2
- 929 0018 2CD1     		bne	.L64
- 144:Core/Src/cnc_core.c ****                 if(HMI_Move_None){
- 930              		.loc 1 144 17 is_stmt 1 view .LVU283
- 145:Core/Src/cnc_core.c ****                     info->move = HMI_Move_Jog;
- 931              		.loc 1 145 21 view .LVU284
- 932              		.loc 1 145 32 is_stmt 0 view .LVU285
- 933 001a 0123     		movs	r3, #1
- 934 001c A370     		strb	r3, [r4, #2]
- 146:Core/Src/cnc_core.c ****                     info->commanded.speed.x = -200;  
- 935              		.loc 1 146 21 is_stmt 1 view .LVU286
- 936              		.loc 1 146 45 is_stmt 0 view .LVU287
- 937 001e 6FF0C703 		mvn	r3, #199
- 938 0022 6361     		str	r3, [r4, #20]
- 147:Core/Src/cnc_core.c ****                     info->commanded.speed.y = -200;
- 939              		.loc 1 147 21 is_stmt 1 view .LVU288
- 940              		.loc 1 147 45 is_stmt 0 view .LVU289
- 941 0024 A361     		str	r3, [r4, #24]
- 148:Core/Src/cnc_core.c ****                     CNC_Jog(info);
- 942              		.loc 1 148 21 is_stmt 1 view .LVU290
- 943 0026 2046     		mov	r0, r4
- 944              	.LVL56:
- 945              		.loc 1 148 21 is_stmt 0 view .LVU291
- 946 0028 FFF7FEFF 		bl	CNC_Jog
- 947              	.LVL57:
- 948              		.loc 1 148 21 view .LVU292
- 949 002c 22E0     		b	.L64
- 950              	.LVL58:
- 951              	.L69:
- 149:Core/Src/cnc_core.c ****                 }
- 150:Core/Src/cnc_core.c ****             }
- 151:Core/Src/cnc_core.c ****         break;
- 152:Core/Src/cnc_core.c **** 
- 153:Core/Src/cnc_core.c ****         case  HMI_Mode_Man:
- 154:Core/Src/cnc_core.c ****             info->move = HMI_Move_Jog;
- 952              		.loc 1 154 13 is_stmt 1 view .LVU293
- 953              		.loc 1 154 24 is_stmt 0 view .LVU294
- 954 002e 0123     		movs	r3, #1
- 955 0030 A370     		strb	r3, [r4, #2]
- 155:Core/Src/cnc_core.c ****             int16_t jogX = ((int16_t) (adc_data[6]>>1)) - (1844/2); //subtract center value X
- 956              		.loc 1 155 13 is_stmt 1 view .LVU295
- 957              		.loc 1 155 48 is_stmt 0 view .LVU296
- 958 0032 9189     		ldrh	r1, [r2, #12]
- 959              		.loc 1 155 29 view .LVU297
- 960 0034 C1F34E01 		ubfx	r1, r1, #1, #15
- 961              		.loc 1 155 57 view .LVU298
- 962 0038 A1F29A31 		subw	r1, r1, #922
- 963              		.loc 1 155 21 view .LVU299
- 964 003c 09B2     		sxth	r1, r1
- 965              	.LVL59:
- 156:Core/Src/cnc_core.c ****             int16_t jogY = ((int16_t) (adc_data[7]>>1)) - (1814/2); //subtract center value Y
- 966              		.loc 1 156 13 is_stmt 1 view .LVU300
-ARM GAS  /tmp/ccir953h.s 			page 21
+ 909              		.section	.text.CNC_HL_Control,"ax",%progbits
+ 910              		.align	1
+ 911              		.global	CNC_HL_Control
+ 912              		.syntax unified
+ 913              		.thumb
+ 914              		.thumb_func
+ 916              	CNC_HL_Control:
+ 917              	.LVL58:
+ 918              	.LFB296:
+ 149:Core/Src/cnc_core.c **** 
+ 150:Core/Src/cnc_core.c **** void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile uint16_t *adc_data)
+ 919              		.loc 1 150 100 is_stmt 1 view -0
+ 920              		.cfi_startproc
+ 921              		@ args = 0, pretend = 0, frame = 0
+ 922              		@ frame_needed = 0, uses_anonymous_args = 0
+ 923              		.loc 1 150 100 is_stmt 0 view .LVU290
+ 924 0000 10B5     		push	{r4, lr}
+ 925              		.cfi_def_cfa_offset 8
+ 926              		.cfi_offset 4, -8
+ 927              		.cfi_offset 14, -4
+ 928 0002 0446     		mov	r4, r0
+ 929 0004 0846     		mov	r0, r1
+ 930              	.LVL59:
+ 151:Core/Src/cnc_core.c ****     switch (info->mode) {
+ 931              		.loc 1 151 5 is_stmt 1 view .LVU291
+ 932              		.loc 1 151 17 is_stmt 0 view .LVU292
+ 933 0006 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 934              		.loc 1 151 5 view .LVU293
+ 935 0008 032B     		cmp	r3, #3
+ 936 000a 33D8     		bhi	.L60
+ 937 000c DFE803F0 		tbb	[pc, r3]
+ 938              	.LVL60:
+ 939              	.L63:
+ 940 0010 02       		.byte	(.L66-.L63)/2
+ 941 0011 0F       		.byte	(.L65-.L63)/2
+ 942 0012 33       		.byte	(.L64-.L63)/2
+ 943 0013 95       		.byte	(.L62-.L63)/2
+ 944              		.p2align 1
+ 945              	.L66:
+ 946              	.LBB2:
+ 152:Core/Src/cnc_core.c ****         case  HMI_Mode_Zero:
+ 153:Core/Src/cnc_core.c ****             if(info->state == HMI_State_Run){
+ 947              		.loc 1 153 13 is_stmt 1 view .LVU294
+ 948              		.loc 1 153 20 is_stmt 0 view .LVU295
+ 949 0014 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
+ 950              		.loc 1 153 15 view .LVU296
+ 951 0016 022B     		cmp	r3, #2
+ 952 0018 2CD1     		bne	.L60
+ 154:Core/Src/cnc_core.c ****                 if(HMI_Move_None){
+ 953              		.loc 1 154 17 is_stmt 1 view .LVU297
+ 155:Core/Src/cnc_core.c ****                     info->move = HMI_Move_Jog;
+ 954              		.loc 1 155 21 view .LVU298
+ 955              		.loc 1 155 32 is_stmt 0 view .LVU299
+ 956 001a 0123     		movs	r3, #1
+ 957 001c A370     		strb	r3, [r4, #2]
+ 156:Core/Src/cnc_core.c ****                     info->commanded.speed.x = -200;  
+ 958              		.loc 1 156 21 is_stmt 1 view .LVU300
+ARM GAS  /tmp/ccC6Dxsd.s 			page 21
 
 
- 967              		.loc 1 156 48 is_stmt 0 view .LVU301
- 968 003e D389     		ldrh	r3, [r2, #14]
- 969              		.loc 1 156 29 view .LVU302
- 970 0040 C3F34E03 		ubfx	r3, r3, #1, #15
- 971              		.loc 1 156 57 view .LVU303
- 972 0044 A3F28B33 		subw	r3, r3, #907
- 973              		.loc 1 156 21 view .LVU304
- 974 0048 1BB2     		sxth	r3, r3
- 975              	.LVL60:
- 157:Core/Src/cnc_core.c ****             info->commanded.speed.x = (abs(jogX) > 70) ? jogX : 0;  // dead zone near center X
- 976              		.loc 1 157 13 is_stmt 1 view .LVU305
- 977              		.loc 1 157 40 is_stmt 0 view .LVU306
- 978 004a 81EAE172 		eor	r2, r1, r1, asr #31
- 979              	.LVL61:
- 980              		.loc 1 157 40 view .LVU307
- 981 004e A2EBE172 		sub	r2, r2, r1, asr #31
- 982 0052 92B2     		uxth	r2, r2
- 983              		.loc 1 157 63 view .LVU308
- 984 0054 462A     		cmp	r2, #70
- 985 0056 00D8     		bhi	.L71
- 986 0058 0021     		movs	r1, #0
- 987              	.LVL62:
- 988              	.L71:
- 989              		.loc 1 157 37 discriminator 4 view .LVU309
- 990 005a 6161     		str	r1, [r4, #20]
- 158:Core/Src/cnc_core.c ****             info->commanded.speed.y = (abs(jogY) > 70) ? jogY : 0;  // dead zone near center Y
- 991              		.loc 1 158 13 is_stmt 1 discriminator 4 view .LVU310
- 992              		.loc 1 158 40 is_stmt 0 discriminator 4 view .LVU311
- 993 005c 83EAE372 		eor	r2, r3, r3, asr #31
- 994 0060 A2EBE372 		sub	r2, r2, r3, asr #31
- 995 0064 92B2     		uxth	r2, r2
- 996              		.loc 1 158 63 discriminator 4 view .LVU312
- 997 0066 462A     		cmp	r2, #70
- 998 0068 00D8     		bhi	.L72
- 999              		.loc 1 158 63 view .LVU313
- 1000 006a 0023     		movs	r3, #0
- 1001              	.LVL63:
- 1002              	.L72:
- 1003              		.loc 1 158 37 discriminator 4 view .LVU314
- 1004 006c A361     		str	r3, [r4, #24]
- 159:Core/Src/cnc_core.c ****             CNC_Jog(info);
- 1005              		.loc 1 159 13 is_stmt 1 discriminator 4 view .LVU315
- 1006 006e 2046     		mov	r0, r4
- 1007              	.LVL64:
- 1008              		.loc 1 159 13 is_stmt 0 discriminator 4 view .LVU316
- 1009 0070 FFF7FEFF 		bl	CNC_Jog
- 1010              	.LVL65:
- 160:Core/Src/cnc_core.c ****         break;
- 1011              		.loc 1 160 9 is_stmt 1 discriminator 4 view .LVU317
- 1012              	.L64:
- 1013              		.loc 1 160 9 is_stmt 0 discriminator 4 view .LVU318
- 1014              	.LBE2:
- 161:Core/Src/cnc_core.c **** 
- 162:Core/Src/cnc_core.c ****         case  HMI_Mode_Face:
- 163:Core/Src/cnc_core.c ****             if(info->state == HMI_State_Run){
- 164:Core/Src/cnc_core.c ****                 switch (info->move) {
- 165:Core/Src/cnc_core.c ****                     case HMI_Move_None:
-ARM GAS  /tmp/ccir953h.s 			page 22
+ 959              		.loc 1 156 45 is_stmt 0 view .LVU301
+ 960 001e 6FF0C703 		mvn	r3, #199
+ 961 0022 6361     		str	r3, [r4, #20]
+ 157:Core/Src/cnc_core.c ****                     info->commanded.speed.y = -200;
+ 962              		.loc 1 157 21 is_stmt 1 view .LVU302
+ 963              		.loc 1 157 45 is_stmt 0 view .LVU303
+ 964 0024 A361     		str	r3, [r4, #24]
+ 158:Core/Src/cnc_core.c ****                     CNC_Jog(info);
+ 965              		.loc 1 158 21 is_stmt 1 view .LVU304
+ 966 0026 2046     		mov	r0, r4
+ 967              	.LVL61:
+ 968              		.loc 1 158 21 is_stmt 0 view .LVU305
+ 969 0028 FFF7FEFF 		bl	CNC_Jog
+ 970              	.LVL62:
+ 971              		.loc 1 158 21 view .LVU306
+ 972 002c 22E0     		b	.L60
+ 973              	.LVL63:
+ 974              	.L65:
+ 159:Core/Src/cnc_core.c ****                 }
+ 160:Core/Src/cnc_core.c ****             }
+ 161:Core/Src/cnc_core.c ****         break;
+ 162:Core/Src/cnc_core.c **** 
+ 163:Core/Src/cnc_core.c ****         case  HMI_Mode_Man:
+ 164:Core/Src/cnc_core.c ****             info->move = HMI_Move_Jog;
+ 975              		.loc 1 164 13 is_stmt 1 view .LVU307
+ 976              		.loc 1 164 24 is_stmt 0 view .LVU308
+ 977 002e 0123     		movs	r3, #1
+ 978 0030 A370     		strb	r3, [r4, #2]
+ 165:Core/Src/cnc_core.c ****             int16_t jogX = ((int16_t) (adc_data[6]>>1)) - (1844/2); //subtract center value X
+ 979              		.loc 1 165 13 is_stmt 1 view .LVU309
+ 980              		.loc 1 165 48 is_stmt 0 view .LVU310
+ 981 0032 9189     		ldrh	r1, [r2, #12]
+ 982              		.loc 1 165 29 view .LVU311
+ 983 0034 C1F34E01 		ubfx	r1, r1, #1, #15
+ 984              		.loc 1 165 57 view .LVU312
+ 985 0038 A1F29A31 		subw	r1, r1, #922
+ 986              		.loc 1 165 21 view .LVU313
+ 987 003c 09B2     		sxth	r1, r1
+ 988              	.LVL64:
+ 166:Core/Src/cnc_core.c ****             int16_t jogY = ((int16_t) (adc_data[7]>>1)) - (1814/2); //subtract center value Y
+ 989              		.loc 1 166 13 is_stmt 1 view .LVU314
+ 990              		.loc 1 166 48 is_stmt 0 view .LVU315
+ 991 003e D389     		ldrh	r3, [r2, #14]
+ 992              		.loc 1 166 29 view .LVU316
+ 993 0040 C3F34E03 		ubfx	r3, r3, #1, #15
+ 994              		.loc 1 166 57 view .LVU317
+ 995 0044 A3F28B33 		subw	r3, r3, #907
+ 996              		.loc 1 166 21 view .LVU318
+ 997 0048 1BB2     		sxth	r3, r3
+ 998              	.LVL65:
+ 167:Core/Src/cnc_core.c ****             info->commanded.speed.x = (abs(jogX) > 70) ? jogX : 0;  // dead zone near center X
+ 999              		.loc 1 167 13 is_stmt 1 view .LVU319
+ 1000              		.loc 1 167 40 is_stmt 0 view .LVU320
+ 1001 004a 81EAE172 		eor	r2, r1, r1, asr #31
+ 1002              	.LVL66:
+ 1003              		.loc 1 167 40 view .LVU321
+ 1004 004e A2EBE172 		sub	r2, r2, r1, asr #31
+ARM GAS  /tmp/ccC6Dxsd.s 			page 22
 
 
- 166:Core/Src/cnc_core.c ****                         if(info->P1.x > info->P2.x){
- 167:Core/Src/cnc_core.c ****                             uint32_t swapX = info->P1.x;
- 168:Core/Src/cnc_core.c ****                             info->P1.x = info->P2.x;
- 169:Core/Src/cnc_core.c ****                             info->P2.x = swapX;
- 170:Core/Src/cnc_core.c ****                         }
+ 1005 0052 92B2     		uxth	r2, r2
+ 1006              		.loc 1 167 63 view .LVU322
+ 1007 0054 462A     		cmp	r2, #70
+ 1008 0056 00D8     		bhi	.L67
+ 1009 0058 0021     		movs	r1, #0
+ 1010              	.LVL67:
+ 1011              	.L67:
+ 1012              		.loc 1 167 37 discriminator 4 view .LVU323
+ 1013 005a 6161     		str	r1, [r4, #20]
+ 168:Core/Src/cnc_core.c ****             info->commanded.speed.y = (abs(jogY) > 70) ? jogY : 0;  // dead zone near center Y
+ 1014              		.loc 1 168 13 is_stmt 1 discriminator 4 view .LVU324
+ 1015              		.loc 1 168 40 is_stmt 0 discriminator 4 view .LVU325
+ 1016 005c 83EAE372 		eor	r2, r3, r3, asr #31
+ 1017 0060 A2EBE372 		sub	r2, r2, r3, asr #31
+ 1018 0064 92B2     		uxth	r2, r2
+ 1019              		.loc 1 168 63 discriminator 4 view .LVU326
+ 1020 0066 462A     		cmp	r2, #70
+ 1021 0068 00D8     		bhi	.L68
+ 1022              		.loc 1 168 63 view .LVU327
+ 1023 006a 0023     		movs	r3, #0
+ 1024              	.LVL68:
+ 1025              	.L68:
+ 1026              		.loc 1 168 37 discriminator 4 view .LVU328
+ 1027 006c A361     		str	r3, [r4, #24]
+ 169:Core/Src/cnc_core.c ****             CNC_Jog(info);
+ 1028              		.loc 1 169 13 is_stmt 1 discriminator 4 view .LVU329
+ 1029 006e 2046     		mov	r0, r4
+ 1030              	.LVL69:
+ 1031              		.loc 1 169 13 is_stmt 0 discriminator 4 view .LVU330
+ 1032 0070 FFF7FEFF 		bl	CNC_Jog
+ 1033              	.LVL70:
+ 170:Core/Src/cnc_core.c ****         break;
+ 1034              		.loc 1 170 9 is_stmt 1 discriminator 4 view .LVU331
+ 1035              	.L60:
+ 1036              		.loc 1 170 9 is_stmt 0 discriminator 4 view .LVU332
+ 1037              	.LBE2:
  171:Core/Src/cnc_core.c **** 
- 172:Core/Src/cnc_core.c ****                         if(info->P1.y > info->P2.y){
- 173:Core/Src/cnc_core.c ****                             uint32_t swapY = info->P1.y;
- 174:Core/Src/cnc_core.c ****                             info->P1.y = info->P2.y;
- 175:Core/Src/cnc_core.c ****                             info->P2.y = swapY;
- 176:Core/Src/cnc_core.c ****                         }
- 177:Core/Src/cnc_core.c **** 
- 178:Core/Src/cnc_core.c ****                         info->commanded.pos.x = info->P1.x;
- 179:Core/Src/cnc_core.c ****                         info->commanded.pos.y = info->P1.y;
- 180:Core/Src/cnc_core.c ****                         info->move = HMI_Move_Absolute;
- 181:Core/Src/cnc_core.c ****                     break;
- 182:Core/Src/cnc_core.c **** 
- 183:Core/Src/cnc_core.c ****                     case HMI_Move_Face1:
- 184:Core/Src/cnc_core.c ****                         info->commanded.pos.y = info->P2.x;
- 185:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteX(info))
- 186:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face2;
- 187:Core/Src/cnc_core.c ****                     break;
- 188:Core/Src/cnc_core.c **** 
- 189:Core/Src/cnc_core.c ****                     case HMI_Move_Face2:
- 190:Core/Src/cnc_core.c ****                         uint32_t newPosY = info->pos.y + face_depth_Y;
- 191:Core/Src/cnc_core.c ****                         if(newPosY < info->P2.y)
- 192:Core/Src/cnc_core.c ****                             info->commanded.pos.y = newPosY;
- 193:Core/Src/cnc_core.c ****                         else
- 194:Core/Src/cnc_core.c ****                             info->commanded.pos.y = info->P2.y;
- 195:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteY(info))
- 196:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face3;
+ 172:Core/Src/cnc_core.c ****         case  HMI_Mode_Face:
+ 173:Core/Src/cnc_core.c ****             if(info->state == HMI_State_Run){
+ 174:Core/Src/cnc_core.c ****                 switch (info->move) {
+ 175:Core/Src/cnc_core.c ****                     case HMI_Move_None:
+ 176:Core/Src/cnc_core.c ****                         if(info->P1.x > info->P2.x){
+ 177:Core/Src/cnc_core.c ****                             uint32_t swapX = info->P1.x;
+ 178:Core/Src/cnc_core.c ****                             info->P1.x = info->P2.x;
+ 179:Core/Src/cnc_core.c ****                             info->P2.x = swapX;
+ 180:Core/Src/cnc_core.c ****                         }
+ 181:Core/Src/cnc_core.c **** 
+ 182:Core/Src/cnc_core.c ****                         if(info->P1.y > info->P2.y){
+ 183:Core/Src/cnc_core.c ****                             uint32_t swapY = info->P1.y;
+ 184:Core/Src/cnc_core.c ****                             info->P1.y = info->P2.y;
+ 185:Core/Src/cnc_core.c ****                             info->P2.y = swapY;
+ 186:Core/Src/cnc_core.c ****                         }
+ 187:Core/Src/cnc_core.c **** 
+ 188:Core/Src/cnc_core.c ****                         info->commanded.pos.x = info->P1.x;
+ 189:Core/Src/cnc_core.c ****                         info->commanded.pos.y = info->P1.y;
+ 190:Core/Src/cnc_core.c ****                         info->move = HMI_Move_Absolute;
+ 191:Core/Src/cnc_core.c ****                     break;
+ARM GAS  /tmp/ccC6Dxsd.s 			page 23
+
+
+ 192:Core/Src/cnc_core.c **** 
+ 193:Core/Src/cnc_core.c ****                     case HMI_Move_Face1:
+ 194:Core/Src/cnc_core.c ****                         info->commanded.pos.x = info->P2.x;
+ 195:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteX(info))
+ 196:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face2;
  197:Core/Src/cnc_core.c ****                     break;
  198:Core/Src/cnc_core.c **** 
- 199:Core/Src/cnc_core.c ****                     case HMI_Move_Face3:
- 200:Core/Src/cnc_core.c ****                         info->commanded.pos.x = info->P1.x;
- 201:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteX(info)){
- 202:Core/Src/cnc_core.c ****                             if(info->pos.y >= info->P2.y){
- 203:Core/Src/cnc_core.c ****                                 info->move = HMI_Move_None;
- 204:Core/Src/cnc_core.c ****                                 info->state = HMI_State_Stop;
- 205:Core/Src/cnc_core.c ****                             }
- 206:Core/Src/cnc_core.c ****                             else
- 207:Core/Src/cnc_core.c ****                                 info->move = HMI_Move_Face4;;
- 208:Core/Src/cnc_core.c ****                         }
- 209:Core/Src/cnc_core.c ****                     break;
- 210:Core/Src/cnc_core.c **** 
- 211:Core/Src/cnc_core.c ****                     case HMI_Move_Face4:
- 212:Core/Src/cnc_core.c ****                         info->commanded.pos.y = info->pos.y - face_retract_Y;
- 213:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteY(info))
- 214:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face1;
- 215:Core/Src/cnc_core.c ****                     break;
- 216:Core/Src/cnc_core.c **** 
- 217:Core/Src/cnc_core.c ****                     case HMI_Move_Done:
- 218:Core/Src/cnc_core.c ****                         info->move = HMI_Move_Face1;
+ 199:Core/Src/cnc_core.c ****                     case HMI_Move_Face2:
+ 200:Core/Src/cnc_core.c ****                         uint32_t newPosY = info->pos.y + face_depth_Y;
+ 201:Core/Src/cnc_core.c ****                         if(newPosY < info->P2.y)
+ 202:Core/Src/cnc_core.c ****                             info->commanded.pos.y = newPosY;
+ 203:Core/Src/cnc_core.c ****                         else
+ 204:Core/Src/cnc_core.c ****                             info->commanded.pos.y = info->P2.y;
+ 205:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteY(info))
+ 206:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face3;
+ 207:Core/Src/cnc_core.c ****                     break;
+ 208:Core/Src/cnc_core.c **** 
+ 209:Core/Src/cnc_core.c ****                     case HMI_Move_Face3:
+ 210:Core/Src/cnc_core.c ****                         info->commanded.pos.x = info->P1.x;
+ 211:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteX(info)){
+ 212:Core/Src/cnc_core.c ****                             if(info->pos.y >= info->P2.y){
+ 213:Core/Src/cnc_core.c ****                                 info->move = HMI_Move_None;
+ 214:Core/Src/cnc_core.c ****                                 info->state = HMI_State_Stop;
+ 215:Core/Src/cnc_core.c ****                             }
+ 216:Core/Src/cnc_core.c ****                             else
+ 217:Core/Src/cnc_core.c ****                                 info->move = HMI_Move_Face4;
+ 218:Core/Src/cnc_core.c ****                         }
  219:Core/Src/cnc_core.c ****                     break;
  220:Core/Src/cnc_core.c **** 
- 221:Core/Src/cnc_core.c ****                     case HMI_Move_Absolute:
- 222:Core/Src/cnc_core.c ****                         CNC_Absolute(info);
-ARM GAS  /tmp/ccir953h.s 			page 23
+ 221:Core/Src/cnc_core.c ****                     case HMI_Move_Face4:
+ 222:Core/Src/cnc_core.c ****                         info->commanded.pos.y = info->pos.y - face_retract_Y;
+ 223:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteY(info))
+ 224:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face1;
+ 225:Core/Src/cnc_core.c ****                     break;
+ 226:Core/Src/cnc_core.c **** 
+ 227:Core/Src/cnc_core.c ****                     case HMI_Move_Done:
+ 228:Core/Src/cnc_core.c ****                         info->move = HMI_Move_Face1;
+ 229:Core/Src/cnc_core.c ****                     break;
+ 230:Core/Src/cnc_core.c **** 
+ 231:Core/Src/cnc_core.c ****                     case HMI_Move_Absolute:
+ 232:Core/Src/cnc_core.c ****                         CNC_Absolute(info);
+ 233:Core/Src/cnc_core.c ****                     break;
+ 234:Core/Src/cnc_core.c **** 
+ 235:Core/Src/cnc_core.c ****                     default:
+ 236:Core/Src/cnc_core.c ****                         info->move = HMI_Move_None;
+ 237:Core/Src/cnc_core.c ****                     break;
+ 238:Core/Src/cnc_core.c ****                 }
+ 239:Core/Src/cnc_core.c ****             }
+ 240:Core/Src/cnc_core.c ****         break; 
+ 241:Core/Src/cnc_core.c **** 
+ 242:Core/Src/cnc_core.c ****         case  HMI_Mode_Ser:
+ 243:Core/Src/cnc_core.c ****             if(info->state == HMI_State_Run){
+ 244:Core/Src/cnc_core.c ****                 switch (info->move) {
+ 245:Core/Src/cnc_core.c ****                 case HMI_Move_None:
+ 246:Core/Src/cnc_core.c ****                     //HAL_UART_Receive_DMA(&huart1, UART1_rxBuffer, 12);
+ 247:Core/Src/cnc_core.c ****                     //if(ReadGcode(huart, info)) 
+ 248:Core/Src/cnc_core.c ****                     //    info->move = HMI_Move_Absolute; 
+ARM GAS  /tmp/ccC6Dxsd.s 			page 24
 
 
- 223:Core/Src/cnc_core.c ****                     break;
- 224:Core/Src/cnc_core.c **** 
- 225:Core/Src/cnc_core.c ****                     default:
- 226:Core/Src/cnc_core.c ****                         info->move = HMI_Move_None;
- 227:Core/Src/cnc_core.c ****                     break;
- 228:Core/Src/cnc_core.c ****                 }
- 229:Core/Src/cnc_core.c ****             }
- 230:Core/Src/cnc_core.c ****         break; 
- 231:Core/Src/cnc_core.c **** 
- 232:Core/Src/cnc_core.c ****         case  HMI_Mode_Ser:
- 233:Core/Src/cnc_core.c ****             if(info->state == HMI_State_Run){
- 234:Core/Src/cnc_core.c ****                 switch (info->move) {
- 235:Core/Src/cnc_core.c ****                 case HMI_Move_None:
- 236:Core/Src/cnc_core.c ****                     //HAL_UART_Receive_DMA(&huart1, UART1_rxBuffer, 12);
- 237:Core/Src/cnc_core.c ****                     //if(ReadGcode(huart, info)) 
- 238:Core/Src/cnc_core.c ****                     //    info->move = HMI_Move_Absolute; 
- 239:Core/Src/cnc_core.c ****                     //else
- 240:Core/Src/cnc_core.c ****                     //    WriteACK(huart, false);
- 241:Core/Src/cnc_core.c ****                 break;
- 242:Core/Src/cnc_core.c **** 
- 243:Core/Src/cnc_core.c ****                 case HMI_Move_Done:
- 244:Core/Src/cnc_core.c ****                     info->move = HMI_Move_None;
- 245:Core/Src/cnc_core.c ****                     info->update = true;
- 246:Core/Src/cnc_core.c ****                     WriteACK(huart, true);
- 247:Core/Src/cnc_core.c ****                 break;
- 248:Core/Src/cnc_core.c **** 
- 249:Core/Src/cnc_core.c ****                 case HMI_Move_Absolute:
- 250:Core/Src/cnc_core.c ****                     CNC_Absolute(info);
+ 249:Core/Src/cnc_core.c ****                     //else
+ 250:Core/Src/cnc_core.c ****                     //    WriteACK(huart, false);
  251:Core/Src/cnc_core.c ****                 break;
  252:Core/Src/cnc_core.c **** 
- 253:Core/Src/cnc_core.c ****                 default:
+ 253:Core/Src/cnc_core.c ****                 case HMI_Move_Done:
  254:Core/Src/cnc_core.c ****                     info->move = HMI_Move_None;
- 255:Core/Src/cnc_core.c ****                 break;
- 256:Core/Src/cnc_core.c ****                 }
- 257:Core/Src/cnc_core.c ****             }            
- 258:Core/Src/cnc_core.c ****         break;
- 259:Core/Src/cnc_core.c ****     }
- 260:Core/Src/cnc_core.c **** }
- 1015              		.loc 1 260 1 view .LVU319
- 1016 0074 10BD     		pop	{r4, pc}
- 1017              	.LVL66:
- 1018              	.L68:
- 1019              	.LBB6:
- 163:Core/Src/cnc_core.c ****                 switch (info->move) {
- 1020              		.loc 1 163 13 is_stmt 1 view .LVU320
- 163:Core/Src/cnc_core.c ****                 switch (info->move) {
- 1021              		.loc 1 163 20 is_stmt 0 view .LVU321
- 1022 0076 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
- 163:Core/Src/cnc_core.c ****                 switch (info->move) {
- 1023              		.loc 1 163 15 view .LVU322
- 1024 0078 022B     		cmp	r3, #2
- 1025 007a FBD1     		bne	.L64
- 164:Core/Src/cnc_core.c ****                     case HMI_Move_None:
- 1026              		.loc 1 164 17 is_stmt 1 view .LVU323
- 164:Core/Src/cnc_core.c ****                     case HMI_Move_None:
- 1027              		.loc 1 164 29 is_stmt 0 view .LVU324
- 1028 007c A378     		ldrb	r3, [r4, #2]	@ zero_extendqisi2
-ARM GAS  /tmp/ccir953h.s 			page 24
+ 255:Core/Src/cnc_core.c ****                     info->update = true;
+ 256:Core/Src/cnc_core.c ****                     WriteACK(huart, true);
+ 257:Core/Src/cnc_core.c ****                 break;
+ 258:Core/Src/cnc_core.c **** 
+ 259:Core/Src/cnc_core.c ****                 case HMI_Move_Absolute:
+ 260:Core/Src/cnc_core.c ****                     CNC_Absolute(info);
+ 261:Core/Src/cnc_core.c ****                 break;
+ 262:Core/Src/cnc_core.c **** 
+ 263:Core/Src/cnc_core.c ****                 default:
+ 264:Core/Src/cnc_core.c ****                     info->move = HMI_Move_None;
+ 265:Core/Src/cnc_core.c ****                 break;
+ 266:Core/Src/cnc_core.c ****                 }
+ 267:Core/Src/cnc_core.c ****             }            
+ 268:Core/Src/cnc_core.c ****         break;
+ 269:Core/Src/cnc_core.c ****     }
+ 270:Core/Src/cnc_core.c **** }
+ 1038              		.loc 1 270 1 view .LVU333
+ 1039 0074 10BD     		pop	{r4, pc}
+ 1040              	.LVL71:
+ 1041              	.L64:
+ 1042              	.LBB6:
+ 173:Core/Src/cnc_core.c ****                 switch (info->move) {
+ 1043              		.loc 1 173 13 is_stmt 1 view .LVU334
+ 173:Core/Src/cnc_core.c ****                 switch (info->move) {
+ 1044              		.loc 1 173 20 is_stmt 0 view .LVU335
+ 1045 0076 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
+ 173:Core/Src/cnc_core.c ****                 switch (info->move) {
+ 1046              		.loc 1 173 15 view .LVU336
+ 1047 0078 022B     		cmp	r3, #2
+ 1048 007a FBD1     		bne	.L60
+ 174:Core/Src/cnc_core.c ****                     case HMI_Move_None:
+ 1049              		.loc 1 174 17 is_stmt 1 view .LVU337
+ 174:Core/Src/cnc_core.c ****                     case HMI_Move_None:
+ 1050              		.loc 1 174 29 is_stmt 0 view .LVU338
+ 1051 007c A378     		ldrb	r3, [r4, #2]	@ zero_extendqisi2
+ 1052 007e 072B     		cmp	r3, #7
+ 1053 0080 58D8     		bhi	.L69
+ 1054 0082 DFE803F0 		tbb	[pc, r3]
+ 1055              	.LVL72:
+ 1056              	.L71:
+ 1057 0086 53       		.byte	(.L77-.L71)/2
+ 1058 0087 57       		.byte	(.L69-.L71)/2
+ 1059 0088 04       		.byte	(.L76-.L71)/2
+ 1060 0089 50       		.byte	(.L75-.L71)/2
+ 1061 008a 17       		.byte	(.L74-.L71)/2
+ 1062 008b 21       		.byte	(.L73-.L71)/2
+ 1063 008c 32       		.byte	(.L72-.L71)/2
+ 1064 008d 45       		.byte	(.L70-.L71)/2
+ 1065              		.p2align 1
+ 1066              	.L76:
+ 1067              	.LBB3:
+ARM GAS  /tmp/ccC6Dxsd.s 			page 25
 
 
- 1029 007e 072B     		cmp	r3, #7
- 1030 0080 58D8     		bhi	.L73
- 1031 0082 DFE803F0 		tbb	[pc, r3]
- 1032              	.LVL67:
- 1033              	.L75:
- 1034 0086 53       		.byte	(.L81-.L75)/2
- 1035 0087 57       		.byte	(.L73-.L75)/2
- 1036 0088 04       		.byte	(.L80-.L75)/2
- 1037 0089 50       		.byte	(.L79-.L75)/2
- 1038 008a 17       		.byte	(.L78-.L75)/2
- 1039 008b 21       		.byte	(.L77-.L75)/2
- 1040 008c 32       		.byte	(.L76-.L75)/2
- 1041 008d 45       		.byte	(.L74-.L75)/2
- 1042              		.p2align 1
- 1043              	.L80:
- 1044              	.LBB3:
- 166:Core/Src/cnc_core.c ****                             uint32_t swapX = info->P1.x;
- 1045              		.loc 1 166 25 is_stmt 1 view .LVU325
- 166:Core/Src/cnc_core.c ****                             uint32_t swapX = info->P1.x;
- 1046              		.loc 1 166 36 is_stmt 0 view .LVU326
- 1047 008e 236A     		ldr	r3, [r4, #32]
- 166:Core/Src/cnc_core.c ****                             uint32_t swapX = info->P1.x;
- 1048              		.loc 1 166 49 view .LVU327
- 1049 0090 A26A     		ldr	r2, [r4, #40]
- 166:Core/Src/cnc_core.c ****                             uint32_t swapX = info->P1.x;
- 1050              		.loc 1 166 27 view .LVU328
- 1051 0092 9342     		cmp	r3, r2
- 1052 0094 01D9     		bls	.L82
- 1053              	.LBB4:
- 167:Core/Src/cnc_core.c ****                             info->P1.x = info->P2.x;
- 1054              		.loc 1 167 29 is_stmt 1 view .LVU329
- 1055              	.LVL68:
- 168:Core/Src/cnc_core.c ****                             info->P2.x = swapX;
- 1056              		.loc 1 168 29 view .LVU330
- 168:Core/Src/cnc_core.c ****                             info->P2.x = swapX;
- 1057              		.loc 1 168 40 is_stmt 0 view .LVU331
- 1058 0096 2262     		str	r2, [r4, #32]
- 169:Core/Src/cnc_core.c ****                         }
- 1059              		.loc 1 169 29 is_stmt 1 view .LVU332
- 169:Core/Src/cnc_core.c ****                         }
- 1060              		.loc 1 169 40 is_stmt 0 view .LVU333
- 1061 0098 A362     		str	r3, [r4, #40]
- 1062              	.LVL69:
- 1063              	.L82:
- 169:Core/Src/cnc_core.c ****                         }
- 1064              		.loc 1 169 40 view .LVU334
- 1065              	.LBE4:
- 172:Core/Src/cnc_core.c ****                             uint32_t swapY = info->P1.y;
- 1066              		.loc 1 172 25 is_stmt 1 view .LVU335
- 172:Core/Src/cnc_core.c ****                             uint32_t swapY = info->P1.y;
- 1067              		.loc 1 172 36 is_stmt 0 view .LVU336
- 1068 009a 636A     		ldr	r3, [r4, #36]
- 172:Core/Src/cnc_core.c ****                             uint32_t swapY = info->P1.y;
- 1069              		.loc 1 172 49 view .LVU337
- 1070 009c E26A     		ldr	r2, [r4, #44]
- 172:Core/Src/cnc_core.c ****                             uint32_t swapY = info->P1.y;
- 1071              		.loc 1 172 27 view .LVU338
-ARM GAS  /tmp/ccir953h.s 			page 25
+ 176:Core/Src/cnc_core.c ****                             uint32_t swapX = info->P1.x;
+ 1068              		.loc 1 176 25 is_stmt 1 view .LVU339
+ 176:Core/Src/cnc_core.c ****                             uint32_t swapX = info->P1.x;
+ 1069              		.loc 1 176 36 is_stmt 0 view .LVU340
+ 1070 008e 236A     		ldr	r3, [r4, #32]
+ 176:Core/Src/cnc_core.c ****                             uint32_t swapX = info->P1.x;
+ 1071              		.loc 1 176 49 view .LVU341
+ 1072 0090 A26A     		ldr	r2, [r4, #40]
+ 176:Core/Src/cnc_core.c ****                             uint32_t swapX = info->P1.x;
+ 1073              		.loc 1 176 27 view .LVU342
+ 1074 0092 9342     		cmp	r3, r2
+ 1075 0094 01D9     		bls	.L78
+ 1076              	.LBB4:
+ 177:Core/Src/cnc_core.c ****                             info->P1.x = info->P2.x;
+ 1077              		.loc 1 177 29 is_stmt 1 view .LVU343
+ 1078              	.LVL73:
+ 178:Core/Src/cnc_core.c ****                             info->P2.x = swapX;
+ 1079              		.loc 1 178 29 view .LVU344
+ 178:Core/Src/cnc_core.c ****                             info->P2.x = swapX;
+ 1080              		.loc 1 178 40 is_stmt 0 view .LVU345
+ 1081 0096 2262     		str	r2, [r4, #32]
+ 179:Core/Src/cnc_core.c ****                         }
+ 1082              		.loc 1 179 29 is_stmt 1 view .LVU346
+ 179:Core/Src/cnc_core.c ****                         }
+ 1083              		.loc 1 179 40 is_stmt 0 view .LVU347
+ 1084 0098 A362     		str	r3, [r4, #40]
+ 1085              	.LVL74:
+ 1086              	.L78:
+ 179:Core/Src/cnc_core.c ****                         }
+ 1087              		.loc 1 179 40 view .LVU348
+ 1088              	.LBE4:
+ 182:Core/Src/cnc_core.c ****                             uint32_t swapY = info->P1.y;
+ 1089              		.loc 1 182 25 is_stmt 1 view .LVU349
+ 182:Core/Src/cnc_core.c ****                             uint32_t swapY = info->P1.y;
+ 1090              		.loc 1 182 36 is_stmt 0 view .LVU350
+ 1091 009a 636A     		ldr	r3, [r4, #36]
+ 182:Core/Src/cnc_core.c ****                             uint32_t swapY = info->P1.y;
+ 1092              		.loc 1 182 49 view .LVU351
+ 1093 009c E26A     		ldr	r2, [r4, #44]
+ 182:Core/Src/cnc_core.c ****                             uint32_t swapY = info->P1.y;
+ 1094              		.loc 1 182 27 view .LVU352
+ 1095 009e 9342     		cmp	r3, r2
+ 1096 00a0 01D9     		bls	.L79
+ 1097              	.LBB5:
+ 183:Core/Src/cnc_core.c ****                             info->P1.y = info->P2.y;
+ 1098              		.loc 1 183 29 is_stmt 1 view .LVU353
+ 1099              	.LVL75:
+ 184:Core/Src/cnc_core.c ****                             info->P2.y = swapY;
+ 1100              		.loc 1 184 29 view .LVU354
+ 184:Core/Src/cnc_core.c ****                             info->P2.y = swapY;
+ 1101              		.loc 1 184 40 is_stmt 0 view .LVU355
+ 1102 00a2 6262     		str	r2, [r4, #36]
+ 185:Core/Src/cnc_core.c ****                         }
+ 1103              		.loc 1 185 29 is_stmt 1 view .LVU356
+ 185:Core/Src/cnc_core.c ****                         }
+ 1104              		.loc 1 185 40 is_stmt 0 view .LVU357
+ 1105 00a4 E362     		str	r3, [r4, #44]
+ARM GAS  /tmp/ccC6Dxsd.s 			page 26
 
 
- 1072 009e 9342     		cmp	r3, r2
- 1073 00a0 01D9     		bls	.L83
- 1074              	.LBB5:
- 173:Core/Src/cnc_core.c ****                             info->P1.y = info->P2.y;
- 1075              		.loc 1 173 29 is_stmt 1 view .LVU339
- 1076              	.LVL70:
- 174:Core/Src/cnc_core.c ****                             info->P2.y = swapY;
- 1077              		.loc 1 174 29 view .LVU340
- 174:Core/Src/cnc_core.c ****                             info->P2.y = swapY;
- 1078              		.loc 1 174 40 is_stmt 0 view .LVU341
- 1079 00a2 6262     		str	r2, [r4, #36]
- 175:Core/Src/cnc_core.c ****                         }
- 1080              		.loc 1 175 29 is_stmt 1 view .LVU342
- 175:Core/Src/cnc_core.c ****                         }
- 1081              		.loc 1 175 40 is_stmt 0 view .LVU343
- 1082 00a4 E362     		str	r3, [r4, #44]
- 1083              	.LVL71:
- 1084              	.L83:
- 175:Core/Src/cnc_core.c ****                         }
- 1085              		.loc 1 175 40 view .LVU344
- 1086              	.LBE5:
- 178:Core/Src/cnc_core.c ****                         info->commanded.pos.y = info->P1.y;
- 1087              		.loc 1 178 25 is_stmt 1 view .LVU345
- 178:Core/Src/cnc_core.c ****                         info->commanded.pos.y = info->P1.y;
- 1088              		.loc 1 178 57 is_stmt 0 view .LVU346
- 1089 00a6 236A     		ldr	r3, [r4, #32]
- 178:Core/Src/cnc_core.c ****                         info->commanded.pos.y = info->P1.y;
- 1090              		.loc 1 178 47 view .LVU347
- 1091 00a8 6361     		str	r3, [r4, #20]
- 179:Core/Src/cnc_core.c ****                         info->move = HMI_Move_Absolute;
- 1092              		.loc 1 179 25 is_stmt 1 view .LVU348
- 179:Core/Src/cnc_core.c ****                         info->move = HMI_Move_Absolute;
- 1093              		.loc 1 179 57 is_stmt 0 view .LVU349
- 1094 00aa 636A     		ldr	r3, [r4, #36]
- 179:Core/Src/cnc_core.c ****                         info->move = HMI_Move_Absolute;
- 1095              		.loc 1 179 47 view .LVU350
- 1096 00ac A361     		str	r3, [r4, #24]
- 180:Core/Src/cnc_core.c ****                     break;
- 1097              		.loc 1 180 25 is_stmt 1 view .LVU351
- 180:Core/Src/cnc_core.c ****                     break;
- 1098              		.loc 1 180 36 is_stmt 0 view .LVU352
- 1099 00ae 0023     		movs	r3, #0
- 1100 00b0 A370     		strb	r3, [r4, #2]
- 181:Core/Src/cnc_core.c **** 
- 1101              		.loc 1 181 21 is_stmt 1 view .LVU353
- 1102 00b2 DFE7     		b	.L64
- 1103              	.L78:
- 184:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteX(info))
- 1104              		.loc 1 184 25 view .LVU354
- 184:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteX(info))
- 1105              		.loc 1 184 57 is_stmt 0 view .LVU355
- 1106 00b4 A36A     		ldr	r3, [r4, #40]
- 184:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteX(info))
- 1107              		.loc 1 184 47 view .LVU356
- 1108 00b6 A361     		str	r3, [r4, #24]
- 185:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face2;
- 1109              		.loc 1 185 25 is_stmt 1 view .LVU357
-ARM GAS  /tmp/ccir953h.s 			page 26
-
-
- 185:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face2;
- 1110              		.loc 1 185 28 is_stmt 0 view .LVU358
- 1111 00b8 2046     		mov	r0, r4
- 1112              	.LVL72:
- 185:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face2;
- 1113              		.loc 1 185 28 view .LVU359
- 1114 00ba FFF7FEFF 		bl	CNC_AbsoluteX
- 1115              	.LVL73:
- 185:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face2;
- 1116              		.loc 1 185 27 view .LVU360
- 1117 00be 0028     		cmp	r0, #0
- 1118 00c0 D8D0     		beq	.L64
- 186:Core/Src/cnc_core.c ****                     break;
- 1119              		.loc 1 186 29 is_stmt 1 view .LVU361
- 186:Core/Src/cnc_core.c ****                     break;
- 1120              		.loc 1 186 40 is_stmt 0 view .LVU362
- 1121 00c2 0523     		movs	r3, #5
- 1122 00c4 A370     		strb	r3, [r4, #2]
- 1123 00c6 D5E7     		b	.L64
- 1124              	.LVL74:
- 1125              	.L77:
- 190:Core/Src/cnc_core.c ****                         if(newPosY < info->P2.y)
- 1126              		.loc 1 190 25 is_stmt 1 view .LVU363
- 190:Core/Src/cnc_core.c ****                         if(newPosY < info->P2.y)
- 1127              		.loc 1 190 53 is_stmt 0 view .LVU364
- 1128 00c8 A368     		ldr	r3, [r4, #8]
- 190:Core/Src/cnc_core.c ****                         if(newPosY < info->P2.y)
- 1129              		.loc 1 190 34 view .LVU365
- 1130 00ca 03F59B73 		add	r3, r3, #310
- 1131              	.LVL75:
- 191:Core/Src/cnc_core.c ****                             info->commanded.pos.y = newPosY;
- 1132              		.loc 1 191 25 is_stmt 1 view .LVU366
- 191:Core/Src/cnc_core.c ****                             info->commanded.pos.y = newPosY;
- 1133              		.loc 1 191 46 is_stmt 0 view .LVU367
- 1134 00ce E26A     		ldr	r2, [r4, #44]
- 191:Core/Src/cnc_core.c ****                             info->commanded.pos.y = newPosY;
- 1135              		.loc 1 191 27 view .LVU368
- 1136 00d0 9A42     		cmp	r2, r3
- 1137 00d2 08D9     		bls	.L84
- 192:Core/Src/cnc_core.c ****                         else
- 1138              		.loc 1 192 29 is_stmt 1 view .LVU369
- 192:Core/Src/cnc_core.c ****                         else
- 1139              		.loc 1 192 51 is_stmt 0 view .LVU370
- 1140 00d4 A361     		str	r3, [r4, #24]
- 1141              	.L85:
- 195:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face3;
- 1142              		.loc 1 195 25 is_stmt 1 view .LVU371
- 195:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face3;
- 1143              		.loc 1 195 28 is_stmt 0 view .LVU372
- 1144 00d6 2046     		mov	r0, r4
- 1145              	.LVL76:
- 195:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face3;
- 1146              		.loc 1 195 28 view .LVU373
- 1147 00d8 FFF7FEFF 		bl	CNC_AbsoluteY
- 1148              	.LVL77:
- 195:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face3;
- 1149              		.loc 1 195 27 view .LVU374
-ARM GAS  /tmp/ccir953h.s 			page 27
-
-
- 1150 00dc 0028     		cmp	r0, #0
- 1151 00de C9D0     		beq	.L64
+ 1106              	.LVL76:
+ 1107              	.L79:
+ 185:Core/Src/cnc_core.c ****                         }
+ 1108              		.loc 1 185 40 view .LVU358
+ 1109              	.LBE5:
+ 188:Core/Src/cnc_core.c ****                         info->commanded.pos.y = info->P1.y;
+ 1110              		.loc 1 188 25 is_stmt 1 view .LVU359
+ 188:Core/Src/cnc_core.c ****                         info->commanded.pos.y = info->P1.y;
+ 1111              		.loc 1 188 57 is_stmt 0 view .LVU360
+ 1112 00a6 236A     		ldr	r3, [r4, #32]
+ 188:Core/Src/cnc_core.c ****                         info->commanded.pos.y = info->P1.y;
+ 1113              		.loc 1 188 47 view .LVU361
+ 1114 00a8 6361     		str	r3, [r4, #20]
+ 189:Core/Src/cnc_core.c ****                         info->move = HMI_Move_Absolute;
+ 1115              		.loc 1 189 25 is_stmt 1 view .LVU362
+ 189:Core/Src/cnc_core.c ****                         info->move = HMI_Move_Absolute;
+ 1116              		.loc 1 189 57 is_stmt 0 view .LVU363
+ 1117 00aa 636A     		ldr	r3, [r4, #36]
+ 189:Core/Src/cnc_core.c ****                         info->move = HMI_Move_Absolute;
+ 1118              		.loc 1 189 47 view .LVU364
+ 1119 00ac A361     		str	r3, [r4, #24]
+ 190:Core/Src/cnc_core.c ****                     break;
+ 1120              		.loc 1 190 25 is_stmt 1 view .LVU365
+ 190:Core/Src/cnc_core.c ****                     break;
+ 1121              		.loc 1 190 36 is_stmt 0 view .LVU366
+ 1122 00ae 0023     		movs	r3, #0
+ 1123 00b0 A370     		strb	r3, [r4, #2]
+ 191:Core/Src/cnc_core.c **** 
+ 1124              		.loc 1 191 21 is_stmt 1 view .LVU367
+ 1125 00b2 DFE7     		b	.L60
+ 1126              	.L74:
+ 194:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteX(info))
+ 1127              		.loc 1 194 25 view .LVU368
+ 194:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteX(info))
+ 1128              		.loc 1 194 57 is_stmt 0 view .LVU369
+ 1129 00b4 A36A     		ldr	r3, [r4, #40]
+ 194:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteX(info))
+ 1130              		.loc 1 194 47 view .LVU370
+ 1131 00b6 6361     		str	r3, [r4, #20]
+ 195:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face2;
+ 1132              		.loc 1 195 25 is_stmt 1 view .LVU371
+ 195:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face2;
+ 1133              		.loc 1 195 28 is_stmt 0 view .LVU372
+ 1134 00b8 2046     		mov	r0, r4
+ 1135              	.LVL77:
+ 195:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face2;
+ 1136              		.loc 1 195 28 view .LVU373
+ 1137 00ba FFF7FEFF 		bl	CNC_AbsoluteX
+ 1138              	.LVL78:
+ 195:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face2;
+ 1139              		.loc 1 195 27 view .LVU374
+ 1140 00be 0028     		cmp	r0, #0
+ 1141 00c0 D8D0     		beq	.L60
  196:Core/Src/cnc_core.c ****                     break;
- 1152              		.loc 1 196 29 is_stmt 1 view .LVU375
+ 1142              		.loc 1 196 29 is_stmt 1 view .LVU375
  196:Core/Src/cnc_core.c ****                     break;
- 1153              		.loc 1 196 40 is_stmt 0 view .LVU376
- 1154 00e0 0623     		movs	r3, #6
- 1155 00e2 A370     		strb	r3, [r4, #2]
- 1156 00e4 C6E7     		b	.L64
- 1157              	.LVL78:
- 1158              	.L84:
- 194:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteY(info))
- 1159              		.loc 1 194 29 is_stmt 1 view .LVU377
- 194:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteY(info))
- 1160              		.loc 1 194 51 is_stmt 0 view .LVU378
- 1161 00e6 A261     		str	r2, [r4, #24]
- 1162 00e8 F5E7     		b	.L85
- 1163              	.LVL79:
- 1164              	.L76:
- 200:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteX(info)){
- 1165              		.loc 1 200 25 is_stmt 1 view .LVU379
- 200:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteX(info)){
- 1166              		.loc 1 200 57 is_stmt 0 view .LVU380
- 1167 00ea 236A     		ldr	r3, [r4, #32]
- 200:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteX(info)){
- 1168              		.loc 1 200 47 view .LVU381
- 1169 00ec 6361     		str	r3, [r4, #20]
- 201:Core/Src/cnc_core.c ****                             if(info->pos.y >= info->P2.y){
- 1170              		.loc 1 201 25 is_stmt 1 view .LVU382
- 201:Core/Src/cnc_core.c ****                             if(info->pos.y >= info->P2.y){
- 1171              		.loc 1 201 28 is_stmt 0 view .LVU383
- 1172 00ee 2046     		mov	r0, r4
- 1173              	.LVL80:
- 201:Core/Src/cnc_core.c ****                             if(info->pos.y >= info->P2.y){
- 1174              		.loc 1 201 28 view .LVU384
- 1175 00f0 FFF7FEFF 		bl	CNC_AbsoluteX
- 1176              	.LVL81:
- 201:Core/Src/cnc_core.c ****                             if(info->pos.y >= info->P2.y){
- 1177              		.loc 1 201 27 view .LVU385
- 1178 00f4 0028     		cmp	r0, #0
- 1179 00f6 BDD0     		beq	.L64
- 202:Core/Src/cnc_core.c ****                                 info->move = HMI_Move_None;
- 1180              		.loc 1 202 29 is_stmt 1 view .LVU386
- 202:Core/Src/cnc_core.c ****                                 info->move = HMI_Move_None;
- 1181              		.loc 1 202 41 is_stmt 0 view .LVU387
- 1182 00f8 A268     		ldr	r2, [r4, #8]
- 202:Core/Src/cnc_core.c ****                                 info->move = HMI_Move_None;
- 1183              		.loc 1 202 55 view .LVU388
- 1184 00fa E36A     		ldr	r3, [r4, #44]
- 202:Core/Src/cnc_core.c ****                                 info->move = HMI_Move_None;
- 1185              		.loc 1 202 31 view .LVU389
- 1186 00fc 9A42     		cmp	r2, r3
- 1187 00fe 04D3     		bcc	.L86
- 203:Core/Src/cnc_core.c ****                                 info->state = HMI_State_Stop;
- 1188              		.loc 1 203 33 is_stmt 1 view .LVU390
- 203:Core/Src/cnc_core.c ****                                 info->state = HMI_State_Stop;
- 1189              		.loc 1 203 44 is_stmt 0 view .LVU391
-ARM GAS  /tmp/ccir953h.s 			page 28
+ 1143              		.loc 1 196 40 is_stmt 0 view .LVU376
+ARM GAS  /tmp/ccC6Dxsd.s 			page 27
 
 
- 1190 0100 0223     		movs	r3, #2
- 1191 0102 A370     		strb	r3, [r4, #2]
- 204:Core/Src/cnc_core.c ****                             }
- 1192              		.loc 1 204 33 is_stmt 1 view .LVU392
- 204:Core/Src/cnc_core.c ****                             }
- 1193              		.loc 1 204 45 is_stmt 0 view .LVU393
- 1194 0104 0023     		movs	r3, #0
- 1195 0106 6370     		strb	r3, [r4, #1]
- 1196 0108 B4E7     		b	.L64
- 1197              	.L86:
- 207:Core/Src/cnc_core.c ****                         }
- 1198              		.loc 1 207 33 is_stmt 1 view .LVU394
- 207:Core/Src/cnc_core.c ****                         }
- 1199              		.loc 1 207 44 is_stmt 0 view .LVU395
- 1200 010a 0723     		movs	r3, #7
- 1201 010c A370     		strb	r3, [r4, #2]
- 1202 010e B1E7     		b	.L64
- 1203              	.LVL82:
- 1204              	.L74:
- 212:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteY(info))
- 1205              		.loc 1 212 25 is_stmt 1 view .LVU396
- 212:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteY(info))
- 1206              		.loc 1 212 58 is_stmt 0 view .LVU397
- 1207 0110 A368     		ldr	r3, [r4, #8]
- 212:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteY(info))
- 1208              		.loc 1 212 61 view .LVU398
- 1209 0112 0A3B     		subs	r3, r3, #10
- 212:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteY(info))
- 1210              		.loc 1 212 47 view .LVU399
- 1211 0114 A361     		str	r3, [r4, #24]
- 213:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face1;
- 1212              		.loc 1 213 25 is_stmt 1 view .LVU400
- 213:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face1;
- 1213              		.loc 1 213 28 is_stmt 0 view .LVU401
- 1214 0116 2046     		mov	r0, r4
- 1215              	.LVL83:
- 213:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face1;
- 1216              		.loc 1 213 28 view .LVU402
- 1217 0118 FFF7FEFF 		bl	CNC_AbsoluteY
- 1218              	.LVL84:
- 213:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face1;
- 1219              		.loc 1 213 27 view .LVU403
- 1220 011c 0028     		cmp	r0, #0
- 1221 011e A9D0     		beq	.L64
- 214:Core/Src/cnc_core.c ****                     break;
- 1222              		.loc 1 214 29 is_stmt 1 view .LVU404
- 214:Core/Src/cnc_core.c ****                     break;
- 1223              		.loc 1 214 40 is_stmt 0 view .LVU405
- 1224 0120 0423     		movs	r3, #4
- 1225 0122 A370     		strb	r3, [r4, #2]
- 1226 0124 A6E7     		b	.L64
- 1227              	.LVL85:
- 1228              	.L79:
- 218:Core/Src/cnc_core.c ****                     break;
- 1229              		.loc 1 218 25 is_stmt 1 view .LVU406
- 218:Core/Src/cnc_core.c ****                     break;
- 1230              		.loc 1 218 36 is_stmt 0 view .LVU407
-ARM GAS  /tmp/ccir953h.s 			page 29
+ 1144 00c2 0523     		movs	r3, #5
+ 1145 00c4 A370     		strb	r3, [r4, #2]
+ 1146 00c6 D5E7     		b	.L60
+ 1147              	.LVL79:
+ 1148              	.L73:
+ 200:Core/Src/cnc_core.c ****                         if(newPosY < info->P2.y)
+ 1149              		.loc 1 200 25 is_stmt 1 view .LVU377
+ 200:Core/Src/cnc_core.c ****                         if(newPosY < info->P2.y)
+ 1150              		.loc 1 200 53 is_stmt 0 view .LVU378
+ 1151 00c8 A368     		ldr	r3, [r4, #8]
+ 200:Core/Src/cnc_core.c ****                         if(newPosY < info->P2.y)
+ 1152              		.loc 1 200 34 view .LVU379
+ 1153 00ca 03F59B73 		add	r3, r3, #310
+ 1154              	.LVL80:
+ 201:Core/Src/cnc_core.c ****                             info->commanded.pos.y = newPosY;
+ 1155              		.loc 1 201 25 is_stmt 1 view .LVU380
+ 201:Core/Src/cnc_core.c ****                             info->commanded.pos.y = newPosY;
+ 1156              		.loc 1 201 46 is_stmt 0 view .LVU381
+ 1157 00ce E26A     		ldr	r2, [r4, #44]
+ 201:Core/Src/cnc_core.c ****                             info->commanded.pos.y = newPosY;
+ 1158              		.loc 1 201 27 view .LVU382
+ 1159 00d0 9A42     		cmp	r2, r3
+ 1160 00d2 08D9     		bls	.L80
+ 202:Core/Src/cnc_core.c ****                         else
+ 1161              		.loc 1 202 29 is_stmt 1 view .LVU383
+ 202:Core/Src/cnc_core.c ****                         else
+ 1162              		.loc 1 202 51 is_stmt 0 view .LVU384
+ 1163 00d4 A361     		str	r3, [r4, #24]
+ 1164              	.L81:
+ 205:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face3;
+ 1165              		.loc 1 205 25 is_stmt 1 view .LVU385
+ 205:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face3;
+ 1166              		.loc 1 205 28 is_stmt 0 view .LVU386
+ 1167 00d6 2046     		mov	r0, r4
+ 1168              	.LVL81:
+ 205:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face3;
+ 1169              		.loc 1 205 28 view .LVU387
+ 1170 00d8 FFF7FEFF 		bl	CNC_AbsoluteY
+ 1171              	.LVL82:
+ 205:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face3;
+ 1172              		.loc 1 205 27 view .LVU388
+ 1173 00dc 0028     		cmp	r0, #0
+ 1174 00de C9D0     		beq	.L60
+ 206:Core/Src/cnc_core.c ****                     break;
+ 1175              		.loc 1 206 29 is_stmt 1 view .LVU389
+ 206:Core/Src/cnc_core.c ****                     break;
+ 1176              		.loc 1 206 40 is_stmt 0 view .LVU390
+ 1177 00e0 0623     		movs	r3, #6
+ 1178 00e2 A370     		strb	r3, [r4, #2]
+ 1179 00e4 C6E7     		b	.L60
+ 1180              	.LVL83:
+ 1181              	.L80:
+ 204:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteY(info))
+ 1182              		.loc 1 204 29 is_stmt 1 view .LVU391
+ 204:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteY(info))
+ 1183              		.loc 1 204 51 is_stmt 0 view .LVU392
+ 1184 00e6 A261     		str	r2, [r4, #24]
+ARM GAS  /tmp/ccC6Dxsd.s 			page 28
 
 
- 1231 0126 0423     		movs	r3, #4
- 1232 0128 A370     		strb	r3, [r4, #2]
- 219:Core/Src/cnc_core.c **** 
- 1233              		.loc 1 219 21 is_stmt 1 view .LVU408
- 1234 012a A3E7     		b	.L64
- 1235              	.L81:
- 222:Core/Src/cnc_core.c ****                     break;
- 1236              		.loc 1 222 25 view .LVU409
- 1237 012c 2046     		mov	r0, r4
- 1238              	.LVL86:
- 222:Core/Src/cnc_core.c ****                     break;
- 1239              		.loc 1 222 25 is_stmt 0 view .LVU410
- 1240 012e FFF7FEFF 		bl	CNC_Absolute
- 1241              	.LVL87:
- 223:Core/Src/cnc_core.c **** 
- 1242              		.loc 1 223 21 is_stmt 1 view .LVU411
- 1243 0132 9FE7     		b	.L64
- 1244              	.LVL88:
- 1245              	.L73:
- 226:Core/Src/cnc_core.c ****                     break;
- 1246              		.loc 1 226 25 view .LVU412
- 226:Core/Src/cnc_core.c ****                     break;
- 1247              		.loc 1 226 36 is_stmt 0 view .LVU413
- 1248 0134 0223     		movs	r3, #2
- 1249 0136 A370     		strb	r3, [r4, #2]
- 227:Core/Src/cnc_core.c ****                 }
- 1250              		.loc 1 227 21 is_stmt 1 view .LVU414
- 1251 0138 9CE7     		b	.L64
- 1252              	.LVL89:
- 1253              	.L66:
- 227:Core/Src/cnc_core.c ****                 }
- 1254              		.loc 1 227 21 is_stmt 0 view .LVU415
- 1255              	.LBE3:
- 233:Core/Src/cnc_core.c ****                 switch (info->move) {
- 1256              		.loc 1 233 13 is_stmt 1 view .LVU416
- 233:Core/Src/cnc_core.c ****                 switch (info->move) {
- 1257              		.loc 1 233 20 is_stmt 0 view .LVU417
- 1258 013a 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
- 233:Core/Src/cnc_core.c ****                 switch (info->move) {
- 1259              		.loc 1 233 15 view .LVU418
- 1260 013c 022B     		cmp	r3, #2
- 1261 013e 99D1     		bne	.L64
- 234:Core/Src/cnc_core.c ****                 case HMI_Move_None:
- 1262              		.loc 1 234 17 is_stmt 1 view .LVU419
- 234:Core/Src/cnc_core.c ****                 case HMI_Move_None:
- 1263              		.loc 1 234 29 is_stmt 0 view .LVU420
- 1264 0140 A378     		ldrb	r3, [r4, #2]	@ zero_extendqisi2
- 1265 0142 022B     		cmp	r3, #2
- 1266 0144 96D0     		beq	.L64
- 1267 0146 032B     		cmp	r3, #3
- 1268 0148 03D0     		beq	.L87
- 1269 014a 53B1     		cbz	r3, .L95
- 254:Core/Src/cnc_core.c ****                 break;
- 1270              		.loc 1 254 21 is_stmt 1 view .LVU421
- 254:Core/Src/cnc_core.c ****                 break;
- 1271              		.loc 1 254 32 is_stmt 0 view .LVU422
- 1272 014c 0223     		movs	r3, #2
-ARM GAS  /tmp/ccir953h.s 			page 30
+ 1185 00e8 F5E7     		b	.L81
+ 1186              	.LVL84:
+ 1187              	.L72:
+ 210:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteX(info)){
+ 1188              		.loc 1 210 25 is_stmt 1 view .LVU393
+ 210:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteX(info)){
+ 1189              		.loc 1 210 57 is_stmt 0 view .LVU394
+ 1190 00ea 236A     		ldr	r3, [r4, #32]
+ 210:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteX(info)){
+ 1191              		.loc 1 210 47 view .LVU395
+ 1192 00ec 6361     		str	r3, [r4, #20]
+ 211:Core/Src/cnc_core.c ****                             if(info->pos.y >= info->P2.y){
+ 1193              		.loc 1 211 25 is_stmt 1 view .LVU396
+ 211:Core/Src/cnc_core.c ****                             if(info->pos.y >= info->P2.y){
+ 1194              		.loc 1 211 28 is_stmt 0 view .LVU397
+ 1195 00ee 2046     		mov	r0, r4
+ 1196              	.LVL85:
+ 211:Core/Src/cnc_core.c ****                             if(info->pos.y >= info->P2.y){
+ 1197              		.loc 1 211 28 view .LVU398
+ 1198 00f0 FFF7FEFF 		bl	CNC_AbsoluteX
+ 1199              	.LVL86:
+ 211:Core/Src/cnc_core.c ****                             if(info->pos.y >= info->P2.y){
+ 1200              		.loc 1 211 27 view .LVU399
+ 1201 00f4 0028     		cmp	r0, #0
+ 1202 00f6 BDD0     		beq	.L60
+ 212:Core/Src/cnc_core.c ****                                 info->move = HMI_Move_None;
+ 1203              		.loc 1 212 29 is_stmt 1 view .LVU400
+ 212:Core/Src/cnc_core.c ****                                 info->move = HMI_Move_None;
+ 1204              		.loc 1 212 41 is_stmt 0 view .LVU401
+ 1205 00f8 A268     		ldr	r2, [r4, #8]
+ 212:Core/Src/cnc_core.c ****                                 info->move = HMI_Move_None;
+ 1206              		.loc 1 212 55 view .LVU402
+ 1207 00fa E36A     		ldr	r3, [r4, #44]
+ 212:Core/Src/cnc_core.c ****                                 info->move = HMI_Move_None;
+ 1208              		.loc 1 212 31 view .LVU403
+ 1209 00fc 9A42     		cmp	r2, r3
+ 1210 00fe 04D3     		bcc	.L82
+ 213:Core/Src/cnc_core.c ****                                 info->state = HMI_State_Stop;
+ 1211              		.loc 1 213 33 is_stmt 1 view .LVU404
+ 213:Core/Src/cnc_core.c ****                                 info->state = HMI_State_Stop;
+ 1212              		.loc 1 213 44 is_stmt 0 view .LVU405
+ 1213 0100 0223     		movs	r3, #2
+ 1214 0102 A370     		strb	r3, [r4, #2]
+ 214:Core/Src/cnc_core.c ****                             }
+ 1215              		.loc 1 214 33 is_stmt 1 view .LVU406
+ 214:Core/Src/cnc_core.c ****                             }
+ 1216              		.loc 1 214 45 is_stmt 0 view .LVU407
+ 1217 0104 0023     		movs	r3, #0
+ 1218 0106 6370     		strb	r3, [r4, #1]
+ 1219 0108 B4E7     		b	.L60
+ 1220              	.L82:
+ 217:Core/Src/cnc_core.c ****                         }
+ 1221              		.loc 1 217 33 is_stmt 1 view .LVU408
+ 217:Core/Src/cnc_core.c ****                         }
+ 1222              		.loc 1 217 44 is_stmt 0 view .LVU409
+ 1223 010a 0723     		movs	r3, #7
+ 1224 010c A370     		strb	r3, [r4, #2]
+ARM GAS  /tmp/ccC6Dxsd.s 			page 29
 
 
- 1273 014e A370     		strb	r3, [r4, #2]
- 255:Core/Src/cnc_core.c ****                 }
- 1274              		.loc 1 255 17 is_stmt 1 view .LVU423
- 1275              	.LBE6:
- 1276              		.loc 1 260 1 is_stmt 0 view .LVU424
- 1277 0150 90E7     		b	.L64
- 1278              	.L87:
- 1279              	.LBB7:
- 244:Core/Src/cnc_core.c ****                     info->update = true;
- 1280              		.loc 1 244 21 is_stmt 1 view .LVU425
- 244:Core/Src/cnc_core.c ****                     info->update = true;
- 1281              		.loc 1 244 32 is_stmt 0 view .LVU426
- 1282 0152 0223     		movs	r3, #2
- 1283 0154 A370     		strb	r3, [r4, #2]
- 245:Core/Src/cnc_core.c ****                     WriteACK(huart, true);
- 1284              		.loc 1 245 21 is_stmt 1 view .LVU427
- 245:Core/Src/cnc_core.c ****                     WriteACK(huart, true);
- 1285              		.loc 1 245 34 is_stmt 0 view .LVU428
- 1286 0156 0121     		movs	r1, #1
- 1287 0158 84F83510 		strb	r1, [r4, #53]
- 246:Core/Src/cnc_core.c ****                 break;
- 1288              		.loc 1 246 21 is_stmt 1 view .LVU429
- 1289 015c FFF7FEFF 		bl	WriteACK
- 1290              	.LVL90:
- 247:Core/Src/cnc_core.c **** 
- 1291              		.loc 1 247 17 view .LVU430
- 1292 0160 88E7     		b	.L64
- 1293              	.LVL91:
- 1294              	.L95:
- 250:Core/Src/cnc_core.c ****                 break;
- 1295              		.loc 1 250 21 view .LVU431
- 1296 0162 2046     		mov	r0, r4
- 1297              	.LVL92:
- 250:Core/Src/cnc_core.c ****                 break;
- 1298              		.loc 1 250 21 is_stmt 0 view .LVU432
- 1299 0164 FFF7FEFF 		bl	CNC_Absolute
- 1300              	.LVL93:
- 251:Core/Src/cnc_core.c **** 
- 1301              		.loc 1 251 17 is_stmt 1 view .LVU433
- 1302 0168 84E7     		b	.L64
- 1303              	.LBE7:
- 1304              		.cfi_endproc
- 1305              	.LFE296:
- 1307              		.section	.text.CNC_Stop,"ax",%progbits
- 1308              		.align	1
- 1309              		.global	CNC_Stop
- 1310              		.syntax unified
- 1311              		.thumb
- 1312              		.thumb_func
- 1314              	CNC_Stop:
- 1315              	.LVL94:
- 1316              	.LFB297:
+ 1225 010e B1E7     		b	.L60
+ 1226              	.LVL87:
+ 1227              	.L70:
+ 222:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteY(info))
+ 1228              		.loc 1 222 25 is_stmt 1 view .LVU410
+ 222:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteY(info))
+ 1229              		.loc 1 222 58 is_stmt 0 view .LVU411
+ 1230 0110 A368     		ldr	r3, [r4, #8]
+ 222:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteY(info))
+ 1231              		.loc 1 222 61 view .LVU412
+ 1232 0112 0A3B     		subs	r3, r3, #10
+ 222:Core/Src/cnc_core.c ****                         if(CNC_AbsoluteY(info))
+ 1233              		.loc 1 222 47 view .LVU413
+ 1234 0114 A361     		str	r3, [r4, #24]
+ 223:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face1;
+ 1235              		.loc 1 223 25 is_stmt 1 view .LVU414
+ 223:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face1;
+ 1236              		.loc 1 223 28 is_stmt 0 view .LVU415
+ 1237 0116 2046     		mov	r0, r4
+ 1238              	.LVL88:
+ 223:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face1;
+ 1239              		.loc 1 223 28 view .LVU416
+ 1240 0118 FFF7FEFF 		bl	CNC_AbsoluteY
+ 1241              	.LVL89:
+ 223:Core/Src/cnc_core.c ****                             info->move = HMI_Move_Face1;
+ 1242              		.loc 1 223 27 view .LVU417
+ 1243 011c 0028     		cmp	r0, #0
+ 1244 011e A9D0     		beq	.L60
+ 224:Core/Src/cnc_core.c ****                     break;
+ 1245              		.loc 1 224 29 is_stmt 1 view .LVU418
+ 224:Core/Src/cnc_core.c ****                     break;
+ 1246              		.loc 1 224 40 is_stmt 0 view .LVU419
+ 1247 0120 0423     		movs	r3, #4
+ 1248 0122 A370     		strb	r3, [r4, #2]
+ 1249 0124 A6E7     		b	.L60
+ 1250              	.LVL90:
+ 1251              	.L75:
+ 228:Core/Src/cnc_core.c ****                     break;
+ 1252              		.loc 1 228 25 is_stmt 1 view .LVU420
+ 228:Core/Src/cnc_core.c ****                     break;
+ 1253              		.loc 1 228 36 is_stmt 0 view .LVU421
+ 1254 0126 0423     		movs	r3, #4
+ 1255 0128 A370     		strb	r3, [r4, #2]
+ 229:Core/Src/cnc_core.c **** 
+ 1256              		.loc 1 229 21 is_stmt 1 view .LVU422
+ 1257 012a A3E7     		b	.L60
+ 1258              	.L77:
+ 232:Core/Src/cnc_core.c ****                     break;
+ 1259              		.loc 1 232 25 view .LVU423
+ 1260 012c 2046     		mov	r0, r4
+ 1261              	.LVL91:
+ 232:Core/Src/cnc_core.c ****                     break;
+ 1262              		.loc 1 232 25 is_stmt 0 view .LVU424
+ 1263 012e FFF7FEFF 		bl	CNC_Absolute
+ 1264              	.LVL92:
+ 233:Core/Src/cnc_core.c **** 
+ 1265              		.loc 1 233 21 is_stmt 1 view .LVU425
+ARM GAS  /tmp/ccC6Dxsd.s 			page 30
+
+
+ 1266 0132 9FE7     		b	.L60
+ 1267              	.LVL93:
+ 1268              	.L69:
+ 236:Core/Src/cnc_core.c ****                     break;
+ 1269              		.loc 1 236 25 view .LVU426
+ 236:Core/Src/cnc_core.c ****                     break;
+ 1270              		.loc 1 236 36 is_stmt 0 view .LVU427
+ 1271 0134 0223     		movs	r3, #2
+ 1272 0136 A370     		strb	r3, [r4, #2]
+ 237:Core/Src/cnc_core.c ****                 }
+ 1273              		.loc 1 237 21 is_stmt 1 view .LVU428
+ 1274 0138 9CE7     		b	.L60
+ 1275              	.LVL94:
+ 1276              	.L62:
+ 237:Core/Src/cnc_core.c ****                 }
+ 1277              		.loc 1 237 21 is_stmt 0 view .LVU429
+ 1278              	.LBE3:
+ 243:Core/Src/cnc_core.c ****                 switch (info->move) {
+ 1279              		.loc 1 243 13 is_stmt 1 view .LVU430
+ 243:Core/Src/cnc_core.c ****                 switch (info->move) {
+ 1280              		.loc 1 243 20 is_stmt 0 view .LVU431
+ 1281 013a 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
+ 243:Core/Src/cnc_core.c ****                 switch (info->move) {
+ 1282              		.loc 1 243 15 view .LVU432
+ 1283 013c 022B     		cmp	r3, #2
+ 1284 013e 99D1     		bne	.L60
+ 244:Core/Src/cnc_core.c ****                 case HMI_Move_None:
+ 1285              		.loc 1 244 17 is_stmt 1 view .LVU433
+ 244:Core/Src/cnc_core.c ****                 case HMI_Move_None:
+ 1286              		.loc 1 244 29 is_stmt 0 view .LVU434
+ 1287 0140 A378     		ldrb	r3, [r4, #2]	@ zero_extendqisi2
+ 1288 0142 022B     		cmp	r3, #2
+ 1289 0144 96D0     		beq	.L60
+ 1290 0146 032B     		cmp	r3, #3
+ 1291 0148 03D0     		beq	.L83
+ 1292 014a 53B1     		cbz	r3, .L91
+ 264:Core/Src/cnc_core.c ****                 break;
+ 1293              		.loc 1 264 21 is_stmt 1 view .LVU435
+ 264:Core/Src/cnc_core.c ****                 break;
+ 1294              		.loc 1 264 32 is_stmt 0 view .LVU436
+ 1295 014c 0223     		movs	r3, #2
+ 1296 014e A370     		strb	r3, [r4, #2]
+ 265:Core/Src/cnc_core.c ****                 }
+ 1297              		.loc 1 265 17 is_stmt 1 view .LVU437
+ 1298              	.LBE6:
+ 1299              		.loc 1 270 1 is_stmt 0 view .LVU438
+ 1300 0150 90E7     		b	.L60
+ 1301              	.L83:
+ 1302              	.LBB7:
+ 254:Core/Src/cnc_core.c ****                     info->update = true;
+ 1303              		.loc 1 254 21 is_stmt 1 view .LVU439
+ 254:Core/Src/cnc_core.c ****                     info->update = true;
+ 1304              		.loc 1 254 32 is_stmt 0 view .LVU440
+ 1305 0152 0223     		movs	r3, #2
+ 1306 0154 A370     		strb	r3, [r4, #2]
+ 255:Core/Src/cnc_core.c ****                     WriteACK(huart, true);
+ 1307              		.loc 1 255 21 is_stmt 1 view .LVU441
+ARM GAS  /tmp/ccC6Dxsd.s 			page 31
+
+
+ 255:Core/Src/cnc_core.c ****                     WriteACK(huart, true);
+ 1308              		.loc 1 255 34 is_stmt 0 view .LVU442
+ 1309 0156 0121     		movs	r1, #1
+ 1310 0158 84F83510 		strb	r1, [r4, #53]
+ 256:Core/Src/cnc_core.c ****                 break;
+ 1311              		.loc 1 256 21 is_stmt 1 view .LVU443
+ 1312 015c FFF7FEFF 		bl	WriteACK
+ 1313              	.LVL95:
+ 257:Core/Src/cnc_core.c **** 
+ 1314              		.loc 1 257 17 view .LVU444
+ 1315 0160 88E7     		b	.L60
+ 1316              	.LVL96:
+ 1317              	.L91:
+ 260:Core/Src/cnc_core.c ****                 break;
+ 1318              		.loc 1 260 21 view .LVU445
+ 1319 0162 2046     		mov	r0, r4
+ 1320              	.LVL97:
+ 260:Core/Src/cnc_core.c ****                 break;
+ 1321              		.loc 1 260 21 is_stmt 0 view .LVU446
+ 1322 0164 FFF7FEFF 		bl	CNC_Absolute
+ 1323              	.LVL98:
  261:Core/Src/cnc_core.c **** 
- 262:Core/Src/cnc_core.c **** void CNC_Stop(HMI_info_t* info){
- 1317              		.loc 1 262 32 view -0
- 1318              		.cfi_startproc
- 1319              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccir953h.s 			page 31
+ 1324              		.loc 1 261 17 is_stmt 1 view .LVU447
+ 1325 0168 84E7     		b	.L60
+ 1326              	.LBE7:
+ 1327              		.cfi_endproc
+ 1328              	.LFE296:
+ 1330              		.section	.text.CNC_Stop,"ax",%progbits
+ 1331              		.align	1
+ 1332              		.global	CNC_Stop
+ 1333              		.syntax unified
+ 1334              		.thumb
+ 1335              		.thumb_func
+ 1337              	CNC_Stop:
+ 1338              	.LVL99:
+ 1339              	.LFB297:
+ 271:Core/Src/cnc_core.c **** 
+ 272:Core/Src/cnc_core.c **** void CNC_Stop(HMI_info_t* const info){
+ 1340              		.loc 1 272 38 view -0
+ 1341              		.cfi_startproc
+ 1342              		@ args = 0, pretend = 0, frame = 0
+ 1343              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1344              		@ link register save eliminated.
+ 273:Core/Src/cnc_core.c ****     info->htimX->Instance->CR1 |= TIM_CR1_OPM;
+ 1345              		.loc 1 273 5 view .LVU449
+ 1346              		.loc 1 273 9 is_stmt 0 view .LVU450
+ 1347 0000 C36B     		ldr	r3, [r0, #60]
+ 1348              		.loc 1 273 16 view .LVU451
+ 1349 0002 1A68     		ldr	r2, [r3]
+ 1350              		.loc 1 273 32 view .LVU452
+ 1351 0004 1368     		ldr	r3, [r2]
+ 1352 0006 43F00803 		orr	r3, r3, #8
+ 1353 000a 1360     		str	r3, [r2]
+ 274:Core/Src/cnc_core.c ****     info->htimY->Instance->CR1 |= TIM_CR1_OPM;
+ 1354              		.loc 1 274 5 is_stmt 1 view .LVU453
+ 1355              		.loc 1 274 9 is_stmt 0 view .LVU454
+ 1356 000c 036C     		ldr	r3, [r0, #64]
+ARM GAS  /tmp/ccC6Dxsd.s 			page 32
 
 
- 1320              		@ frame_needed = 0, uses_anonymous_args = 0
- 1321              		@ link register save eliminated.
- 263:Core/Src/cnc_core.c ****     info->htimX->Instance->CR1 |= TIM_CR1_OPM;
- 1322              		.loc 1 263 5 view .LVU435
- 1323              		.loc 1 263 9 is_stmt 0 view .LVU436
- 1324 0000 C36B     		ldr	r3, [r0, #60]
- 1325              		.loc 1 263 16 view .LVU437
- 1326 0002 1A68     		ldr	r2, [r3]
- 1327              		.loc 1 263 32 view .LVU438
- 1328 0004 1368     		ldr	r3, [r2]
- 1329 0006 43F00803 		orr	r3, r3, #8
- 1330 000a 1360     		str	r3, [r2]
- 264:Core/Src/cnc_core.c ****     info->htimY->Instance->CR1 |= TIM_CR1_OPM;
- 1331              		.loc 1 264 5 is_stmt 1 view .LVU439
- 1332              		.loc 1 264 9 is_stmt 0 view .LVU440
- 1333 000c 036C     		ldr	r3, [r0, #64]
- 1334              		.loc 1 264 16 view .LVU441
- 1335 000e 1A68     		ldr	r2, [r3]
- 1336              		.loc 1 264 32 view .LVU442
- 1337 0010 1368     		ldr	r3, [r2]
- 1338 0012 43F00803 		orr	r3, r3, #8
- 1339 0016 1360     		str	r3, [r2]
- 265:Core/Src/cnc_core.c ****     info->htimX->Instance->SR = 0x00000000U;
- 1340              		.loc 1 265 5 is_stmt 1 view .LVU443
- 1341              		.loc 1 265 9 is_stmt 0 view .LVU444
- 1342 0018 C36B     		ldr	r3, [r0, #60]
- 1343              		.loc 1 265 16 view .LVU445
- 1344 001a 1A68     		ldr	r2, [r3]
- 1345              		.loc 1 265 31 view .LVU446
- 1346 001c 0023     		movs	r3, #0
- 1347 001e 1361     		str	r3, [r2, #16]
- 266:Core/Src/cnc_core.c ****     info->htimY->Instance->SR = 0x00000000U;
- 1348              		.loc 1 266 5 is_stmt 1 view .LVU447
- 1349              		.loc 1 266 9 is_stmt 0 view .LVU448
- 1350 0020 026C     		ldr	r2, [r0, #64]
- 1351              		.loc 1 266 16 view .LVU449
- 1352 0022 1268     		ldr	r2, [r2]
- 1353              		.loc 1 266 31 view .LVU450
- 1354 0024 1361     		str	r3, [r2, #16]
- 267:Core/Src/cnc_core.c **** 
- 268:Core/Src/cnc_core.c ****     info->state = HMI_State_Stop;
- 1355              		.loc 1 268 5 is_stmt 1 view .LVU451
- 1356              		.loc 1 268 17 is_stmt 0 view .LVU452
- 1357 0026 4370     		strb	r3, [r0, #1]
- 269:Core/Src/cnc_core.c ****     info->update = true;
- 1358              		.loc 1 269 5 is_stmt 1 view .LVU453
- 1359              		.loc 1 269 18 is_stmt 0 view .LVU454
- 1360 0028 0123     		movs	r3, #1
- 1361 002a 80F83530 		strb	r3, [r0, #53]
- 270:Core/Src/cnc_core.c ****     info->cnt2 = 10;
- 1362              		.loc 1 270 5 is_stmt 1 view .LVU455
- 1363              		.loc 1 270 16 is_stmt 0 view .LVU456
- 1364 002e 0A23     		movs	r3, #10
- 1365 0030 80F83430 		strb	r3, [r0, #52]
- 271:Core/Src/cnc_core.c **** }
- 1366              		.loc 1 271 1 view .LVU457
- 1367 0034 7047     		bx	lr
-ARM GAS  /tmp/ccir953h.s 			page 32
-
-
- 1368              		.cfi_endproc
- 1369              	.LFE297:
- 1371              		.section	.text.CNC_Limit_X,"ax",%progbits
- 1372              		.align	1
- 1373              		.global	CNC_Limit_X
- 1374              		.syntax unified
- 1375              		.thumb
- 1376              		.thumb_func
- 1378              	CNC_Limit_X:
- 1379              	.LVL95:
- 1380              	.LFB298:
- 272:Core/Src/cnc_core.c **** 
- 273:Core/Src/cnc_core.c **** void CNC_Limit_X(HMI_info_t* info){
- 1381              		.loc 1 273 35 is_stmt 1 view -0
- 1382              		.cfi_startproc
- 1383              		@ args = 0, pretend = 0, frame = 0
- 1384              		@ frame_needed = 0, uses_anonymous_args = 0
- 1385              		@ link register save eliminated.
- 274:Core/Src/cnc_core.c ****     info->htimX->Instance->CR1 |= TIM_CR1_OPM;
- 1386              		.loc 1 274 5 view .LVU459
- 1387              		.loc 1 274 9 is_stmt 0 view .LVU460
- 1388 0000 C36B     		ldr	r3, [r0, #60]
- 1389              		.loc 1 274 16 view .LVU461
- 1390 0002 1A68     		ldr	r2, [r3]
- 1391              		.loc 1 274 32 view .LVU462
- 1392 0004 1368     		ldr	r3, [r2]
- 1393 0006 43F00803 		orr	r3, r3, #8
- 1394 000a 1360     		str	r3, [r2]
+ 1357              		.loc 1 274 16 view .LVU455
+ 1358 000e 1A68     		ldr	r2, [r3]
+ 1359              		.loc 1 274 32 view .LVU456
+ 1360 0010 1368     		ldr	r3, [r2]
+ 1361 0012 43F00803 		orr	r3, r3, #8
+ 1362 0016 1360     		str	r3, [r2]
  275:Core/Src/cnc_core.c ****     info->htimX->Instance->SR = 0x00000000U;
- 1395              		.loc 1 275 5 is_stmt 1 view .LVU463
- 1396              		.loc 1 275 9 is_stmt 0 view .LVU464
- 1397 000c C36B     		ldr	r3, [r0, #60]
- 1398              		.loc 1 275 16 view .LVU465
- 1399 000e 1A68     		ldr	r2, [r3]
- 1400              		.loc 1 275 31 view .LVU466
- 1401 0010 0023     		movs	r3, #0
- 1402 0012 1361     		str	r3, [r2, #16]
- 276:Core/Src/cnc_core.c **** 
- 277:Core/Src/cnc_core.c ****     info->state = HMI_State_Stop;
- 1403              		.loc 1 277 5 is_stmt 1 view .LVU467
- 1404              		.loc 1 277 17 is_stmt 0 view .LVU468
- 1405 0014 4370     		strb	r3, [r0, #1]
- 278:Core/Src/cnc_core.c ****     info->pos.x = 0;
- 1406              		.loc 1 278 5 is_stmt 1 view .LVU469
- 1407              		.loc 1 278 17 is_stmt 0 view .LVU470
- 1408 0016 4360     		str	r3, [r0, #4]
- 279:Core/Src/cnc_core.c ****     info->zeroed.x = true;
- 1409              		.loc 1 279 5 is_stmt 1 view .LVU471
- 1410              		.loc 1 279 20 is_stmt 0 view .LVU472
- 1411 0018 0123     		movs	r3, #1
- 1412 001a 80F83630 		strb	r3, [r0, #54]
- 280:Core/Src/cnc_core.c ****     info->update = true;
- 1413              		.loc 1 280 5 is_stmt 1 view .LVU473
- 1414              		.loc 1 280 18 is_stmt 0 view .LVU474
- 1415 001e 80F83530 		strb	r3, [r0, #53]
+ 1363              		.loc 1 275 5 is_stmt 1 view .LVU457
+ 1364              		.loc 1 275 9 is_stmt 0 view .LVU458
+ 1365 0018 C36B     		ldr	r3, [r0, #60]
+ 1366              		.loc 1 275 16 view .LVU459
+ 1367 001a 1A68     		ldr	r2, [r3]
+ 1368              		.loc 1 275 31 view .LVU460
+ 1369 001c 0023     		movs	r3, #0
+ 1370 001e 1361     		str	r3, [r2, #16]
+ 276:Core/Src/cnc_core.c ****     info->htimY->Instance->SR = 0x00000000U;
+ 1371              		.loc 1 276 5 is_stmt 1 view .LVU461
+ 1372              		.loc 1 276 9 is_stmt 0 view .LVU462
+ 1373 0020 026C     		ldr	r2, [r0, #64]
+ 1374              		.loc 1 276 16 view .LVU463
+ 1375 0022 1268     		ldr	r2, [r2]
+ 1376              		.loc 1 276 31 view .LVU464
+ 1377 0024 1361     		str	r3, [r2, #16]
+ 277:Core/Src/cnc_core.c **** 
+ 278:Core/Src/cnc_core.c ****     info->state = HMI_State_Stop;
+ 1378              		.loc 1 278 5 is_stmt 1 view .LVU465
+ 1379              		.loc 1 278 17 is_stmt 0 view .LVU466
+ 1380 0026 4370     		strb	r3, [r0, #1]
+ 279:Core/Src/cnc_core.c ****     info->update = true;
+ 1381              		.loc 1 279 5 is_stmt 1 view .LVU467
+ 1382              		.loc 1 279 18 is_stmt 0 view .LVU468
+ 1383 0028 0123     		movs	r3, #1
+ 1384 002a 80F83530 		strb	r3, [r0, #53]
+ 280:Core/Src/cnc_core.c ****     info->cnt2 = 10;
+ 1385              		.loc 1 280 5 is_stmt 1 view .LVU469
+ 1386              		.loc 1 280 16 is_stmt 0 view .LVU470
+ 1387 002e 0A23     		movs	r3, #10
+ 1388 0030 80F83430 		strb	r3, [r0, #52]
  281:Core/Src/cnc_core.c **** }
- 1416              		.loc 1 281 1 view .LVU475
-ARM GAS  /tmp/ccir953h.s 			page 33
-
-
- 1417 0022 7047     		bx	lr
- 1418              		.cfi_endproc
- 1419              	.LFE298:
- 1421              		.section	.text.CNC_Limit_Y,"ax",%progbits
- 1422              		.align	1
- 1423              		.global	CNC_Limit_Y
- 1424              		.syntax unified
- 1425              		.thumb
- 1426              		.thumb_func
- 1428              	CNC_Limit_Y:
- 1429              	.LVL96:
- 1430              	.LFB299:
+ 1389              		.loc 1 281 1 view .LVU471
+ 1390 0034 7047     		bx	lr
+ 1391              		.cfi_endproc
+ 1392              	.LFE297:
+ 1394              		.section	.text.CNC_Limit_X,"ax",%progbits
+ 1395              		.align	1
+ 1396              		.global	CNC_Limit_X
+ 1397              		.syntax unified
+ 1398              		.thumb
+ 1399              		.thumb_func
+ 1401              	CNC_Limit_X:
+ 1402              	.LVL100:
+ 1403              	.LFB298:
  282:Core/Src/cnc_core.c **** 
- 283:Core/Src/cnc_core.c **** void CNC_Limit_Y(HMI_info_t* info){
- 1431              		.loc 1 283 35 is_stmt 1 view -0
- 1432              		.cfi_startproc
- 1433              		@ args = 0, pretend = 0, frame = 0
- 1434              		@ frame_needed = 0, uses_anonymous_args = 0
- 1435              		@ link register save eliminated.
- 284:Core/Src/cnc_core.c ****     info->htimY->Instance->CR1 |= TIM_CR1_OPM;
- 1436              		.loc 1 284 5 view .LVU477
- 1437              		.loc 1 284 9 is_stmt 0 view .LVU478
- 1438 0000 036C     		ldr	r3, [r0, #64]
- 1439              		.loc 1 284 16 view .LVU479
- 1440 0002 1A68     		ldr	r2, [r3]
- 1441              		.loc 1 284 32 view .LVU480
- 1442 0004 1368     		ldr	r3, [r2]
- 1443 0006 43F00803 		orr	r3, r3, #8
- 1444 000a 1360     		str	r3, [r2]
- 285:Core/Src/cnc_core.c ****     info->htimY->Instance->SR = 0x00000000U;
- 1445              		.loc 1 285 5 is_stmt 1 view .LVU481
- 1446              		.loc 1 285 9 is_stmt 0 view .LVU482
- 1447 000c 036C     		ldr	r3, [r0, #64]
- 1448              		.loc 1 285 16 view .LVU483
- 1449 000e 1A68     		ldr	r2, [r3]
- 1450              		.loc 1 285 31 view .LVU484
- 1451 0010 0023     		movs	r3, #0
- 1452 0012 1361     		str	r3, [r2, #16]
+ 283:Core/Src/cnc_core.c **** void CNC_Limit_X(HMI_info_t* const info){
+ 1404              		.loc 1 283 41 is_stmt 1 view -0
+ 1405              		.cfi_startproc
+ 1406              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /tmp/ccC6Dxsd.s 			page 33
+
+
+ 1407              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1408              		@ link register save eliminated.
+ 284:Core/Src/cnc_core.c ****     info->htimX->Instance->CR1 |= TIM_CR1_OPM;
+ 1409              		.loc 1 284 5 view .LVU473
+ 1410              		.loc 1 284 9 is_stmt 0 view .LVU474
+ 1411 0000 C36B     		ldr	r3, [r0, #60]
+ 1412              		.loc 1 284 16 view .LVU475
+ 1413 0002 1A68     		ldr	r2, [r3]
+ 1414              		.loc 1 284 32 view .LVU476
+ 1415 0004 1368     		ldr	r3, [r2]
+ 1416 0006 43F00803 		orr	r3, r3, #8
+ 1417 000a 1360     		str	r3, [r2]
+ 285:Core/Src/cnc_core.c ****     info->htimX->Instance->SR = 0x00000000U;
+ 1418              		.loc 1 285 5 is_stmt 1 view .LVU477
+ 1419              		.loc 1 285 9 is_stmt 0 view .LVU478
+ 1420 000c C36B     		ldr	r3, [r0, #60]
+ 1421              		.loc 1 285 16 view .LVU479
+ 1422 000e 1A68     		ldr	r2, [r3]
+ 1423              		.loc 1 285 31 view .LVU480
+ 1424 0010 0023     		movs	r3, #0
+ 1425 0012 1361     		str	r3, [r2, #16]
  286:Core/Src/cnc_core.c **** 
  287:Core/Src/cnc_core.c ****     info->state = HMI_State_Stop;
- 1453              		.loc 1 287 5 is_stmt 1 view .LVU485
- 1454              		.loc 1 287 17 is_stmt 0 view .LVU486
- 1455 0014 4370     		strb	r3, [r0, #1]
- 288:Core/Src/cnc_core.c ****     info->pos.y = 0;
- 1456              		.loc 1 288 5 is_stmt 1 view .LVU487
- 1457              		.loc 1 288 17 is_stmt 0 view .LVU488
- 1458 0016 8360     		str	r3, [r0, #8]
- 289:Core/Src/cnc_core.c ****     info->zeroed.y = true;
- 1459              		.loc 1 289 5 is_stmt 1 view .LVU489
- 1460              		.loc 1 289 20 is_stmt 0 view .LVU490
- 1461 0018 0123     		movs	r3, #1
- 1462 001a 80F83730 		strb	r3, [r0, #55]
+ 1426              		.loc 1 287 5 is_stmt 1 view .LVU481
+ 1427              		.loc 1 287 17 is_stmt 0 view .LVU482
+ 1428 0014 4370     		strb	r3, [r0, #1]
+ 288:Core/Src/cnc_core.c ****     info->pos.x = 0;
+ 1429              		.loc 1 288 5 is_stmt 1 view .LVU483
+ 1430              		.loc 1 288 17 is_stmt 0 view .LVU484
+ 1431 0016 4360     		str	r3, [r0, #4]
+ 289:Core/Src/cnc_core.c ****     info->zeroed.x = true;
+ 1432              		.loc 1 289 5 is_stmt 1 view .LVU485
+ 1433              		.loc 1 289 20 is_stmt 0 view .LVU486
+ 1434 0018 0123     		movs	r3, #1
+ 1435 001a 80F83630 		strb	r3, [r0, #54]
  290:Core/Src/cnc_core.c ****     info->update = true;
- 1463              		.loc 1 290 5 is_stmt 1 view .LVU491
- 1464              		.loc 1 290 18 is_stmt 0 view .LVU492
- 1465 001e 80F83530 		strb	r3, [r0, #53]
+ 1436              		.loc 1 290 5 is_stmt 1 view .LVU487
+ 1437              		.loc 1 290 18 is_stmt 0 view .LVU488
+ 1438 001e 80F83530 		strb	r3, [r0, #53]
  291:Core/Src/cnc_core.c **** }
-ARM GAS  /tmp/ccir953h.s 			page 34
+ 1439              		.loc 1 291 1 view .LVU489
+ 1440 0022 7047     		bx	lr
+ 1441              		.cfi_endproc
+ 1442              	.LFE298:
+ 1444              		.section	.text.CNC_Limit_Y,"ax",%progbits
+ 1445              		.align	1
+ 1446              		.global	CNC_Limit_Y
+ 1447              		.syntax unified
+ 1448              		.thumb
+ 1449              		.thumb_func
+ 1451              	CNC_Limit_Y:
+ 1452              	.LVL101:
+ 1453              	.LFB299:
+ 292:Core/Src/cnc_core.c **** 
+ 293:Core/Src/cnc_core.c **** void CNC_Limit_Y(HMI_info_t* const info){
+ 1454              		.loc 1 293 41 is_stmt 1 view -0
+ 1455              		.cfi_startproc
+ARM GAS  /tmp/ccC6Dxsd.s 			page 34
 
 
- 1466              		.loc 1 291 1 view .LVU493
- 1467 0022 7047     		bx	lr
- 1468              		.cfi_endproc
- 1469              	.LFE299:
- 1471              		.text
- 1472              	.Letext0:
- 1473              		.file 2 "/home/retfie/.config/VSCodium/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/ar
- 1474              		.file 3 "/home/retfie/.config/VSCodium/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/ar
- 1475              		.file 4 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l431xx.h"
- 1476              		.file 5 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
- 1477              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
- 1478              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
- 1479              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h"
- 1480              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h"
- 1481              		.file 10 "Core/Inc/cnc_info.h"
- 1482              		.file 11 "Core/Inc/data_parser.h"
-ARM GAS  /tmp/ccir953h.s 			page 35
+ 1456              		@ args = 0, pretend = 0, frame = 0
+ 1457              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1458              		@ link register save eliminated.
+ 294:Core/Src/cnc_core.c ****     info->htimY->Instance->CR1 |= TIM_CR1_OPM;
+ 1459              		.loc 1 294 5 view .LVU491
+ 1460              		.loc 1 294 9 is_stmt 0 view .LVU492
+ 1461 0000 036C     		ldr	r3, [r0, #64]
+ 1462              		.loc 1 294 16 view .LVU493
+ 1463 0002 1A68     		ldr	r2, [r3]
+ 1464              		.loc 1 294 32 view .LVU494
+ 1465 0004 1368     		ldr	r3, [r2]
+ 1466 0006 43F00803 		orr	r3, r3, #8
+ 1467 000a 1360     		str	r3, [r2]
+ 295:Core/Src/cnc_core.c ****     info->htimY->Instance->SR = 0x00000000U;
+ 1468              		.loc 1 295 5 is_stmt 1 view .LVU495
+ 1469              		.loc 1 295 9 is_stmt 0 view .LVU496
+ 1470 000c 036C     		ldr	r3, [r0, #64]
+ 1471              		.loc 1 295 16 view .LVU497
+ 1472 000e 1A68     		ldr	r2, [r3]
+ 1473              		.loc 1 295 31 view .LVU498
+ 1474 0010 0023     		movs	r3, #0
+ 1475 0012 1361     		str	r3, [r2, #16]
+ 296:Core/Src/cnc_core.c **** 
+ 297:Core/Src/cnc_core.c ****     info->state = HMI_State_Stop;
+ 1476              		.loc 1 297 5 is_stmt 1 view .LVU499
+ 1477              		.loc 1 297 17 is_stmt 0 view .LVU500
+ 1478 0014 4370     		strb	r3, [r0, #1]
+ 298:Core/Src/cnc_core.c ****     info->pos.y = 0;
+ 1479              		.loc 1 298 5 is_stmt 1 view .LVU501
+ 1480              		.loc 1 298 17 is_stmt 0 view .LVU502
+ 1481 0016 8360     		str	r3, [r0, #8]
+ 299:Core/Src/cnc_core.c ****     info->zeroed.y = true;
+ 1482              		.loc 1 299 5 is_stmt 1 view .LVU503
+ 1483              		.loc 1 299 20 is_stmt 0 view .LVU504
+ 1484 0018 0123     		movs	r3, #1
+ 1485 001a 80F83730 		strb	r3, [r0, #55]
+ 300:Core/Src/cnc_core.c ****     info->update = true;
+ 1486              		.loc 1 300 5 is_stmt 1 view .LVU505
+ 1487              		.loc 1 300 18 is_stmt 0 view .LVU506
+ 1488 001e 80F83530 		strb	r3, [r0, #53]
+ 301:Core/Src/cnc_core.c **** }
+ 1489              		.loc 1 301 1 view .LVU507
+ 1490 0022 7047     		bx	lr
+ 1491              		.cfi_endproc
+ 1492              	.LFE299:
+ 1494              		.text
+ 1495              	.Letext0:
+ 1496              		.file 2 "/home/retfie/.config/VSCodium/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/ar
+ 1497              		.file 3 "/home/retfie/.config/VSCodium/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/ar
+ 1498              		.file 4 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l431xx.h"
+ 1499              		.file 5 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
+ 1500              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
+ 1501              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
+ 1502              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h"
+ 1503              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h"
+ 1504              		.file 10 "Core/Inc/cnc_info.h"
+ 1505              		.file 11 "Core/Inc/data_parser.h"
+ARM GAS  /tmp/ccC6Dxsd.s 			page 35
+
+
+ARM GAS  /tmp/ccC6Dxsd.s 			page 36
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 cnc_core.c
-     /tmp/ccir953h.s:20     .text.ihyp:0000000000000000 $t
-     /tmp/ccir953h.s:26     .text.ihyp:0000000000000000 ihyp
-     /tmp/ccir953h.s:65     .text.CNC_Stepper:0000000000000000 $t
-     /tmp/ccir953h.s:71     .text.CNC_Stepper:0000000000000000 CNC_Stepper
-     /tmp/ccir953h.s:380    .text.CNC_Stepper:0000000000000140 $d
-     /tmp/ccir953h.s:386    .text.CNC_Absolute:0000000000000000 $t
-     /tmp/ccir953h.s:392    .text.CNC_Absolute:0000000000000000 CNC_Absolute
-     /tmp/ccir953h.s:552    .text.CNC_Absolute:00000000000000a4 $d
-     /tmp/ccir953h.s:557    .text.CNC_AbsoluteX:0000000000000000 $t
-     /tmp/ccir953h.s:563    .text.CNC_AbsoluteX:0000000000000000 CNC_AbsoluteX
-     /tmp/ccir953h.s:627    .text.CNC_AbsoluteX:000000000000003c $d
-     /tmp/ccir953h.s:632    .text.CNC_AbsoluteY:0000000000000000 $t
-     /tmp/ccir953h.s:638    .text.CNC_AbsoluteY:0000000000000000 CNC_AbsoluteY
-     /tmp/ccir953h.s:702    .text.CNC_AbsoluteY:000000000000003c $d
-     /tmp/ccir953h.s:707    .text.CNC_Jog:0000000000000000 $t
-     /tmp/ccir953h.s:713    .text.CNC_Jog:0000000000000000 CNC_Jog
-     /tmp/ccir953h.s:799    .text.CNC_TIM_Callback_X:0000000000000000 $t
-     /tmp/ccir953h.s:805    .text.CNC_TIM_Callback_X:0000000000000000 CNC_TIM_Callback_X
-     /tmp/ccir953h.s:843    .text.CNC_TIM_Callback_Y:0000000000000000 $t
-     /tmp/ccir953h.s:849    .text.CNC_TIM_Callback_Y:0000000000000000 CNC_TIM_Callback_Y
-     /tmp/ccir953h.s:887    .text.CNC_HL_Control:0000000000000000 $t
-     /tmp/ccir953h.s:893    .text.CNC_HL_Control:0000000000000000 CNC_HL_Control
-     /tmp/ccir953h.s:917    .text.CNC_HL_Control:0000000000000010 $d
-     /tmp/ccir953h.s:921    .text.CNC_HL_Control:0000000000000014 $t
-     /tmp/ccir953h.s:1034   .text.CNC_HL_Control:0000000000000086 $d
-     /tmp/ccir953h.s:1042   .text.CNC_HL_Control:000000000000008e $t
-     /tmp/ccir953h.s:1308   .text.CNC_Stop:0000000000000000 $t
-     /tmp/ccir953h.s:1314   .text.CNC_Stop:0000000000000000 CNC_Stop
-     /tmp/ccir953h.s:1372   .text.CNC_Limit_X:0000000000000000 $t
-     /tmp/ccir953h.s:1378   .text.CNC_Limit_X:0000000000000000 CNC_Limit_X
-     /tmp/ccir953h.s:1422   .text.CNC_Limit_Y:0000000000000000 $t
-     /tmp/ccir953h.s:1428   .text.CNC_Limit_Y:0000000000000000 CNC_Limit_Y
+     /tmp/ccC6Dxsd.s:20     .text.ihyp:0000000000000000 $t
+     /tmp/ccC6Dxsd.s:26     .text.ihyp:0000000000000000 ihyp
+     /tmp/ccC6Dxsd.s:65     .text.CNC_Stepper:0000000000000000 $t
+     /tmp/ccC6Dxsd.s:71     .text.CNC_Stepper:0000000000000000 CNC_Stepper
+     /tmp/ccC6Dxsd.s:380    .text.CNC_Stepper:0000000000000140 $d
+     /tmp/ccC6Dxsd.s:386    .text.CNC_Absolute:0000000000000000 $t
+     /tmp/ccC6Dxsd.s:392    .text.CNC_Absolute:0000000000000000 CNC_Absolute
+     /tmp/ccC6Dxsd.s:580    .text.CNC_AbsoluteX:0000000000000000 $t
+     /tmp/ccC6Dxsd.s:586    .text.CNC_AbsoluteX:0000000000000000 CNC_AbsoluteX
+     /tmp/ccC6Dxsd.s:651    .text.CNC_AbsoluteY:0000000000000000 $t
+     /tmp/ccC6Dxsd.s:657    .text.CNC_AbsoluteY:0000000000000000 CNC_AbsoluteY
+     /tmp/ccC6Dxsd.s:722    .text.CNC_Jog:0000000000000000 $t
+     /tmp/ccC6Dxsd.s:728    .text.CNC_Jog:0000000000000000 CNC_Jog
+     /tmp/ccC6Dxsd.s:814    .text.CNC_TIM_Callback_X:0000000000000000 $t
+     /tmp/ccC6Dxsd.s:820    .text.CNC_TIM_Callback_X:0000000000000000 CNC_TIM_Callback_X
+     /tmp/ccC6Dxsd.s:862    .text.CNC_TIM_Callback_Y:0000000000000000 $t
+     /tmp/ccC6Dxsd.s:868    .text.CNC_TIM_Callback_Y:0000000000000000 CNC_TIM_Callback_Y
+     /tmp/ccC6Dxsd.s:910    .text.CNC_HL_Control:0000000000000000 $t
+     /tmp/ccC6Dxsd.s:916    .text.CNC_HL_Control:0000000000000000 CNC_HL_Control
+     /tmp/ccC6Dxsd.s:940    .text.CNC_HL_Control:0000000000000010 $d
+     /tmp/ccC6Dxsd.s:944    .text.CNC_HL_Control:0000000000000014 $t
+     /tmp/ccC6Dxsd.s:1057   .text.CNC_HL_Control:0000000000000086 $d
+     /tmp/ccC6Dxsd.s:1065   .text.CNC_HL_Control:000000000000008e $t
+     /tmp/ccC6Dxsd.s:1331   .text.CNC_Stop:0000000000000000 $t
+     /tmp/ccC6Dxsd.s:1337   .text.CNC_Stop:0000000000000000 CNC_Stop
+     /tmp/ccC6Dxsd.s:1395   .text.CNC_Limit_X:0000000000000000 $t
+     /tmp/ccC6Dxsd.s:1401   .text.CNC_Limit_X:0000000000000000 CNC_Limit_X
+     /tmp/ccC6Dxsd.s:1445   .text.CNC_Limit_Y:0000000000000000 $t
+     /tmp/ccC6Dxsd.s:1451   .text.CNC_Limit_Y:0000000000000000 CNC_Limit_Y
 
 UNDEFINED SYMBOLS
 HAL_GPIO_ReadPin

@@ -50,7 +50,7 @@ bool ReadGcode(UART_HandleTypeDef *huart, HMI_info_t* info){
 }
 */
 
-void ReadGcodeDMA(UART_HandleTypeDef *huart, uint8_t* uartData, HMI_info_t* info){
+void ReadGcodeDMA(UART_HandleTypeDef *huart, uint8_t* uartData, HMI_info_t* const info){
   bool check = (uartData[10] == 0);
   
   uint16_t *g_cmd, *sum_value, *xor_value;

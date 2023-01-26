@@ -16,7 +16,7 @@ uint8_t __Read_Pushbuttons(){
 static char ModeNames[4][17]  = {"AZZERAMENTO     ", "MANUALE         ", "SPIANATURA      ", "COMPUTER        "};
 static char StateNames[4][17] = {"STOP            ", "PAUSE           ", "RUN             "};
 
-void __BP_Control(HMI_info_t* info, uint8_t mask, bool pause_mask){
+void __BP_Control(HMI_info_t* const info, uint8_t mask, bool pause_mask){
   uint8_t newPushbuttons = __Read_Pushbuttons();
   uint8_t PBpressed = ~newPushbuttons & info->pushbuttons & mask;
 
@@ -73,7 +73,7 @@ void __BP_Control(HMI_info_t* info, uint8_t mask, bool pause_mask){
   info->pushbuttons = newPushbuttons;
 }
 
-void HMI_Update(HMI_info_t* info){
+void HMI_Update(HMI_info_t* const info){
   switch (info->mode) {
   case  HMI_Mode_Zero:
     __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE | PB_SET | PB_JOY), false);
@@ -123,8 +123,8 @@ void HMI_Update(HMI_info_t* info){
       }
       else
         sprintf(textStr, "Y: ???");
-      setCursor(0, 0);
-      writeLCD(textStr);
+      //setCursor(0, 0);
+      //writeLCD(textStr);
 
       if(info->zeroed.x){
         sprintf(textStr, "X: %05lumm   P2\xdb", info->pos.x/stepY_01mm);
@@ -137,8 +137,8 @@ void HMI_Update(HMI_info_t* info){
       }
       else
         sprintf(textStr, "X: ???");
-      setCursor(0, 1);
-      writeLCD(textStr);
+      //setCursor(0, 1);
+      //writeLCD(textStr);
       info->update = false;
     }
   }

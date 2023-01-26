@@ -13,19 +13,19 @@
 
 uint32_t ihyp(uint32_t x, uint32_t y);
 
-void CNC_Stepper(HMI_info_t* info, bool runX, bool runY);
+void CNC_Stepper(HMI_info_t* const info, bool runX, bool runY);
 
-void CNC_Absolute(HMI_info_t* info);
-bool CNC_AbsoluteX(HMI_info_t* info);
-bool CNC_AbsoluteY(HMI_info_t* info);
-void CNC_JOG(HMI_info_t* info);
+void CNC_Absolute(HMI_info_t* const info);
+bool CNC_AbsoluteX(HMI_info_t* const info);
+bool CNC_AbsoluteY(HMI_info_t* const info);
+void CNC_JOG(HMI_info_t* const info);
 
-void CNC_TIM_Callback_X(HMI_info_t* info);
-void CNC_TIM_Callback_Y(HMI_info_t* info);
+void CNC_TIM_Callback_X(HMI_info_t* const info);
+void CNC_TIM_Callback_Y(HMI_info_t* const info);
 
-void CNC_HL_Control(HMI_info_t* info, UART_HandleTypeDef *huart, volatile uint16_t *adc_data);
-void CNC_Stop(HMI_info_t* info);
-void CNC_Limit_X(HMI_info_t* info);
-void CNC_Limit_Y(HMI_info_t* info);
+void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile uint16_t *adc_data);
+void CNC_Stop(HMI_info_t* const info);
+void CNC_Limit_X(HMI_info_t* const info);
+void CNC_Limit_Y(HMI_info_t* const info);
 
 #endif

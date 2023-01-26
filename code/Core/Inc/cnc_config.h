@@ -33,8 +33,8 @@
 #define max_accY 40
 
 //stepper speed divider
-#define freqX_1mm_min 652174
-#define freqY_1mm_min 652174
+#define freqX_1mm_min 65514 
+#define freqY_1mm_min 65514
 
 //CNC limits in steps units
 #define max_limX 13000 //1300.0 mm

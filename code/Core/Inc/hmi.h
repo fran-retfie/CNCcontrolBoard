@@ -16,8 +16,8 @@
 #define PB_JOY  0x01U
 
 uint8_t __Read_Pushbuttons(void);
-void __BP_Control(HMI_info_t* info, uint8_t mask, bool pause_mask);
-void HMI_Update(HMI_info_t* info);
+void __BP_Control(HMI_info_t* const info, uint8_t mask, bool pause_mask);
+void HMI_Update(HMI_info_t* const info);
 
 //void    Test_Stuff();
 

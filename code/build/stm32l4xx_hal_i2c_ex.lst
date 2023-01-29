@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccWeWlfd.s 			page 1
+ARM GAS  /tmp/ccp3LZdT.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccWeWlfd.s 			page 1
   27:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c **** 
   28:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****   [..] Comparing to other previous devices, the I2C interface for STM32L4xx
   29:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****        devices contains the following additional features
-ARM GAS  /tmp/ccWeWlfd.s 			page 2
+ARM GAS  /tmp/ccp3LZdT.s 			page 2
 
 
   30:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccWeWlfd.s 			page 1
   84:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c **** 
   85:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c **** @endverbatim
   86:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****   * @{
-ARM GAS  /tmp/ccWeWlfd.s 			page 3
+ARM GAS  /tmp/ccp3LZdT.s 			page 3
 
 
   87:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****   */
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccWeWlfd.s 			page 1
   60 0020 0068     		ldr	r0, [r0]
   61              	.LVL1:
   62              		.loc 1 110 5 is_stmt 0 discriminator 2 view .LVU14
-ARM GAS  /tmp/ccWeWlfd.s 			page 4
+ARM GAS  /tmp/ccp3LZdT.s 			page 4
 
 
   63 0022 0268     		ldr	r2, [r0]
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccWeWlfd.s 			page 1
  127:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****   else
  128:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****   {
  129:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****     return HAL_BUSY;
-ARM GAS  /tmp/ccWeWlfd.s 			page 5
+ARM GAS  /tmp/ccp3LZdT.s 			page 5
 
 
  101              		.loc 1 129 12 view .LVU30
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccWeWlfd.s 			page 1
  137              		.loc 1 148 11 is_stmt 0 view .LVU40
  138 0002 90F84120 		ldrb	r2, [r0, #65]	@ zero_extendqisi2
  139 0006 D2B2     		uxtb	r2, r2
-ARM GAS  /tmp/ccWeWlfd.s 			page 6
+ARM GAS  /tmp/ccp3LZdT.s 			page 6
 
 
  140              		.loc 1 148 6 view .LVU41
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccWeWlfd.s 			page 1
  166:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c **** 
  167:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****     /* Store the new register value */
  168:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****     hi2c->Instance->CR1 = tmpreg;
-ARM GAS  /tmp/ccWeWlfd.s 			page 7
+ARM GAS  /tmp/ccp3LZdT.s 			page 7
 
 
  177              		.loc 1 168 5 is_stmt 1 discriminator 2 view .LVU57
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccWeWlfd.s 			page 1
  215 0056 7047     		bx	lr
  216              		.cfi_endproc
  217              	.LFE289:
-ARM GAS  /tmp/ccWeWlfd.s 			page 8
+ARM GAS  /tmp/ccp3LZdT.s 			page 8
 
 
  219              		.section	.text.HAL_I2CEx_EnableWakeUp,"ax",%progbits
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccWeWlfd.s 			page 1
  214:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****   {
  215:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****     /* Process Locked */
  216:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****     __HAL_LOCK(hi2c);
-ARM GAS  /tmp/ccWeWlfd.s 			page 9
+ARM GAS  /tmp/ccp3LZdT.s 			page 9
 
 
  244              		.loc 1 216 5 is_stmt 1 view .LVU79
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccWeWlfd.s 			page 1
  283 0046 83F84000 		strb	r0, [r3, #64]
  284              		.loc 1 231 5 is_stmt 1 discriminator 2 view .LVU95
  232:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c **** 
-ARM GAS  /tmp/ccWeWlfd.s 			page 10
+ARM GAS  /tmp/ccp3LZdT.s 			page 10
 
 
  233:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****     return HAL_OK;
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccWeWlfd.s 			page 1
  322              		.loc 1 250 3 is_stmt 1 view .LVU104
  251:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c **** 
  252:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****   if (hi2c->State == HAL_I2C_STATE_READY)
-ARM GAS  /tmp/ccWeWlfd.s 			page 11
+ARM GAS  /tmp/ccp3LZdT.s 			page 11
 
 
  323              		.loc 1 252 3 view .LVU105
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccWeWlfd.s 			page 1
  362 003e 2022     		movs	r2, #32
  363 0040 80F84120 		strb	r2, [r0, #65]
  268:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c **** 
-ARM GAS  /tmp/ccWeWlfd.s 			page 12
+ARM GAS  /tmp/ccp3LZdT.s 			page 12
 
 
  269:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****     /* Process Unlocked */
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccWeWlfd.s 			page 1
  287:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****  ===============================================================================
  288:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****                       ##### Fast Mode Plus Functions #####
  289:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****  ===============================================================================
-ARM GAS  /tmp/ccWeWlfd.s 			page 13
+ARM GAS  /tmp/ccp3LZdT.s 			page 13
 
 
  290:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****     [..] This section provides functions allowing to:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccWeWlfd.s 			page 1
  424              	.LBE2:
  425              		.loc 1 320 3 view .LVU139
  321:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c **** 
-ARM GAS  /tmp/ccWeWlfd.s 			page 14
+ARM GAS  /tmp/ccp3LZdT.s 			page 14
 
 
  322:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****   /* Enable fast mode plus driving capability for selected pin */
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccWeWlfd.s 			page 1
  459              		.loc 1 344 1 is_stmt 0 view .LVU143
  460 0000 82B0     		sub	sp, sp, #8
  461              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/ccWeWlfd.s 			page 15
+ARM GAS  /tmp/ccp3LZdT.s 			page 15
 
 
  345:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****   /* Check the parameter */
@@ -892,24 +892,24 @@ ARM GAS  /tmp/ccWeWlfd.s 			page 1
  502              		.file 5 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
  503              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
  504              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_i2c.h"
-ARM GAS  /tmp/ccWeWlfd.s 			page 16
+ARM GAS  /tmp/ccp3LZdT.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32l4xx_hal_i2c_ex.c
-     /tmp/ccWeWlfd.s:20     .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000000 $t
-     /tmp/ccWeWlfd.s:26     .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000000 HAL_I2CEx_ConfigAnalogFilter
-     /tmp/ccWeWlfd.s:117    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000000 $t
-     /tmp/ccWeWlfd.s:123    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000000 HAL_I2CEx_ConfigDigitalFilter
-     /tmp/ccWeWlfd.s:220    .text.HAL_I2CEx_EnableWakeUp:0000000000000000 $t
-     /tmp/ccWeWlfd.s:226    .text.HAL_I2CEx_EnableWakeUp:0000000000000000 HAL_I2CEx_EnableWakeUp
-     /tmp/ccWeWlfd.s:306    .text.HAL_I2CEx_DisableWakeUp:0000000000000000 $t
-     /tmp/ccWeWlfd.s:312    .text.HAL_I2CEx_DisableWakeUp:0000000000000000 HAL_I2CEx_DisableWakeUp
-     /tmp/ccWeWlfd.s:392    .text.HAL_I2CEx_EnableFastModePlus:0000000000000000 $t
-     /tmp/ccWeWlfd.s:398    .text.HAL_I2CEx_EnableFastModePlus:0000000000000000 HAL_I2CEx_EnableFastModePlus
-     /tmp/ccWeWlfd.s:439    .text.HAL_I2CEx_EnableFastModePlus:0000000000000024 $d
-     /tmp/ccWeWlfd.s:445    .text.HAL_I2CEx_DisableFastModePlus:0000000000000000 $t
-     /tmp/ccWeWlfd.s:451    .text.HAL_I2CEx_DisableFastModePlus:0000000000000000 HAL_I2CEx_DisableFastModePlus
-     /tmp/ccWeWlfd.s:492    .text.HAL_I2CEx_DisableFastModePlus:0000000000000024 $d
+     /tmp/ccp3LZdT.s:20     .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000000 $t
+     /tmp/ccp3LZdT.s:26     .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000000 HAL_I2CEx_ConfigAnalogFilter
+     /tmp/ccp3LZdT.s:117    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000000 $t
+     /tmp/ccp3LZdT.s:123    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000000 HAL_I2CEx_ConfigDigitalFilter
+     /tmp/ccp3LZdT.s:220    .text.HAL_I2CEx_EnableWakeUp:0000000000000000 $t
+     /tmp/ccp3LZdT.s:226    .text.HAL_I2CEx_EnableWakeUp:0000000000000000 HAL_I2CEx_EnableWakeUp
+     /tmp/ccp3LZdT.s:306    .text.HAL_I2CEx_DisableWakeUp:0000000000000000 $t
+     /tmp/ccp3LZdT.s:312    .text.HAL_I2CEx_DisableWakeUp:0000000000000000 HAL_I2CEx_DisableWakeUp
+     /tmp/ccp3LZdT.s:392    .text.HAL_I2CEx_EnableFastModePlus:0000000000000000 $t
+     /tmp/ccp3LZdT.s:398    .text.HAL_I2CEx_EnableFastModePlus:0000000000000000 HAL_I2CEx_EnableFastModePlus
+     /tmp/ccp3LZdT.s:439    .text.HAL_I2CEx_EnableFastModePlus:0000000000000024 $d
+     /tmp/ccp3LZdT.s:445    .text.HAL_I2CEx_DisableFastModePlus:0000000000000000 $t
+     /tmp/ccp3LZdT.s:451    .text.HAL_I2CEx_DisableFastModePlus:0000000000000000 HAL_I2CEx_DisableFastModePlus
+     /tmp/ccp3LZdT.s:492    .text.HAL_I2CEx_DisableFastModePlus:0000000000000024 $d
 
 NO UNDEFINED SYMBOLS

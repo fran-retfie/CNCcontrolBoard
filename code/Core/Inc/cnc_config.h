@@ -13,20 +13,20 @@
 #define dirX_Port O10_GPIO_Port
 #define dirY_Pin  O11_Pin
 #define dirY_Port O11_GPIO_Port
-#define enX_tim   htim1
-#define enY_tim   htim15
+#define enX_tim   htim15
+#define enY_tim   htim1
 #define limitX_Pin SW0_Pin
 #define limitX_Port SW0_GPIO_Port
 #define limitY_Pin SW1_Pin
 #define limitY_Port SW1_GPIO_Port
 
 //step required to move 0.1mm
-#define stepX_01mm 4
-#define stepY_01mm 4
+#define stepX_01mm 8
+#define stepY_01mm 8
 
 //max velocity
-#define max_velX 1000
-#define max_velY 1000
+#define max_velX 4000
+#define max_velY 4000
 
 //max accelleration
 #define max_accX 40
@@ -37,13 +37,13 @@
 #define freqY_1mm_min 65514
 
 //CNC limits in steps units
-#define max_limX 13000 //1300.0 mm
+#define max_limX 11280 //1300.0 mm
 #define max_limY 40000 //4000.0 mm
 #define min_limX 0
 #define min_limY 0
 
 //CNC face parameters
-#define face_depth_Y   310
-#define face_retract_Y 10
+#define face_depth_Y   380
+#define face_retract_Y 380
 
 #endif

@@ -88,7 +88,9 @@ HMI_info_t hmi_info = { .mode = HMI_Mode_Zero,
                         .pos = {3000, 3000},
                         .pulseLenght = {1000, 1000},
                         .commanded.pos = {0, 0},
-                        .feed = 1000,
+                        .feed = 2000,
+                        .runX = false,
+                        .runY = false,
                         .P1 = {10,10},
                         .P2 = {300,300},
                         .P1set = false,
@@ -150,8 +152,8 @@ int main(void)
 
   HAL_TIM_Base_Start_IT(&htim7);
 
-  HAL_TIMEx_PWMN_Start_IT(&enX_tim, TIM_CHANNEL_3);
-  HAL_TIM_PWM_Start_IT(&enY_tim, TIM_CHANNEL_1);
+  HAL_TIMEx_PWMN_Start_IT(&htim1, TIM_CHANNEL_3);
+  HAL_TIM_PWM_Start_IT(&htim15, TIM_CHANNEL_1);
   enX_tim.Instance->CR1 &= ~TIM_CR1_CEN;
   enY_tim.Instance->CR1 &= ~TIM_CR1_CEN;
   enX_tim.Instance->CR1 &= ~TIM_CR1_ARPE;
@@ -171,6 +173,11 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
     CNC_HL_Control(&hmi_info, &huart1, adc_data);
+
+    if(hmi_info.HMIupdate){
+      hmi_info.HMIupdate = false;
+      HMI_Update(&hmi_info);
+    }
     //HAL_Delay(1);
   }
   /* USER CODE END 3 */
@@ -782,7 +789,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pins : SW0_Pin SW1_Pin */
   GPIO_InitStruct.Pin = SW0_Pin|SW1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
@@ -818,19 +825,19 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 void TIM1_CC_IRQHandler(void)
 {
   htim1.Instance->SR = 0x00000000U;
-  CNC_TIM_Callback_X(&hmi_info);
+  CNC_TIM_Callback_Y(&hmi_info);
 }
 
 void TIM1_BRK_TIM15_IRQHandler(void)
 {
   htim15.Instance->SR = 0x00000000U;
-  CNC_TIM_Callback_Y(&hmi_info);
+  CNC_TIM_Callback_X(&hmi_info);
 }
 
 void TIM7_IRQHandler(void)
 {
   htim7.Instance->SR = 0x00000000U;
-  HMI_Update(&hmi_info);
+  hmi_info.HMIupdate = true;
 }
 
 

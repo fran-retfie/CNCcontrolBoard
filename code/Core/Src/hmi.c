@@ -123,8 +123,10 @@ void HMI_Update(HMI_info_t* const info){
       }
       else
         sprintf(textStr, "Y: ???");
-      //setCursor(0, 0);
-      //writeLCD(textStr);
+      if(!info->runX && !info->runY){
+        setCursor(0, 0);
+        writeLCD(textStr);
+      }
 
       if(info->zeroed.x){
         sprintf(textStr, "X: %05lumm   P2\xdb", info->pos.x/stepY_01mm);
@@ -137,8 +139,10 @@ void HMI_Update(HMI_info_t* const info){
       }
       else
         sprintf(textStr, "X: ???");
-      //setCursor(0, 1);
-      //writeLCD(textStr);
+      if(!info->runX && !info->runY){
+        setCursor(0, 1);
+        writeLCD(textStr);
+      }
       info->update = false;
     }
   }

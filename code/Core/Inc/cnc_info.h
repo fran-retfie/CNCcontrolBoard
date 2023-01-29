@@ -78,6 +78,10 @@ typedef struct
     uint8_t cnt1;
     uint8_t cnt2;
     bool update;
+    bool HMIupdate;
+    bool HMIline;
+    bool runX;
+    bool runY;
     bvec_t zeroed;
     uint8_t pushbuttons;
     TIM_HandleTypeDef* htimX;

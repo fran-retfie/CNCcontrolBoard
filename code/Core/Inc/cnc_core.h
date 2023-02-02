@@ -15,6 +15,8 @@ uint32_t ihyp(uint32_t x, uint32_t y);
 
 void CNC_Stepper(HMI_info_t* const info);
 
+void CNC_JogX_Forced(HMI_info_t* const info);
+void CNC_JogY_Forced(HMI_info_t* const info);
 void CNC_Absolute(HMI_info_t* const info);
 bool CNC_AbsoluteX(HMI_info_t* const info);
 bool CNC_AbsoluteY(HMI_info_t* const info);

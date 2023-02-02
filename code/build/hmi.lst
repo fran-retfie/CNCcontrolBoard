@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccKBAikY.s 			page 1
+ARM GAS  /tmp/ccw11eFX.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
   43 000c 1069     		ldr	r0, [r2, #16]
   44              		.loc 1 13 104 view .LVU5
   45 000e C0F38400 		ubfx	r0, r0, #2, #5
-ARM GAS  /tmp/ccKBAikY.s 			page 2
+ARM GAS  /tmp/ccw11eFX.s 			page 2
 
 
   14:Core/Src/hmi.c **** }
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
   94              		.loc 1 21 45 view .LVU14
   95 0014 94F83C50 		ldrb	r5, [r4, #60]	@ zero_extendqisi2
   96              		.loc 1 21 11 view .LVU15
-ARM GAS  /tmp/ccKBAikY.s 			page 3
+ARM GAS  /tmp/ccw11eFX.s 			page 3
 
 
   97 0018 1D40     		ands	r5, r5, r3
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
  144              	.L5:
   29:Core/Src/hmi.c ****   }
   30:Core/Src/hmi.c **** 
-ARM GAS  /tmp/ccKBAikY.s 			page 4
+ARM GAS  /tmp/ccw11eFX.s 			page 4
 
 
   31:Core/Src/hmi.c ****   if(PBpressed & PB_STOP){
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
   44:Core/Src/hmi.c ****       info->P1set = true;
  186              		.loc 1 44 7 is_stmt 1 view .LVU58
  187              		.loc 1 44 19 is_stmt 0 view .LVU59
-ARM GAS  /tmp/ccKBAikY.s 			page 5
+ARM GAS  /tmp/ccw11eFX.s 			page 5
 
 
  188 0084 0123     		movs	r3, #1
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
   72:Core/Src/hmi.c **** 
   73:Core/Src/hmi.c ****   info->pushbuttons = newPushbuttons;
  215              		.loc 1 73 3 is_stmt 1 view .LVU70
-ARM GAS  /tmp/ccKBAikY.s 			page 6
+ARM GAS  /tmp/ccw11eFX.s 			page 6
 
 
  216              		.loc 1 73 21 is_stmt 0 view .LVU71
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
  255              		.loc 1 60 37 discriminator 1 view .LVU86
  256 00d2 4021     		movs	r1, #64
  257 00d4 4FF09040 		mov	r0, #1207959552
-ARM GAS  /tmp/ccKBAikY.s 			page 7
+ARM GAS  /tmp/ccw11eFX.s 			page 7
 
 
  258 00d8 FFF7FEFF 		bl	HAL_GPIO_ReadPin
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
  297      6D6D2020 
  297      205031DB 
  297      00
-ARM GAS  /tmp/ccKBAikY.s 			page 8
+ARM GAS  /tmp/ccw11eFX.s 			page 8
 
 
  298 0011 000000   		.align	2
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
   79:Core/Src/hmi.c ****     __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE | PB_SET | PB_JOY), false);
  343              		.loc 1 79 5 is_stmt 1 view .LVU106
  344 0014 0022     		movs	r2, #0
-ARM GAS  /tmp/ccKBAikY.s 			page 9
+ARM GAS  /tmp/ccw11eFX.s 			page 9
 
 
  345 0016 5B21     		movs	r1, #91
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
  369              		.loc 1 109 7 view .LVU118
  370 0034 13B9     		cbnz	r3, .L19
  371              		.loc 1 109 25 is_stmt 1 discriminator 1 view .LVU119
-ARM GAS  /tmp/ccKBAikY.s 			page 10
+ARM GAS  /tmp/ccw11eFX.s 			page 10
 
 
  372              		.loc 1 109 38 is_stmt 0 discriminator 1 view .LVU120
@@ -561,7 +561,7 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
  123:Core/Src/hmi.c ****       }
  124:Core/Src/hmi.c ****       else
  125:Core/Src/hmi.c ****         sprintf(textStr, "Y: ???");
- 126:Core/Src/hmi.c ****       if(!info->runX && !info->runY){
+ 126:Core/Src/hmi.c ****       if(!info->run.x && !info->run.y){
  127:Core/Src/hmi.c ****         setCursor(0, 0);
  128:Core/Src/hmi.c ****         writeLCD(textStr);
  129:Core/Src/hmi.c ****       }
@@ -577,7 +577,7 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
  139:Core/Src/hmi.c ****       }
  140:Core/Src/hmi.c ****       else
  141:Core/Src/hmi.c ****         sprintf(textStr, "X: ???");
- 142:Core/Src/hmi.c ****       if(!info->runX && !info->runY){
+ 142:Core/Src/hmi.c ****       if(!info->run.x && !info->run.y){
  143:Core/Src/hmi.c ****         setCursor(0, 1);
  144:Core/Src/hmi.c ****         writeLCD(textStr);
  145:Core/Src/hmi.c ****       }
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
  385              		.loc 1 83 5 is_stmt 1 view .LVU122
  386 0040 0022     		movs	r2, #0
  387 0042 5B21     		movs	r1, #91
-ARM GAS  /tmp/ccKBAikY.s 			page 11
+ARM GAS  /tmp/ccw11eFX.s 			page 11
 
 
  388 0044 FFF7FEFF 		bl	__BP_Control
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
  430 0076 01A8     		add	r0, sp, #4
  431 0078 FFF7FEFF 		bl	writeLCD
  432              	.LVL20:
-ARM GAS  /tmp/ccKBAikY.s 			page 12
+ARM GAS  /tmp/ccw11eFX.s 			page 12
 
 
  104:Core/Src/hmi.c ****       setCursor(0, 1);
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
  115:Core/Src/hmi.c ****         sprintf(textStr, "Y: %05lumm   P1\xdb", info->pos.y/stepY_01mm);
  472              		.loc 1 115 9 view .LVU150
  473 00ae 002B     		cmp	r3, #0
-ARM GAS  /tmp/ccKBAikY.s 			page 13
+ARM GAS  /tmp/ccw11eFX.s 			page 13
 
 
  474 00b0 42D0     		beq	.L29
@@ -778,19 +778,19 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
  126:Core/Src/hmi.c ****         setCursor(0, 0);
  512              		.loc 1 126 7 is_stmt 1 view .LVU167
  126:Core/Src/hmi.c ****         setCursor(0, 0);
-ARM GAS  /tmp/ccKBAikY.s 			page 14
+ARM GAS  /tmp/ccw11eFX.s 			page 14
 
 
- 513              		.loc 1 126 15 is_stmt 0 view .LVU168
+ 513              		.loc 1 126 20 is_stmt 0 view .LVU168
  514 00e2 94F83830 		ldrb	r3, [r4, #56]	@ zero_extendqisi2
  126:Core/Src/hmi.c ****         setCursor(0, 0);
  515              		.loc 1 126 9 view .LVU169
  516 00e6 13B9     		cbnz	r3, .L33
  126:Core/Src/hmi.c ****         setCursor(0, 0);
- 517              		.loc 1 126 30 discriminator 1 view .LVU170
+ 517              		.loc 1 126 36 discriminator 1 view .LVU170
  518 00e8 94F83930 		ldrb	r3, [r4, #57]	@ zero_extendqisi2
  126:Core/Src/hmi.c ****         setCursor(0, 0);
- 519              		.loc 1 126 22 discriminator 1 view .LVU171
+ 519              		.loc 1 126 23 discriminator 1 view .LVU171
  520 00ec 73B3     		cbz	r3, .L42
  521              	.L33:
  131:Core/Src/hmi.c ****         sprintf(textStr, "X: %05lumm   P2\xdb", info->pos.x/stepY_01mm);
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
  550              		.loc 1 136 17 is_stmt 0 view .LVU185
  551 0112 94F83230 		ldrb	r3, [r4, #50]	@ zero_extendqisi2
  136:Core/Src/hmi.c ****           textStr[12] = 0x7eU;
-ARM GAS  /tmp/ccKBAikY.s 			page 15
+ARM GAS  /tmp/ccw11eFX.s 			page 15
 
 
  552              		.loc 1 136 11 view .LVU186
@@ -860,16 +860,16 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
  142:Core/Src/hmi.c ****         setCursor(0, 1);
  564              		.loc 1 142 7 is_stmt 1 view .LVU191
  142:Core/Src/hmi.c ****         setCursor(0, 1);
- 565              		.loc 1 142 15 is_stmt 0 view .LVU192
+ 565              		.loc 1 142 20 is_stmt 0 view .LVU192
  566 0124 94F83830 		ldrb	r3, [r4, #56]	@ zero_extendqisi2
  142:Core/Src/hmi.c ****         setCursor(0, 1);
  567              		.loc 1 142 9 view .LVU193
  568 0128 13B9     		cbnz	r3, .L38
  142:Core/Src/hmi.c ****         setCursor(0, 1);
- 569              		.loc 1 142 30 discriminator 1 view .LVU194
+ 569              		.loc 1 142 36 discriminator 1 view .LVU194
  570 012a 94F83930 		ldrb	r3, [r4, #57]	@ zero_extendqisi2
  142:Core/Src/hmi.c ****         setCursor(0, 1);
- 571              		.loc 1 142 22 discriminator 1 view .LVU195
+ 571              		.loc 1 142 23 discriminator 1 view .LVU195
  572 012e FBB1     		cbz	r3, .L43
  573              	.L38:
  146:Core/Src/hmi.c ****     }
@@ -883,7 +883,7 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
  580 0136 81E7     		b	.L19
  581              	.L29:
  582              	.LBB4:
- 125:Core/Src/hmi.c ****       if(!info->runX && !info->runY){
+ 125:Core/Src/hmi.c ****       if(!info->run.x && !info->run.y){
  583              		.loc 1 125 9 is_stmt 1 view .LVU199
  584 0138 154B     		ldr	r3, .L44+16
  585 013a 93E80300 		ldm	r3, {r0, r1}
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
  593 014c 0021     		movs	r1, #0
  594 014e 0846     		mov	r0, r1
  595 0150 FFF7FEFF 		bl	setCursor
-ARM GAS  /tmp/ccKBAikY.s 			page 16
+ARM GAS  /tmp/ccw11eFX.s 			page 16
 
 
  596              	.LVL26:
@@ -909,7 +909,7 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
  600              	.LVL27:
  601 015a C8E7     		b	.L33
  602              	.L34:
- 141:Core/Src/hmi.c ****       if(!info->runX && !info->runY){
+ 141:Core/Src/hmi.c ****       if(!info->run.x && !info->run.y){
  603              		.loc 1 141 9 view .LVU202
  604 015c 0D4B     		ldr	r3, .L44+20
  605 015e 93E80300 		ldm	r3, {r0, r1}
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
  642      20202020 
  642      00
  643 0022 53504941 		.ascii	"SPIANATURA      \000"
-ARM GAS  /tmp/ccKBAikY.s 			page 17
+ARM GAS  /tmp/ccw11eFX.s 			page 17
 
 
  643      4E415455 
@@ -1007,26 +1007,26 @@ ARM GAS  /tmp/ccKBAikY.s 			page 1
  665              		.file 10 "Core/Inc/lcd.h"
  666              		.file 11 "/home/retfie/.config/VSCodium/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/a
  667              		.file 12 "Core/Inc/cnc_core.h"
-ARM GAS  /tmp/ccKBAikY.s 			page 18
+ARM GAS  /tmp/ccw11eFX.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 hmi.c
-     /tmp/ccKBAikY.s:20     .text.__Read_Pushbuttons:0000000000000000 $t
-     /tmp/ccKBAikY.s:26     .text.__Read_Pushbuttons:0000000000000000 __Read_Pushbuttons
-     /tmp/ccKBAikY.s:52     .text.__Read_Pushbuttons:0000000000000018 $d
-     /tmp/ccKBAikY.s:58     .text.__BP_Control:0000000000000000 $t
-     /tmp/ccKBAikY.s:64     .text.__BP_Control:0000000000000000 __BP_Control
-     /tmp/ccKBAikY.s:295    .rodata.HMI_Update.str1.4:0000000000000000 $d
-     /tmp/ccKBAikY.s:308    .text.HMI_Update:0000000000000000 $t
-     /tmp/ccKBAikY.s:314    .text.HMI_Update:0000000000000000 HMI_Update
-     /tmp/ccKBAikY.s:337    .text.HMI_Update:0000000000000010 $d
-     /tmp/ccKBAikY.s:341    .text.HMI_Update:0000000000000014 $t
-     /tmp/ccKBAikY.s:625    .text.HMI_Update:0000000000000180 $d
-     /tmp/ccKBAikY.s:636    .data.ModeNames:0000000000000000 $d
-     /tmp/ccKBAikY.s:640    .data.ModeNames:0000000000000000 ModeNames
-     /tmp/ccKBAikY.s:646    .data.StateNames:0000000000000000 $d
-     /tmp/ccKBAikY.s:650    .data.StateNames:0000000000000000 StateNames
+     /tmp/ccw11eFX.s:20     .text.__Read_Pushbuttons:0000000000000000 $t
+     /tmp/ccw11eFX.s:26     .text.__Read_Pushbuttons:0000000000000000 __Read_Pushbuttons
+     /tmp/ccw11eFX.s:52     .text.__Read_Pushbuttons:0000000000000018 $d
+     /tmp/ccw11eFX.s:58     .text.__BP_Control:0000000000000000 $t
+     /tmp/ccw11eFX.s:64     .text.__BP_Control:0000000000000000 __BP_Control
+     /tmp/ccw11eFX.s:295    .rodata.HMI_Update.str1.4:0000000000000000 $d
+     /tmp/ccw11eFX.s:308    .text.HMI_Update:0000000000000000 $t
+     /tmp/ccw11eFX.s:314    .text.HMI_Update:0000000000000000 HMI_Update
+     /tmp/ccw11eFX.s:337    .text.HMI_Update:0000000000000010 $d
+     /tmp/ccw11eFX.s:341    .text.HMI_Update:0000000000000014 $t
+     /tmp/ccw11eFX.s:625    .text.HMI_Update:0000000000000180 $d
+     /tmp/ccw11eFX.s:636    .data.ModeNames:0000000000000000 $d
+     /tmp/ccw11eFX.s:640    .data.ModeNames:0000000000000000 ModeNames
+     /tmp/ccw11eFX.s:646    .data.StateNames:0000000000000000 $d
+     /tmp/ccw11eFX.s:650    .data.StateNames:0000000000000000 StateNames
 
 UNDEFINED SYMBOLS
 CNC_Stop

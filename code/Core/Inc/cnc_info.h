@@ -57,7 +57,11 @@ typedef enum
   HMI_Move_Face1,
   HMI_Move_Face2,
   HMI_Move_Face3,
-  HMI_Move_Face4
+  HMI_Move_Face4,
+  HMI_Move_ZeroX,
+  HMI_Move_ZeroXB,
+  HMI_Move_ZeroY,
+  HMI_Move_ZeroYB
 } HMI_Move_t;
 
 typedef struct
@@ -80,8 +84,7 @@ typedef struct
     bool update;
     bool HMIupdate;
     bool HMIline;
-    bool runX;
-    bool runY;
+    bvec_t run;
     bvec_t zeroed;
     uint8_t pushbuttons;
     TIM_HandleTypeDef* htimX;

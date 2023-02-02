@@ -123,7 +123,7 @@ void HMI_Update(HMI_info_t* const info){
       }
       else
         sprintf(textStr, "Y: ???");
-      if(!info->runX && !info->runY){
+      if(!info->run.x && !info->run.y){
         setCursor(0, 0);
         writeLCD(textStr);
       }
@@ -139,7 +139,7 @@ void HMI_Update(HMI_info_t* const info){
       }
       else
         sprintf(textStr, "X: ???");
-      if(!info->runX && !info->runY){
+      if(!info->run.x && !info->run.y){
         setCursor(0, 1);
         writeLCD(textStr);
       }

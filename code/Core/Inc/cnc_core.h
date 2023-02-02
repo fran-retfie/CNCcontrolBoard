@@ -11,7 +11,7 @@
 #define fastPulseX_01mm 4
 #define fastPulseY_01mm 4
 
-uint32_t ihyp(uint32_t x, uint32_t y);
+float ihyp(float x, float y);
 
 void CNC_Stepper(HMI_info_t* const info);
 

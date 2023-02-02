@@ -9,11 +9,11 @@
 #include <stdlib.h>
 
 //very efficient way of approximating hypotenuse using integer numbers
-uint32_t ihyp(uint32_t x, uint32_t y){
+float ihyp(float x, float y){
     if(y > x)
-        return y + (((x*x)/y)>>1);
+        return y + (((x*x)/y)*0.5);
     else
-        return x + (((y*y)/x)>>1);
+        return x + (((y*y)/x)*0.5);
 }
 
 void CNC_Stepper(HMI_info_t* const info){
@@ -87,22 +87,11 @@ void CNC_Absolute(HMI_info_t* const info){
     info->run.y = dY > 0;
 
     //sistema questa parte dai...
-    uint32_t den;
-    uint32_t range = (dX > dY) ? dX : dY;
-
-    if(range > (1<<16)-1){
-       dX <<= 4;
-       dY <<= 4; 
-    }
-
-    if(range < (1<<8))
-        den = ihyp(dX<<7, dY<<7) * ((freqX_1mm_min>>7)/info->feed);
-    else
-        den = ihyp(dX, dY) * (freqX_1mm_min/info->feed);
+    float den = ihyp((float) dX, (float) dY) * (float) (freqX_1mm_min/info->feed);
 
     
-    info->pulseLenght.x = (uint16_t) (den/dX);
-    info->pulseLenght.y = (uint16_t) (den/dY);
+    info->pulseLenght.x = (uint16_t) (den/((float) dX));
+    info->pulseLenght.y = (uint16_t) (den/((float) dY));
 
     //da sistemare
     if(info->pulseLenght.x < 10) info->pulseLenght.x = 1000;
@@ -193,7 +182,7 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
     switch (info->mode) {
         case  HMI_Mode_Zero:
             if(info->state == HMI_State_Run){
-                switch (info->mode){
+                switch (info->move){
                     case  HMI_Move_None:
                     case  HMI_Move_ZeroX:
                         info->move = HMI_Move_ZeroX;

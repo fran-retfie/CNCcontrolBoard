@@ -53,3 +53,6 @@ dkms.conf
 
 #build
 code/build/
+code/build/*
+
+*.zip

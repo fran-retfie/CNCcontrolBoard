@@ -28,10 +28,6 @@ void __BP_Control(HMI_info_t* const info, uint8_t mask, bool pause_mask){
     info->cnt2 = 10;
   }
 
-  if(PBpressed & PB_STOP){
-    CNC_Stop(info);
-  }
-
   if(PBpressed & PB_SET){
     info->Psel = !info->Psel;
     info->update = true;
@@ -57,6 +53,12 @@ void __BP_Control(HMI_info_t* const info, uint8_t mask, bool pause_mask){
     info->state = pause_mask ? HMI_State_Pause : HMI_State_Stop;
   }
 
+  if((PBpressed & PB_SPINDLE) && HAL_GPIO_ReadPin(spindle_Port, spindle_Pin)){
+    CNC_Stop(info);
+    HAL_GPIO_WritePin(spindle_Port, spindle_Pin, false);
+    info->state = pause_mask ? HMI_State_Pause : HMI_State_Stop;
+  }
+
   if((~newPushbuttons & PB_RUN) && !HAL_GPIO_ReadPin(SWSTOP_GPIO_Port, SWSTOP_Pin)){
     info->cnt1++;
     if(info->cnt1 > 20) {
@@ -66,9 +68,20 @@ void __BP_Control(HMI_info_t* const info, uint8_t mask, bool pause_mask){
       info->cnt1 = 0;
     }
   } 
-  else {
-  info->cnt1 = 0;
-  }
+  else if((~newPushbuttons & PB_SPINDLE) && !HAL_GPIO_ReadPin(SWSTOP_GPIO_Port, SWSTOP_Pin)){
+    info->cnt1++;
+    if(info->cnt1 > 20) {
+      if(info->mode != HMI_Mode_Zero) {
+        info->update = true;
+        info->cnt2 = 10;
+        info->cnt1 = 0;
+
+        HAL_GPIO_WritePin(spindle_Port, spindle_Pin, true);
+      }
+    }
+  } 
+  else
+    info->cnt1 = 0;
 
   info->pushbuttons = newPushbuttons;
 }
@@ -76,21 +89,21 @@ void __BP_Control(HMI_info_t* const info, uint8_t mask, bool pause_mask){
 void HMI_Update(HMI_info_t* const info){
   switch (info->mode) {
   case  HMI_Mode_Zero:
-    __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE | PB_SET | PB_JOY), false);
+    __BP_Control(info, (PB_SPINDLE | PB_RUN | PB_MODE | PB_SET | PB_JOY), false);
   break;
 
   case  HMI_Mode_Man:
-    __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE | PB_SET | PB_JOY), false);
+    __BP_Control(info, (PB_SPINDLE | PB_RUN | PB_MODE | PB_SET | PB_JOY), false);
 
   
   break;
 
   case  HMI_Mode_Face:
-    __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE | PB_SET | PB_JOY), true);
+    __BP_Control(info, (PB_SPINDLE | PB_RUN | PB_MODE | PB_SET | PB_JOY), true);
   break; 
 
   case  HMI_Mode_Ser:
-    __BP_Control(info, (PB_STOP | PB_RUN | PB_MODE | PB_SET | PB_JOY), true);
+    __BP_Control(info, (PB_SPINDLE | PB_RUN | PB_MODE | PB_SET | PB_JOY), true);
   break;
   }
 

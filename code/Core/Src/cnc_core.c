@@ -181,6 +181,9 @@ void CNC_TIM_Callback_Y(HMI_info_t* const info){
 void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile uint16_t *adc_data){
     switch (info->mode) {
         case  HMI_Mode_Zero:
+
+            HAL_GPIO_WritePin(spindle_Port, spindle_Pin, false);
+
             if(info->state == HMI_State_Run){
                 switch (info->move){
                     case  HMI_Move_None:
@@ -337,6 +340,8 @@ void CNC_Stop(HMI_info_t* const info){
     info->htimX->Instance->SR = 0x00000000U;
     info->htimY->Instance->SR = 0x00000000U;
 
+    HAL_GPIO_WritePin(spindle_Port, spindle_Pin, false);
+
     info->run.x = false;
     info->run.y = false;
     info->state = HMI_State_Stop;
@@ -348,6 +353,8 @@ void CNC_Limit_X(HMI_info_t* const info){
     info->htimX->Instance->CR1 |= TIM_CR1_OPM;
     info->htimX->Instance->SR = 0x00000000U;
 
+    HAL_GPIO_WritePin(spindle_Port, spindle_Pin, false);
+
     info->state = HMI_State_Stop;
     info->pos.x = 0;
     info->zeroed.x = true;
@@ -358,6 +365,8 @@ void CNC_Limit_X(HMI_info_t* const info){
 void CNC_Limit_Y(HMI_info_t* const info){
     info->htimY->Instance->CR1 |= TIM_CR1_OPM;
     info->htimY->Instance->SR = 0x00000000U;
+
+    HAL_GPIO_WritePin(spindle_Port, spindle_Pin, false);
 
     info->state = HMI_State_Stop;
     info->pos.y = 0;

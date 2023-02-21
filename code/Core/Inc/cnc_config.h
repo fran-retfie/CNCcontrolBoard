@@ -19,6 +19,8 @@
 #define limitX_Port SW0_GPIO_Port
 #define limitY_Pin SW1_Pin
 #define limitY_Port SW1_GPIO_Port
+#define spindle_Pin PO3_Pin
+#define spindle_Port PO3_GPIO_Port
 
 //step required to move 0.1mm
 #define stepX_01mm 8

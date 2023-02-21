@@ -12,7 +12,7 @@
 #define PB_MODE 0x10U
 #define PB_RUN  0x40U
 #define PB_SET  0x08U
-#define PB_STOP 0x02U
+#define PB_SPINDLE 0x02U
 #define PB_JOY  0x01U
 
 uint8_t __Read_Pushbuttons(void);

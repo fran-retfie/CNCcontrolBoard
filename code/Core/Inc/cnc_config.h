@@ -30,6 +30,10 @@
 #define max_velX 4000
 #define max_velY 4000
 
+//zeroing velocity
+#define zeroing_velX 500
+#define zeroing_velY 500
+
 //max accelleration
 #define max_accX 40
 #define max_accY 40

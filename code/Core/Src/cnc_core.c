@@ -189,29 +189,39 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
                     case  HMI_Move_None:
                     case  HMI_Move_ZeroX:
                         info->move = HMI_Move_ZeroX;
-                        info->commanded.speed.x = -2000;  
+                        info->commanded.speed.x = -zeroing_velX;  
                         info->commanded.speed.y = 0;
                         CNC_Jog(info);
                     break;
 
                     case  HMI_Move_ZeroXB:
+                        info->commanded.speed.x = zeroing_velX;  
+                        info->commanded.speed.y = 0;
                         CNC_JogX_Forced(info);
                         if(!HAL_GPIO_ReadPin(limitX_Port, limitX_Pin)){
                             info->run.x = false;
+                            info->pos.x = 0;
+                            info->zeroed.x = true;
+                            info->update = true;
                             info->move = HMI_Move_ZeroY;
                         }
                     break;
 
                     case  HMI_Move_ZeroY:
                         info->commanded.speed.x = 0;  
-                        info->commanded.speed.y = -2000;
+                        info->commanded.speed.y = -zeroing_velY;
                         CNC_Jog(info);
                     break;
 
                     case  HMI_Move_ZeroYB:
+                        info->commanded.speed.x = 0;  
+                        info->commanded.speed.y = zeroing_velY;
                         CNC_JogX_Forced(info);
                         if(!HAL_GPIO_ReadPin(limitX_Port, limitX_Pin)){
                             info->run.y = false;
+                            info->pos.y = 0;
+                            info->zeroed.y = true;
+                            info->update = true;
                             info->move = HMI_Move_Done;
                         }
                     break;
@@ -229,8 +239,8 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
             info->move = HMI_Move_Jog;
             int16_t jogX = ((int16_t) (adc_data[6]>>1)) - (1844/2); //subtract center value X
             int16_t jogY = ((int16_t) (adc_data[7]>>1)) - (1814/2); //subtract center value Y
-            info->commanded.speed.x = (abs(jogX) > 70) ? jogX*4 : 0;  // dead zone near center X
-            info->commanded.speed.y = (abs(jogY) > 70) ? jogY*4 : 0;  // dead zone near center Y
+            info->commanded.speed.x = (abs(jogX) > 70) ? jogX*8 : 0;  // dead zone near center X
+            info->commanded.speed.y = (abs(jogY) > 70) ? jogY*8 : 0;  // dead zone near center Y
             CNC_Jog(info);
         break;
 
@@ -355,11 +365,10 @@ void CNC_Limit_X(HMI_info_t* const info){
 
     HAL_GPIO_WritePin(spindle_Port, spindle_Pin, false);
 
-    info->state = HMI_State_Stop;
-    info->pos.x = 0;
-    info->zeroed.x = true;
-    info->update = true;
+    if(info->state != HMI_Mode_Zero)
+        info->state = HMI_State_Stop;
     info->run.x = false;
+    info->pos.x = 0;
 }
 
 void CNC_Limit_Y(HMI_info_t* const info){
@@ -368,9 +377,8 @@ void CNC_Limit_Y(HMI_info_t* const info){
 
     HAL_GPIO_WritePin(spindle_Port, spindle_Pin, false);
 
-    info->state = HMI_State_Stop;
-    info->pos.y = 0;
-    info->zeroed.y = true;
-    info->update = true;
+    if(info->state != HMI_Mode_Zero)
+        info->state = HMI_State_Stop;
     info->run.y = false;
+    info->pos.y = 0;
 }

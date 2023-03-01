@@ -13,15 +13,15 @@ uint8_t __Read_Pushbuttons(){
     return (PB0_GPIO_Port->IDR & (PB0_Pin | PB1_Pin | PB2_Pin))>>(13-5) | (PB7_GPIO_Port->IDR & (0x7C))>>2;
 }
 
-static char ModeNames[4][17]  = {"AZZERAMENTO     ", "MANUALE         ", "SPIANATURA      ", "COMPUTER        "};
-static char StateNames[4][17] = {"STOP            ", "PAUSE           ", "RUN             "};
+static char ModeNames[5][17]  = {"AZZERAMENTO     ", "MANUALE         ", "SPIANATURA 1    ", "SPIANATURA 2    ", "COMPUTER        "};
+static char StateNames[5][17] = {"STOP            ", "PAUSE           ", "RUN             "};
 
 void __BP_Control(HMI_info_t* const info, uint8_t mask, bool pause_mask){
   uint8_t newPushbuttons = __Read_Pushbuttons();
   uint8_t PBpressed = ~newPushbuttons & info->pushbuttons & mask;
 
   if((PBpressed & PB_MODE) && info->zeroed.x && info->zeroed.y && (info->state == HMI_State_Stop)){
-    info->mode = (info->mode >= 3) ? HMI_Mode_Zero : info->mode+1;
+    info->mode = (info->mode >= HMI_Mode_Ser) ? HMI_Mode_Zero : info->mode+1;
     info->state = HMI_State_Stop;
     info->move = HMI_Move_None;
     info->update = true;
@@ -89,19 +89,15 @@ void __BP_Control(HMI_info_t* const info, uint8_t mask, bool pause_mask){
 void HMI_Update(HMI_info_t* const info){
   switch (info->mode) {
   case  HMI_Mode_Zero:
-    __BP_Control(info, (PB_SPINDLE | PB_RUN | PB_MODE | PB_SET | PB_JOY), false);
+    __BP_Control(info, (PB_RUN | PB_MODE), false);
   break;
 
   case  HMI_Mode_Man:
     __BP_Control(info, (PB_SPINDLE | PB_RUN | PB_MODE | PB_SET | PB_JOY), false);
-
-  
   break;
 
-  case  HMI_Mode_Face:
-    __BP_Control(info, (PB_SPINDLE | PB_RUN | PB_MODE | PB_SET | PB_JOY), true);
-  break; 
-
+  case  HMI_Mode_Face1:
+  case  HMI_Mode_Face2:
   case  HMI_Mode_Ser:
     __BP_Control(info, (PB_SPINDLE | PB_RUN | PB_MODE | PB_SET | PB_JOY), true);
   break;

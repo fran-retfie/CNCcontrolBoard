@@ -180,6 +180,20 @@ void CNC_TIM_Callback_Y(HMI_info_t* const info){
     info->update = true;  
 }
 
+void __swapP12(HMI_info_t* const info){
+    if(info->P1.x > info->P2.x){
+        uint32_t swapX = info->P1.x;
+        info->P1.x = info->P2.x;
+        info->P2.x = swapX;
+    }
+
+    if(info->P1.y > info->P2.y){
+        uint32_t swapY = info->P1.y;
+        info->P1.y = info->P2.y;
+        info->P2.y = swapY;
+    }
+}
+
 void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile uint16_t *adc_data){
     switch (info->mode) {
         case  HMI_Mode_Zero:
@@ -246,21 +260,11 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
             CNC_Jog(info);
         break;
 
-        case  HMI_Mode_Face:
+        case  HMI_Mode_Face1:
             if(info->state == HMI_State_Run){
                 switch (info->move) {
                     case HMI_Move_None:
-                        if(info->P1.x > info->P2.x){
-                            uint32_t swapX = info->P1.x;
-                            info->P1.x = info->P2.x;
-                            info->P2.x = swapX;
-                        }
-
-                        if(info->P1.y > info->P2.y){
-                            uint32_t swapY = info->P1.y;
-                            info->P1.y = info->P2.y;
-                            info->P2.y = swapY;
-                        }
+                        __swapP12(info);
 
                         info->commanded.pos.x = info->P1.x;
                         info->commanded.pos.y = info->P1.y;
@@ -313,7 +317,76 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
                     break;
                 }
             }
-        break; 
+        break;
+
+        case  HMI_Mode_Face2:
+            if(info->state == HMI_State_Run){
+                switch (info->move) {
+                    case HMI_Move_None:
+                        __swapP12(info);
+
+                        info->commanded.pos.x = info->P1.x;
+                        info->commanded.pos.y = info->P1.y;
+                        info->move = HMI_Move_Absolute;
+                    break;
+
+                    case HMI_Move_Face1: 
+                        if(CNC_AbsoluteY(info)){
+                            info->move = HMI_Move_Face2;
+                            info->P1.x += face_depth_X;
+                            info->commanded.pos.x = info->P2.x;
+                        }
+                    break;
+
+                    case HMI_Move_Face2: 
+                        if(CNC_AbsoluteX(info)){
+                            info->move = HMI_Move_Face3;
+                            info->P2.y -= face_depth_X;
+                            info->commanded.pos.y = info->P1.y;
+                        }
+                    break;
+
+                    case HMI_Move_Face3:
+                        if(CNC_AbsoluteY(info)){
+                            info->move = HMI_Move_Face4;
+                            info->P2.x -= face_depth_X;
+                            info->commanded.pos.x = info->P1.x;
+
+                            if(info->P1.x > info->P2.x){
+                                info->move = HMI_Move_None;
+                                info->state = HMI_State_Stop;
+                            }
+                        }
+                    break;
+
+                    case HMI_Move_Face4:
+                        if(CNC_AbsoluteX(info)){
+                            info->move = HMI_Move_Face1;
+                            info->P1.y += face_depth_X;
+                            info->commanded.pos.y = info->P2.y;
+
+                            if(info->P1.y > info->P2.y){
+                                info->move = HMI_Move_None;
+                                info->state = HMI_State_Stop;
+                            }
+                        }
+                    break;
+
+                    case HMI_Move_Done:
+                        info->move = HMI_Move_Face1;
+                        info->commanded.pos.y = info->P2.y;
+                    break;
+
+                    case HMI_Move_Absolute:
+                        CNC_Absolute(info);
+                    break;
+
+                    default:
+                        info->move = HMI_Move_None;
+                    break;
+                }
+            }
+        break;
 
         case  HMI_Mode_Ser:
             if(info->state == HMI_State_Run){

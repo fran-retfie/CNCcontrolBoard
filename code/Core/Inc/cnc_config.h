@@ -31,8 +31,8 @@
 #define max_velY 4000
 
 //zeroing velocity
-#define zeroing_velX 500
-#define zeroing_velY 500
+#define zeroing_velX 1500
+#define zeroing_velY 1500
 
 //max accelleration
 #define max_accX 40
@@ -43,13 +43,13 @@
 #define freqY_1mm_min 65514
 
 //CNC limits in steps units
-#define max_limX 11280 //1300.0 mm
-#define max_limY 40000 //4000.0 mm
+#define max_limX 11200 //1300.0 mm
+#define max_limY 36450 //4000.0 mm
 #define min_limX 0
 #define min_limY 0
 
 //CNC face parameters
-#define face_depth_Y   380
-#define face_retract_Y 380
+#define face_depth_X   3000
+#define face_retract_X 3000
 
 #endif

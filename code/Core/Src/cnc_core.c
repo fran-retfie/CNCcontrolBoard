@@ -59,18 +59,20 @@ void CNC_Stepper(HMI_info_t* const info){
 
 void CNC_JogX_Forced(HMI_info_t* const info){
     info->run.x = true;
-    HAL_GPIO_WritePin(dirX_Port, dirX_Pin, true);
-    info->htimX->Instance->ARR = 200;
-    info->htimX->Instance->CCR1 = 100;
+    info->dir.x = (info->commanded.speed.x >= 0);
+    HAL_GPIO_WritePin(dirX_Port, dirX_Pin, info->dir.x);
+    info->htimX->Instance->ARR = 100;
+    info->htimX->Instance->CCR1 = 50;
     if(!(info->htimX->Instance->CR1 & TIM_CR1_CEN))
         info->htimX->Instance->CR1 |= TIM_CR1_ARPE | TIM_CR1_OPM | TIM_CR1_CEN;
 }
 
 void CNC_JogY_Forced(HMI_info_t* const info){
     info->run.y = true;
-    HAL_GPIO_WritePin(dirY_Port, dirY_Pin, true);
-    info->htimY->Instance->ARR = 200;
-    info->htimY->Instance->CCR1 = 100;
+    info->dir.y = (info->commanded.speed.y >= 0);
+    HAL_GPIO_WritePin(dirY_Port, dirY_Pin, info->dir.y);
+    info->htimY->Instance->ARR = 100;
+    info->htimY->Instance->CCR3 = 50;
     if(!(info->htimY->Instance->CR1 & TIM_CR1_CEN))
         info->htimY->Instance->CR1 |= TIM_CR1_ARPE | TIM_CR1_OPM | TIM_CR1_CEN;
 }
@@ -198,7 +200,7 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
                         info->commanded.speed.x = zeroing_velX;  
                         info->commanded.speed.y = 0;
                         CNC_JogX_Forced(info);
-                        if(!HAL_GPIO_ReadPin(limitX_Port, limitX_Pin)){
+                        if(!HAL_GPIO_ReadPin(limitX_Port, limitX_Pin) && (info->pos.x > 400)){
                             info->run.x = false;
                             info->pos.x = 0;
                             info->zeroed.x = true;
@@ -216,8 +218,8 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
                     case  HMI_Move_ZeroYB:
                         info->commanded.speed.x = 0;  
                         info->commanded.speed.y = zeroing_velY;
-                        CNC_JogX_Forced(info);
-                        if(!HAL_GPIO_ReadPin(limitX_Port, limitX_Pin)){
+                        CNC_JogY_Forced(info);
+                        if(!HAL_GPIO_ReadPin(limitY_Port, limitY_Pin) && (info->pos.y > 800)){
                             info->run.y = false;
                             info->pos.y = 0;
                             info->zeroed.y = true;
@@ -237,10 +239,10 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
 
         case  HMI_Mode_Man:
             info->move = HMI_Move_Jog;
-            int16_t jogX = ((int16_t) (adc_data[6]>>1)) - (1844/2); //subtract center value X
-            int16_t jogY = ((int16_t) (adc_data[7]>>1)) - (1814/2); //subtract center value Y
-            info->commanded.speed.x = (abs(jogX) > 70) ? jogX*8 : 0;  // dead zone near center X
-            info->commanded.speed.y = (abs(jogY) > 70) ? jogY*8 : 0;  // dead zone near center Y
+            int16_t jogX = ((int16_t) (adc_data[6]>>1)) - (2254/2); //subtract center value X
+            int16_t jogY = ((int16_t) (adc_data[7]>>1)) - (1956/2); //subtract center value Y
+            info->commanded.speed.x = (abs(jogX) > 180) ? jogX*2 : 0;  // dead zone near center X
+            info->commanded.speed.y = (abs(jogY) > 180) ? jogY*2 : 0;  // dead zone near center Y
             CNC_Jog(info);
         break;
 
@@ -266,36 +268,35 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
                     break;
 
                     case HMI_Move_Face1:
-                        info->commanded.pos.x = info->P2.x;
-                        if(CNC_AbsoluteX(info))
+                        info->commanded.pos.y = info->P2.y;
+                        if(CNC_AbsoluteY(info)){
                             info->move = HMI_Move_Face2;
+                            info->commanded.pos.x = info->pos.x + face_depth_X;
+                        }
                     break;
 
                     case HMI_Move_Face2:
-                        uint32_t newPosY = info->pos.y + face_depth_Y;
-                        if(newPosY < info->P2.y)
-                            info->commanded.pos.y = newPosY;
-                        else
-                            info->commanded.pos.y = info->P2.y;
-                        if(CNC_AbsoluteY(info))
+                        
+                        if(CNC_AbsoluteX(info))
                             info->move = HMI_Move_Face3;
                     break;
 
                     case HMI_Move_Face3:
-                        info->commanded.pos.x = info->P1.x;
-                        if(CNC_AbsoluteX(info)){
-                            if(info->pos.y >= info->P2.y){
-                                info->move = HMI_Move_None;
-                                info->state = HMI_State_Stop;
-                            }
-                            else
+                        info->commanded.pos.y = info->P1.y;
+                        if(CNC_AbsoluteY(info)){
+                            //if(info->pos.x >= info->P2.x){
+                            //    info->move = HMI_Move_None;
+                            //    info->state = HMI_State_Stop;
+                            //}
+                            //else {
+                                info->commanded.pos.x = info->pos.x + face_depth_X;
                                 info->move = HMI_Move_Face4;
+                            //}
                         }
                     break;
 
                     case HMI_Move_Face4:
-                        info->commanded.pos.y = info->pos.y - face_retract_Y;
-                        if(CNC_AbsoluteY(info))
+                        if(CNC_AbsoluteX(info))
                             info->move = HMI_Move_Face1;
                     break;
 
@@ -365,10 +366,15 @@ void CNC_Limit_X(HMI_info_t* const info){
 
     HAL_GPIO_WritePin(spindle_Port, spindle_Pin, false);
 
-    if(info->state != HMI_Mode_Zero)
-        info->state = HMI_State_Stop;
     info->run.x = false;
     info->pos.x = 0;
+
+    if(info->mode != HMI_Mode_Zero)
+        info->state = HMI_State_Stop;
+    else 
+        if(info->move == HMI_Move_ZeroX)
+            info->move = HMI_Move_ZeroXB;
+
 }
 
 void CNC_Limit_Y(HMI_info_t* const info){
@@ -377,8 +383,13 @@ void CNC_Limit_Y(HMI_info_t* const info){
 
     HAL_GPIO_WritePin(spindle_Port, spindle_Pin, false);
 
-    if(info->state != HMI_Mode_Zero)
-        info->state = HMI_State_Stop;
     info->run.y = false;
     info->pos.y = 0;
+
+    if(info->mode != HMI_Mode_Zero)
+        info->state = HMI_State_Stop;
+    else 
+        if(info->move == HMI_Move_ZeroY)
+            info->move = HMI_Move_ZeroYB;
+
 }

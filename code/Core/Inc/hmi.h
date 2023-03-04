@@ -17,7 +17,7 @@
 
 uint8_t __Read_Pushbuttons(void);
 void __BP_Control(HMI_info_t* const info, uint8_t mask, bool pause_mask);
-void HMI_Update(HMI_info_t* const info);
+void HMI_Update(HMI_info_t* const info, volatile uint16_t *adc_data);
 
 //void    Test_Stuff();
 

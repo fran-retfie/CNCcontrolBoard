@@ -37,6 +37,7 @@ typedef enum
 {
   HMI_Mode_Zero,
   HMI_Mode_Man,
+  HMI_Mode_Points,
   HMI_Mode_Face1,
   HMI_Mode_Face2,
   HMI_Mode_Ser, 

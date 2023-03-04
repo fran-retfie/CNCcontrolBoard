@@ -86,7 +86,7 @@ void __BP_Control(HMI_info_t* const info, uint8_t mask, bool pause_mask){
   info->pushbuttons = newPushbuttons;
 }
 
-void HMI_Update(HMI_info_t* const info){
+void HMI_Update(HMI_info_t* const info, volatile uint16_t *adc_data){
   switch (info->mode) {
   case  HMI_Mode_Zero:
     __BP_Control(info, (PB_RUN | PB_MODE), false);
@@ -94,6 +94,23 @@ void HMI_Update(HMI_info_t* const info){
 
   case  HMI_Mode_Man:
     __BP_Control(info, (PB_SPINDLE | PB_RUN | PB_MODE | PB_SET | PB_JOY), false);
+  break;
+
+  case  HMI_Mode_Points:
+    __BP_Control(info, (PB_SET | PB_MODE), false);
+
+    int16_t jogX = ((int16_t) (adc_data[6]>>1)) - (2254/2); //subtract center value X
+    int16_t jogY = ((int16_t) (adc_data[7]>>1)) - (1956/2); //subtract center value Y
+    if(abs(jogX) > jogDeadZoneX){
+      if(info->Psel)  info->P2.x += jogX;
+      else            info->P1.x += jogX;
+      info->update = true;
+    }
+    if(abs(jogY) > jogDeadZoneY){
+      if(info->Psel)  info->P2.y += jogY;
+      else            info->P1.y += jogY;
+      info->update = true;
+    }
   break;
 
   case  HMI_Mode_Face1:
@@ -122,7 +139,8 @@ void HMI_Update(HMI_info_t* const info){
       char textStr[17];
 
       if(info->zeroed.y) {
-        sprintf(textStr, "Y: %05lumm   P1\xdb", info->pos.y/stepY_01mm);
+        uint32_t printVal = (info->mode == HMI_Mode_Points) ? info->pos.y : ((info->Psel) ? info->P1.y : abs(info->P2.y - info->P1.y));
+        sprintf(textStr, "Y: %05lumm   P1\xdb", printVal/stepY_01mm);
         memmove(textStr+8, textStr+7, 4);
         if(info->P1set)
           textStr[15] = 0xffU;
@@ -138,7 +156,8 @@ void HMI_Update(HMI_info_t* const info){
       }
 
       if(info->zeroed.x){
-        sprintf(textStr, "X: %05lumm   P2\xdb", info->pos.x/stepY_01mm);
+        uint32_t printVal = (info->mode == HMI_Mode_Points) ? info->pos.x : ((info->Psel) ? info->P1.x : abs(info->P2.x - info->P1.x));
+        sprintf(textStr, "X: %05lumm   P2\xdb", printVal/stepY_01mm);
         memmove(textStr+8, textStr+7, 4);
         if(info->P2set)
           textStr[15] = 0xffU;

@@ -43,13 +43,16 @@
 #define freqY_1mm_min 65514
 
 //CNC limits in steps units
-#define max_limX 11200 //1300.0 mm
-#define max_limY 36450 //4000.0 mm
+#define max_limX 11200*stepX_01mm //1120.0 mm
+#define max_limY 36450*stepY_01mm //3645.0 mm
 #define min_limX 0
 #define min_limY 0
 
 //CNC face parameters
-#define face_depth_X   3000
-#define face_retract_X 3000
+#define face_depth   250*stepX_01mm //25.0 mm
+
+//joystick center dead zone
+#define jogDeadZoneX 180
+#define jogDeadZoneY 180
 
 #endif

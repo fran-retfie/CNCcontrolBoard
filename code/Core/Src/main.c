@@ -88,12 +88,13 @@ HMI_info_t hmi_info = { .mode = HMI_Mode_Zero,
                         .pos = {3000, 3000},
                         .pulseLenght = {1000, 1000},
                         .commanded.pos = {0, 0},
-                        .feed = 1200,
+                        .feed = 1700,
                         .run = {false,false},
                         .P1 = {10,10},
                         .P2 = {300,300},
                         .P1set = false,
                         .P2set = false,
+                        .Psel = true,
                         .cnt1 = 0,
                         .cnt2 = 0,
                         .update = true,
@@ -175,7 +176,7 @@ int main(void)
 
     if(hmi_info.HMIupdate){
       hmi_info.HMIupdate = false;
-      HMI_Update(&hmi_info);
+      HMI_Update(&hmi_info, adc_data);
     }
     //HAL_Delay(1);
   }

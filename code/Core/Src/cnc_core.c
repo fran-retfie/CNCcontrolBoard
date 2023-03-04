@@ -195,6 +195,13 @@ void __swapP12(HMI_info_t* const info){
 }
 
 void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile uint16_t *adc_data){
+
+    if(HAL_GPIO_ReadPin(Alarm_Port, Alarm_Pin)){
+        info->run.x = false;
+        info->run.y = false;
+        info->state = HMI_State_Stop;
+    }
+
     switch (info->mode) {
         case  HMI_Mode_Zero:
             HAL_GPIO_WritePin(spindle_Port, spindle_Pin, false);

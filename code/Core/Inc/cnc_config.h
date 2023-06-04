@@ -54,7 +54,7 @@
 #define face_depth   250*stepX_01mm //25.0 mm
 
 //joystick center dead zone
-#define jogDeadZoneX 180
-#define jogDeadZoneY 180
+#define jogDeadZoneX 300
+#define jogDeadZoneY 300
 
 #endif

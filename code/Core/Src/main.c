@@ -90,8 +90,8 @@ HMI_info_t hmi_info = { .mode = HMI_Mode_Zero,
                         .commanded.pos = {0, 0},
                         .feed = 1700,
                         .run = {false,false},
-                        .P1 = {10,10},
-                        .P2 = {300,300},
+                        .P1 = {0,0},
+                        .P2 = {0,0},
                         .P1set = false,
                         .P2set = false,
                         .Psel = true,
@@ -709,7 +709,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(DIR2_GPIO_Port, DIR2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, PO0_Pin|SW2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, PO0_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, PO1_Pin|PO2_Pin|DIR3_Pin|D4_Pin
@@ -752,7 +752,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(SWSTOP_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PO0_Pin SW2_Pin */
-  GPIO_InitStruct.Pin = PO0_Pin|SW2_Pin;
+  GPIO_InitStruct.Pin = PO0_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -806,6 +806,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(I7_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : SW2_Pin */
+  GPIO_InitStruct.Pin = SW2_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(SW2_GPIO_Port, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI9_5_IRQn, 15, 0);

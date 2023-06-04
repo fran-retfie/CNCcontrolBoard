@@ -13,8 +13,15 @@ uint8_t __Read_Pushbuttons(){
     return (PB0_GPIO_Port->IDR & (PB0_Pin | PB1_Pin | PB2_Pin))>>(13-5) | (PB7_GPIO_Port->IDR & (0x7C))>>2;
 }
 
-static char ModeNames[5][17]  = {"AZZERAMENTO     ", "MANUALE         ", "SPIANATURA 1    ", "SPIANATURA 2    ", "COMPUTER        "};
-static char StateNames[5][17] = {"STOP            ", "PAUSE           ", "RUN             "};
+static char ModeNames[6][17]  = { "AZZERAMENTO     ", 
+                                  "MANUALE         ", 
+                                  "PUNTI           ", 
+                                  "SPIANATURA 1    ", 
+                                  "SPIANATURA 2    ", 
+                                  "COMPUTER        "};
+static char StateNames[3][17] = { "STOP            ", 
+                                  "PAUSE           ", 
+                                  "RUN             "};
 
 void __BP_Control(HMI_info_t* const info, uint8_t mask, bool pause_mask){
   uint8_t newPushbuttons = __Read_Pushbuttons();
@@ -35,13 +42,17 @@ void __BP_Control(HMI_info_t* const info, uint8_t mask, bool pause_mask){
 
   if(PBpressed & PB_JOY){
     if(info->Psel){
-      info->P1.x = info->pos.x;
-      info->P1.y = info->pos.y;
+      if(info->mode == HMI_Mode_Man){
+        info->P1.x = info->pos.x;
+        info->P1.y = info->pos.y;
+      }
       info->P1set = true;
     }
     else {
-      info->P2.x = info->pos.x;
-      info->P2.y = info->pos.y;
+      if(info->mode == HMI_Mode_Man){
+        info->P2.x = info->pos.x;
+        info->P2.y = info->pos.y;
+      }
       info->P2set = true;
     }
 
@@ -59,7 +70,8 @@ void __BP_Control(HMI_info_t* const info, uint8_t mask, bool pause_mask){
     info->state = pause_mask ? HMI_State_Pause : HMI_State_Stop;
   }
 
-  if((~newPushbuttons & PB_RUN) && !HAL_GPIO_ReadPin(SWSTOP_GPIO_Port, SWSTOP_Pin)){
+  if((~newPushbuttons & PB_RUN) && !HAL_GPIO_ReadPin(SWSTOP_GPIO_Port, SWSTOP_Pin))
+  if((info->mode == HMI_Mode_Zero) || (info->P1set && info->P2set)){
     info->cnt1++;
     if(info->cnt1 > 20) {
       info->state = HMI_State_Run;
@@ -97,18 +109,40 @@ void HMI_Update(HMI_info_t* const info, volatile uint16_t *adc_data){
   break;
 
   case  HMI_Mode_Points:
-    __BP_Control(info, (PB_SET | PB_MODE), false);
+    __BP_Control(info, (PB_SET | PB_MODE | PB_JOY), false);
 
     int16_t jogX = ((int16_t) (adc_data[6]>>1)) - (2254/2); //subtract center value X
     int16_t jogY = ((int16_t) (adc_data[7]>>1)) - (1956/2); //subtract center value Y
     if(abs(jogX) > jogDeadZoneX){
-      if(info->Psel)  info->P2.x += jogX;
-      else            info->P1.x += jogX;
+      if(info->Psel){
+        if((jogX < 0) && (info->P1.x < -jogX ))
+          info->P1.x = 0; 
+        else
+          if((info->P1.x + jogX) < max_limX)
+            info->P1.x += jogX;
+      }  
+      else {
+        if((jogX < 0) && (info->P1.x < -jogX ))
+          info->P2.x = 0; 
+        else
+          if((info->P1.y + jogY) < max_limY)
+            info->P2.x += jogX;
+      }           
       info->update = true;
     }
     if(abs(jogY) > jogDeadZoneY){
-      if(info->Psel)  info->P2.y += jogY;
-      else            info->P1.y += jogY;
+      if(info->Psel){
+        if((jogY < 0) && (info->P1.y < -jogY ))
+          info->P1.y = 0; 
+        else
+          info->P1.y += jogY;
+      }  
+      else {
+        if((jogY < 0) && (info->P1.y < -jogY ))
+          info->P2.y = 0; 
+        else
+          info->P2.y += jogY;
+      }
       info->update = true;
     }
   break;
@@ -139,8 +173,9 @@ void HMI_Update(HMI_info_t* const info, volatile uint16_t *adc_data){
       char textStr[17];
 
       if(info->zeroed.y) {
-        uint32_t printVal = (info->mode == HMI_Mode_Points) ? info->pos.y : ((info->Psel) ? info->P1.y : abs(info->P2.y - info->P1.y));
+        int32_t printVal = (info->mode != HMI_Mode_Points) ? info->pos.y : ((info->Psel) ? info->P1.y : info->P2.y - info->P1.y);
         sprintf(textStr, "Y: %05lumm   P1\xdb", printVal/stepY_01mm);
+        if((info->mode == HMI_Mode_Points) && (info->Psel == false)) textStr[1] = 0xF3u;
         memmove(textStr+8, textStr+7, 4);
         if(info->P1set)
           textStr[15] = 0xffU;
@@ -156,8 +191,9 @@ void HMI_Update(HMI_info_t* const info, volatile uint16_t *adc_data){
       }
 
       if(info->zeroed.x){
-        uint32_t printVal = (info->mode == HMI_Mode_Points) ? info->pos.x : ((info->Psel) ? info->P1.x : abs(info->P2.x - info->P1.x));
+        int32_t printVal = (info->mode != HMI_Mode_Points) ? info->pos.x : ((info->Psel) ? info->P1.x : info->P2.x - info->P1.x);
         sprintf(textStr, "X: %05lumm   P2\xdb", printVal/stepY_01mm);
+        if((info->mode == HMI_Mode_Points) && (info->Psel == false)) textStr[1] = 0xF3u;
         memmove(textStr+8, textStr+7, 4);
         if(info->P2set)
           textStr[15] = 0xffU;

@@ -91,6 +91,7 @@ typedef struct
     uint8_t pushbuttons;
     TIM_HandleTypeDef* htimX;
     TIM_HandleTypeDef* htimY;
+    uint8_t cnt3;
 } HMI_info_t;
 
 #endif

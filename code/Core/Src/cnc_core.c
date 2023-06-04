@@ -102,7 +102,7 @@ void CNC_Absolute(HMI_info_t* const info){
     CNC_Stepper(info);    
 
     if(!info->run.x && !info->run.y)
-        info->move = HMI_Move_Done; 
+        info->move = HMI_Move_Done;
 }
 
 bool CNC_AbsoluteX(HMI_info_t* const info){
@@ -181,6 +181,18 @@ void CNC_TIM_Callback_Y(HMI_info_t* const info){
 }
 
 void __swapP12(HMI_info_t* const info){
+    if(info->P1.x == info->P2.x){
+        info->state = HMI_State_Stop;
+        info->P2set = false;
+        return;
+    }
+
+    if(info->P1.y == info->P2.y){
+        info->state = HMI_State_Stop;
+        info->P2set = false;
+        return;
+    }
+
     if(info->P1.x > info->P2.x){
         uint32_t swapX = info->P1.x;
         info->P1.x = info->P2.x;
@@ -194,14 +206,37 @@ void __swapP12(HMI_info_t* const info){
     }
 }
 
+void feed_adjust(HMI_info_t* const info, volatile uint16_t *adc_data){        
+    //feed rate adjust
+    if((adc_data[5] < 1800) && (info->feed < max_velX)){
+        if(info->cnt3 > 200){
+            info->feed++;
+            info->cnt3 = 0;
+        }
+        else
+            info->cnt3++;
+    }
+    else 
+    if((adc_data[5] > 3900) && (info->feed > 100)){
+        if(info->cnt3 > 200){
+            info->feed--;
+            info->cnt3 = 0;
+        }
+        else
+            info->cnt3++;
+    }
+    else
+      info->cnt3 = 0;  
+}
+
 void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile uint16_t *adc_data){
 
-    if(HAL_GPIO_ReadPin(Alarm_Port, Alarm_Pin)){
+    if(!HAL_GPIO_ReadPin(Alarm_Port, Alarm_Pin)){
         info->run.x = false;
         info->run.y = false;
         info->state = HMI_State_Stop;
     }
-
+    else
     switch (info->mode) {
         case  HMI_Mode_Zero:
             HAL_GPIO_WritePin(spindle_Port, spindle_Pin, false);
@@ -213,6 +248,8 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
                         info->commanded.speed.x = -zeroing_velX;  
                         info->commanded.speed.y = 0;
                         CNC_Jog(info);
+                        if(HAL_GPIO_ReadPin(limitX_Port, limitX_Pin))
+                            info->move = HMI_Move_ZeroXB;
                     break;
 
                     case  HMI_Move_ZeroXB:
@@ -232,6 +269,8 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
                         info->commanded.speed.x = 0;  
                         info->commanded.speed.y = -zeroing_velY;
                         CNC_Jog(info);
+                        if(HAL_GPIO_ReadPin(limitY_Port, limitY_Pin))
+                            info->move = HMI_Move_ZeroYB;
                     break;
 
                     case  HMI_Move_ZeroYB:
@@ -258,10 +297,10 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
 
         case  HMI_Mode_Man:
             info->move = HMI_Move_Jog;
-            int16_t jogX = ((int16_t) (adc_data[6]>>1)) - (2254/2); //subtract center value X
-            int16_t jogY = ((int16_t) (adc_data[7]>>1)) - (1956/2); //subtract center value Y
-            info->commanded.speed.x = (abs(jogX) > 180) ? jogX*2 : 0;  // dead zone near center X
-            info->commanded.speed.y = (abs(jogY) > 180) ? jogY*2 : 0;  // dead zone near center Y
+            int16_t jogX = (2254/2) - ((int16_t) (adc_data[6]>>1)); //subtract center value X
+            int16_t jogY = (1956/2) - ((int16_t) (adc_data[7]>>1)); //subtract center value Y
+            info->commanded.speed.x = (abs(jogX) > jogDeadZoneX) ? jogX*2 : 0;  // dead zone near center X
+            info->commanded.speed.y = (abs(jogY) > jogDeadZoneY) ? jogY*2 : 0;  // dead zone near center Y
             CNC_Jog(info);
         break;
 
@@ -271,10 +310,17 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
             info->state = HMI_State_Stop;
             info->run.x = false;
             info->run.y = false;
+
+            if(info->P1.x > (info->P2.x + 10))
+                info->P2.x = info->P1.x + 10;
+            if(info->P1.y > (info->P2.y + 10))
+                info->P2.y = info->P1.y + 10;
         break;
 
         case  HMI_Mode_Face1:
             if(info->state == HMI_State_Run){
+                feed_adjust(info, adc_data);
+
                 switch (info->move) {
                     case HMI_Move_None:
                         __swapP12(info);
@@ -301,14 +347,14 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
                     case HMI_Move_Face3:
                         info->commanded.pos.y = info->P1.y;
                         if(CNC_AbsoluteY(info)){
-                            //if(info->pos.x >= info->P2.x){
-                            //    info->move = HMI_Move_None;
-                            //    info->state = HMI_State_Stop;
-                            //}
-                            //else {
+                            if(info->pos.x >= info->P2.x){
+                                info->move = HMI_Move_None;
+                                info->state = HMI_State_Stop;
+                            }
+                            else {
                                 info->commanded.pos.x = info->pos.x + face_depth;
                                 info->move = HMI_Move_Face4;
-                            //}
+                            }
                         }
                     break;
 
@@ -318,6 +364,7 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
                     break;
 
                     case HMI_Move_Done:
+
                         info->move = HMI_Move_Face1;
                     break;
 
@@ -334,6 +381,8 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
 
         case  HMI_Mode_Face2:
             if(info->state == HMI_State_Run){
+                feed_adjust(info, adc_data);
+
                 switch (info->move) {
                     case HMI_Move_None:
                         __swapP12(info);
@@ -344,50 +393,48 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
                     break;
 
                     case HMI_Move_Face1: 
-                        if(CNC_AbsoluteY(info)){
+                        if(CNC_AbsoluteX(info)){
                             info->move = HMI_Move_Face2;
-                            info->P1.x += face_depth;
-                            info->commanded.pos.x = info->P2.x;
+                            info->P1.y += face_depth;
+                            info->commanded.pos.y = info->P2.y;
                         }
                     break;
 
                     case HMI_Move_Face2: 
-                        if(CNC_AbsoluteX(info)){
+                        if(CNC_AbsoluteY(info)){
                             info->move = HMI_Move_Face3;
+                            info->P2.x -= face_depth;
+                            info->commanded.pos.x = info->P1.x;
+                        }
+                    break;
+
+                    case HMI_Move_Face3:
+                        if(CNC_AbsoluteX(info)){
+                            if(info->P1.y > info->P2.y){
+                                info->move = HMI_Move_None;
+                                info->state = HMI_State_Stop;
+                            }
+                            info->move = HMI_Move_Face4;
                             info->P2.y -= face_depth;
                             info->commanded.pos.y = info->P1.y;
                         }
                     break;
 
-                    case HMI_Move_Face3:
+                    case HMI_Move_Face4:
                         if(CNC_AbsoluteY(info)){
-                            info->move = HMI_Move_Face4;
-                            info->P2.x -= face_depth;
-                            info->commanded.pos.x = info->P1.x;
-
                             if(info->P1.x > info->P2.x){
                                 info->move = HMI_Move_None;
                                 info->state = HMI_State_Stop;
                             }
-                        }
-                    break;
-
-                    case HMI_Move_Face4:
-                        if(CNC_AbsoluteX(info)){
                             info->move = HMI_Move_Face1;
-                            info->P1.y += face_depth;
-                            info->commanded.pos.y = info->P2.y;
-
-                            if(info->P1.y > info->P2.y){
-                                info->move = HMI_Move_None;
-                                info->state = HMI_State_Stop;
-                            }
+                            info->P1.x += face_depth;
+                            info->commanded.pos.x = info->P2.x;
                         }
                     break;
 
                     case HMI_Move_Done:
                         info->move = HMI_Move_Face1;
-                        info->commanded.pos.y = info->P2.y;
+                        info->commanded.pos.x = info->P2.x;
                     break;
 
                     case HMI_Move_Absolute:

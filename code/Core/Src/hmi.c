@@ -60,7 +60,7 @@ void __BP_Control(HMI_info_t* const info, uint8_t mask, bool pause_mask){
   }
 
   if((PBpressed & PB_RUN) && (info->state != HMI_State_Stop)){
-    CNC_Stop(info);
+    CNC_Halt(info);
     info->state = pause_mask ? HMI_State_Pause : HMI_State_Stop;
   }
 
@@ -70,26 +70,25 @@ void __BP_Control(HMI_info_t* const info, uint8_t mask, bool pause_mask){
     info->state = pause_mask ? HMI_State_Pause : HMI_State_Stop;
   }
 
-  if((~newPushbuttons & PB_RUN) && !HAL_GPIO_ReadPin(SWSTOP_GPIO_Port, SWSTOP_Pin))
-  if((info->mode == HMI_Mode_Zero) || (info->P1set && info->P2set)){
-    info->cnt1++;
-    if(info->cnt1 > 20) {
-      info->state = HMI_State_Run;
-      info->update = true;
-      info->cnt2 = 10;
-      info->cnt1 = 0;
-    }
-  } 
-  else if((~newPushbuttons & PB_SPINDLE) && !HAL_GPIO_ReadPin(SWSTOP_GPIO_Port, SWSTOP_Pin)){
-    info->cnt1++;
-    if(info->cnt1 > 20) {
-      if(info->mode != HMI_Mode_Zero) {
+  if((~newPushbuttons & PB_RUN) && !HAL_GPIO_ReadPin(SWSTOP_GPIO_Port, SWSTOP_Pin)){
+    if((info->mode == HMI_Mode_Zero) || (info->P1set && info->P2set)){
+      info->cnt1++;
+      if(info->cnt1 > 20) {
+        info->state = HMI_State_Run;
         info->update = true;
         info->cnt2 = 10;
         info->cnt1 = 0;
-
-        HAL_GPIO_WritePin(spindle_Port, spindle_Pin, true);
       }
+    } 
+  }
+  else if((~newPushbuttons & PB_SPINDLE) && !HAL_GPIO_ReadPin(SWSTOP_GPIO_Port, SWSTOP_Pin)){
+    info->cnt1++;
+    if(info->cnt1 > 20) {
+      info->update = true;
+      info->cnt2 = 10;
+      info->cnt1 = 0;
+
+      HAL_GPIO_WritePin(spindle_Port, spindle_Pin, true);
     }
   } 
   else

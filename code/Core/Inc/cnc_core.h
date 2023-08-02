@@ -18,15 +18,16 @@ void CNC_Stepper(HMI_info_t* const info);
 
 void CNC_JogX_Forced(HMI_info_t* const info);
 void CNC_JogY_Forced(HMI_info_t* const info);
-void CNC_Absolute(HMI_info_t* const info);
+bool CNC_Absolute(HMI_info_t* const info);
 bool CNC_AbsoluteX(HMI_info_t* const info);
 bool CNC_AbsoluteY(HMI_info_t* const info);
-void CNC_JOG(HMI_info_t* const info);
+void CNC_Jog(HMI_info_t* const info);
 
 void CNC_TIM_Callback_X(HMI_info_t* const info);
 void CNC_TIM_Callback_Y(HMI_info_t* const info);
 
 void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile uint16_t *adc_data);
+void CNC_Halt(HMI_info_t* const info);
 void CNC_Stop(HMI_info_t* const info);
 void CNC_Limit_X(HMI_info_t* const info);
 void CNC_Limit_Y(HMI_info_t* const info);

@@ -77,7 +77,7 @@ void CNC_JogY_Forced(HMI_info_t* const info){
         info->htimY->Instance->CR1 |= TIM_CR1_ARPE | TIM_CR1_OPM | TIM_CR1_CEN;
 }
 
-void CNC_Absolute(HMI_info_t* const info){
+bool CNC_Absolute(HMI_info_t* const info){
 
     info->dir.x = (info->pos.x < info->commanded.pos.x);
     info->dir.y = (info->pos.y < info->commanded.pos.y);
@@ -101,8 +101,7 @@ void CNC_Absolute(HMI_info_t* const info){
 
     CNC_Stepper(info);    
 
-    if(!info->run.x && !info->run.y)
-        info->move = HMI_Move_Done;
+    return (!info->run.x && !info->run.y);
 }
 
 bool CNC_AbsoluteX(HMI_info_t* const info){
@@ -235,6 +234,7 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
         info->run.x = false;
         info->run.y = false;
         info->state = HMI_State_Stop;
+        HAL_GPIO_WritePin(spindle_Port, spindle_Pin, false);
     }
     else
     switch (info->mode) {
@@ -348,8 +348,9 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
                         info->commanded.pos.y = info->P1.y;
                         if(CNC_AbsoluteY(info)){
                             if(info->pos.x >= info->P2.x){
-                                info->move = HMI_Move_None;
-                                info->state = HMI_State_Stop;
+                                info->commanded.pos.x = 0;
+                                info->commanded.pos.y = 0;
+                                info->move = HMI_Move_Absolute1;
                             }
                             else {
                                 info->commanded.pos.x = info->pos.x + face_depth;
@@ -363,17 +364,22 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
                             info->move = HMI_Move_Face1;
                     break;
 
-                    case HMI_Move_Done:
-
-                        info->move = HMI_Move_Face1;
+                    case HMI_Move_Absolute:
+                        if(CNC_Absolute(info))
+                            info->move = HMI_Move_Face1;
                     break;
 
-                    case HMI_Move_Absolute:
-                        CNC_Absolute(info);
+                    case HMI_Move_Absolute1:
+                        if(CNC_Absolute(info)){
+                            info->move = HMI_Move_None;
+                            info->state = HMI_State_Stop;
+                            HAL_GPIO_WritePin(spindle_Port, spindle_Pin, false);
+                        }
                     break;
 
                     default:
                         info->move = HMI_Move_None;
+                        HAL_GPIO_WritePin(spindle_Port, spindle_Pin, false);
                     break;
                 }
             }
@@ -411,34 +417,46 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
                     case HMI_Move_Face3:
                         if(CNC_AbsoluteX(info)){
                             if(info->P1.y > info->P2.y){
-                                info->move = HMI_Move_None;
-                                info->state = HMI_State_Stop;
+                                info->commanded.pos.x = 0;
+                                info->commanded.pos.y = 0;
+                                info->move = HMI_Move_Absolute1;
+                            } 
+                            else {
+                                info->move = HMI_Move_Face4;
+                                info->P2.y -= face_depth;
+                                info->commanded.pos.y = info->P1.y;
                             }
-                            info->move = HMI_Move_Face4;
-                            info->P2.y -= face_depth;
-                            info->commanded.pos.y = info->P1.y;
                         }
                     break;
 
                     case HMI_Move_Face4:
                         if(CNC_AbsoluteY(info)){
                             if(info->P1.x > info->P2.x){
-                                info->move = HMI_Move_None;
-                                info->state = HMI_State_Stop;
+                                info->commanded.pos.x = 0;
+                                info->commanded.pos.y = 0;
+                                info->move = HMI_Move_Absolute1;
                             }
+                            else {
                             info->move = HMI_Move_Face1;
                             info->P1.x += face_depth;
+                            info->commanded.pos.x = info->P2.x;
+                            }
+                        }
+                    break;
+
+                    case HMI_Move_Absolute:
+                        if(CNC_Absolute(info)){
+                            info->move = HMI_Move_Face1;
                             info->commanded.pos.x = info->P2.x;
                         }
                     break;
 
-                    case HMI_Move_Done:
-                        info->move = HMI_Move_Face1;
-                        info->commanded.pos.x = info->P2.x;
-                    break;
-
-                    case HMI_Move_Absolute:
-                        CNC_Absolute(info);
+                    case HMI_Move_Absolute1:
+                        if(CNC_Absolute(info)){
+                            info->move = HMI_Move_None;
+                            info->state = HMI_State_Stop;
+                            HAL_GPIO_WritePin(spindle_Port, spindle_Pin, false);
+                        }
                     break;
 
                     default:
@@ -476,6 +494,19 @@ void CNC_HL_Control(HMI_info_t* const info, UART_HandleTypeDef *huart, volatile 
             }            
         break;
     }
+}
+
+void CNC_Halt(HMI_info_t* const info){
+    info->htimX->Instance->CR1 |= TIM_CR1_OPM;
+    info->htimY->Instance->CR1 |= TIM_CR1_OPM;
+    info->htimX->Instance->SR = 0x00000000U;
+    info->htimY->Instance->SR = 0x00000000U;
+
+    info->run.x = false;
+    info->run.y = false;
+    info->state = HMI_State_Stop;
+    info->update = true;
+    info->cnt2 = 10;
 }
 
 void CNC_Stop(HMI_info_t* const info){

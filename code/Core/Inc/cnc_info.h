@@ -53,6 +53,7 @@ typedef enum
 typedef enum
 {
   HMI_Move_Absolute,
+  HMI_Move_Absolute1,
   HMI_Move_Jog,
   HMI_Move_None,
   HMI_Move_Done,
